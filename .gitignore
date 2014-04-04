@@ -1,0 +1,13 @@
+*.fa
+*.gbk
+*.gff
+*.html
+*.log
+*.md
+*.orig
+.Rhistory
+NC_*
+RM_*
+figure
+maker_*.ctl
+pg29mt-concat.*
