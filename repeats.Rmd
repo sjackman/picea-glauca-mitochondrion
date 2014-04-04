@@ -1,0 +1,71 @@
+# Visualize repeat content annotated by RepeatMasker
+
+```{r knitr, include=FALSE}
+library(knitr)
+opts_chunk$set(fig.width=10, fig.height=5)
+```
+
+```{r Install libraries, eval=FALSE, include=FALSE}
+install.packages('dplyr')
+install.packages('lattice')
+source('http://bioconductor.org/biocLite.R')
+biocLite('genomeIntervals')
+```
+
+```{r Load libraries, include=FALSE}
+library(dplyr)
+library(genomeIntervals)
+library(lattice)
+```
+
+```{r Load data}
+genome.size <- 6017035
+gff.all <- readGff3('query.masked.gff.orig')
+gff <- gff.all[gff.all$type == 'match',]
+
+data <- data.frame(
+	Name = sub('/$', '', gsub('%2F', '/', getGffAttribute(gff, 'Name'))),
+	Size = size(gff),
+	stringsAsFactors = FALSE)
+data$Family <- sub('.*genus:([^ ;]*).*', '\\1', data$Name)
+data$Class <- factor(sub('/.*', '', data$Family))
+data$Family <- factor(data$Family)
+```
+
+```{r Aggregate the data}
+data.grouped <- droplevels(chain(data,
+	group_by(Class, Family),
+	summarise(
+		Count = n(),
+		Size = sum(Size),
+		Proportion = Size / genome.size),
+	filter(Size >= 1000)))
+
+tab <- data.grouped[c('Count', 'Size', 'Proportion')]
+rownames(tab) <- data.grouped$Family
+tab['Sum',] <- colSums(tab)
+```
+
+```{r Tabulate the data, results='asis'}
+kable(tab)
+```
+
+```{r Stripplot of repeat class vs size}
+stripplot(Family ~ Size, data,
+	subset = Family %in% data.grouped$Family,
+	jitter = TRUE)
+```
+
+```{r Barchart repeat class vs size}
+barchart(Family ~ Size / 1e3, data.grouped,
+	origin = 0,
+	xlab = 'Size (kbp)')
+
+barchart(Class ~ Size / 1e3, data.grouped, group = Family,
+	stack = TRUE, auto.key = list(space = 'right'),
+	xlab = 'Size (kbp)')
+
+barchart(~ Size / 1e3, data.grouped, group = Family,
+	stack = TRUE, auto.key = list(space = 'right'),
+	xlab = 'Size (kbp)')
+```
