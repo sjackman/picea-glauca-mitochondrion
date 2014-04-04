@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+import Bio.SeqIO
+import sys
+
+for seq_record in Bio.SeqIO.parse(sys.stdin, 'genbank'):
+	for seq_feature in seq_record.features:
+		if seq_feature.type == 'CDS':
+			x = seq_feature.qualifiers
+			assert len(x['gene']) == 1
+			assert len(x['product']) == 1
+			assert len(x['translation']) == 1
+			sys.stdout.write('>%s %s\n%s\n' % (
+				x['gene'][0],
+				x['product'][0],
+				x['translation'][0]))
