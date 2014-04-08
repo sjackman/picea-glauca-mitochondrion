@@ -37,7 +37,8 @@ gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	'rps', 'ribosomal proteins (SSU)',
 	'rrn', 'ribosomal RNAs',
 	'sdh', 'complex II (succinate dehydrogenase)',
-	'trn', 'transfer RNAs')))
+	'trn', 'transfer RNAs',
+	'unk', 'unknown')))
 gene.types <- data.frame(gene.types.matrix)
 colnames(gene.types) <- c('Short.name', 'Full.name')
 rownames(gene.types) <- gene.types$Short.name
@@ -56,7 +57,7 @@ data <- droplevels(data.frame(
 data$Family = factor(substr(data$Name, 1, 3),
 	levels = gene.types$Short.name,
 	labels = gene.types$Full.name)
-stopifnot(!is.na(data$Family))
+data[is.na(data$Family), 'Family'] <- 'unknown'
 ```
 
 ```{r Aggregate the data}
