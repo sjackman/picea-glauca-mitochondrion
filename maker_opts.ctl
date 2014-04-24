@@ -14,6 +14,7 @@ rmlib=rmlib.fa #provide an organism specific repeat library in fasta format for 
 repeat_protein=/usr/local/opt/maker/libexec/data/te_proteins.fasta #provide a fasta file of transposable element proteins for RepeatRunner
 
 #-----Gene Prediction
+pred_gff=pg29mt-concat.glimmerhmm.rice.gff #ab-initio predictions from an external GFF3 file
 #est2genome=1 #infer gene predictions directly from ESTs, 1 = yes, 0 = no
 protein2genome=1 #infer predictions from protein homology, 1 = yes, 0 = no
 trna=1 #find tRNAs with tRNAscan, 1 = yes, 0 = no
@@ -23,5 +24,6 @@ cpus=4 #max number of cpus to use in BLAST and RepeatMasker (not for MPI, leave 
 
 #-----MAKER Behavior Options
 est_forward=1 #map names and attributes forward from EST evidence, 1 = yes, 0 = no
+keep_preds=1 #Concordance threshold to add unsupported gene prediction (bound by 0 and 1)
 single_exon=1 #consider single exon EST evidence when generating annotations, 1 = yes, 0 = no
 #single_length=50 #min length required for single exon ESTs if 'single_exon is enabled'
