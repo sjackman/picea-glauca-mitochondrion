@@ -23,7 +23,7 @@ cds_na.orig.fa cds_aa.orig.fa: %.fa:
 		|sed -E 's/^>(.*gene=([^]]*).*)$$/>\2 \1/' >$@
 
 cds_na.fa cds_aa.fa: %.fa: %.orig.fa
-	seqmagick convert --pattern-exclude '^lcl|^orf|^ORF|hypothetical|putative|unnamed' $< $@
+	seqmagick convert --pattern-exclude '^lcl|^orf|^ORF|^apt|^nd5|^ArthMp|hypothetical|putative|unnamed' $< $@
 
 # RepeatModeler
 
