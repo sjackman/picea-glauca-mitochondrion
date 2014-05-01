@@ -2,7 +2,7 @@
 
 ```{r knitr, include=FALSE}
 library(knitr)
-opts_chunk$set(fig.width=10, fig.height=5)
+opts_chunk$set(tidy = FALSE, fig.width = 10, fig.height = 5)
 ```
 
 ```{r Install libraries, eval=FALSE, include=FALSE}
@@ -18,7 +18,8 @@ library(genomeIntervals)
 library(lattice)
 ```
 
-```{r Constants}
+# Gene families
+```{r Gene families}
 gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	'atp', 'ATP synthase',
 	'ccb', 'cytochrome c biogenesis',
@@ -46,6 +47,7 @@ colnames(gene.types) <- c('Short.name', 'Full.name')
 rownames(gene.types) <- gene.types$Short.name
 ```
 
+# Load data
 ```{r Load data}
 gff.all <- readGff3('pg29mt-concat.gff')
 gff <- gff.all[gff.all$type %in% c('mRNA', 'tRNA'),]
@@ -62,41 +64,36 @@ data$Family = factor(data$Family.short,
 data[is.na(data$Family), 'Family'] <- 'unknown'
 ```
 
-```{r Aggregate the data}
+# Tabulate the data
+```{r Tabulate the data, results='asis'}
 data.grouped <- droplevels(chain(data,
 	group_by(Type, Family),
 	summarise(
 		Count = n(),
 		Size = sum(Size))))
-
 tab <- data.grouped[c('Count', 'Size')]
 rownames(tab) <- data.grouped$Family
 tab['Sum',] <- colSums(tab)
-```
-
-```{r Tabulate the data, results='asis'}
 kable(tab)
 ```
 
+# Stripplot of type vs size
 ```{r Stripplot of type vs size}
-stripplot(Family ~ Size | Type, data,
+stripplot(Family ~ Size, data,
 	jitter = TRUE,
-	layout = c(1, nlevels(data$Type)),
-	scales = list(relation = 'free'),
 	xlab = 'Size (bp)')
 ```
 
-```{r Barchart type vs count}
+# Barchart of type vs count
+```{r Barchart of type vs count}
 barchart(Family ~ Count, data.grouped,
 	origin = 0)
 
 barchart(Type ~ Count, data.grouped, group = Family,
 	stack = TRUE, auto.key = list(space = 'right'))
-
-barchart(~ Count, data.grouped, group = Family,
-	stack = TRUE, auto.key = list(space = 'right'))
 ```
 
+# Barchart of type vs size
 ```{r Barchart type vs size}
 barchart(Family ~ Size / 1e3, data.grouped,
 	origin = 0,
@@ -107,6 +104,7 @@ barchart(~ Size / 1e3, data.grouped, group = Family,
 	xlab = 'Size (kbp)')
 ```
 
+# Write the tabulated data to a file
 ```{r Write the tabulated data to a file}
 write.table(data.grouped, 'pg29mt-concat.gff.tsv',
 	quote = FALSE, sep = '\t', row.names = FALSE)
