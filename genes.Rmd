@@ -69,8 +69,7 @@ data.grouped <- droplevels(chain(data,
 	summarise(
 		Count = n(),
 		Size = sum(Size),
-		Proportion = Size / genome.size),
-	filter(Size >= 1000)))
+		Proportion = Size / genome.size)))
 
 tab <- data.grouped[c('Count', 'Size', 'Proportion')]
 rownames(tab) <- data.grouped$Family
