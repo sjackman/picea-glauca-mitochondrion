@@ -43,12 +43,6 @@ resources/%:
 RepeatModeler.fa: ThuApr31728402014/consensi.fa.classified
 	cp -a $< $@
 
-# GlimmerHMM
-
-%.glimmerhmm.rice.gff: %.fa
-	glimmerhmm $< -d /usr/local/opt/glimmerhmm/trained_dir/rice -g -o $@.orig
-	sed 's/mRNA/match/;s/CDS/match_part/' $@.orig >$@
-
 # MAKER
 
 maker_bopts.ctl:
@@ -60,7 +54,7 @@ maker_exe.ctl:
 rmlib.fa: PICEAGLAUCA_rpt2.0.fa RepeatModeler.fa
 	cat $^ >$@
 
-%.maker.output/stamp: maker_opts.ctl %.fa $(ref).frn $(ref).faa rmlib.fa %.glimmerhmm.rice.gff
+%.maker.output/stamp: maker_opts.ctl %.fa $(ref).frn $(ref).faa rmlib.fa
 	maker -fix_nucleotides -cpus 4
 	touch $@
 
