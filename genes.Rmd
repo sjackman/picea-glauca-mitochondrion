@@ -106,3 +106,8 @@ barchart(~ Size / 1e3, data.grouped, group = Family,
 	stack = TRUE, auto.key = list(space = 'right'),
 	xlab = 'Size (kbp)')
 ```
+
+```{r Write the tabulated data to a file}
+write.table(data.grouped, 'pg29mt-concat.gff.tsv',
+	quote = FALSE, sep = '\t', row.names = FALSE)
+```
