@@ -6,7 +6,7 @@ name=pg29mt-concat
 # Green plant mitochondria
 edirect_query='Viridiplantae[Organism] mitochondrion[Title] (complete genome[Title] OR complete sequence[Title])'
 
-all: $(name).gbk.png
+all: $(name).gff $(name).evidence.gff $(name).repeat.gff $(name).gff.gene $(name).gbk.png
 
 clean:
 	rm -f $(name).gb $(name).gbk $(name).gff $(name).png
@@ -52,10 +52,21 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa RepeatModeler.fa
 	maker -fix_nucleotides -cpus 4
 	touch $@
 
-%.gff: %.maker.output/stamp
-	gff3_merge -s -g -n -d $*.maker.output/$*_master_datastore_index.log \
-		|sed 's/trnascan-[^-]*-processed-gene/trn/g;s/-tRNA-1//g' \
-		|sed '/rrn/s/mRNA/rRNA/;/trn/s/mRNA/tRNA/' >$@
+%.repeat.gff: %.maker.output/stamp
+	cp `find $*.maker.output -name query.masked.gff` $@
+
+%.evidence.orig.gff: %.maker.output/stamp
+	gff3_merge -s -n -d $*.maker.output/$*_master_datastore_index.log >$@
+
+%.orig.gff: %.maker.output/stamp
+	gff3_merge -s -g -n -d $*.maker.output/$*_master_datastore_index.log >$@
+
+%.gff: %.orig.gff
+	sed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
+		s/trnascan-[^-]*-processed-gene/trn/g; \
+		s/-tRNA-1//g; \
+		/rrn/s/mRNA/rRNA/; \
+		/trn/s/mRNA/tRNA/' $< >$@
 
 %.gb: %.gff %.fa
 	bin/gff_to_genbank.py $^ >$@
@@ -67,3 +78,8 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa RepeatModeler.fa
 
 %.gbk.png: %.gbk
 	drawgenemap --format png --infile $< --outfile $<
+
+# Report the annotated genes
+
+%.gff.gene: %.gff
+	bin/gff-gene-name $< >$@

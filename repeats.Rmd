@@ -20,7 +20,7 @@ library(lattice)
 
 ```{r Load data}
 genome.size <- 6017035
-gff.all <- readGff3('query.masked.gff.orig')
+gff.all <- readGff3('pg29mt-concat.repeat.gff')
 gff <- gff.all[gff.all$type == 'match',]
 
 data <- data.frame(
