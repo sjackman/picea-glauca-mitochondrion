@@ -2,9 +2,6 @@
 genome=pg29mt-concat.fa #genome sequence (fasta file or fasta embeded in GFF3 file)
 organism_type=eukaryotic #eukaryotic or prokaryotic. Default is eukaryotic
 
-#-----EST Evidence (for best results provide a file for at least one)
-est=cds_na.fa #set of ESTs or assembled mRNA-seq in fasta format
-
 #-----Protein Homology Evidence (for best results provide a file for at least one)
 protein=cds_aa.fa #protein sequence file in fasta format (i.e. from mutiple oransisms)
 
@@ -14,7 +11,6 @@ rmlib=rmlib.fa #provide an organism specific repeat library in fasta format for 
 repeat_protein=/usr/local/opt/maker/libexec/data/te_proteins.fasta #provide a fasta file of transposable element proteins for RepeatRunner
 
 #-----Gene Prediction
-est2genome=1 #infer gene predictions directly from ESTs, 1 = yes, 0 = no
 protein2genome=1 #infer predictions from protein homology, 1 = yes, 0 = no
 trna=1 #find tRNAs with tRNAscan, 1 = yes, 0 = no
 

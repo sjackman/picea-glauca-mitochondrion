@@ -3,6 +3,7 @@ Annotate the mitochondrion of the white spruce using MAKER
 
 | Directory   | mRNA | Notes
 |-------------|------|------
+20140505T1751 | 48   | 2.31 est2genome=0
 20140505T1723 | 50   | 2.31
 20140505      | 33   | 2.31.3
 20140502T1650 | 64   | 2.31.3 Prodigal

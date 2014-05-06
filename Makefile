@@ -17,12 +17,12 @@ clean:
 
 # Fetch data from NCBI
 
-cds_na.orig.fa cds_aa.orig.fa: %.fa:
+cds_aa.orig.fa cds_na.orig.fa: %.fa:
 	esearch -db nuccore -query $(edirect_query) \
 		|efetch -format fasta_$* \
 		|sed -E 's/^>(.*gene=([^]]*).*)$$/>\2 \1/' >$@
 
-cds_na.fa cds_aa.fa: %.fa: %.orig.fa
+cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 	seqmagick convert --pattern-exclude '^lcl|^orf|^ORF|^apt|^nd5|^ArthMp|hypothetical|putative|unnamed' $< $@
 
 # RepeatModeler
@@ -48,7 +48,7 @@ maker_exe.ctl:
 rmlib.fa: PICEAGLAUCA_rpt2.0.fa RepeatModeler.fa
 	cat $^ >$@
 
-%.maker.output/stamp: maker_opts.ctl %.fa cds_na.fa cds_aa.fa rmlib.fa
+%.maker.output/stamp: maker_opts.ctl %.fa cds_aa.fa rmlib.fa
 	maker -fix_nucleotides -cpus 4
 	touch $@
 
