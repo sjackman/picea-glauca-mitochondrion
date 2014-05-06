@@ -23,7 +23,17 @@ cds_aa.orig.fa cds_na.orig.fa: %.fa:
 		|sed -E 's/^>(.*gene=([^]]*).*)$$/>\2 \1/' >$@
 
 cds_aa.fa cds_na.fa: %.fa: %.orig.fa
-	seqmagick convert --pattern-exclude '^lcl|^orf|^ORF|^apt|^nd5|^ArthMp|hypothetical|putative|unnamed' $< $@
+	seqmagick convert \
+		--pattern-exclude '^lcl|^orf|^ORF|^ArthMp|^ccb|^C3258_p30|hypothetical|putative|unnamed' \
+		--pattern-replace '^apt' 'atp' \
+		--pattern-replace '^coxI$$' 'cox1' \
+		--pattern-replace '^coxII$$' 'cox2' \
+		--pattern-replace '^coxIII$$' 'cox3' \
+		--pattern-replace '^cytb' 'cob' \
+		--pattern-replace '^nd5' 'nad5' \
+		--pattern-replace '^yejU$$' 'ccmC' \
+		--pattern-replace '^yejV$$' 'ccmB' \
+		$< $@
 
 # RepeatModeler
 
