@@ -24,7 +24,7 @@ cds_aa.orig.fa cds_na.orig.fa: %.fa:
 
 cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 	seqmagick convert \
-		--pattern-exclude '^lcl|^orf|^ORF|^ArthMp|^ccb|^C3258_p30|hypothetical|putative|unnamed' \
+		--pattern-exclude '^lcl|^orf|^ORF|^apt|^nd5|^ArthMp|hypothetical|putative|unnamed' \
 		--pattern-replace '^apt' 'atp' \
 		--pattern-replace '^coxI$$' 'cox1' \
 		--pattern-replace '^coxII$$' 'cox2' \
