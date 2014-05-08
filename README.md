@@ -3,6 +3,7 @@ Annotate the mitochondrion of the white spruce using MAKER
 
 | Directory     | mRNA | Notes
 |---------------|------|------
+| 20140507T1805 | 54   | 2.31.4 Unique sequence IDs
 | 20140507T1620 | 48   | 2.31.4 cds_aa.fa is 100906 lines
 | 20140507T1426 | 47   | 2.31.4 cds_aa.fa is 100919 lines
 | 20140506T1526 | 47   | 2.31 Fixed cds_aa names. -nad2 -ccmFc -ccmFc +ccmF +atp8

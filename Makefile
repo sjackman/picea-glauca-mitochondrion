@@ -19,11 +19,11 @@ clean:
 
 cds_aa.orig.fa cds_na.orig.fa: %.fa:
 	esearch -db nuccore -query $(edirect_query) \
-		|efetch -format fasta_$* \
-		|sed -E 's/^>(.*gene=([^]]*).*)$$/>\2 \1/' >$@
+		|efetch -format fasta_$* >$@
 
 cds_aa.fa cds_na.fa: %.fa: %.orig.fa
-	seqmagick convert \
+	sed -E 's/^>(.*gene=([^]]*).*protein_id=([^]]*).*)$$/>\2__\3 \1/' $< \
+		|seqmagick convert \
 		--pattern-exclude '^lcl|^orf|^ORF|^apt|^nd5|^ArthMp|hypothetical|putative|unnamed' \
 		--pattern-replace '^apt' 'atp' \
 		--pattern-replace '^coxI$$' 'cox1' \
@@ -33,7 +33,7 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 		--pattern-replace '^nd5' 'nad5' \
 		--pattern-replace '^yejU$$' 'ccmC' \
 		--pattern-replace '^yejV$$' 'ccmB' \
-		$< $@
+		- $@
 
 # RepeatModeler
 
