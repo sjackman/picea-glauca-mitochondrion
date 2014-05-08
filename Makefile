@@ -72,17 +72,16 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa RepeatModeler.fa
 	gff3_merge -s -g -n -d $*.maker.output/$*_master_datastore_index.log >$@
 
 %.gff: %.orig.gff
-	sed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
-		s/trnascan-[^-]*-processed-gene/trn/g; \
-		s/-tRNA-1//g; \
-		/rrn/s/mRNA/rRNA/; \
-		/trn/s/mRNA/tRNA/' $< >$@
+	sed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g' $< >$@
 
 %.gb: %.gff %.fa
 	bin/gff_to_genbank.py $^ >$@
 
 %.gbk: %-header.gbk %.gb
-	(cat $< && sed -n '/^FEATURES/,$${s/Name=/gene=/;s/-gene//;p;}' $*.gb) >$@
+	(cat $< && sed -En '/^FEATURES/,$$ { \
+		s/Name="(trn[^-]*).*"/gene="\1"/; \
+		s/Name="([^|]*).*"/gene="\1"/; \
+		p; }' $*.gb) >$@
 
 # OrganellarGenomeDRAW
 
