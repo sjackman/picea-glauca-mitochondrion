@@ -22,17 +22,17 @@ cds_aa.orig.fa cds_na.orig.fa: %.fa:
 		|efetch -format fasta_$* >$@
 
 cds_aa.fa cds_na.fa: %.fa: %.orig.fa
-	sed -E 's/^>(.*gene=([^]]*).*protein_id=([^]]*).*)$$/>\2__\3 \1/' $< \
+	sed -E 's/^>(.*gene=([^]]*).*)$$/>\2|\1/' $< \
 		|seqmagick convert \
-		--pattern-exclude '^lcl|^orf|^ORF|^apt|^nd5|^ArthMp|hypothetical|putative|unnamed' \
+		--pattern-exclude '^lcl|^orf|^ORF|hypothetical|putative|unnamed' \
 		--pattern-replace '^apt' 'atp' \
-		--pattern-replace '^coxI$$' 'cox1' \
-		--pattern-replace '^coxII$$' 'cox2' \
-		--pattern-replace '^coxIII$$' 'cox3' \
+		--pattern-replace '^coxIII' 'cox3' \
+		--pattern-replace '^coxII' 'cox2' \
+		--pattern-replace '^coxI' 'cox1' \
 		--pattern-replace '^cytb' 'cob' \
 		--pattern-replace '^nd5' 'nad5' \
-		--pattern-replace '^yejU$$' 'ccmC' \
-		--pattern-replace '^yejV$$' 'ccmB' \
+		--pattern-replace '^yejU' 'ccmC' \
+		--pattern-replace '^yejV' 'ccmB' \
 		- $@
 
 # RepeatModeler
