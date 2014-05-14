@@ -30,7 +30,7 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 		--pattern-replace '^coxII' 'cox2' \
 		--pattern-replace '^coxI' 'cox1' \
 		--pattern-replace '^cytb' 'cob' \
-		--pattern-replace '^nd5' 'nad5' \
+		--pattern-replace '^nd' 'nad' \
 		--pattern-replace '^yejU' 'ccmC' \
 		--pattern-replace '^yejV' 'ccmB' \
 		--deduplicate-taxa \
