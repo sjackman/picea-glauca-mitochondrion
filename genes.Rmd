@@ -50,13 +50,15 @@ rownames(gene.types) <- gene.types$Short.name
 # Load data
 ```{r Load data}
 gff.all <- readGff3('pg29mt-concat.gff')
-gff <- gff.all[gff.all$type %in% c('mRNA', 'tRNA'),]
+gff <- gff.all[gff.all$type %in% c('mRNA', 'rRNA', 'tRNA'),]
 
 data <- droplevels(data.frame(
 	Type = gff$type,
 	Name = getGffAttribute(gff, 'Name'),
 	Size = size(gff),
 	stringsAsFactors = FALSE))
+data$Gene <- factor(tolower(sub('trn.*', 'trn',
+	sub('\\|.*', '', data$Name))))
 data$Family.short <- tolower(substr(data$Name, 1, 3))
 data$Family = factor(data$Family.short,
 	levels = gene.types$Short.name,
@@ -93,10 +95,10 @@ barchart(Type ~ Count, data.grouped, group = Family,
 	stack = TRUE, auto.key = list(space = 'right'))
 ```
 
-# Barchart of type vs size
+# Barchart of family vs size
 ```{r Barchart type vs size}
-barchart(Family ~ Size / 1e3, data.grouped,
-	origin = 0,
+barchart(Family ~ Size / 1e3, data, group = Gene,
+	stack = TRUE, auto.key = list(space = 'right'),
 	xlab = 'Size (kbp)')
 
 barchart(~ Size / 1e3, data.grouped, group = Family,
