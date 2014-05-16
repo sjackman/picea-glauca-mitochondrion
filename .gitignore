@@ -6,6 +6,7 @@
 *.md
 *.orig
 .Rhistory
+2014*
 NC_*
 RM_*
 figure
