@@ -1,7 +1,11 @@
 # Annotate and visualize the white spruce mitochondrial genome
 # Copyright 2014 Shaun Jackman
 
+# Name of the assembly
 name=pg29mt-concat
+
+# Number of threads
+t=4
 
 # Green plant mitochondria
 edirect_query='Viridiplantae[Organism] mitochondrion[Title] (complete genome[Title] OR complete sequence[Title])'
@@ -48,6 +52,11 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 RepeatModeler.fa: ThuApr31728402014/consensi.fa.classified
 	cp -a $< $@
 
+# Barrnap
+
+%.rrna.gff: %.fa
+	barrnap --kingdom mitochondria --threads $t $< >$@
+
 # MAKER
 
 maker_bopts.ctl:
@@ -60,7 +69,7 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa RepeatModeler.fa
 	cat $^ >$@
 
 %.maker.output/stamp: maker_opts.ctl %.fa cds_aa.fa rmlib.fa
-	maker -fix_nucleotides -cpus 4
+	maker -fix_nucleotides -cpus $t
 	touch $@
 
 %.repeat.gff: %.maker.output/stamp
@@ -73,7 +82,8 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa RepeatModeler.fa
 	gff3_merge -s -g -n -d $*.maker.output/$*_master_datastore_index.log >$@
 
 %.gff: %.orig.gff
-	sed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g' $< >$@
+	sed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
+		s/Name=([^;]*)S_rRNA/Name=rrn\1/g' $< >$@
 
 %.gb: %.gff %.fa
 	bin/gff_to_genbank.py $^ >$@
