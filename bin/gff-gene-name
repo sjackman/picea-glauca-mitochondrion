@@ -1,0 +1,5 @@
+#!/usr/bin/ruby -w
+
+ARGF.each { |s|
+	puts $1 if s =~ /\tgene\t.*Name=([^;]*)/
+}
