@@ -82,8 +82,9 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa RepeatModeler.fa
 	gff3_merge -s -g -n -d $*.maker.output/$*_master_datastore_index.log >$@
 
 %.gff: %.orig.gff
-	sed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
-		s/Name=([^;]*)S_rRNA/Name=rrn\1/g' $< >$@
+	gsed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
+		s/Name=([^;]*)S_rRNA/Name=rrn\1/g; \
+		/\tmRNA\t/d' $< >$@
 
 %.gb: %.gff %.fa
 	bin/gff_to_genbank.py $^ >$@
