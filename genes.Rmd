@@ -68,11 +68,12 @@ data[is.na(data$Family), 'Family'] <- 'unknown'
 
 # Tabulate the data
 ```{r Tabulate the data, results='asis'}
-data.grouped <- droplevels(chain(data,
-	group_by(Type, Family),
+data.grouped <- data %>%
+	group_by(Type, Family) %>%
 	summarise(
 		Count = n(),
-		Size = sum(Size))))
+		Size = sum(Size)) %>%
+	droplevels
 tab <- data.grouped[c('Count', 'Size')]
 rownames(tab) <- data.grouped$Family
 tab['Sum',] <- colSums(tab)
