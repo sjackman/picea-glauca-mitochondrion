@@ -49,7 +49,7 @@ rownames(gene.types) <- gene.types$Short.name
 
 # Load data
 ```{r Load data}
-gff.all <- readGff3('pg29mt-concat.gff')
+gff.all <- readGff3('pg29mt-scaffolds.gff')
 gff <- gff.all[gff.all$type %in% c('mRNA', 'rRNA', 'tRNA'),]
 
 data <- droplevels(data.frame(
@@ -109,6 +109,6 @@ barchart(~ Size / 1e3, data.grouped, group = Family,
 
 # Write the tabulated data to a file
 ```{r Write the tabulated data to a file}
-write.table(data.grouped, 'pg29mt-concat.gff.tsv',
+write.table(data.grouped, 'pg29mt-scaffolds.gff.tsv',
 	quote = FALSE, sep = '\t', row.names = FALSE)
 ```

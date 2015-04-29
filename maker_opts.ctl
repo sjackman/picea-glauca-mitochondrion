@@ -1,5 +1,5 @@
 #-----Genome (these are always required)
-genome=pg29mt-concat.fa #genome sequence (fasta file or fasta embeded in GFF3 file)
+genome=pg29mt-scaffolds.fa #genome sequence (fasta file or fasta embeded in GFF3 file)
 organism_type=eukaryotic #eukaryotic or prokaryotic. Default is eukaryotic
 
 #-----Protein Homology Evidence (for best results provide a file for at least one)
@@ -15,7 +15,7 @@ protein2genome=1 #infer predictions from protein homology, 1 = yes, 0 = no
 trna=1 #find tRNAs with tRNAscan, 1 = yes, 0 = no
 
 #-----Other Annotation Feature Types (features MAKER doesn't recognize)
-other_gff=pg29mt-concat.rrna.gff #extra features to pass-through to final MAKER generated GFF3 file
+other_gff=pg29mt-scaffolds.rrna.gff #extra features to pass-through to final MAKER generated GFF3 file
 
 #-----External Application Behavior Options
 cpus=4 #max number of cpus to use in BLAST and RepeatMasker (not for MPI, leave 1 when using MPI)

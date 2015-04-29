@@ -1,8 +1,8 @@
 # Annotate and visualize the white spruce mitochondrial genome
-# Copyright 2014 Shaun Jackman
+# Copyright 2015 Shaun Jackman
 
 # Name of the assembly
-name=pg29mt-concat
+name=pg29mt-scaffolds
 
 # Number of threads
 t=4
@@ -15,9 +15,17 @@ all: $(name).gff $(name).evidence.gff $(name).repeat.gff $(name).gff.gene $(name
 clean:
 	rm -f $(name).gb $(name).gbk $(name).gff $(name).png
 
-.PHONY: all clean
+install-deps:
+	pip install seqmagick
+
+.PHONY: all clean install-deps
 .DELETE_ON_ERROR:
 .SECONDARY:
+
+# Copy local data
+
+#PICEAGLAUCA_rpt2.0.fa: /genesis/extscratch/seqdev/PG/data/PICEAGLAUCA_rpt2.0
+#	cp -a $< $@
 
 # Fetch data from NCBI
 
@@ -45,12 +53,9 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 %.nin: %.fa
 	/usr/local/opt/repeatmodeler/BuildDatabase -name $* -engine ncbi $<
 
-%.rm: %.nin
+%.RepeatModeler.fa: %.nin
 	RepeatModeler -database $*
-	touch $@
-
-RepeatModeler.fa: ThuApr31728402014/consensi.fa.classified
-	cp -a $< $@
+	cp -a RM_*/consensi.fa.classified $@
 
 # Barrnap
 
@@ -65,15 +70,15 @@ maker_bopts.ctl:
 maker_exe.ctl:
 	maker -EXE
 
-rmlib.fa: PICEAGLAUCA_rpt2.0.fa RepeatModeler.fa
+rmlib.fa: PICEAGLAUCA_rpt2.0.fa $(name).RepeatModeler.fa
 	cat $^ >$@
 
-%.maker.output/stamp: maker_opts.ctl %.fa cds_aa.fa rmlib.fa
+%.maker.output/stamp: maker_opts.ctl %.fa cds_aa.fa rmlib.fa %.rrna.gff
 	maker -fix_nucleotides -cpus $t
 	touch $@
 
 %.repeat.gff: %.maker.output/stamp
-	cp `find $*.maker.output -name query.masked.gff` $@
+	cat `find $*.maker.output -name query.masked.gff` >$@
 
 %.evidence.orig.gff: %.maker.output/stamp
 	gff3_merge -s -n -d $*.maker.output/$*_master_datastore_index.log >$@
