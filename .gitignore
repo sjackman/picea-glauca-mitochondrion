@@ -1,13 +1,26 @@
 *.fa
+*.gb
 *.gbk
 *.gff
+*.gff.gene
 *.html
 *.log
+*.maker.output
 *.md
 *.orig
+*.png
 .Rhistory
 2014*
 NC_*
 RM_*
 figure
 pg29mt-concat.*
+
+# RepeatModeler
+*.nhr
+*.nin
+*.nnd
+*.nni
+*.nog
+*.nsq
+*.translation
