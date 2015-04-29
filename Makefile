@@ -109,3 +109,13 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa $(name).RepeatModeler.fa
 
 %.gff.gene: %.gff
 	bin/gff-gene-name $< >$@
+
+# Split the GenBank file into one sequence per file
+gbk/%.00.gbk: %.gbk
+	gcsplit -sz -f $*. --suppress-matched $< '/\/\//' '{*}'
+	mkdir -p $(@D)
+	for i in $*.[0-9][0-9]; do mv $$i gbk/$$i.gbk; done
+
+# Combine the OGDraw images into a single image
+%.gbk.montage.png: gbk/%.*.gbk.png
+	montage -geometry 1200x600 $^ $@
