@@ -88,11 +88,17 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa $(name).RepeatModeler.fa
 
 %.gff: %.orig.gff
 	gsed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
-		s/Name=([^;]*)S_rRNA/Name=rrn\1/g; \
-		/\tmRNA\t/d' $< >$@
+		s/Name=([^;]*)S_rRNA/Name=rrn\1/g' \
+		$^ >$@
 
-%.gb: %.gff %.fa
-	bin/gff_to_genbank.py $^ >$@
+# Remove mRNA records
+%.nomrna.gff: %.gff
+	gsed '/\tmRNA\t/d' $< >$@
+
+# Convert to GenBank format
+%.gb: %.nomrna.gff %.fa
+	bin/gff_to_genbank.py $^
+	mv $*.nomrna.gb $@
 
 %.gbk: %-header.gbk %.gb
 	(cat $< && sed -En '/^FEATURES/,$$ { \
