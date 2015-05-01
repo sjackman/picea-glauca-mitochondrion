@@ -73,7 +73,7 @@ maker_exe.ctl:
 rmlib.fa: PICEAGLAUCA_rpt2.0.fa $(name).RepeatModeler.fa
 	cat $^ >$@
 
-%.maker.output/stamp: maker_opts.ctl %.fa cds_aa.fa rmlib.fa %.rrna.gff
+%.maker.output/stamp: maker_opts.ctl %.fa cds_aa.fa rmlib.fa
 	maker -fix_nucleotides -cpus $t
 	touch $@
 
@@ -90,6 +90,9 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa $(name).RepeatModeler.fa
 	gsed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
 		s/Name=([^;]*)S_rRNA/Name=rrn\1/g' \
 		$^ >$@
+
+# Add the rRNA annotations to the GFF file
+$(name).gff: $(name).rrna.gff
 
 # Remove mRNA records
 %.nomrna.gff: %.gff
