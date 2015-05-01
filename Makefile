@@ -119,3 +119,13 @@ gbk/%.00.gbk: %.gbk
 # Combine the OGDraw images into a single image
 %.gbk.montage.png: gbk/%.*.gbk.png
 	montage -geometry 1200x600 $^ $@
+
+# Render HTML from RMarkdown
+%.html: %.Rmd
+	Rscript -e 'rmarkdown::render("$<", output_format = "html_document")'
+
+# Dependencies
+
+genes.html: pg29mt-scaffolds.gff
+
+repeats.html: pg29mt-scaffolds.repeat.gff
