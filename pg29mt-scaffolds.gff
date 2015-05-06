@@ -1,0 +1,496 @@
+##gff-version   3
+##sequence-region   1 279640 1229424
+##sequence-region   10 38061 127792
+##sequence-region   11 32390 144279
+##sequence-region   12 95482 96669
+##sequence-region   16 5901 84998
+##sequence-region   17 40228 133406
+##sequence-region   18 6247 8015
+##sequence-region   2 23289 655908
+##sequence-region   21 6068 6349
+##sequence-region   3 121114 342520
+##sequence-region   4 9445 304205
+##sequence-region   5 4 100091
+##sequence-region   6 61475 457424
+##sequence-region   7 585 446210
+##sequence-region   8 58761 273946
+##sequence-region   9 29678 159978
+1	maker	gene	279640	280098	.	-	.	ID=gene1;Name=cox2|lcl|NC_010303.1_prot_YP_001661426.1_33-gene
+1	maker	mRNA	279640	280098	16.3	-	.	ID=mRNA1;Parent=gene1;Name=cox2|lcl|NC_010303.1_prot_YP_001661426.1_33;_AED=0.04;_eAED=0.04;_QI=0|-1|0|1|-1|0|1|0|152
+1	maker	exon	279640	280098	.	-	.	Parent=mRNA1
+1	maker	CDS	279640	280098	.	-	0	Parent=mRNA1
+###
+1	maker	gene	309087	309386	.	+	.	ID=gene2;Name=nad1|lcl|KM207679.1_prot_AJM70235.1_13-gene
+1	maker	mRNA	309087	309386	28.2	+	.	ID=mRNA2;Parent=gene2;Name=nad1|lcl|KM207679.1_prot_AJM70235.1_13;_AED=0.24;_eAED=0.24;_QI=0|-1|0|1|-1|0|1|0|99
+1	maker	exon	309087	309386	.	+	.	Parent=mRNA2
+1	maker	CDS	309087	309386	.	+	0	Parent=mRNA2
+###
+1	maker	gene	313307	315652	.	-	.	ID=gene3;Name=RNA_pol|lcl|NC_016740.1_prot_YP_005090363.1_6-gene
+1	maker	mRNA	313307	315652	13.4	-	.	ID=mRNA3;Parent=gene3;Name=RNA_pol|lcl|NC_016740.1_prot_YP_005090363.1_6;_AED=0.24;_eAED=0.24;_QI=0|-1|0|1|-1|0|1|0|781
+1	maker	exon	313307	315652	.	-	.	Parent=mRNA3
+1	maker	CDS	313307	315652	.	-	0	Parent=mRNA3
+###
+1	maker	gene	361887	361960	.	-	.	ID=gene4;Name=trnMet_CAT-3.8
+1	maker	tRNA	361887	361960	.	-	.	ID=tRNA1;Parent=gene4;Name=trnMet_CAT-3.8-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|75|0
+1	maker	exon	361887	361960	.	-	.	Parent=tRNA1
+###
+1	maker	gene	369818	376349	.	-	.	ID=gene5;Name=nad4|lcl|NC_010303.1_prot_YP_001661411.1_18-gene
+1	maker	mRNA	369818	376349	20.1	-	.	ID=mRNA4;Parent=gene5;Name=nad4|lcl|NC_010303.1_prot_YP_001661411.1_18;_AED=0.16;_eAED=0.16;_QI=0|0|0|1|0|0|3|0|342
+1	maker	exon	369818	369996	.	-	.	Parent=mRNA4
+1	maker	CDS	369818	369996	.	-	2	ID=CDS1;Parent=mRNA4
+1	.	intron	369997	372424	.	-	.	Parent=mRNA4
+1	maker	exon	372425	372847	.	-	.	Parent=mRNA4
+1	maker	CDS	372425	372847	.	-	2	ID=CDS1;Parent=mRNA4
+1	.	intron	372848	375922	.	-	.	Parent=mRNA4
+1	maker	exon	375923	376349	.	-	.	Parent=mRNA4
+1	maker	CDS	375923	376349	.	-	0	ID=CDS1;Parent=mRNA4
+###
+1	maker	gene	404110	404679	.	+	.	ID=gene6;Name=nad6|lcl|NC_008333.1_prot_YP_740454.1_32-gene
+1	maker	mRNA	404110	404679	12.6	+	.	ID=mRNA5;Parent=gene6;Name=nad6|lcl|NC_008333.1_prot_YP_740454.1_32;_AED=0.13;_eAED=0.13;_QI=0|-1|0|1|-1|0|1|0|189
+1	maker	exon	404110	404679	.	+	.	Parent=mRNA5
+1	maker	CDS	404110	404679	.	+	0	Parent=mRNA5
+###
+1	maker	gene	411483	411638	.	-	.	ID=gene7;Name=rpl16|lcl|KF386162.1_prot_AGX28802.1_11-gene
+1	maker	mRNA	411483	411638	19.5	-	.	ID=mRNA6;Parent=gene7;Name=rpl16|lcl|KF386162.1_prot_AGX28802.1_11;_AED=0.39;_eAED=0.39;_QI=0|-1|0|1|-1|0|1|0|51
+1	maker	exon	411483	411638	.	-	.	Parent=mRNA6
+1	maker	CDS	411483	411638	.	-	0	Parent=mRNA6
+###
+1	maker	gene	411686	411790	.	-	.	ID=gene8;Name=rpl16|lcl|NC_010303.1_prot_YP_001661417.1_24-gene
+1	maker	mRNA	411686	411790	23.5	-	.	ID=mRNA7;Parent=gene8;Name=rpl16|lcl|NC_010303.1_prot_YP_001661417.1_24;_AED=0.39;_eAED=1.00;_QI=0|-1|0|1|-1|0|1|0|34
+1	maker	exon	411686	411790	.	-	.	Parent=mRNA7
+1	maker	CDS	411686	411790	.	-	0	Parent=mRNA7
+###
+1	maker	gene	429170	429667	.	-	.	ID=gene9;Name=nad4L|lcl|JF810595.1_prot_AEH42819.1_4-gene
+1	maker	mRNA	429170	429667	20.9	-	.	ID=mRNA8;Parent=gene9;Name=nad4L|lcl|JF810595.1_prot_AEH42819.1_4;_AED=0.22;_eAED=0.22;_QI=0|-1|0|1|-1|0|1|0|165
+1	maker	exon	429170	429667	.	-	.	Parent=mRNA8
+1	maker	CDS	429170	429667	.	-	0	Parent=mRNA8
+###
+1	maker	gene	452590	453177	.	+	.	ID=gene10;Name=rps7|lcl|KC784957.1_prot_SppaM_p20_20-gene
+1	maker	mRNA	452590	453177	13.5	+	.	ID=mRNA9;Parent=gene10;Name=rps7|lcl|KC784957.1_prot_SppaM_p20_20;_AED=0.07;_eAED=0.10;_QI=0|-1|0|1|-1|0|1|0|195
+1	maker	exon	452590	453177	.	+	.	Parent=mRNA9
+1	maker	CDS	452590	453177	.	+	0	Parent=mRNA9
+###
+1	RNAmmer	gene	662717	662828	18.3	+	.	ID=gene11
+1	RNAmmer	rRNA	662717	662828	18.3	+	.	ID=rRNA1;Parent=gene11;Name=rrn5
+1	RNAmmer	exon	662717	662828	18.3	+	.	Parent=rRNA1
+###
+1	maker	gene	878603	878863	.	-	.	ID=gene12;Name=nad1|lcl|KM207678.1_prot_AJM70213.1_4-gene
+1	maker	mRNA	878603	878863	28.6	-	.	ID=mRNA10;Parent=gene12;Name=nad1|lcl|KM207678.1_prot_AJM70213.1_4;_AED=0.46;_eAED=0.46;_QI=0|-1|0|1|-1|0|1|0|86
+1	maker	exon	878603	878863	.	-	.	Parent=mRNA10
+1	maker	CDS	878603	878863	.	-	0	Parent=mRNA10
+###
+1	maker	gene	879180	881219	.	-	.	ID=gene13;Name=matR|lcl|KC208619.1_prot_AFY16535.1_6-gene
+1	maker	mRNA	879180	881219	16	-	.	ID=mRNA11;Parent=gene13;Name=matR|lcl|KC208619.1_prot_AFY16535.1_6;_AED=0.11;_eAED=0.11;_QI=0|0|0|1|0|0|2|0|668
+1	maker	exon	879180	880532	.	-	.	Parent=mRNA11
+1	maker	CDS	879180	880532	.	-	0	ID=CDS2;Parent=mRNA11
+1	.	intron	880533	880565	.	-	.	Parent=mRNA11
+1	maker	exon	880566	881219	.	-	.	Parent=mRNA11
+1	maker	CDS	880566	881219	.	-	0	ID=CDS2;Parent=mRNA11
+###
+1	maker	gene	889877	890296	.	+	.	ID=gene14;Name=rps13|lcl|NC_010303.1_prot_YP_001661427.1_34-gene
+1	maker	mRNA	889877	890296	23.5	+	.	ID=mRNA12;Parent=gene14;Name=rps13|lcl|NC_010303.1_prot_YP_001661427.1_34;_AED=0.02;_eAED=0.02;_QI=0|-1|0|1|-1|0|1|0|139
+1	maker	exon	889877	890296	.	+	.	Parent=mRNA12
+1	maker	CDS	889877	890296	.	+	0	Parent=mRNA12
+###
+1	maker	gene	1037508	1037581	.	+	.	ID=gene15;Name=trnAsp_GTC-10.0
+1	maker	tRNA	1037508	1037581	.	+	.	ID=tRNA2;Parent=gene15;Name=trnAsp_GTC-10.0-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|75|0
+1	maker	exon	1037508	1037581	.	+	.	Parent=tRNA2
+###
+1	maker	gene	1198529	1198777	.	-	.	ID=gene16;Name=nad3|lcl|NC_023273.1_prot_YP_008994809.1_20-gene
+1	maker	mRNA	1198529	1198777	8.78	-	.	ID=mRNA13;Parent=gene16;Name=nad3|lcl|NC_023273.1_prot_YP_008994809.1_20;_AED=0.20;_eAED=0.20;_QI=0|-1|0|1|-1|0|1|0|82
+1	maker	exon	1198529	1198777	.	-	.	Parent=mRNA13
+1	maker	CDS	1198529	1198777	.	-	0	Parent=mRNA13
+###
+1	maker	gene	1200356	1200427	.	-	.	ID=gene17;Name=trnMet_CAT-11.0
+1	maker	tRNA	1200356	1200427	.	-	.	ID=tRNA3;Parent=gene17;Name=trnMet_CAT-11.0-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|73|0
+1	maker	exon	1200356	1200427	.	-	.	Parent=tRNA3
+###
+1	maker	gene	1229248	1229424	.	-	.	ID=gene18;Name=atp9|lcl|NC_005255.1_prot_NP_943666.1_4-gene
+1	maker	mRNA	1229248	1229424	12.3	-	.	ID=mRNA14;Parent=gene18;Name=atp9|lcl|NC_005255.1_prot_NP_943666.1_4;_AED=0.28;_eAED=0.30;_QI=0|-1|0|1|-1|0|1|0|58
+1	maker	exon	1229248	1229424	.	-	.	Parent=mRNA14
+1	maker	CDS	1229248	1229424	.	-	0	Parent=mRNA14
+###
+10	maker	gene	38061	39825	.	-	.	ID=gene19;Name=nad7|lcl|KF060939.1_prot_AGZ90200.1_28-gene
+10	maker	mRNA	38061	39825	13.9	-	.	ID=mRNA15;Parent=gene19;Name=nad7|lcl|KF060939.1_prot_AGZ90200.1_28;_AED=0.21;_eAED=0.21;_QI=0|0|0|1|0|0|2|0|237
+10	maker	exon	38061	38317	.	-	.	Parent=mRNA15
+10	maker	CDS	38061	38317	.	-	2	ID=CDS3;Parent=mRNA15
+10	.	intron	38318	39368	.	-	.	Parent=mRNA15
+10	maker	exon	39369	39825	.	-	.	Parent=mRNA15
+10	maker	CDS	39369	39825	.	-	0	ID=CDS3;Parent=mRNA15
+###
+10	maker	gene	88899	89141	.	-	.	ID=gene20;Name=sdh3|lcl|NC_022796.1_prot_YP_008802487.1_5-gene
+10	maker	mRNA	88899	89141	9.46	-	.	ID=mRNA16;Parent=gene20;Name=sdh3|lcl|NC_022796.1_prot_YP_008802487.1_5;_AED=0.14;_eAED=0.14;_QI=0|-1|0|1|-1|0|1|0|80
+10	maker	exon	88899	89141	.	-	.	Parent=mRNA16
+10	maker	CDS	88899	89141	.	-	0	Parent=mRNA16
+###
+10	maker	gene	120162	120398	.	-	.	ID=gene21;Name=rps10|lcl|KJ485850.1_prot_AIB08832.1_35-gene
+10	maker	mRNA	120162	120398	13.2	-	.	ID=mRNA17;Parent=gene21;Name=rps10|lcl|KJ485850.1_prot_AIB08832.1_35;_AED=0.12;_eAED=0.12;_QI=0|-1|0|1|-1|0|1|0|78
+10	maker	exon	120162	120398	.	-	.	Parent=mRNA17
+10	maker	CDS	120162	120398	.	-	0	Parent=mRNA17
+###
+10	maker	gene	126859	126932	.	+	.	ID=gene22;Name=trnMet_CAT-0.11
+10	maker	tRNA	126859	126932	.	+	.	ID=tRNA4;Parent=gene22;Name=trnMet_CAT-0.11-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|75|0
+10	maker	exon	126859	126932	.	+	.	Parent=tRNA4
+###
+10	maker	gene	127721	127792	.	+	.	ID=gene23;Name=trnGln_TTG-0.12
+10	maker	tRNA	127721	127792	.	+	.	ID=tRNA5;Parent=gene23;Name=trnGln_TTG-0.12-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|73|0
+10	maker	exon	127721	127792	.	+	.	Parent=tRNA5
+###
+11	maker	gene	32390	32462	.	-	.	ID=gene24;Name=trnArg_TCG-0.0
+11	maker	tRNA	32390	32462	.	-	.	ID=tRNA6;Parent=gene24;Name=trnArg_TCG-0.0-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|74|0
+11	maker	exon	32390	32462	.	-	.	Parent=tRNA6
+###
+11	maker	gene	32470	32542	.	-	.	ID=gene25;Name=trnCys_GCA-0.1
+11	maker	tRNA	32470	32542	.	-	.	ID=tRNA7;Parent=gene25;Name=trnCys_GCA-0.1-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|74|0
+11	maker	exon	32470	32542	.	-	.	Parent=tRNA7
+###
+11	maker	gene	129719	132532	.	+	.	ID=gene26;Name=dpo|lcl|JF750427.1_prot_AFD29780.1_18-gene
+11	maker	mRNA	129719	132532	9.98	+	.	ID=mRNA18;Parent=gene26;Name=dpo|lcl|JF750427.1_prot_AFD29780.1_18;_AED=0.22;_eAED=0.22;_QI=0|-1|0|1|-1|0|1|0|937
+11	maker	exon	129719	132532	.	+	.	Parent=mRNA18
+11	maker	CDS	129719	132532	.	+	0	Parent=mRNA18
+###
+11	maker	gene	134262	134786	.	-	.	ID=gene27;Name=nad4a|lcl|KJ461445.1_prot_AHY20360.1_65-gene
+11	maker	mRNA	134262	134786	25.1	-	.	ID=mRNA19;Parent=gene27;Name=nad4a|lcl|KJ461445.1_prot_AHY20360.1_65;_AED=0.00;_eAED=0.00;_QI=0|-1|0|1|-1|0|1|0|174
+11	maker	exon	134262	134786	.	-	.	Parent=mRNA19
+11	maker	CDS	134262	134786	.	-	0	Parent=mRNA19
+###
+11	maker	gene	140865	140936	.	+	.	ID=gene28;Name=trnGlu_TTC-1.5
+11	maker	tRNA	140865	140936	.	+	.	ID=tRNA8;Parent=gene28;Name=trnGlu_TTC-1.5-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|73|0
+11	maker	exon	140865	140936	.	+	.	Parent=tRNA8
+###
+11	maker	gene	142205	144279	.	+	.	ID=gene29;Name=nad2|lcl|KM207678.1_prot_AJM70214.1_8-gene
+11	maker	mRNA	142205	144279	26.7	+	.	ID=mRNA20;Parent=gene29;Name=nad2|lcl|KM207678.1_prot_AJM70214.1_8;_AED=0.06;_eAED=0.06;_QI=0|0|0|1|0|0|2|0|207
+11	maker	exon	142205	142357	.	+	.	Parent=mRNA20
+11	maker	CDS	142205	142357	.	+	0	ID=CDS4;Parent=mRNA20
+11	.	intron	142358	143808	.	+	.	Parent=mRNA20
+11	maker	exon	143809	144279	.	+	.	Parent=mRNA20
+11	maker	CDS	143809	144279	.	+	0	ID=CDS4;Parent=mRNA20
+###
+12	maker	gene	95482	96669	.	+	.	ID=gene30;Name=cob|lcl|KF060941.1_prot_AGZ90285.1_8-gene
+12	maker	mRNA	95482	96669	19.3	+	.	ID=mRNA21;Parent=gene30;Name=cob|lcl|KF060941.1_prot_AGZ90285.1_8;_AED=0.04;_eAED=0.04;_QI=0|-1|0|1|-1|0|1|0|395
+12	maker	exon	95482	96669	.	+	.	Parent=mRNA21
+12	maker	CDS	95482	96669	.	+	0	Parent=mRNA21
+###
+16	maker	gene	5901	5974	.	-	.	ID=gene31;Name=trnMet_CAT-0.5
+16	maker	tRNA	5901	5974	.	-	.	ID=tRNA9;Parent=gene31;Name=trnMet_CAT-0.5-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|75|0
+16	maker	exon	5901	5974	.	-	.	Parent=tRNA9
+###
+16	maker	gene	6070	6143	.	+	.	ID=gene32;Name=trnMet_CAT-0.3
+16	maker	tRNA	6070	6143	.	+	.	ID=tRNA10;Parent=gene32;Name=trnMet_CAT-0.3-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|75|0
+16	maker	exon	6070	6143	.	+	.	Parent=tRNA10
+###
+16	maker	gene	82992	83065	.	+	.	ID=gene33;Name=trnMet_CAT-0.4
+16	maker	tRNA	82992	83065	.	+	.	ID=tRNA11;Parent=gene33;Name=trnMet_CAT-0.4-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|75|0
+16	maker	exon	82992	83065	.	+	.	Parent=tRNA11
+###
+16	maker	gene	84603	84998	.	+	.	ID=gene34;Name=ccmB|lcl|KP742835.1_prot_AKC89390.1_6-gene
+16	maker	mRNA	84603	84998	14.2	+	.	ID=mRNA22;Parent=gene34;Name=ccmB|lcl|KP742835.1_prot_AKC89390.1_6;_AED=0.18;_eAED=0.24;_QI=0|-1|0|1|-1|0|1|0|131
+16	maker	exon	84603	84998	.	+	.	Parent=mRNA22
+16	maker	CDS	84603	84998	.	+	0	Parent=mRNA22
+###
+17	RNAmmer	gene	40228	40340	21	+	.	ID=gene35
+17	RNAmmer	rRNA	40228	40340	21	+	.	ID=rRNA2;Parent=gene35;Name=rrn5
+17	RNAmmer	exon	40228	40340	21	+	.	Parent=rRNA2
+###
+17	RNAmmer	gene	130167	133406	1.7e+03	+	.	ID=gene36
+17	RNAmmer	rRNA	130167	133406	1.7e+03	+	.	ID=rRNA3;Parent=gene36;Name=rrn23
+17	RNAmmer	exon	130167	133406	1.7e+03	+	.	Parent=rRNA3
+###
+18	RNAmmer	gene	6247	8015	1.2e+03	+	.	ID=gene37
+18	RNAmmer	rRNA	6247	8015	1.2e+03	+	.	ID=rRNA4;Parent=gene37;Name=rrn16
+18	RNAmmer	exon	6247	8015	1.2e+03	+	.	Parent=rRNA4
+###
+2	maker	gene	23289	23365	.	+	.	ID=gene38;Name=trnMet_CAT-0.0
+2	maker	tRNA	23289	23365	.	+	.	ID=tRNA12;Parent=gene38;Name=trnMet_CAT-0.0-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|78|0
+2	maker	exon	23289	23365	.	+	.	Parent=tRNA12
+###
+2	maker	gene	149783	150295	.	-	.	ID=gene39;Name=rps11|lcl|NC_010303.1_prot_YP_001661419.1_26-gene
+2	maker	mRNA	149783	150295	26.5	-	.	ID=mRNA23;Parent=gene39;Name=rps11|lcl|NC_010303.1_prot_YP_001661419.1_26;_AED=0.05;_eAED=0.05;_QI=0|-1|0|1|-1|0|1|0|170
+2	maker	exon	149783	150295	.	-	.	Parent=mRNA23
+2	maker	CDS	149783	150295	.	-	0	Parent=mRNA23
+###
+2	maker	gene	167327	167399	.	+	.	ID=gene40;Name=trnHis_GTG-1.0
+2	maker	tRNA	167327	167399	.	+	.	ID=tRNA13;Parent=gene40;Name=trnHis_GTG-1.0-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|74|0
+2	maker	exon	167327	167399	.	+	.	Parent=tRNA13
+###
+2	maker	gene	259013	259492	.	-	.	ID=gene41;Name=atp8|lcl|JQ248574.1_prot_AEY81157.1_79-gene
+2	maker	mRNA	259013	259492	13.9	-	.	ID=mRNA24;Parent=gene41;Name=atp8|lcl|JQ248574.1_prot_AEY81157.1_79;_AED=0.01;_eAED=0.01;_QI=0|-1|0|1|-1|0|1|0|159
+2	maker	exon	259013	259492	.	-	.	Parent=mRNA24
+2	maker	CDS	259013	259492	.	-	0	Parent=mRNA24
+###
+2	maker	gene	272509	273993	.	+	.	ID=gene42;Name=cox1|lcl|NC_023103.1_prot_YP_008964124.1_28-gene
+2	maker	mRNA	272509	273993	27.2	+	.	ID=mRNA25;Parent=gene42;Name=cox1|lcl|NC_023103.1_prot_YP_008964124.1_28;_AED=0.08;_eAED=0.08;_QI=0|0|0|1|0|0|2|0|457
+2	maker	exon	272509	273035	.	+	.	Parent=mRNA25
+2	maker	CDS	272509	273035	.	+	0	ID=CDS5;Parent=mRNA25
+2	.	intron	273036	273146	.	+	.	Parent=mRNA25
+2	maker	exon	273147	273993	.	+	.	Parent=mRNA25
+2	maker	CDS	273147	273993	.	+	1	ID=CDS5;Parent=mRNA25
+###
+2	maker	gene	357885	358583	.	+	.	ID=gene43;Name=nad1|lcl|KJ461445.1_prot_AHY20338.1_43-gene
+2	maker	mRNA	357885	358583	24.4	+	.	ID=mRNA26;Parent=gene43;Name=nad1|lcl|KJ461445.1_prot_AHY20338.1_43;_AED=0.27;_eAED=0.35;_QI=0|-1|0|1|-1|0|1|0|232
+2	maker	exon	357885	358583	.	+	.	Parent=mRNA26
+2	maker	CDS	357885	358583	.	+	0	Parent=mRNA26
+###
+2	maker	gene	430394	431110	.	-	.	ID=gene44;Name=nad2|lcl|KM207678.1_prot_AJM70215.1_23-gene
+2	maker	mRNA	430394	431110	17.7	-	.	ID=mRNA27;Parent=gene44;Name=nad2|lcl|KM207678.1_prot_AJM70215.1_23;_AED=0.08;_eAED=0.11;_QI=0|-1|0|1|-1|0|1|0|238
+2	maker	exon	430394	431110	.	-	.	Parent=mRNA27
+2	maker	CDS	430394	431110	.	-	0	Parent=mRNA27
+###
+2	maker	gene	434212	434640	.	-	.	ID=gene45;Name=cox2|lcl|KF387569.1_prot_AGW52207.1_25-gene
+2	maker	mRNA	434212	434640	8.42	-	.	ID=mRNA28;Parent=gene45;Name=cox2|lcl|KF387569.1_prot_AGW52207.1_25;_AED=0.15;_eAED=0.15;_QI=0|-1|0|1|-1|0|1|0|142
+2	maker	exon	434212	434640	.	-	.	Parent=mRNA28
+2	maker	CDS	434212	434640	.	-	0	Parent=mRNA28
+###
+2	maker	gene	443857	444366	.	-	.	ID=gene46;Name=sdh3|lcl|NC_012119.1_prot_YP_002608354.1_18-gene
+2	maker	mRNA	443857	444366	10.7	-	.	ID=mRNA29;Parent=gene46;Name=sdh3|lcl|NC_012119.1_prot_YP_002608354.1_18;_AED=0.02;_eAED=0.02;_QI=0|-1|0|1|-1|0|1|0|169
+2	maker	exon	443857	444366	.	-	.	Parent=mRNA29
+2	maker	CDS	443857	444366	.	-	0	Parent=mRNA29
+###
+2	maker	gene	444391	444465	.	-	.	ID=gene47;Name=trnPro_TGG-4.0
+2	maker	tRNA	444391	444465	.	-	.	ID=tRNA14;Parent=gene47;Name=trnPro_TGG-4.0-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|76|0
+2	maker	exon	444391	444465	.	-	.	Parent=tRNA14
+###
+2	maker	gene	520566	521168	.	+	.	ID=gene48;Name=atp4|lcl|DQ645537.1_prot_ABG65634.1_31-gene
+2	maker	mRNA	520566	521168	17.8	+	.	ID=mRNA30;Parent=gene48;Name=atp4|lcl|DQ645537.1_prot_ABG65634.1_31;_AED=0.06;_eAED=0.06;_QI=0|-1|0|1|-1|0|1|0|200
+2	maker	exon	520566	521168	.	+	.	Parent=mRNA30
+2	maker	CDS	520566	521168	.	+	0	Parent=mRNA30
+###
+2	maker	gene	535335	536021	.	+	.	ID=gene49;Name=rps1|lcl|KM207685.1_prot_AJK91393.1_24-gene
+2	maker	mRNA	535335	536021	22.2	+	.	ID=mRNA31;Parent=gene49;Name=rps1|lcl|KM207685.1_prot_AJK91393.1_24;_AED=0.18;_eAED=0.18;_QI=0|0|0|1|0|0|2|0|200
+2	maker	exon	535335	535580	.	+	.	Parent=mRNA31
+2	maker	CDS	535335	535580	.	+	0	ID=CDS6;Parent=mRNA31
+2	.	intron	535581	535664	.	+	.	Parent=mRNA31
+2	maker	exon	535665	536021	.	+	.	Parent=mRNA31
+2	maker	CDS	535665	536021	.	+	0	ID=CDS6;Parent=mRNA31
+###
+2	maker	gene	636821	637540	.	-	.	ID=gene50;Name=rps2|lcl|JN375330.1_prot_AEM43923.1_26-gene
+2	maker	mRNA	636821	637540	18.2	-	.	ID=mRNA32;Parent=gene50;Name=rps2|lcl|JN375330.1_prot_AEM43923.1_26;_AED=0.05;_eAED=0.05;_QI=0|0|0|1|0|0|2|0|229
+2	maker	exon	636821	637143	.	-	.	Parent=mRNA32
+2	maker	CDS	636821	637143	.	-	2	ID=CDS7;Parent=mRNA32
+2	.	intron	637144	637173	.	-	.	Parent=mRNA32
+2	maker	exon	637174	637540	.	-	.	Parent=mRNA32
+2	maker	CDS	637174	637540	.	-	0	ID=CDS7;Parent=mRNA32
+###
+2	maker	gene	641699	642226	.	+	.	ID=gene51;Name=nad9|lcl|NC_007579.1_prot_YP_398414.1_24-gene
+2	maker	mRNA	641699	642226	17.4	+	.	ID=mRNA33;Parent=gene51;Name=nad9|lcl|NC_007579.1_prot_YP_398414.1_24;_AED=0.07;_eAED=0.07;_QI=0|-1|0|1|-1|0|1|0|175
+2	maker	exon	641699	642226	.	+	.	Parent=mRNA33
+2	maker	CDS	641699	642226	.	+	0	Parent=mRNA33
+###
+2	maker	gene	655835	655908	.	-	.	ID=gene52;Name=trnAsp_GTC-5.35
+2	maker	tRNA	655835	655908	.	-	.	ID=tRNA15;Parent=gene52;Name=trnAsp_GTC-5.35-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|75|0
+2	maker	exon	655835	655908	.	-	.	Parent=tRNA15
+###
+21	maker	gene	6068	6349	.	-	.	ID=gene53;Name=rps7|lcl|KF060943.1_prot_AGZ90395.1_32-gene
+21	maker	mRNA	6068	6349	9.04	-	.	ID=mRNA34;Parent=gene53;Name=rps7|lcl|KF060943.1_prot_AGZ90395.1_32;_AED=0.09;_eAED=0.09;_QI=0|-1|0|1|-1|0|1|0|93
+21	maker	exon	6068	6349	.	-	.	Parent=mRNA34
+21	maker	CDS	6068	6349	.	-	0	Parent=mRNA34
+###
+3	maker	gene	121114	121773	.	+	.	ID=gene54;Name=ccmB|lcl|NC_001660.1_prot_NP_054465.1_71-gene
+3	maker	mRNA	121114	121773	15.3	+	.	ID=mRNA35;Parent=gene54;Name=ccmB|lcl|NC_001660.1_prot_NP_054465.1_71;_AED=0.04;_eAED=0.04;_QI=0|-1|0|1|-1|0|1|0|219
+3	maker	exon	121114	121773	.	+	.	Parent=mRNA35
+3	maker	CDS	121114	121773	.	+	0	Parent=mRNA35
+###
+3	maker	gene	255503	256258	.	-	.	ID=gene55;Name=mttB|lcl|NC_016406.1_prot_YP_004935343.1_9-gene
+3	maker	mRNA	255503	256258	19.1	-	.	ID=mRNA36;Parent=gene55;Name=mttB|lcl|NC_016406.1_prot_YP_004935343.1_9;_AED=0.05;_eAED=0.05;_QI=0|-1|0|1|-1|0|1|0|251
+3	maker	exon	255503	256258	.	-	.	Parent=mRNA36
+3	maker	CDS	255503	256258	.	-	0	Parent=mRNA36
+###
+3	maker	gene	277440	279164	.	+	.	ID=gene56;Name=ccmFn|lcl|NC_021399.1_prot_YP_008080938.1_25-gene
+3	maker	mRNA	277440	279164	21.7	+	.	ID=mRNA37;Parent=gene56;Name=ccmFn|lcl|NC_021399.1_prot_YP_008080938.1_25;_AED=0.14;_eAED=0.14;_QI=0|0|0|1|0|0|3|0|439
+3	maker	exon	277440	277936	.	+	.	Parent=mRNA37
+3	maker	CDS	277440	277936	.	+	0	ID=CDS8;Parent=mRNA37
+3	.	intron	277937	278155	.	+	.	Parent=mRNA37
+3	maker	exon	278156	278434	.	+	.	Parent=mRNA37
+3	maker	CDS	278156	278434	.	+	1	ID=CDS8;Parent=mRNA37
+3	.	intron	278435	278620	.	+	.	Parent=mRNA37
+3	maker	exon	278621	279164	.	+	.	Parent=mRNA37
+3	maker	CDS	278621	279164	.	+	1	ID=CDS8;Parent=mRNA37
+###
+3	maker	gene	322107	322180	.	-	.	ID=gene57;Name=trnAsp_GTC-2.0
+3	maker	tRNA	322107	322180	.	-	.	ID=tRNA16;Parent=gene57;Name=trnAsp_GTC-2.0-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|75|0
+3	maker	exon	322107	322180	.	-	.	Parent=tRNA16
+###
+3	maker	gene	326516	326598	.	-	.	ID=gene58;Name=trnTyr_GTA-2.1
+3	maker	tRNA	326516	326598	.	-	.	ID=tRNA17;Parent=gene58;Name=trnTyr_GTA-2.1-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|84|0
+3	maker	exon	326516	326598	.	-	.	Parent=tRNA17
+###
+3	maker	gene	342272	342520	.	+	.	ID=gene59;Name=atp9|lcl|NC_013816.1_prot_YP_003433850.1_13-gene
+3	maker	mRNA	342272	342520	17.3	+	.	ID=mRNA38;Parent=gene59;Name=atp9|lcl|NC_013816.1_prot_YP_003433850.1_13;_AED=0.17;_eAED=0.20;_QI=0|-1|0|1|-1|0|1|0|82
+3	maker	exon	342272	342520	.	+	.	Parent=mRNA38
+3	maker	CDS	342272	342520	.	+	0	Parent=mRNA38
+###
+4	maker	gene	9445	9924	.	-	.	ID=gene60;Name=atp8|lcl|JQ248574.1_prot_AEY81157.1_79-gene
+4	maker	mRNA	9445	9924	13.9	-	.	ID=mRNA39;Parent=gene60;Name=atp8|lcl|JQ248574.1_prot_AEY81157.1_79;_AED=0.01;_eAED=0.01;_QI=0|-1|0|1|-1|0|1|0|159
+4	maker	exon	9445	9924	.	-	.	Parent=mRNA39
+4	maker	CDS	9445	9924	.	-	0	Parent=mRNA39
+###
+4	RNAmmer	gene	231370	231479	40.1	+	.	ID=gene61
+4	RNAmmer	rRNA	231370	231479	40.1	+	.	ID=rRNA5;Parent=gene61;Name=rrn5
+4	RNAmmer	exon	231370	231479	40.1	+	.	Parent=rRNA5
+###
+4	maker	gene	303901	304205	.	+	.	ID=gene62;Name=atp8|lcl|KC208619.1_prot_AFY16549.1_19-gene
+4	maker	mRNA	303901	304205	13.1	+	.	ID=mRNA40;Parent=gene62;Name=atp8|lcl|KC208619.1_prot_AFY16549.1_19;_AED=0.21;_eAED=1.00;_QI=0|0|0|1|0|0|2|0|80
+4	maker	exon	303901	304126	.	+	.	Parent=mRNA40
+4	maker	CDS	303901	304126	.	+	0	ID=CDS9;Parent=mRNA40
+4	.	intron	304127	304188	.	+	.	Parent=mRNA40
+4	maker	exon	304189	304205	.	+	.	Parent=mRNA40
+4	maker	CDS	304189	304205	.	+	2	ID=CDS9;Parent=mRNA40
+###
+5	RNAmmer	gene	4	1772	1.2e+03	+	.	ID=gene63
+5	RNAmmer	rRNA	4	1772	1.2e+03	+	.	ID=rRNA6;Parent=gene63;Name=rrn16
+5	RNAmmer	exon	4	1772	1.2e+03	+	.	Parent=rRNA6
+###
+5	maker	gene	13228	14751	.	-	.	ID=gene64;Name=atp1-b|lcl|DQ984517.1_prot_ABI74636.1_22-gene
+5	maker	mRNA	13228	14751	18.5	-	.	ID=mRNA41;Parent=gene64;Name=atp1-b|lcl|DQ984517.1_prot_ABI74636.1_22;_AED=0.01;_eAED=0.01;_QI=0|-1|0|1|-1|0|1|0|507
+5	maker	exon	13228	14751	.	-	.	Parent=mRNA41
+5	maker	CDS	13228	14751	.	-	0	Parent=mRNA41
+###
+5	maker	gene	15527	16066	.	-	.	ID=gene65;Name=rps12|lcl|NC_026901.1_prot_YP_009132624.1_4-gene
+5	maker	mRNA	15527	16066	14	-	.	ID=mRNA42;Parent=gene65;Name=rps12|lcl|NC_026901.1_prot_YP_009132624.1_4;_AED=0.42;_eAED=0.42;_QI=0|-1|0|1|-1|0|1|0|179
+5	maker	exon	15527	16066	.	-	.	Parent=mRNA42
+5	maker	CDS	15527	16066	.	-	0	Parent=mRNA42
+###
+5	maker	gene	16114	16470	.	-	.	ID=gene66;Name=nad3|lcl|JN861111.1_prot_AER13033.1_60-gene
+5	maker	mRNA	16114	16470	20.3	-	.	ID=mRNA43;Parent=gene66;Name=nad3|lcl|JN861111.1_prot_AER13033.1_60;_AED=0.28;_eAED=0.28;_QI=0|-1|0|1|-1|0|1|0|118
+5	maker	exon	16114	16470	.	-	.	Parent=mRNA43
+5	maker	CDS	16114	16470	.	-	0	Parent=mRNA43
+###
+5	maker	gene	17378	17542	.	-	.	ID=gene67;Name=rpl16|lcl|NC_010303.1_prot_YP_001661417.1_24-gene
+5	maker	mRNA	17378	17542	30.1	-	.	ID=mRNA44;Parent=gene67;Name=rpl16|lcl|NC_010303.1_prot_YP_001661417.1_24;_AED=0.48;_eAED=0.48;_QI=0|-1|0|1|-1|0|1|0|54
+5	maker	exon	17378	17542	.	-	.	Parent=mRNA44
+5	maker	CDS	17378	17542	.	-	0	Parent=mRNA44
+###
+5	maker	gene	17590	17694	.	-	.	ID=gene68;Name=rpl16|lcl|DQ167400.1_prot_AAZ99348.1_18-gene
+5	maker	mRNA	17590	17694	13.3	-	.	ID=mRNA45;Parent=gene68;Name=rpl16|lcl|DQ167400.1_prot_AAZ99348.1_18;_AED=0.47;_eAED=1.00;_QI=0|-1|0|1|-1|0|1|0|34
+5	maker	exon	17590	17694	.	-	.	Parent=mRNA45
+5	maker	CDS	17590	17694	.	-	0	Parent=mRNA45
+###
+5	maker	gene	17809	22043	.	-	.	ID=gene69;Name=rps3-1|lcl|JN098455.1_prot_AEK26534.1_33-gene
+5	maker	mRNA	17809	22043	20	-	.	ID=mRNA46;Parent=gene69;Name=rps3-1|lcl|JN098455.1_prot_AEK26534.1_33;_AED=0.12;_eAED=0.12;_QI=0|0|0|1|0|0|3|0|532
+5	maker	exon	17809	18884	.	-	.	Parent=mRNA46
+5	maker	CDS	17809	18884	.	-	2	ID=CDS10;Parent=mRNA46
+5	.	intron	18885	18935	.	-	.	Parent=mRNA46
+5	maker	exon	18936	19211	.	-	.	Parent=mRNA46
+5	maker	CDS	18936	19211	.	-	2	ID=CDS10;Parent=mRNA46
+5	.	intron	19212	21796	.	-	.	Parent=mRNA46
+5	maker	exon	21797	22043	.	-	.	Parent=mRNA46
+5	maker	CDS	21797	22043	.	-	0	ID=CDS10;Parent=mRNA46
+###
+5	maker	gene	24148	24375	.	-	.	ID=gene70;Name=rps19-1|lcl|GQ856148.1_prot_ACV96693.1_21-gene
+5	maker	mRNA	24148	24375	19.3	-	.	ID=mRNA47;Parent=gene70;Name=rps19-1|lcl|GQ856148.1_prot_ACV96693.1_21;_AED=0.40;_eAED=0.40;_QI=0|-1|0|1|-1|0|1|0|75
+5	maker	exon	24148	24375	.	-	.	Parent=mRNA47
+5	maker	CDS	24148	24375	.	-	0	Parent=mRNA47
+###
+5	maker	gene	99390	100091	.	+	.	ID=gene71;Name=atp6|lcl|EU365401.1_prot_ABY55210.1_12-gene
+5	maker	mRNA	99390	100091	14.5	+	.	ID=mRNA48;Parent=gene71;Name=atp6|lcl|EU365401.1_prot_ABY55210.1_12;_AED=0.09;_eAED=0.10;_QI=0|-1|0|1|-1|0|1|0|233
+5	maker	exon	99390	100091	.	+	.	Parent=mRNA48
+5	maker	CDS	99390	100091	.	+	0	Parent=mRNA48
+###
+6	maker	gene	61475	61912	.	+	.	ID=gene72;Name=nad5|lcl|KM207680.1_prot_AJM70240.1_5-gene
+6	maker	mRNA	61475	61912	18.2	+	.	ID=mRNA49;Parent=gene72;Name=nad5|lcl|KM207680.1_prot_AJM70240.1_5;_AED=0.05;_eAED=0.05;_QI=0|-1|0|1|-1|0|1|0|145
+6	maker	exon	61475	61912	.	+	.	Parent=mRNA49
+6	maker	CDS	61475	61912	.	+	0	Parent=mRNA49
+###
+6	maker	gene	121067	121139	.	+	.	ID=gene73;Name=trnLys_TTT-1.0
+6	maker	tRNA	121067	121139	.	+	.	ID=tRNA18;Parent=gene73;Name=trnLys_TTT-1.0-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|74|0
+6	maker	exon	121067	121139	.	+	.	Parent=tRNA18
+###
+6	maker	gene	236418	236489	.	+	.	ID=gene74;Name=trnGly_GCC-2.0
+6	maker	tRNA	236418	236489	.	+	.	ID=tRNA19;Parent=gene74;Name=trnGly_GCC-2.0-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|73|0
+6	maker	exon	236418	236489	.	+	.	Parent=tRNA19
+###
+6	maker	gene	382111	382184	.	-	.	ID=gene75;Name=trnTrp_CCA-3.0
+6	maker	tRNA	382111	382184	.	-	.	ID=tRNA20;Parent=gene75;Name=trnTrp_CCA-3.0-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|75|0
+6	maker	exon	382111	382184	.	-	.	Parent=tRNA20
+###
+6	RNAmmer	gene	448667	450435	1.2e+03	+	.	ID=gene76
+6	RNAmmer	rRNA	448667	450435	1.2e+03	+	.	ID=rRNA7;Parent=gene76;Name=rrn16
+6	RNAmmer	exon	448667	450435	1.2e+03	+	.	Parent=rRNA7
+###
+6	maker	gene	456354	456425	.	+	.	ID=gene77;Name=trnAsn_GTT-4.0
+6	maker	tRNA	456354	456425	.	+	.	ID=tRNA21;Parent=gene77;Name=trnAsn_GTT-4.0-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|73|0
+6	maker	exon	456354	456425	.	+	.	Parent=tRNA21
+###
+6	maker	gene	457342	457424	.	+	.	ID=gene78;Name=trnTyr_GTA-4.1
+6	maker	tRNA	457342	457424	.	+	.	ID=tRNA22;Parent=gene78;Name=trnTyr_GTA-4.1-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|84|0
+6	maker	exon	457342	457424	.	+	.	Parent=tRNA22
+###
+7	RNAmmer	gene	585	697	20.9	+	.	ID=gene79
+7	RNAmmer	rRNA	585	697	20.9	+	.	ID=rRNA8;Parent=gene79;Name=rrn5
+7	RNAmmer	exon	585	697	20.9	+	.	Parent=rRNA8
+###
+7	maker	gene	16009	16584	.	+	.	ID=gene80;Name=rpl5|lcl|NC_026901.1_prot_YP_009132635.1_15-gene
+7	maker	mRNA	16009	16584	19.6	+	.	ID=mRNA50;Parent=gene80;Name=rpl5|lcl|NC_026901.1_prot_YP_009132635.1_15;_AED=0.17;_eAED=0.18;_QI=0|-1|0|1|-1|0|1|0|191
+7	maker	exon	16009	16584	.	+	.	Parent=mRNA50
+7	maker	CDS	16009	16584	.	+	0	Parent=mRNA50
+###
+7	maker	gene	16589	16891	.	+	.	ID=gene81;Name=rps14|lcl|NC_006581.1_prot_YP_173367.1_17-gene
+7	maker	mRNA	16589	16891	20.9	+	.	ID=mRNA51;Parent=gene81;Name=rps14|lcl|NC_006581.1_prot_YP_173367.1_17;_AED=0.33;_eAED=0.34;_QI=0|-1|0|1|-1|0|1|0|100
+7	maker	exon	16589	16891	.	+	.	Parent=mRNA51
+7	maker	CDS	16589	16891	.	+	0	Parent=mRNA51
+###
+7	maker	gene	352542	352621	.	+	.	ID=gene82;Name=trnLeu_CAA-3.11
+7	maker	tRNA	352542	352621	.	+	.	ID=tRNA23;Parent=gene82;Name=trnLeu_CAA-3.11-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|81|0
+7	maker	exon	352542	352621	.	+	.	Parent=tRNA23
+###
+7	maker	gene	404819	405439	.	-	.	ID=gene83;Name=ccmFC1|lcl|KJ461445.1_prot_AHY20331.1_36-gene
+7	maker	mRNA	404819	405439	24.2	-	.	ID=mRNA52;Parent=gene83;Name=ccmFC1|lcl|KJ461445.1_prot_AHY20331.1_36;_AED=0.26;_eAED=0.26;_QI=0|-1|0|1|-1|0|1|0|206
+7	maker	exon	404819	405439	.	-	.	Parent=mRNA52
+7	maker	CDS	404819	405439	.	-	0	Parent=mRNA52
+###
+7	maker	gene	407539	408075	.	-	.	ID=gene84;Name=ccmFC2|lcl|KJ461445.1_prot_AHY20332.1_37-gene
+7	maker	mRNA	407539	408075	13.2	-	.	ID=mRNA53;Parent=gene84;Name=ccmFC2|lcl|KJ461445.1_prot_AHY20332.1_37;_AED=0.29;_eAED=0.29;_QI=0|-1|0|1|-1|0|1|0|179
+7	maker	exon	407539	408075	.	-	.	Parent=mRNA53
+7	maker	CDS	407539	408075	.	-	0	Parent=mRNA53
+###
+7	maker	gene	445413	446210	.	+	.	ID=gene85;Name=cox3|lcl|KJ461445.1_prot_AHY20334.1_39-gene
+7	maker	mRNA	445413	446210	23.7	+	.	ID=mRNA54;Parent=gene85;Name=cox3|lcl|KJ461445.1_prot_AHY20334.1_39;_AED=0.16;_eAED=0.16;_QI=0|-1|0|1|-1|0|1|0|265
+7	maker	exon	445413	446210	.	+	.	Parent=mRNA54
+7	maker	CDS	445413	446210	.	+	0	Parent=mRNA54
+###
+8	maker	gene	58761	61212	.	+	.	ID=gene86;Name=nad5|lcl|NC_008240.1_prot_YP_665716.1_35-gene
+8	maker	mRNA	58761	61212	13.7	+	.	ID=mRNA55;Parent=gene86;Name=nad5|lcl|NC_008240.1_prot_YP_665716.1_35;_AED=0.08;_eAED=0.09;_QI=0|0|0|1|0|0|3|0|476
+8	maker	exon	58761	58999	.	+	.	Parent=mRNA55
+8	maker	CDS	58761	58999	.	+	0	ID=CDS11;Parent=mRNA55
+8	.	intron	59000	59990	.	+	.	Parent=mRNA55
+8	maker	exon	59991	60411	.	+	.	Parent=mRNA55
+8	maker	CDS	59991	60411	.	+	1	ID=CDS11;Parent=mRNA55
+8	.	intron	60412	60441	.	+	.	Parent=mRNA55
+8	maker	exon	60442	61212	.	+	.	Parent=mRNA55
+8	maker	CDS	60442	61212	.	+	0	ID=CDS11;Parent=mRNA55
+###
+8	maker	gene	74864	74934	.	+	.	ID=gene87;Name=trnThr_TGT-0.0
+8	maker	tRNA	74864	74934	.	+	.	ID=tRNA24;Parent=gene87;Name=trnThr_TGT-0.0-tRNA-1;_AED=1.00;_eAED=1.00;_QI=0|-1|0|0|-1|0|1|72|0
+8	maker	exon	74864	74934	.	+	.	Parent=tRNA24
+###
+8	maker	gene	254800	255849	.	+	.	ID=gene88;Name=rps4|lcl|NC_016741.1_prot_YP_005090421.1_21-gene
+8	maker	mRNA	254800	255849	21.8	+	.	ID=mRNA56;Parent=gene88;Name=rps4|lcl|NC_016741.1_prot_YP_005090421.1_21;_AED=0.05;_eAED=0.05;_QI=0|0|0|1|0|0|2|0|334
+8	maker	exon	254800	255240	.	+	.	Parent=mRNA56
+8	maker	CDS	254800	255240	.	+	0	ID=CDS12;Parent=mRNA56
+8	.	intron	255241	255285	.	+	.	Parent=mRNA56
+8	maker	exon	255286	255849	.	+	.	Parent=mRNA56
+8	maker	CDS	255286	255849	.	+	0	ID=CDS12;Parent=mRNA56
+###
+8	maker	gene	273467	273946	.	+	.	ID=gene89;Name=atp8|lcl|JQ248574.1_prot_AEY81157.1_79-gene
+8	maker	mRNA	273467	273946	13.9	+	.	ID=mRNA57;Parent=gene89;Name=atp8|lcl|JQ248574.1_prot_AEY81157.1_79;_AED=0.01;_eAED=0.01;_QI=0|-1|0|1|-1|0|1|0|159
+8	maker	exon	273467	273946	.	+	.	Parent=mRNA57
+8	maker	CDS	273467	273946	.	+	0	Parent=mRNA57
+###
+9	maker	gene	29678	29809	.	-	.	ID=gene90;Name=nad5|lcl|KM207680.1_prot_AJM70240.1_5-gene
+9	maker	mRNA	29678	29809	24.8	-	.	ID=mRNA58;Parent=gene90;Name=nad5|lcl|KM207680.1_prot_AJM70240.1_5;_AED=0.38;_eAED=0.38;_QI=0|-1|0|1|-1|0|1|0|43
+9	maker	exon	29678	29809	.	-	.	Parent=mRNA58
+9	maker	CDS	29678	29809	.	-	0	Parent=mRNA58
+###
+9	maker	gene	158098	158817	.	+	.	ID=gene91;Name=ccmC|lcl|NC_022862.1_prot_YP_008816091.1_7-gene
+9	maker	mRNA	158098	158817	11.9	+	.	ID=mRNA59;Parent=gene91;Name=ccmC|lcl|NC_022862.1_prot_YP_008816091.1_7;_AED=0.03;_eAED=0.03;_QI=0|-1|0|1|-1|0|1|0|239
+9	maker	exon	158098	158817	.	+	.	Parent=mRNA59
+9	maker	CDS	158098	158817	.	+	0	Parent=mRNA59
+###
+9	maker	gene	159496	159978	.	+	.	ID=gene92;Name=rpl10|lcl|NC_016005.1_prot_YP_004849327.1_9-gene
+9	maker	mRNA	159496	159978	15.8	+	.	ID=mRNA60;Parent=gene92;Name=rpl10|lcl|NC_016005.1_prot_YP_004849327.1_9;_AED=0.04;_eAED=0.04;_QI=0|0|0|1|0|0|2|0|149
+9	maker	exon	159496	159700	.	+	.	Parent=mRNA60
+9	maker	CDS	159496	159700	.	+	0	ID=CDS13;Parent=mRNA60
+9	.	intron	159701	159733	.	+	.	Parent=mRNA60
+9	maker	exon	159734	159978	.	+	.	Parent=mRNA60
+9	maker	CDS	159734	159978	.	+	2	ID=CDS13;Parent=mRNA60
+###
