@@ -63,6 +63,10 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 	RepeatModeler -database $*
 	cp -a RM_*/consensi.fa.classified $@
 
+# Annotate tRNA using Aragorn
+%.aragorn.tsv: %.fa
+	aragorn -gcstd -i -l -w -o $@ $<
+
 # Barrnap
 
 %.barrnap.gff: %.fa
