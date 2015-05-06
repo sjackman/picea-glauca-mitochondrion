@@ -111,7 +111,7 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa $(name).RepeatModeler.fa
 	gff3_merge -n -s $^ \
 	| gsed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
 		/\trRNA\t/s/ID=([^;]*)s_rRNA/Name=rrn\1;&/g' \
-		>$@
+	|gt gff3 -addintrons -sort - >$@
 
 # Add the rRNA annotations to the GFF file
 $(name).gff: $(name).rnammer.gff
