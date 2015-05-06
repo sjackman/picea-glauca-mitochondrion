@@ -103,9 +103,10 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa $(name).RepeatModeler.fa
 	gff3_merge -s -g -n -d $*.maker.output/$*_master_datastore_index.log >$@
 
 %.gff: %.orig.gff
-	gsed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
+	gff3_merge -n -s $^ \
+	| gsed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
 		/\trRNA\t/s/ID=([^;]*)s_rRNA/Name=rrn\1;&/g' \
-		$^ >$@
+		>$@
 
 # Add the rRNA annotations to the GFF file
 $(name).gff: $(name).rnammer.gff
@@ -144,6 +145,11 @@ gbk/%.00.gbk: %.gbk
 # Combine the OGDraw images into a single image
 %.gbk.montage.png: gbk/%.*.gbk.png
 	montage -geometry 1200x600 $^ $@
+
+# GenomeTools sketch
+
+%.gff.png: %.gff
+	gt sketch $@ $<
 
 # Render HTML from RMarkdown
 %.html: %.Rmd
