@@ -10,7 +10,8 @@ t=4
 # Green plant mitochondria
 edirect_query='Viridiplantae[Organism] mitochondrion[Title] (complete genome[Title] OR complete sequence[Title])'
 
-all: $(name).gff $(name).evidence.gff $(name).repeat.gff $(name).gff.gene $(name).gbk.png
+all: $(name).gff $(name).evidence.gff $(name).repeat.gff $(name).gff.gene $(name).gbk.png \
+	genes.html repeats.html
 
 clean:
 	rm -f $(name).gb $(name).gbk $(name).gff $(name).png
