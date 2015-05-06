@@ -22,6 +22,12 @@ install-deps:
 .DELETE_ON_ERROR:
 .SECONDARY:
 
+# Download scripts
+
+bin/convert_RNAmmer_to_gff3.pl:
+	curl -o $@ https://raw.githubusercontent.com/jorvis/biocode/master/gff/convert_RNAmmer_to_gff3.pl
+	chmod +x $@
+
 # Copy local data
 
 #PICEAGLAUCA_rpt2.0.fa: /genesis/extscratch/seqdev/PG/data/PICEAGLAUCA_rpt2.0
@@ -59,8 +65,18 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 
 # Barrnap
 
-%.rrna.gff: %.fa
+%.barrnap.gff: %.fa
 	barrnap --kingdom mitochondria --threads $t $< >$@
+
+# Annotate rRNA using RNAmmer
+
+%.rnammer.gff2: %.fa
+	mkdir -p rnammer
+	rnammer -S bac -gff $@ -xml rnammer/$*.xml -f rnammer/$*.fa -h rnammer/$*.hmm $<
+
+# Convert GFF2 to GFF3
+%.rnammer.gff: %.rnammer.gff2
+	bin/convert_RNAmmer_to_gff3.pl --input=$< >$@
 
 # MAKER
 
@@ -88,11 +104,11 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa $(name).RepeatModeler.fa
 
 %.gff: %.orig.gff
 	gsed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
-		s/Name=([^;]*)S_rRNA/Name=rrn\1/g' \
+		/\trRNA\t/s/ID=([^;]*)s_rRNA/Name=rrn\1;&/g' \
 		$^ >$@
 
 # Add the rRNA annotations to the GFF file
-$(name).gff: $(name).rrna.gff
+$(name).gff: $(name).rnammer.gff
 
 # Remove mRNA records
 %.nomrna.gff: %.gff
