@@ -1,4 +1,7 @@
-# Visualize repeat content annotated by RepeatMasker
+---
+title: Mitochondrial repeat content annotated by RepeatMasker
+author: Shaun Jackman
+---
 
 ```{r knitr, include=FALSE}
 library(knitr)

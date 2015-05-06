@@ -1,4 +1,7 @@
-# Visualize mitochondrial gene content annotated by MAKER
+---
+title: Mitochondrial gene content annotated by MAKER
+author: Shaun Jackman
+---
 
 ```{r knitr, include=FALSE}
 library(knitr)
