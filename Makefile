@@ -115,6 +115,28 @@ $(name).gff: $(name).rnammer.gff
 %.nomrna.gff: %.gff
 	gsed '/\tmRNA\t/d' $< >$@
 
+# Prokka
+
+# Convert the FASTA file to the Prokka FASTA format
+cds_aa.prokka.fa: %.prokka.fa: %.fa
+	sed -E 's/^>([^ ]*) .*gene=([^]]*).*protein=([^]]*).*$$/>\1 ~~~\2~~~\3/; \
+		s/^-//' $< >$@
+
+# Annotate genes using Prokka
+prokka/%.gff: %.fa cds_aa.prokka.fa
+	prokka --kingdom bac --gcode 1 --addgenes --proteins cds_aa.prokka.fa --rnammer \
+		--cpus $t \
+		--genus Picea --species 'glauca mitochondrion' \
+		--locustag OU3MT \
+		--force --outdir prokka --prefix $* \
+		$<
+
+# Report the genes annotated by Prokka
+prokka/%.gff.gene: prokka/%.gff
+	ruby -we 'ARGF.each { |s| \
+		puts $$1 if s =~ /\tgene\t.*gene=([^;]*)/ \
+	}' $< >$@
+
 # Convert to GenBank format
 %.gb: %.nomrna.gff %.fa
 	bin/gff_to_genbank.py $^
