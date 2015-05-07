@@ -17,7 +17,8 @@ clean:
 	rm -f $(name).gb $(name).gbk $(name).gff $(name).png
 
 install-deps:
-	pip install seqmagick
+	brew install aragorn edirect maker repeatmodeler trnascan
+	pip install biopython seqmagick
 
 .PHONY: all clean install-deps
 .DELETE_ON_ERROR:
@@ -62,7 +63,7 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 # RepeatModeler
 
 %.nin: %.fa
-	/usr/local/opt/repeatmodeler/BuildDatabase -name $* -engine ncbi $<
+	BuildDatabase -name $* -engine ncbi $<
 
 %.RepeatModeler.fa: %.nin
 	RepeatModeler -database $*
