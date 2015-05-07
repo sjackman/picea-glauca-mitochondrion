@@ -29,6 +29,10 @@ bin/convert_RNAmmer_to_gff3.pl:
 	curl -o $@ https://raw.githubusercontent.com/jorvis/biocode/master/gff/convert_RNAmmer_to_gff3.pl
 	chmod +x $@
 
+bin/aragorn_out_to_gff3.py:
+	curl -o $@ https://raw.githubusercontent.com/bgruening/galaxytools/master/tools/rna_tools/trna_prediction/aragorn_out_to_gff3.py
+	chmod +x $@
+
 # Copy local data
 
 #PICEAGLAUCA_rpt2.0.fa: /genesis/extscratch/seqdev/PG/data/PICEAGLAUCA_rpt2.0
@@ -64,9 +68,19 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 	RepeatModeler -database $*
 	cp -a RM_*/consensi.fa.classified $@
 
-# Annotate tRNA using Aragorn
+# ARAGORN
+
+# Annotate tRNA using ARAGORN and output TSV
 %.aragorn.tsv: %.fa
 	aragorn -gcstd -i -l -w -o $@ $<
+
+# Annotate tRNA using ARAGORN and output text
+%.aragorn.txt: %.fa
+	aragorn -gcstd -i -l -o $@ $<
+
+# Convert ARAGORN output to GFF
+%.aragorn.gff: %.aragorn.txt
+	bin/aragorn_out_to_gff3.py $< >$@
 
 # Barrnap
 
