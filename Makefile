@@ -17,7 +17,7 @@ clean:
 	rm -f $(name).gb $(name).gbk $(name).gff $(name).png
 
 install-deps:
-	brew install aragorn edirect maker repeatmodeler trnascan
+	brew install aragorn edirect genometools maker repeatmodeler trnascan
 	pip install biopython seqmagick
 
 .PHONY: all clean install-deps
