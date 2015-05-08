@@ -80,8 +80,8 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 	aragorn -gcstd -i -l -o $@ $<
 
 # Convert ARAGORN output to GFF
-%.aragorn.gff: %.aragorn.txt
-	bin/aragorn_out_to_gff3.py $< >$@
+%.aragorn.gff: %.aragorn.tsv
+	bin/aragorn_out_to_gff3.py --full <$< |gt gff3 -sort >$@
 
 # Barrnap
 
@@ -123,13 +123,18 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa $(name).RepeatModeler.fa
 	gff3_merge -s -g -n -d $*.maker.output/$*_master_datastore_index.log >$@
 
 %.gff: %.orig.gff
-	gff3_merge -n -s $^ \
-	| gsed -E 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
+	gt gff3 -sort $^ \
+	|gsed -E ' \
+		/\tintron\t/d; \
+		s/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
 		/\trRNA\t/s/ID=([^;]*)s_rRNA/Name=rrn\1;&/g' \
 	|gt gff3 -addintrons -sort - >$@
 
 # Add the rRNA annotations to the GFF file
 $(name).gff: $(name).rnammer.gff
+
+# Add the tRNA annotations to the GFF file
+$(name).gff: $(name).aragorn.gff
 
 # Remove mRNA records
 %.nomrna.gff: %.gff
