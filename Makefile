@@ -10,14 +10,16 @@ t=4
 # Green plant mitochondria
 edirect_query='Viridiplantae[Organism] mitochondrion[Title] (complete genome[Title] OR complete sequence[Title])'
 
-all: $(name).gff $(name).evidence.gff $(name).repeat.gff $(name).gff.gene $(name).gbk.png \
+all: $(name).gff $(name).gbk $(name).gbk.png \
+	$(name).maker.evidence.gff $(name).maker.repeat.gff \
+	$(name).maker.gff.gene $(name).prokka.gff.gene $(name).gff.gene \
 	genes.html repeats.html
 
 clean:
 	rm -f $(name).gb $(name).gbk $(name).gff $(name).png
 
 install-deps:
-	brew install aragorn edirect genometools maker repeatmodeler trnascan
+	brew install aragorn bedtools edirect genometools maker prokka repeatmodeler trnascan
 	pip install biopython seqmagick
 
 .PHONY: all clean install-deps
@@ -113,16 +115,16 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa $(name).RepeatModeler.fa
 	maker -fix_nucleotides -cpus $t
 	touch $@
 
-%.repeat.gff: %.maker.output/stamp
+%.maker.repeat.gff: %.maker.output/stamp
 	cat `find $*.maker.output -name query.masked.gff` >$@
 
-%.evidence.orig.gff: %.maker.output/stamp
+%.maker.evidence.gff: %.maker.output/stamp
 	gff3_merge -s -n -d $*.maker.output/$*_master_datastore_index.log >$@
 
-%.orig.gff: %.maker.output/stamp
+%.maker.orig.gff: %.maker.output/stamp
 	gff3_merge -s -g -n -d $*.maker.output/$*_master_datastore_index.log >$@
 
-%.gff: %.orig.gff
+%.maker.gff: %.maker.orig.gff
 	gt gff3 -sort $^ \
 	|gsed -E ' \
 		/\tintron\t/d; \
@@ -131,10 +133,10 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa $(name).RepeatModeler.fa
 	|gt gff3 -addintrons -sort - >$@
 
 # Add the rRNA annotations to the GFF file
-$(name).gff: $(name).rnammer.gff
+$(name).maker.gff: $(name).rnammer.gff
 
 # Add the tRNA annotations to the GFF file
-$(name).gff: $(name).aragorn.gff
+$(name).maker.gff: $(name).aragorn.gff
 
 # Remove mRNA records
 %.nomrna.gff: %.gff
@@ -156,6 +158,13 @@ prokka/%.gff: %.fa cds_aa.prokka.fa
 		--force --outdir prokka --prefix $* \
 		$<
 
+# Remove the FASTA section from the Prokka GFF file
+%.prokka.gff: prokka/%.gff
+	gsed -E '/^##FASTA/,$$d; \
+		s/gene=([^;]*)/Name=\1;&/; \
+		/\tCDS\t/{/gene=/!s/ID=[^_]*_([0-9]*)/Name=orf\1;&/;}; \
+		' $< >$@
+
 # Report the genes annotated by Prokka
 prokka/%.gff.gene: prokka/%.gff
 	ruby -we 'ARGF.each { |s| \
@@ -172,6 +181,13 @@ prokka/%.gff.gene: prokka/%.gff
 		s/Name="(trn[^-]*).*"/gene="\1"/; \
 		s/Name="([^|]*).*"/gene="\1"/; \
 		p; }' $*.gb) >$@
+
+# Merge MAKER and Prokka annotations using bedtools
+
+%.gff: %.prokka.gff %.maker.gff
+	bedtools intersect -v -header -a $< -b $*.maker.gff \
+		|sed 's/CDS/mRNA/' \
+		|gt gff3 -sort $*.maker.gff - >$@
 
 # OrganellarGenomeDRAW
 
@@ -206,4 +222,4 @@ gbk/%.00.gbk: %.gbk
 
 genes.html: pg29mt-scaffolds.gff
 
-repeats.html: pg29mt-scaffolds.repeat.gff
+repeats.html: pg29mt-scaffolds.maker.repeat.gff
