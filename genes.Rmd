@@ -44,6 +44,12 @@ gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	'rrn', 'ribosomal RNAs',
 	'sdh', 'complex II (succinate dehydrogenase)',
 	'trn', 'transfer RNAs',
+	# Chloroplast
+	'psa', 'photosystem I (plastidial)',
+	'psb', 'photosystem II (plastidial)',
+	# Other
+	'bla', 'Beta-lactamase (bacterial)',
+	'tns', 'transposase (transposon)',
 	'unk', 'unknown')))
 gene.types <- data.frame(gene.types.matrix)
 colnames(gene.types) <- c('Short.name', 'Full.name')
