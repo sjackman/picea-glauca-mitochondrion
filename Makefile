@@ -99,7 +99,7 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 # Convert GFF2 to GFF3
 %.rnammer.gff: %.rnammer.gff2
 	bin/convert_RNAmmer_to_gff3.pl --input=$< \
-		|sed -E 's/ID=([^s]*)s_rRNA_([0-9]*)/Name=rrn\1-\2;&/' >$@
+		|sed -E 's/ID=([^s]*)s_rRNA_([0-9]*)/Name=rrn\1;&/' >$@
 
 # MAKER
 
