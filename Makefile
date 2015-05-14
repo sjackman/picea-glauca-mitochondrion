@@ -48,7 +48,7 @@ cds_aa.orig.fa cds_na.orig.fa: %.fa:
 		|efetch -format fasta_$* >$@
 
 cds_aa.fa cds_na.fa: %.fa: %.orig.fa
-	sed -E 's/^>(.*gene=([^]]*).*)$$/>\2|\1/' $< \
+	sed -E 's/18S rRNA/ymf40/;s/^>(.*gene=([^]]*).*)$$/>\2|\1/' $< \
 		|seqmagick -q convert \
 		--pattern-exclude '^lcl|^orf|^ORF|hypothetical|putative|unnamed' \
 		--pattern-replace '^apt' 'atp' \
