@@ -1947,9 +1947,9 @@
 1	aragorn	tRNA	662451	662529	.	+	.	ID=tRNA2;Parent=gene628;Name=tRNA-Tyr
 1	aragorn	exon	662451	662529	.	+	.	Parent=tRNA2
 ###
-1	RNAmmer	gene	662717	662828	18.3	+	.	ID=gene629;Name=rrn5-3
-1	RNAmmer	rRNA	662717	662828	18.3	+	.	ID=rRNA1;Parent=gene629;Name=rrn5-3
-1	RNAmmer	exon	662717	662828	18.3	+	.	Parent=rRNA1;Name=rrn5-3
+1	RNAmmer	gene	662717	662828	18.3	+	.	ID=gene629;Name=rrn5
+1	RNAmmer	rRNA	662717	662828	18.3	+	.	ID=rRNA1;Parent=gene629;Name=rrn5
+1	RNAmmer	exon	662717	662828	18.3	+	.	Parent=rRNA1;Name=rrn5
 ###
 1	prokka	gene	663004	663234	.	+	1	ID=gene630;locus_tag=OU3MT_00636
 1	Prodigal:2.6	mRNA	663004	663234	.	+	0	Parent=gene630;Name=orf00636;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_00636;product=hypothetical protein
@@ -6743,9 +6743,9 @@
 17	prokka	gene	39786	40013	.	-	1	ID=gene2209;locus_tag=OU3MT_05338
 17	Prodigal:2.6	mRNA	39786	40013	.	-	0	Parent=gene2209;Name=orf05338;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05338;product=hypothetical protein
 ###
-17	RNAmmer	gene	40228	40340	21	+	.	ID=gene2210;Name=rrn5-2
-17	RNAmmer	rRNA	40228	40340	21	+	.	ID=rRNA2;Parent=gene2210;Name=rrn5-2
-17	RNAmmer	exon	40228	40340	21	+	.	Parent=rRNA2;Name=rrn5-2
+17	RNAmmer	gene	40228	40340	21	+	.	ID=gene2210;Name=rrn5
+17	RNAmmer	rRNA	40228	40340	21	+	.	ID=rRNA2;Parent=gene2210;Name=rrn5
+17	RNAmmer	exon	40228	40340	21	+	.	Parent=rRNA2;Name=rrn5
 ###
 17	prokka	gene	41320	41547	.	+	1	ID=gene2211;locus_tag=OU3MT_05340
 17	Prodigal:2.6	mRNA	41320	41547	.	+	0	Parent=gene2211;Name=orf05340;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05340;product=hypothetical protein
@@ -7023,9 +7023,9 @@
 17	prokka	gene	126535	126702	.	+	1	ID=gene2302;locus_tag=OU3MT_05431
 17	Prodigal:2.6	mRNA	126535	126702	.	+	0	Parent=gene2302;Name=orf05431;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05431;product=hypothetical protein
 ###
-17	RNAmmer	gene	130167	133406	1.7e+03	+	.	ID=gene2303;Name=rrn23-5
-17	RNAmmer	rRNA	130167	133406	1.7e+03	+	.	ID=rRNA3;Parent=gene2303;Name=rrn23-5
-17	RNAmmer	exon	130167	133406	1.7e+03	+	.	Parent=rRNA3;Name=rrn23-5
+17	RNAmmer	gene	130167	133406	1.7e+03	+	.	ID=gene2303;Name=rrn23
+17	RNAmmer	rRNA	130167	133406	1.7e+03	+	.	ID=rRNA3;Parent=gene2303;Name=rrn23
+17	RNAmmer	exon	130167	133406	1.7e+03	+	.	Parent=rRNA3;Name=rrn23
 ###
 17	prokka	gene	133528	133674	.	+	1	ID=gene2304;locus_tag=OU3MT_05433
 17	Prodigal:2.6	mRNA	133528	133674	.	+	0	Parent=gene2304;Name=orf05433;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05433;product=hypothetical protein
@@ -7099,9 +7099,9 @@
 18	prokka	gene	4178	6148	.	-	1	ID=gene2327;Name=atpA_4;gene=atpA_4;locus_tag=OU3MT_05456
 18	Prodigal:2.6	mRNA	4178	6148	.	-	0	Parent=gene2327;Name=atpA_4;gene=atpA_4;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:atpA|lcl|M68929.1_prot_AAC09444.1_53;locus_tag=OU3MT_05456;product=atpA intron1 ORF
 ###
-18	RNAmmer	gene	6247	8015	1.2e+03	+	.	ID=gene2328;Name=rrn16-7
-18	RNAmmer	rRNA	6247	8015	1.2e+03	+	.	ID=rRNA4;Parent=gene2328;Name=rrn16-7
-18	RNAmmer	exon	6247	8015	1.2e+03	+	.	Parent=rRNA4;Name=rrn16-7
+18	RNAmmer	gene	6247	8015	1.2e+03	+	.	ID=gene2328;Name=rrn16
+18	RNAmmer	rRNA	6247	8015	1.2e+03	+	.	ID=rRNA4;Parent=gene2328;Name=rrn16
+18	RNAmmer	exon	6247	8015	1.2e+03	+	.	Parent=rRNA4;Name=rrn16
 ###
 18	prokka	gene	9217	9348	.	+	1	ID=gene2329;locus_tag=OU3MT_05458
 18	Prodigal:2.6	mRNA	9217	9348	.	+	0	Parent=gene2329;Name=orf05458;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05458;product=hypothetical protein
@@ -12041,9 +12041,9 @@
 4	prokka	gene	229190	229468	.	+	1	ID=gene3951;locus_tag=OU3MT_02411
 4	Prodigal:2.6	mRNA	229190	229468	.	+	0	Parent=gene3951;Name=orf02411;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02411;product=hypothetical protein
 ###
-4	RNAmmer	gene	231370	231479	40.1	+	.	ID=gene3952;Name=rrn5-4
-4	RNAmmer	rRNA	231370	231479	40.1	+	.	ID=rRNA5;Parent=gene3952;Name=rrn5-4
-4	RNAmmer	exon	231370	231479	40.1	+	.	Parent=rRNA5;Name=rrn5-4
+4	RNAmmer	gene	231370	231479	40.1	+	.	ID=gene3952;Name=rrn5
+4	RNAmmer	rRNA	231370	231479	40.1	+	.	ID=rRNA5;Parent=gene3952;Name=rrn5
+4	RNAmmer	exon	231370	231479	40.1	+	.	Parent=rRNA5;Name=rrn5
 ###
 4	prokka	gene	232981	233220	.	+	1	ID=gene3953;locus_tag=OU3MT_02413
 4	Prodigal:2.6	mRNA	232981	233220	.	+	0	Parent=gene3953;Name=orf02413;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02413;product=hypothetical protein
@@ -12296,9 +12296,9 @@
 4	prokka	gene	319196	319459	.	-	1	ID=gene4034;locus_tag=OU3MT_02493
 4	Prodigal:2.6	mRNA	319196	319459	.	-	0	Parent=gene4034;Name=orf02493;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02493;product=hypothetical protein
 ###
-5	RNAmmer	gene	4	1772	1.2e+03	+	.	ID=gene4035;Name=rrn16-8
-5	RNAmmer	rRNA	4	1772	1.2e+03	+	.	ID=rRNA6;Parent=gene4035;Name=rrn16-8
-5	RNAmmer	exon	4	1772	1.2e+03	+	.	Parent=rRNA6;Name=rrn16-8
+5	RNAmmer	gene	4	1772	1.2e+03	+	.	ID=gene4035;Name=rrn16
+5	RNAmmer	rRNA	4	1772	1.2e+03	+	.	ID=rRNA6;Parent=gene4035;Name=rrn16
+5	RNAmmer	exon	4	1772	1.2e+03	+	.	Parent=rRNA6;Name=rrn16
 ###
 5	prokka	gene	2306	2707	.	-	1	ID=gene4036;locus_tag=OU3MT_02495
 5	Prodigal:2.6	mRNA	2306	2707	.	-	0	Parent=gene4036;Name=orf02495;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02495;product=hypothetical protein
@@ -14547,9 +14547,9 @@
 6	prokka	gene	446817	446951	.	+	1	ID=gene4771;locus_tag=OU3MT_03232
 6	Prodigal:2.6	mRNA	446817	446951	.	+	0	Parent=gene4771;Name=orf03232;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03232;product=hypothetical protein
 ###
-6	RNAmmer	gene	448667	450435	1.2e+03	+	.	ID=gene4772;Name=rrn16-6
-6	RNAmmer	rRNA	448667	450435	1.2e+03	+	.	ID=rRNA7;Parent=gene4772;Name=rrn16-6
-6	RNAmmer	exon	448667	450435	1.2e+03	+	.	Parent=rRNA7;Name=rrn16-6
+6	RNAmmer	gene	448667	450435	1.2e+03	+	.	ID=gene4772;Name=rrn16
+6	RNAmmer	rRNA	448667	450435	1.2e+03	+	.	ID=rRNA7;Parent=gene4772;Name=rrn16
+6	RNAmmer	exon	448667	450435	1.2e+03	+	.	Parent=rRNA7;Name=rrn16
 ###
 6	prokka	gene	450981	451241	.	-	1	ID=gene4773;locus_tag=OU3MT_03234
 6	Prodigal:2.6	mRNA	450981	451241	.	-	0	Parent=gene4773;Name=orf03234;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03234;product=hypothetical protein
@@ -15006,9 +15006,9 @@
 7	prokka	gene	183	410	.	-	1	ID=gene4923;locus_tag=OU3MT_03384
 7	Prodigal:2.6	mRNA	183	410	.	-	0	Parent=gene4923;Name=orf03384;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03384;product=hypothetical protein
 ###
-7	RNAmmer	gene	585	697	20.9	+	.	ID=gene4924;Name=rrn5-1
-7	RNAmmer	rRNA	585	697	20.9	+	.	ID=rRNA8;Parent=gene4924;Name=rrn5-1
-7	RNAmmer	exon	585	697	20.9	+	.	Parent=rRNA8;Name=rrn5-1
+7	RNAmmer	gene	585	697	20.9	+	.	ID=gene4924;Name=rrn5
+7	RNAmmer	rRNA	585	697	20.9	+	.	ID=rRNA8;Parent=gene4924;Name=rrn5
+7	RNAmmer	exon	585	697	20.9	+	.	Parent=rRNA8;Name=rrn5
 ###
 7	prokka	gene	754	918	.	-	1	ID=gene4925;locus_tag=OU3MT_03386
 7	Prodigal:2.6	mRNA	754	918	.	-	0	Parent=gene4925;Name=orf03386;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03386;product=hypothetical protein
