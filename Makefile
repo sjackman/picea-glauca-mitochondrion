@@ -19,7 +19,7 @@ clean:
 	rm -f $(name).gb $(name).gbk $(name).gff $(name).png
 
 install-deps:
-	brew install aragorn bedtools edirect genometools maker prokka repeatmodeler trnascan
+	brew install aragorn bedtools edirect genometools maker prokka repeatmodeler rnammer trnascan
 	pip install biopython seqmagick
 
 .PHONY: all clean install-deps
