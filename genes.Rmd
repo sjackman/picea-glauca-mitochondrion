@@ -44,6 +44,7 @@ gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	'rrn', 'ribosomal RNAs',
 	'sdh', 'complex II (succinate dehydrogenase)',
 	'trn', 'transfer RNAs',
+	'ymf', 'uncharacterized mitochondrial protein',
 	# Chloroplast
 	'psa', 'photosystem I (plastidial)',
 	'psb', 'photosystem II (plastidial)',
