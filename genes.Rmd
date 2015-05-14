@@ -18,6 +18,7 @@ biocLite('genomeIntervals')
 ```{r Load libraries, include=FALSE}
 library(dplyr)
 library(genomeIntervals)
+library(ggplot2)
 library(lattice)
 ```
 
@@ -76,18 +77,33 @@ data$Family = factor(data$Family.short,
 data[is.na(data$Family), 'Family'] <- 'unknown'
 ```
 
-# Tabulate the data
-```{r Tabulate the data, results='asis'}
-data.grouped <- data %>%
-	group_by(Type, Family) %>%
+# Aggregate the data
+```{r aggregate}
+data.grouped.with.orf <- data %>%
+	group_by(Type, Family.short, Family) %>%
 	summarise(
 		Count = n(),
 		Size = sum(Size)) %>%
 	droplevels
-tab <- data.grouped[c('Count', 'Size')]
-rownames(tab) <- data.grouped$Family
+
+data.grouped <- data.grouped.with.orf %>% filter(Family.short != "orf")
+```
+
+# Tabulate the data
+```{r tabulate, results='asis'}
+tab <- data.grouped.with.orf[c('Count', 'Size')]
+rownames(tab) <- data.grouped.with.orf$Family
 tab['Sum',] <- colSums(tab)
 kable(tab)
+```
+
+# Histogram of size (≤ 1000 bp)
+```{r gene-size-density}
+ggplot(data = data) +
+	aes(x = Size) +
+	geom_histogram(binwidth = 25) +
+	xlim(0, 1000) +
+	xlab("Size (bp)")
 ```
 
 # Stripplot of type vs size
@@ -95,6 +111,15 @@ kable(tab)
 stripplot(Family ~ Size, data,
 	jitter = TRUE,
 	xlab = 'Size (bp)')
+```
+
+# Density plot of type vs size
+```{r density-type-vs-size}
+ggplot(data = data) +
+	aes(x = Size) +
+	facet_wrap(~ Family.short) +
+	geom_density() +
+	xlab("Size (bp)")
 ```
 
 # Barchart of type vs count
@@ -119,6 +144,6 @@ barchart(~ Size / 1e3, data.grouped, group = Family,
 
 # Write the tabulated data to a file
 ```{r Write the tabulated data to a file}
-write.table(data.grouped, 'pg29mt-scaffolds.gff.tsv',
+write.table(data.grouped.with.orf, 'pg29mt-scaffolds.gff.tsv',
 	quote = FALSE, sep = '\t', row.names = FALSE)
 ```
