@@ -14297,8 +14297,8 @@
 6	prokka	gene	362338	362505	.	+	1	ID=gene4689;locus_tag=OU3MT_03150
 6	Prodigal:2.6	mRNA	362338	362505	.	+	0	Parent=gene4689;Name=orf03150;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03150;product=hypothetical protein
 ###
-6	prokka	gene	365310	366716	.	-	1	ID=gene4690;Name=18S rRNA;gene=18S rRNA;locus_tag=OU3MT_03151
-6	Prodigal:2.6	mRNA	365310	366716	.	-	0	Parent=gene4690;Name=18S rRNA;gene=18S rRNA;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:18S;locus_tag=OU3MT_03151;product=18S ribosomal RNA intron 1 ORF
+6	prokka	gene	365310	366716	.	-	1	ID=gene4690;Name=ymf40;gene=ymf40;locus_tag=OU3MT_03151
+6	Prodigal:2.6	mRNA	365310	366716	.	-	0	Parent=gene4690;Name=ymf40;gene=ymf40;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:ymf40|lcl|M68929.1_prot_AAC09457.1_64;locus_tag=OU3MT_03151;product=18S ribosomal RNA intron 1 ORF
 ###
 6	prokka	gene	367031	367273	.	+	1	ID=gene4691;locus_tag=OU3MT_03152
 6	Prodigal:2.6	mRNA	367031	367273	.	+	0	Parent=gene4691;Name=orf03152;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03152;product=hypothetical protein
