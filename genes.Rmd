@@ -10,6 +10,7 @@ opts_chunk$set(tidy = FALSE, fig.width = 10, fig.height = 5)
 
 ```{r Install libraries, eval=FALSE, include=FALSE}
 install.packages('dplyr')
+install.packages('ggplot2')
 install.packages('lattice')
 source('http://bioconductor.org/biocLite.R')
 biocLite('genomeIntervals')
