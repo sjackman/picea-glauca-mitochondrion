@@ -134,7 +134,9 @@ barchart(Type ~ Count, data.grouped, group = Family,
 
 # Barchart of type vs size
 ```{r Barchart type vs size, fig.height = 8}
-barchart(Family ~ Size / 1e3, data, group = Gene,
+barchart(Family ~ Size / 1e3,
+	data %>% filter(Family.short != "orf") %>% droplevels,
+	group = Gene,
 	stack = TRUE, auto.key = list(space = 'right'),
 	xlab = 'Size (kbp)')
 
