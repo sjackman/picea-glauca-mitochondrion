@@ -48,19 +48,20 @@ cds_aa.orig.fa cds_na.orig.fa: %.fa:
 		|efetch -format fasta_$* >$@
 
 cds_aa.fa cds_na.fa: %.fa: %.orig.fa
-	sed -E 's/18S rRNA/ymf40/;s/^>(.*gene=([^]]*).*)$$/>\2|\1/' $< \
-		|seqmagick -q convert \
-		--pattern-exclude '^lcl|^orf|^ORF|hypothetical|putative|unnamed' \
-		--pattern-replace '^apt' 'atp' \
-		--pattern-replace '^coxIII' 'cox3' \
-		--pattern-replace '^coxII' 'cox2' \
-		--pattern-replace '^coxI' 'cox1' \
-		--pattern-replace '^cytb' 'cob' \
-		--pattern-replace '^nd' 'nad' \
-		--pattern-replace '^yejU' 'ccmC' \
-		--pattern-replace '^yejV' 'ccmB' \
-		--deduplicate-taxa \
-		- $@
+	seqmagick -q convert \
+		--pattern-exclude 'gene=orf|hypothetical|putative|unnamed' \
+		--pattern-replace 'gene=apt' 'gene=atp' \
+		--pattern-replace 'gene=coxIII' 'gene=cox3' \
+		--pattern-replace 'gene=coxII' 'gene=cox2' \
+		--pattern-replace 'gene=coxI' 'gene=cox1' \
+		--pattern-replace 'gene=cytb' 'gene=cob' \
+		--pattern-replace 'gene=nd' 'gene=nad' \
+		--pattern-replace 'gene=yejU' 'gene=ccmC' \
+		--pattern-replace 'gene=yejV' 'gene=ccmB' \
+		--pattern-replace 'gene=18S rRNA' 'gene=ymf40' \
+		$< - \
+	|sed -E 's/^>(.*gene=([^]]*).*)$$/>\2|\1/' \
+	|seqmagick -q convert --pattern-exclude '^lcl' --deduplicate-taxa - $@
 
 # RepeatModeler
 
