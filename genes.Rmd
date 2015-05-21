@@ -1,6 +1,10 @@
 ---
 title: Mitochondrial gene content annotated by MAKER
 author: Shaun Jackman
+output:
+  html_document:
+    keep_md: yes
+    toc: yes
 ---
 
 ```{r knitr, include=FALSE}
