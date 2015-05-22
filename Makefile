@@ -58,9 +58,10 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 		--pattern-replace 'gene=nd' 'gene=nad' \
 		--pattern-replace 'gene=yejU' 'gene=ccmC' \
 		--pattern-replace 'gene=yejV' 'gene=ccmB' \
-		--pattern-replace 'gene=18S rRNA' 'gene=ymf40' \
+		--pattern-replace 'gene=18S rRNA' 'gene=40' \
 		$< - \
-	|sed -E 's/^>(.*gene=([^]]*).*)$$/>\2|\1/' \
+	|gsed -E '/protein=[^]]*intron[^]]*ORF/s/gene=/gene=ymf/; \
+		s/^>(.*gene=([^]]*).*)$$/>\2|\1/' \
 	|seqmagick -q convert --pattern-exclude '^lcl' --deduplicate-taxa - $@
 
 # RepeatModeler
