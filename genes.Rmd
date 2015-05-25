@@ -106,8 +106,8 @@ kable(tab)
 ```{r gene-size-density}
 ggplot(data = data) +
 	aes(x = Size) +
-	geom_histogram(binwidth = 25) +
-	xlim(0, 1000) +
+	geom_histogram(binwidth = 50) +
+	scale_x_continuous(limits = c(0, 1000), breaks = seq(0, 1000, 100)) +
 	xlab("Size (bp)")
 ```
 
