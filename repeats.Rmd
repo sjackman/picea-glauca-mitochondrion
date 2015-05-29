@@ -27,7 +27,7 @@ library(lattice)
 
 ```{r Load data}
 genome.size <- 6017035
-gff.all <- readGff3('pg29mt-scaffolds.repeat.gff')
+gff.all <- readGff3('pg29mt-scaffolds.maker.repeat.gff')
 gff <- gff.all[gff.all$type == 'match',]
 
 data <- data.frame(
