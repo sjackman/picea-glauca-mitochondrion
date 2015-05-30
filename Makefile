@@ -13,14 +13,14 @@ edirect_query='Viridiplantae[Organism] mitochondrion[Title] (complete genome[Tit
 all: $(name).gff $(name).gbk $(name).gbk.png \
 	$(name).maker.evidence.gff $(name).maker.repeat.gff \
 	$(name).maker.gff.gene $(name).prokka.gff.gene $(name).gff.gene \
-	genes.html repeats.html
+	genes.html
 
 clean:
 	rm -f $(name).gb $(name).gbk $(name).gff $(name).png
 
 install-deps:
 	brew install aragorn bedtools edirect genometools gnu-sed maker prokka repeatmodeler rnammer trnascan
-	pip install biopython seqmagick
+	pip install bcbio-gff biopython seqmagick
 
 .PHONY: all clean install-deps
 .DELETE_ON_ERROR:
