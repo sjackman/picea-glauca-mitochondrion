@@ -7096,8 +7096,8 @@
 18	prokka	gene	3341	3670	.	+	1	ID=gene2326;locus_tag=OU3MT_05455
 18	Prodigal:2.6	mRNA	3341	3670	.	+	0	Parent=gene2326;Name=orf05455;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05455;product=hypothetical protein
 ###
-18	prokka	gene	4178	6148	.	-	1	ID=gene2327;Name=atpA_4;gene=atpA_4;locus_tag=OU3MT_05456
-18	Prodigal:2.6	mRNA	4178	6148	.	-	0	Parent=gene2327;Name=atpA_4;gene=atpA_4;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:atpA|lcl|M68929.1_prot_AAC09444.1_53;locus_tag=OU3MT_05456;product=atpA intron1 ORF
+18	prokka	gene	4178	6148	.	-	1	ID=gene2327;Name=ymfatpA_4;gene=ymfatpA_4;locus_tag=OU3MT_05456
+18	Prodigal:2.6	mRNA	4178	6148	.	-	0	Parent=gene2327;Name=ymfatpA_4;gene=ymfatpA_4;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:ymfatpA|lcl|M68929.1_prot_AAC09444.1_53;locus_tag=OU3MT_05456;product=atpA intron1 ORF
 ###
 18	RNAmmer	gene	6247	8015	1.2e+03	+	.	ID=gene2328;Name=rrn16
 18	RNAmmer	rRNA	6247	8015	1.2e+03	+	.	ID=rRNA4;Parent=gene2328;Name=rrn16
@@ -7776,8 +7776,8 @@
 2	prokka	gene	103054	103281	.	-	1	ID=gene2552;locus_tag=OU3MT_01281
 2	Prodigal:2.6	mRNA	103054	103281	.	-	0	Parent=gene2552;Name=orf01281;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01281;product=hypothetical protein
 ###
-2	prokka	gene	103509	103697	.	-	1	ID=gene2553;Name=coxI_1;gene=coxI_1;locus_tag=OU3MT_01282
-2	Prodigal:2.6	mRNA	103509	103697	.	-	0	Parent=gene2553;Name=coxI_1;gene=coxI_1;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:cox1|lcl|M68929.1_prot_AAC09454.1_61;locus_tag=OU3MT_01282;product=coxI intron2 ORF
+2	prokka	gene	103509	103697	.	-	1	ID=gene2553;Name=ymfcox1_1;gene=ymfcox1_1;locus_tag=OU3MT_01282
+2	Prodigal:2.6	mRNA	103509	103697	.	-	0	Parent=gene2553;Name=ymfcox1_1;gene=ymfcox1_1;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:ymfcox1|lcl|M68929.1_prot_AAC09454.1_61;locus_tag=OU3MT_01282;product=coxI intron2 ORF
 ###
 2	prokka	gene	103708	103956	.	-	1	ID=gene2554;locus_tag=OU3MT_01283
 2	Prodigal:2.6	mRNA	103708	103956	.	-	0	Parent=gene2554;Name=orf01283;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01283;product=hypothetical protein
@@ -8138,8 +8138,8 @@
 2	prokka	gene	226475	226687	.	+	1	ID=gene2671;locus_tag=OU3MT_01401
 2	Prodigal:2.6	mRNA	226475	226687	.	+	0	Parent=gene2671;Name=orf01401;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01401;product=hypothetical protein
 ###
-2	prokka	gene	226825	227088	.	-	1	ID=gene2672;Name=atpA_1;gene=atpA_1;locus_tag=OU3MT_01402
-2	Prodigal:2.6	mRNA	226825	227088	.	-	0	Parent=gene2672;Name=atpA_1;gene=atpA_1;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:atpA|lcl|M68929.1_prot_AAC09444.1_53;locus_tag=OU3MT_01402;product=atpA intron1 ORF
+2	prokka	gene	226825	227088	.	-	1	ID=gene2672;Name=ymfatpA_1;gene=ymfatpA_1;locus_tag=OU3MT_01402
+2	Prodigal:2.6	mRNA	226825	227088	.	-	0	Parent=gene2672;Name=ymfatpA_1;gene=ymfatpA_1;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:ymfatpA|lcl|M68929.1_prot_AAC09444.1_53;locus_tag=OU3MT_01402;product=atpA intron1 ORF
 ###
 2	prokka	gene	230674	230892	.	+	1	ID=gene2673;locus_tag=OU3MT_01403
 2	Prodigal:2.6	mRNA	230674	230892	.	+	0	Parent=gene2673;Name=orf01403;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01403;product=hypothetical protein
@@ -11930,8 +11930,8 @@
 4	prokka	gene	193793	194071	.	+	1	ID=gene3914;locus_tag=OU3MT_02374
 4	Prodigal:2.6	mRNA	193793	194071	.	+	0	Parent=gene3914;Name=orf02374;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02374;product=hypothetical protein
 ###
-4	prokka	gene	195189	195680	.	+	1	ID=gene3915;Name=atpA_2;gene=atpA_2;locus_tag=OU3MT_02375
-4	Prodigal:2.6	mRNA	195189	195680	.	+	0	Parent=gene3915;Name=atpA_2;gene=atpA_2;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:atpA|lcl|M68929.1_prot_AAC09444.1_53;locus_tag=OU3MT_02375;product=atpA intron1 ORF
+4	prokka	gene	195189	195680	.	+	1	ID=gene3915;Name=ymfatpA_2;gene=ymfatpA_2;locus_tag=OU3MT_02375
+4	Prodigal:2.6	mRNA	195189	195680	.	+	0	Parent=gene3915;Name=ymfatpA_2;gene=ymfatpA_2;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:ymfatpA|lcl|M68929.1_prot_AAC09444.1_53;locus_tag=OU3MT_02375;product=atpA intron1 ORF
 ###
 4	prokka	gene	195906	196310	.	+	1	ID=gene3916;locus_tag=OU3MT_02376
 4	Prodigal:2.6	mRNA	195906	196310	.	+	0	Parent=gene3916;Name=orf02376;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02376;product=hypothetical protein
@@ -15206,8 +15206,8 @@
 7	prokka	gene	55214	55420	.	-	1	ID=gene4988;locus_tag=OU3MT_03449
 7	Prodigal:2.6	mRNA	55214	55420	.	-	0	Parent=gene4988;Name=orf03449;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03449;product=hypothetical protein
 ###
-7	prokka	gene	55452	55910	.	-	1	ID=gene4989;Name=coxI_2;gene=coxI_2;locus_tag=OU3MT_03450
-7	Prodigal:2.6	mRNA	55452	55910	.	-	0	Parent=gene4989;Name=coxI_2;gene=coxI_2;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:cox1|lcl|M68929.1_prot_AAC09454.1_61;locus_tag=OU3MT_03450;product=coxI intron2 ORF
+7	prokka	gene	55452	55910	.	-	1	ID=gene4989;Name=ymfcox1_2;gene=ymfcox1_2;locus_tag=OU3MT_03450
+7	Prodigal:2.6	mRNA	55452	55910	.	-	0	Parent=gene4989;Name=ymfcox1_2;gene=ymfcox1_2;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:ymfcox1|lcl|M68929.1_prot_AAC09454.1_61;locus_tag=OU3MT_03450;product=coxI intron2 ORF
 ###
 7	prokka	gene	55895	56101	.	-	1	ID=gene4990;locus_tag=OU3MT_03451
 7	Prodigal:2.6	mRNA	55895	56101	.	-	0	Parent=gene4990;Name=orf03451;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03451;product=hypothetical protein
@@ -15494,8 +15494,8 @@
 7	prokka	gene	139696	140046	.	-	1	ID=gene5084;locus_tag=OU3MT_03545
 7	Prodigal:2.6	mRNA	139696	140046	.	-	0	Parent=gene5084;Name=orf03545;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03545;product=hypothetical protein
 ###
-7	prokka	gene	140533	141126	.	+	1	ID=gene5085;Name=cob_1;gene=cob_1;locus_tag=OU3MT_03546
-7	Prodigal:2.6	mRNA	140533	141126	.	+	0	Parent=gene5085;Name=cob_1;gene=cob_1;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:cob|lcl|M68929.1_prot_AAC09440.1_48;locus_tag=OU3MT_03546;product=cob intron3 ORF
+7	prokka	gene	140533	141126	.	+	1	ID=gene5085;Name=ymfcob;gene=ymfcob;locus_tag=OU3MT_03546
+7	Prodigal:2.6	mRNA	140533	141126	.	+	0	Parent=gene5085;Name=ymfcob;gene=ymfcob;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:ymfcob|lcl|M68929.1_prot_AAC09440.1_48;locus_tag=OU3MT_03546;product=cob intron3 ORF
 ###
 7	prokka	gene	141119	141460	.	+	1	ID=gene5086;locus_tag=OU3MT_03547
 7	Prodigal:2.6	mRNA	141119	141460	.	+	0	Parent=gene5086;Name=orf03547;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03547;product=hypothetical protein
@@ -17003,8 +17003,8 @@
 8	prokka	gene	167373	167570	.	+	1	ID=gene5580;locus_tag=OU3MT_04042
 8	Prodigal:2.6	mRNA	167373	167570	.	+	0	Parent=gene5580;Name=orf04042;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04042;product=hypothetical protein
 ###
-8	prokka	gene	168624	169046	.	-	1	ID=gene5581;Name=atpA_3;gene=atpA_3;locus_tag=OU3MT_04043
-8	Prodigal:2.6	mRNA	168624	169046	.	-	0	Parent=gene5581;Name=atpA_3;gene=atpA_3;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:atpA|lcl|M68929.1_prot_AAC09444.1_53;locus_tag=OU3MT_04043;product=atpA intron1 ORF
+8	prokka	gene	168624	169046	.	-	1	ID=gene5581;Name=ymfatpA_3;gene=ymfatpA_3;locus_tag=OU3MT_04043
+8	Prodigal:2.6	mRNA	168624	169046	.	-	0	Parent=gene5581;Name=ymfatpA_3;gene=ymfatpA_3;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:ymfatpA|lcl|M68929.1_prot_AAC09444.1_53;locus_tag=OU3MT_04043;product=atpA intron1 ORF
 ###
 8	prokka	gene	170933	171184	.	+	1	ID=gene5582;locus_tag=OU3MT_04044
 8	Prodigal:2.6	mRNA	170933	171184	.	+	0	Parent=gene5582;Name=orf04044;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04044;product=hypothetical protein
