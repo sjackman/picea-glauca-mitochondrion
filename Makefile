@@ -199,8 +199,18 @@ prokka/%.gff.gene: prokka/%.gff
 
 # Report the annotated genes
 
+# Extract the names of genes from a GFF file
 %.gff.gene: %.gff
 	bin/gff-gene-name $< >$@
+
+# Extract DNA sequences of GFF features from a FASTA file
+%.gff.dna.fa: %.gff %.fa
+	gt extractfeat -type gene -matchdescstart -seqid -seqfile $*.fa $< >$@
+
+# Extract protein sequences of GFF features from a FASTA file
+%.aa.fa: %.dna.fa
+	gt seqtranslate -reverse no -fastawidth 0 $< \
+	|sed -n '/ (1+)$$/{s/ (1+)$$//;p;n;p;n;n;n;n;}' >$@
 
 # Split the GenBank file into one sequence per file
 gbk/%.00.gbk: %.gbk
