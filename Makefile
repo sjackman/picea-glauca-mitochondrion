@@ -165,7 +165,9 @@ prokka/%.gff: %.fa cds_aa.prokka.fa
 %.prokka.gff: prokka/%.gff
 	gsed -E '/^##FASTA/,$$d; \
 		s/gene=([^;]*)/Name=\1;&/; \
-		/\tCDS\t/{/gene=/!s/ID=[^_]*_([0-9]*)/Name=orf\1;&/;}; \
+		/\tCDS\t/{/gene=/!s/ID=[^_]*_([0-9]*)/Name=orf\1;&/; \
+			s/CDS/mRNA/;p; \
+			s/mRNA/CDS/;s/Parent=[^;]*;//;s/ID=/Parent=/;}; \
 		' $< >$@
 
 # Report the genes annotated by Prokka
@@ -189,7 +191,6 @@ prokka/%.gff.gene: prokka/%.gff
 
 %.gff: %.prokka.gff %.maker.gff
 	bedtools intersect -v -header -a $< -b $*.maker.gff \
-		|sed 's/CDS/mRNA/' \
 		|gt gff3 -sort $*.maker.gff - >$@
 
 # OrganellarGenomeDRAW
