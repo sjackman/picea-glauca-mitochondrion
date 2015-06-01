@@ -224,9 +224,12 @@ gbk/%.00.gbk: %.gbk
 	montage -geometry 1200x600 $^ $@
 
 # GenomeTools sketch
-
 %.gff.png: %.gff
 	gt sketch $@ $<
+
+# Convert GFF to GTF
+%.gtf: %.gff
+	gt -q gff3_to_gtf $< >$@
 
 # Render HTML from RMarkdown
 %.html: %.Rmd
