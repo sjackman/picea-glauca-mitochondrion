@@ -1084,8 +1084,8 @@
 1	prokka	gene	359639	360076	.	-	1	ID=gene347;locus_tag=OU3MT_00347
 1	Prodigal:2.6	mRNA	359639	360076	.	-	0	Parent=gene347;Name=orf00347;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_00347;product=hypothetical protein
 ###
-1	aragorn	gene	361885	361960	.	-	.	ID=gene348;Name=tRNA-Met-gene
-1	aragorn	tRNA	361885	361960	.	-	.	ID=tRNA1;Parent=gene348;Name=tRNA-Met
+1	aragorn	gene	361885	361960	.	-	.	ID=gene348;Name=trnM-CAU;product=tRNA-Met
+1	aragorn	tRNA	361885	361960	.	-	.	ID=tRNA1;Parent=gene348;Name=trnM-CAU;product=tRNA-Met
 1	aragorn	exon	361885	361960	.	-	.	Parent=tRNA1
 ###
 1	prokka	gene	362142	362237	.	+	1	ID=gene349;locus_tag=OU3MT_00349
@@ -1943,8 +1943,8 @@
 1	prokka	gene	659463	659957	.	-	1	ID=gene627;locus_tag=OU3MT_00633
 1	Prodigal:2.6	mRNA	659463	659957	.	-	0	Parent=gene627;Name=orf00633;inference=ab initio prediction:Prodigal:2.6,protein motif:Pfam:PF00665.20;locus_tag=OU3MT_00633;product=Integrase core domain protein
 ###
-1	aragorn	gene	662451	662529	.	+	.	ID=gene628;Name=tRNA-Tyr-gene
-1	aragorn	tRNA	662451	662529	.	+	.	ID=tRNA2;Parent=gene628;Name=tRNA-Tyr
+1	aragorn	gene	662451	662529	.	+	.	ID=gene628;Name=trnY-AUA;product=tRNA-Tyr
+1	aragorn	tRNA	662451	662529	.	+	.	ID=tRNA2;Parent=gene628;Name=trnY-AUA;product=tRNA-Tyr
 1	aragorn	exon	662451	662529	.	+	.	Parent=tRNA2
 ###
 1	RNAmmer	gene	662717	662828	18.3	+	.	ID=gene629;Name=rrn5
@@ -2627,8 +2627,8 @@
 1	prokka	gene	883041	883220	.	+	1	ID=gene852;locus_tag=OU3MT_00857
 1	Prodigal:2.6	mRNA	883041	883220	.	+	0	Parent=gene852;Name=orf00857;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_00857;product=hypothetical protein
 ###
-1	aragorn	gene	883351	883869	.	-	.	ID=gene853;Name=tRNA-Val-gene
-1	aragorn	tRNA	883351	883869	.	-	.	ID=tRNA3;Parent=gene853;Name=tRNA-Val
+1	aragorn	gene	883351	883869	.	-	.	ID=gene853;Name=trnV-UAC;product=tRNA-Val
+1	aragorn	tRNA	883351	883869	.	-	.	ID=tRNA3;Parent=gene853;Name=trnV-UAC;product=tRNA-Val
 1	aragorn	exon	883351	883387	.	-	.	Parent=tRNA3
 1	.	intron	883388	883830	.	-	.	Parent=tRNA3
 1	aragorn	exon	883831	883869	.	-	.	Parent=tRNA3
@@ -3025,8 +3025,8 @@
 1	prokka	gene	1037009	1037281	.	-	1	ID=gene983;locus_tag=OU3MT_00988
 1	Prodigal:2.6	mRNA	1037009	1037281	.	-	0	Parent=gene983;Name=orf00988;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_00988;product=hypothetical protein
 ###
-1	aragorn	gene	1037508	1037581	.	+	.	ID=gene984;Name=tRNA-Asp-gene
-1	aragorn	tRNA	1037508	1037581	.	+	.	ID=tRNA4;Parent=gene984;Name=tRNA-Asp
+1	aragorn	gene	1037508	1037581	.	+	.	ID=gene984;Name=trnD-GUC;product=tRNA-Asp
+1	aragorn	tRNA	1037508	1037581	.	+	.	ID=tRNA4;Parent=gene984;Name=trnD-GUC;product=tRNA-Asp
 1	aragorn	exon	1037508	1037581	.	+	.	Parent=tRNA4
 ###
 1	prokka	gene	1037967	1038134	.	+	1	ID=gene985;locus_tag=OU3MT_00990
@@ -3538,8 +3538,8 @@
 1	prokka	gene	1199411	1199599	.	-	1	ID=gene1153;Name=nad2_3;gene=nad2_3;locus_tag=OU3MT_01158
 1	Prodigal:2.6	mRNA	1199411	1199599	.	-	0	Parent=gene1153;Name=nad2_3;gene=nad2_3;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:nad2|lcl|JX315601.1_prot_AFQ93768.1_32;locus_tag=OU3MT_01158;product=NADH dehydrogenase subunit 2
 ###
-1	aragorn	gene	1200355	1200427	.	-	.	ID=gene1154;Name=tRNA-Met-gene
-1	aragorn	tRNA	1200355	1200427	.	-	.	ID=tRNA5;Parent=gene1154;Name=tRNA-Met
+1	aragorn	gene	1200355	1200427	.	-	.	ID=gene1154;Name=trnM-CAU;product=tRNA-Met
+1	aragorn	tRNA	1200355	1200427	.	-	.	ID=tRNA5;Parent=gene1154;Name=trnM-CAU;product=tRNA-Met
 1	aragorn	exon	1200355	1200427	.	-	.	Parent=tRNA5
 ###
 1	prokka	gene	1201725	1201934	.	-	1	ID=gene1155;locus_tag=OU3MT_01160
@@ -3933,8 +3933,8 @@
 10	prokka	gene	87406	87627	.	+	1	ID=gene1282;locus_tag=OU3MT_04406
 10	Prodigal:2.6	mRNA	87406	87627	.	+	0	Parent=gene1282;Name=orf04406;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04406;product=hypothetical protein
 ###
-10	aragorn	gene	88201	88280	.	-	.	ID=gene1283;Name=tRNA-seC-gene
-10	aragorn	tRNA	88201	88280	.	-	.	ID=tRNA6;Parent=gene1283;Name=tRNA-seC
+10	aragorn	gene	88201	88280	.	-	.	ID=gene1283;Name=trnU-UCA;product=tRNA-seC
+10	aragorn	tRNA	88201	88280	.	-	.	ID=tRNA6;Parent=gene1283;Name=trnU-UCA;product=tRNA-seC
 10	aragorn	exon	88201	88237	.	-	.	Parent=tRNA6
 10	.	intron	88238	88243	.	-	.	Parent=tRNA6
 10	aragorn	exon	88244	88280	.	-	.	Parent=tRNA6
@@ -4069,12 +4069,12 @@
 10	prokka	gene	125951	126217	.	+	1	ID=gene1325;Name=nad7_4;gene=nad7_4;locus_tag=OU3MT_04448
 10	Prodigal:2.6	mRNA	125951	126217	.	+	0	Parent=gene1325;Name=nad7_4;gene=nad7_4;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:nad7|lcl|NC_011033.1_prot_YP_002000562.1_15;locus_tag=OU3MT_04448;product=NADH dehydrogenase subunit 7
 ###
-10	aragorn	gene	126859	126932	.	+	.	ID=gene1326;Name=tRNA-Met-gene
-10	aragorn	tRNA	126859	126932	.	+	.	ID=tRNA7;Parent=gene1326;Name=tRNA-Met
+10	aragorn	gene	126859	126932	.	+	.	ID=gene1326;Name=trnM-CAU;product=tRNA-Met
+10	aragorn	tRNA	126859	126932	.	+	.	ID=tRNA7;Parent=gene1326;Name=trnM-CAU;product=tRNA-Met
 10	aragorn	exon	126859	126932	.	+	.	Parent=tRNA7
 ###
-10	aragorn	gene	127721	127792	.	+	.	ID=gene1327;Name=tRNA-Gln-gene
-10	aragorn	tRNA	127721	127792	.	+	.	ID=tRNA8;Parent=gene1327;Name=tRNA-Gln
+10	aragorn	gene	127721	127792	.	+	.	ID=gene1327;Name=trnQ-UUG;product=tRNA-Gln
+10	aragorn	tRNA	127721	127792	.	+	.	ID=tRNA8;Parent=gene1327;Name=trnQ-UUG;product=tRNA-Gln
 10	aragorn	exon	127721	127792	.	+	.	Parent=tRNA8
 ###
 10	prokka	gene	129541	129840	.	-	1	ID=gene1328;locus_tag=OU3MT_04451
@@ -4278,12 +4278,12 @@
 11	prokka	gene	31468	31800	.	+	1	ID=gene1394;locus_tag=OU3MT_04517
 11	Prodigal:2.6	mRNA	31468	31800	.	+	0	Parent=gene1394;Name=orf04517;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04517;product=hypothetical protein
 ###
-11	aragorn	gene	32388	32462	.	-	.	ID=gene1395;Name=tRNA-Arg-gene
-11	aragorn	tRNA	32388	32462	.	-	.	ID=tRNA9;Parent=gene1395;Name=tRNA-Arg
+11	aragorn	gene	32388	32462	.	-	.	ID=gene1395;Name=trnR-UCG;product=tRNA-Arg
+11	aragorn	tRNA	32388	32462	.	-	.	ID=tRNA9;Parent=gene1395;Name=trnR-UCG;product=tRNA-Arg
 11	aragorn	exon	32388	32462	.	-	.	Parent=tRNA9
 ###
-11	aragorn	gene	32467	32542	.	-	.	ID=gene1396;Name=tRNA-Cys-gene
-11	aragorn	tRNA	32467	32542	.	-	.	ID=tRNA10;Parent=gene1396;Name=tRNA-Cys
+11	aragorn	gene	32467	32542	.	-	.	ID=gene1396;Name=trnC-GCA;product=tRNA-Cys
+11	aragorn	tRNA	32467	32542	.	-	.	ID=tRNA10;Parent=gene1396;Name=trnC-GCA;product=tRNA-Cys
 11	aragorn	exon	32467	32542	.	-	.	Parent=tRNA10
 ###
 11	prokka	gene	32704	32916	.	+	1	ID=gene1397;locus_tag=OU3MT_04520
@@ -4572,8 +4572,8 @@
 11	prokka	gene	140059	140211	.	-	1	ID=gene1490;locus_tag=OU3MT_04614
 11	Prodigal:2.6	mRNA	140059	140211	.	-	0	Parent=gene1490;Name=orf04614;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04614;product=hypothetical protein
 ###
-11	aragorn	gene	140865	140936	.	+	.	ID=gene1491;Name=tRNA-Glu-gene
-11	aragorn	tRNA	140865	140936	.	+	.	ID=tRNA11;Parent=gene1491;Name=tRNA-Glu
+11	aragorn	gene	140865	140936	.	+	.	ID=gene1491;Name=trnE-UUC;product=tRNA-Glu
+11	aragorn	tRNA	140865	140936	.	+	.	ID=tRNA11;Parent=gene1491;Name=trnE-UUC;product=tRNA-Glu
 11	aragorn	exon	140865	140936	.	+	.	Parent=tRNA11
 ###
 11	prokka	gene	141063	141431	.	+	1	ID=gene1492;locus_tag=OU3MT_04616
@@ -6380,12 +6380,12 @@
 16	prokka	gene	3557	3883	.	+	1	ID=gene2090;locus_tag=OU3MT_05219
 16	Prodigal:2.6	mRNA	3557	3883	.	+	0	Parent=gene2090;Name=orf05219;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05219;product=hypothetical protein
 ###
-16	aragorn	gene	5899	5974	.	-	.	ID=gene2091;Name=tRNA-Met-gene
-16	aragorn	tRNA	5899	5974	.	-	.	ID=tRNA12;Parent=gene2091;Name=tRNA-Met
+16	aragorn	gene	5899	5974	.	-	.	ID=gene2091;Name=trnM-CAU;product=tRNA-Met
+16	aragorn	tRNA	5899	5974	.	-	.	ID=tRNA12;Parent=gene2091;Name=trnM-CAU;product=tRNA-Met
 16	aragorn	exon	5899	5974	.	-	.	Parent=tRNA12
 ###
-16	aragorn	gene	6070	6145	.	+	.	ID=gene2092;Name=tRNA-Met-gene
-16	aragorn	tRNA	6070	6145	.	+	.	ID=tRNA13;Parent=gene2092;Name=tRNA-Met
+16	aragorn	gene	6070	6145	.	+	.	ID=gene2092;Name=trnM-CAU;product=tRNA-Met
+16	aragorn	tRNA	6070	6145	.	+	.	ID=tRNA13;Parent=gene2092;Name=trnM-CAU;product=tRNA-Met
 16	aragorn	exon	6070	6145	.	+	.	Parent=tRNA13
 ###
 16	prokka	gene	10181	10312	.	-	1	ID=gene2093;locus_tag=OU3MT_05222
@@ -6559,8 +6559,8 @@
 16	prokka	gene	82610	82801	.	+	1	ID=gene2149;locus_tag=OU3MT_05278
 16	Prodigal:2.6	mRNA	82610	82801	.	+	0	Parent=gene2149;Name=orf05278;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05278;product=hypothetical protein
 ###
-16	aragorn	gene	82992	83066	.	+	.	ID=gene2150;Name=tRNA-Met-gene
-16	aragorn	tRNA	82992	83066	.	+	.	ID=tRNA14;Parent=gene2150;Name=tRNA-Met
+16	aragorn	gene	82992	83066	.	+	.	ID=gene2150;Name=trnM-CAU;product=tRNA-Met
+16	aragorn	tRNA	82992	83066	.	+	.	ID=tRNA14;Parent=gene2150;Name=trnM-CAU;product=tRNA-Met
 16	aragorn	exon	82992	83066	.	+	.	Parent=tRNA14
 ###
 16	prokka	gene	83427	83591	.	-	1	ID=gene2151;locus_tag=OU3MT_05280
@@ -6571,8 +6571,8 @@
 16	maker	exon	84603	84998	.	+	.	Parent=mRNA22
 16	maker	CDS	84603	84998	.	+	0	Parent=mRNA22
 ###
-16	aragorn	gene	85178	85250	.	+	.	ID=gene2153;Name=tRNA-Pro-gene
-16	aragorn	tRNA	85178	85250	.	+	.	ID=tRNA15;Parent=gene2153;Name=tRNA-Pro
+16	aragorn	gene	85178	85250	.	+	.	ID=gene2153;Name=trnP-AGG;product=tRNA-Pro
+16	aragorn	tRNA	85178	85250	.	+	.	ID=tRNA15;Parent=gene2153;Name=trnP-AGG;product=tRNA-Pro
 16	aragorn	exon	85178	85250	.	+	.	Parent=tRNA15
 ###
 16	prokka	gene	85998	86090	.	-	1	ID=gene2154;locus_tag=OU3MT_05283
@@ -7598,8 +7598,8 @@
 2	prokka	gene	21877	22035	.	+	1	ID=gene2493;locus_tag=OU3MT_01222
 2	Prodigal:2.6	mRNA	21877	22035	.	+	0	Parent=gene2493;Name=orf01222;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01222;product=hypothetical protein
 ###
-2	aragorn	gene	23289	23365	.	+	.	ID=gene2494;Name=tRNA-Met-gene
-2	aragorn	tRNA	23289	23365	.	+	.	ID=tRNA16;Parent=gene2494;Name=tRNA-Met
+2	aragorn	gene	23289	23365	.	+	.	ID=gene2494;Name=trnM-CAU;product=tRNA-Met
+2	aragorn	tRNA	23289	23365	.	+	.	ID=tRNA16;Parent=gene2494;Name=trnM-CAU;product=tRNA-Met
 2	aragorn	exon	23289	23365	.	+	.	Parent=tRNA16
 ###
 2	prokka	gene	23889	24086	.	+	1	ID=gene2495;locus_tag=OU3MT_01224
@@ -7785,8 +7785,8 @@
 2	prokka	gene	104227	104445	.	-	1	ID=gene2555;locus_tag=OU3MT_01284
 2	Prodigal:2.6	mRNA	104227	104445	.	-	0	Parent=gene2555;Name=orf01284;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01284;product=hypothetical protein
 ###
-2	aragorn	gene	105703	105780	.	-	.	ID=gene2556;Name=tRNA-???-gene
-2	aragorn	tRNA	105703	105780	.	-	.	ID=tRNA17;Parent=gene2556;Name=tRNA-???
+2	aragorn	gene	105703	105780	.	-	.	ID=gene2556;Name=trnX-ACGU;product=tRNA-???
+2	aragorn	tRNA	105703	105780	.	-	.	ID=tRNA17;Parent=gene2556;Name=trnX-ACGU;product=tRNA-???
 2	aragorn	exon	105703	105780	.	-	.	Parent=tRNA17
 ###
 2	prokka	gene	106364	106966	.	-	1	ID=gene2557;locus_tag=OU3MT_01286
@@ -7962,8 +7962,8 @@
 2	prokka	gene	166958	167143	.	-	1	ID=gene2613;locus_tag=OU3MT_01343
 2	Prodigal:2.6	mRNA	166958	167143	.	-	0	Parent=gene2613;Name=orf01343;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01343;product=hypothetical protein
 ###
-2	aragorn	gene	167326	167401	.	+	.	ID=gene2614;Name=tRNA-His-gene
-2	aragorn	tRNA	167326	167401	.	+	.	ID=tRNA18;Parent=gene2614;Name=tRNA-His
+2	aragorn	gene	167326	167401	.	+	.	ID=gene2614;Name=trnH-GUG;product=tRNA-His
+2	aragorn	tRNA	167326	167401	.	+	.	ID=tRNA18;Parent=gene2614;Name=trnH-GUG;product=tRNA-His
 2	aragorn	exon	167326	167401	.	+	.	Parent=tRNA18
 ###
 2	prokka	gene	168637	168822	.	-	1	ID=gene2615;locus_tag=OU3MT_01345
@@ -8104,8 +8104,8 @@
 2	prokka	gene	213692	213925	.	+	1	ID=gene2660;locus_tag=OU3MT_01390
 2	Prodigal:2.6	mRNA	213692	213925	.	+	0	Parent=gene2660;Name=orf01390;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01390;product=hypothetical protein
 ###
-2	aragorn	gene	214928	215019	.	-	.	ID=gene2661;Name=tRNA-Arg-gene
-2	aragorn	tRNA	214928	215019	.	-	.	ID=tRNA19;Parent=gene2661;Name=tRNA-Arg
+2	aragorn	gene	214928	215019	.	-	.	ID=gene2661;Name=trnR-CCG;product=tRNA-Arg
+2	aragorn	tRNA	214928	215019	.	-	.	ID=tRNA19;Parent=gene2661;Name=trnR-CCG;product=tRNA-Arg
 2	aragorn	exon	214928	215019	.	-	.	Parent=tRNA19
 ###
 2	prokka	gene	216598	216813	.	+	1	ID=gene2662;locus_tag=OU3MT_01392
@@ -8171,8 +8171,8 @@
 2	prokka	gene	243544	243729	.	-	1	ID=gene2682;locus_tag=OU3MT_01412
 2	Prodigal:2.6	mRNA	243544	243729	.	-	0	Parent=gene2682;Name=orf01412;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01412;product=hypothetical protein
 ###
-2	aragorn	gene	244644	244785	.	+	.	ID=gene2683;Name=tRNA-seC-gene
-2	aragorn	tRNA	244644	244785	.	+	.	ID=tRNA20;Parent=gene2683;Name=tRNA-seC
+2	aragorn	gene	244644	244785	.	+	.	ID=gene2683;Name=trnU-UCA;product=tRNA-seC
+2	aragorn	tRNA	244644	244785	.	+	.	ID=tRNA20;Parent=gene2683;Name=trnU-UCA;product=tRNA-seC
 2	aragorn	exon	244644	244671	.	+	.	Parent=tRNA20
 2	.	intron	244672	244731	.	+	.	Parent=tRNA20
 2	aragorn	exon	244732	244785	.	+	.	Parent=tRNA20
@@ -8762,8 +8762,8 @@
 2	maker	exon	443857	444366	.	-	.	Parent=mRNA29
 2	maker	CDS	443857	444366	.	-	0	Parent=mRNA29
 ###
-2	aragorn	gene	444391	444465	.	-	.	ID=gene2874;Name=tRNA-Pro-gene
-2	aragorn	tRNA	444391	444465	.	-	.	ID=tRNA21;Parent=gene2874;Name=tRNA-Pro
+2	aragorn	gene	444391	444465	.	-	.	ID=gene2874;Name=trnP-UGG;product=tRNA-Pro
+2	aragorn	tRNA	444391	444465	.	-	.	ID=tRNA21;Parent=gene2874;Name=trnP-UGG;product=tRNA-Pro
 2	aragorn	exon	444391	444465	.	-	.	Parent=tRNA21
 ###
 2	prokka	gene	444822	445178	.	+	1	ID=gene2875;locus_tag=OU3MT_01605
@@ -9250,8 +9250,8 @@
 2	prokka	gene	614729	614899	.	+	1	ID=gene3033;locus_tag=OU3MT_01764
 2	Prodigal:2.6	mRNA	614729	614899	.	+	0	Parent=gene3033;Name=orf01764;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01764;product=hypothetical protein
 ###
-2	aragorn	gene	615338	616255	.	+	.	ID=gene3034;Name=tRNA-Arg-gene
-2	aragorn	tRNA	615338	616255	.	+	.	ID=tRNA22;Parent=gene3034;Name=tRNA-Arg
+2	aragorn	gene	615338	616255	.	+	.	ID=gene3034;Name=trnR-UCG;product=tRNA-Arg
+2	aragorn	tRNA	615338	616255	.	+	.	ID=tRNA22;Parent=gene3034;Name=trnR-UCG;product=tRNA-Arg
 2	aragorn	exon	615338	615376	.	+	.	Parent=tRNA22
 2	.	intron	615377	616201	.	+	.	Parent=tRNA22
 2	aragorn	exon	616202	616255	.	+	.	Parent=tRNA22
@@ -9407,8 +9407,8 @@
 2	prokka	gene	655344	655454	.	+	1	ID=gene3082;locus_tag=OU3MT_01814
 2	Prodigal:2.6	mRNA	655344	655454	.	+	0	Parent=gene3082;Name=orf01814;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01814;product=hypothetical protein
 ###
-2	aragorn	gene	655835	655908	.	-	.	ID=gene3083;Name=tRNA-Asp-gene
-2	aragorn	tRNA	655835	655908	.	-	.	ID=tRNA23;Parent=gene3083;Name=tRNA-Asp
+2	aragorn	gene	655835	655908	.	-	.	ID=gene3083;Name=trnD-GUC;product=tRNA-Asp
+2	aragorn	tRNA	655835	655908	.	-	.	ID=tRNA23;Parent=gene3083;Name=trnD-GUC;product=tRNA-Asp
 2	aragorn	exon	655835	655908	.	-	.	Parent=tRNA23
 ###
 2	prokka	gene	656502	656663	.	-	1	ID=gene3084;locus_tag=OU3MT_01816
@@ -11123,18 +11123,18 @@
 3	prokka	gene	321394	321519	.	-	1	ID=gene3649;locus_tag=OU3MT_02154
 3	Prodigal:2.6	mRNA	321394	321519	.	-	0	Parent=gene3649;Name=orf02154;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02154;product=hypothetical protein
 ###
-3	aragorn	gene	322107	322180	.	-	.	ID=gene3650;Name=tRNA-Asp-gene
-3	aragorn	tRNA	322107	322180	.	-	.	ID=tRNA24;Parent=gene3650;Name=tRNA-Asp
+3	aragorn	gene	322107	322180	.	-	.	ID=gene3650;Name=trnD-GUC;product=tRNA-Asp
+3	aragorn	tRNA	322107	322180	.	-	.	ID=tRNA24;Parent=gene3650;Name=trnD-GUC;product=tRNA-Asp
 3	aragorn	exon	322107	322180	.	-	.	Parent=tRNA24
 ###
-3	aragorn	gene	324667	326116	.	+	.	ID=gene3651;Name=tRNA-Ser-gene
-3	aragorn	tRNA	324667	326116	.	+	.	ID=tRNA25;Parent=gene3651;Name=tRNA-Ser
+3	aragorn	gene	324667	326116	.	+	.	ID=gene3651;Name=trnS-GGA;product=tRNA-Ser
+3	aragorn	tRNA	324667	326116	.	+	.	ID=tRNA25;Parent=gene3651;Name=trnS-GGA;product=tRNA-Ser
 3	aragorn	exon	324667	324705	.	+	.	Parent=tRNA25
 3	.	intron	324706	326062	.	+	.	Parent=tRNA25
 3	aragorn	exon	326063	326116	.	+	.	Parent=tRNA25
 ###
-3	aragorn	gene	326516	326598	.	-	.	ID=gene3652;Name=tRNA-Tyr-gene
-3	aragorn	tRNA	326516	326598	.	-	.	ID=tRNA26;Parent=gene3652;Name=tRNA-Tyr
+3	aragorn	gene	326516	326598	.	-	.	ID=gene3652;Name=trnY-GUA;product=tRNA-Tyr
+3	aragorn	tRNA	326516	326598	.	-	.	ID=tRNA26;Parent=gene3652;Name=trnY-GUA;product=tRNA-Tyr
 3	aragorn	exon	326516	326598	.	-	.	Parent=tRNA26
 ###
 3	prokka	gene	327301	327504	.	-	1	ID=gene3653;locus_tag=OU3MT_02158
@@ -11639,8 +11639,8 @@
 4	prokka	gene	84245	84493	.	+	1	ID=gene3818;locus_tag=OU3MT_02278
 4	Prodigal:2.6	mRNA	84245	84493	.	+	0	Parent=gene3818;Name=orf02278;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02278;product=hypothetical protein
 ###
-4	aragorn	gene	84563	87002	.	-	.	ID=gene3819;Name=tRNA-Val-gene
-4	aragorn	tRNA	84563	87002	.	-	.	ID=tRNA27;Parent=gene3819;Name=tRNA-Val
+4	aragorn	gene	84563	87002	.	-	.	ID=gene3819;Name=trnV-UAC;product=tRNA-Val
+4	aragorn	tRNA	84563	87002	.	-	.	ID=tRNA27;Parent=gene3819;Name=trnV-UAC;product=tRNA-Val
 4	aragorn	exon	84563	84622	.	-	.	Parent=tRNA27
 4	.	intron	84623	86969	.	-	.	Parent=tRNA27
 4	aragorn	exon	86970	87002	.	-	.	Parent=tRNA27
@@ -13539,8 +13539,8 @@
 6	prokka	gene	113413	113712	.	-	1	ID=gene4440;locus_tag=OU3MT_02901
 6	Prodigal:2.6	mRNA	113413	113712	.	-	0	Parent=gene4440;Name=orf02901;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02901;product=hypothetical protein
 ###
-6	aragorn	gene	114384	114687	.	-	.	ID=gene4441;Name=tRNA-Asp-gene
-6	aragorn	tRNA	114384	114687	.	-	.	ID=tRNA28;Parent=gene4441;Name=tRNA-Asp
+6	aragorn	gene	114384	114687	.	-	.	ID=gene4441;Name=trnD-AUC;product=tRNA-Asp
+6	aragorn	tRNA	114384	114687	.	-	.	ID=tRNA28;Parent=gene4441;Name=trnD-AUC;product=tRNA-Asp
 6	aragorn	exon	114384	114439	.	-	.	Parent=tRNA28
 6	.	intron	114440	114645	.	-	.	Parent=tRNA28
 6	aragorn	exon	114646	114687	.	-	.	Parent=tRNA28
@@ -13557,8 +13557,8 @@
 6	prokka	gene	119266	119415	.	+	1	ID=gene4445;locus_tag=OU3MT_02906
 6	Prodigal:2.6	mRNA	119266	119415	.	+	0	Parent=gene4445;Name=orf02906;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02906;product=hypothetical protein
 ###
-6	aragorn	gene	121067	121140	.	+	.	ID=gene4446;Name=tRNA-Lys-gene
-6	aragorn	tRNA	121067	121140	.	+	.	ID=tRNA29;Parent=gene4446;Name=tRNA-Lys
+6	aragorn	gene	121067	121140	.	+	.	ID=gene4446;Name=trnK-UUU;product=tRNA-Lys
+6	aragorn	tRNA	121067	121140	.	+	.	ID=tRNA29;Parent=gene4446;Name=trnK-UUU;product=tRNA-Lys
 6	aragorn	exon	121067	121140	.	+	.	Parent=tRNA29
 ###
 6	prokka	gene	121985	122119	.	-	1	ID=gene4447;locus_tag=OU3MT_02908
@@ -13921,8 +13921,8 @@
 6	prokka	gene	235994	236146	.	+	1	ID=gene4566;locus_tag=OU3MT_03027
 6	Prodigal:2.6	mRNA	235994	236146	.	+	0	Parent=gene4566;Name=orf03027;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03027;product=hypothetical protein
 ###
-6	aragorn	gene	236417	236492	.	+	.	ID=gene4567;Name=tRNA-Gly-gene
-6	aragorn	tRNA	236417	236492	.	+	.	ID=tRNA30;Parent=gene4567;Name=tRNA-Gly
+6	aragorn	gene	236417	236492	.	+	.	ID=gene4567;Name=trnG-GCC;product=tRNA-Gly
+6	aragorn	tRNA	236417	236492	.	+	.	ID=tRNA30;Parent=gene4567;Name=trnG-GCC;product=tRNA-Gly
 6	aragorn	exon	236417	236492	.	+	.	Parent=tRNA30
 ###
 6	prokka	gene	236759	237172	.	-	1	ID=gene4568;locus_tag=OU3MT_03029
@@ -14174,8 +14174,8 @@
 6	prokka	gene	323837	324007	.	-	1	ID=gene4650;locus_tag=OU3MT_03111
 6	Prodigal:2.6	mRNA	323837	324007	.	-	0	Parent=gene4650;Name=orf03111;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03111;product=hypothetical protein
 ###
-6	aragorn	gene	324290	324369	.	+	.	ID=gene4651;Name=tRNA-seC-gene
-6	aragorn	tRNA	324290	324369	.	+	.	ID=tRNA31;Parent=gene4651;Name=tRNA-seC
+6	aragorn	gene	324290	324369	.	+	.	ID=gene4651;Name=trnU-UCA;product=tRNA-seC
+6	aragorn	tRNA	324290	324369	.	+	.	ID=tRNA31;Parent=gene4651;Name=trnU-UCA;product=tRNA-seC
 6	aragorn	exon	324290	324326	.	+	.	Parent=tRNA31
 6	.	intron	324327	324335	.	+	.	Parent=tRNA31
 6	aragorn	exon	324336	324369	.	+	.	Parent=tRNA31
@@ -14249,8 +14249,8 @@
 6	prokka	gene	345202	345429	.	-	1	ID=gene4674;locus_tag=OU3MT_03135
 6	Prodigal:2.6	mRNA	345202	345429	.	-	0	Parent=gene4674;Name=orf03135;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03135;product=hypothetical protein
 ###
-6	aragorn	gene	345441	345776	.	+	.	ID=gene4675;Name=tRNA-Ser-gene
-6	aragorn	tRNA	345441	345776	.	+	.	ID=tRNA32;Parent=gene4675;Name=tRNA-Ser
+6	aragorn	gene	345441	345776	.	+	.	ID=gene4675;Name=trnS-GCU;product=tRNA-Ser
+6	aragorn	tRNA	345441	345776	.	+	.	ID=tRNA32;Parent=gene4675;Name=trnS-GCU;product=tRNA-Ser
 6	aragorn	exon	345441	345472	.	+	.	Parent=tRNA32
 6	.	intron	345473	345726	.	+	.	Parent=tRNA32
 6	aragorn	exon	345727	345776	.	+	.	Parent=tRNA32
@@ -14345,8 +14345,8 @@
 6	prokka	gene	381706	382002	.	+	1	ID=gene4705;locus_tag=OU3MT_03166
 6	Prodigal:2.6	mRNA	381706	382002	.	+	0	Parent=gene4705;Name=orf03166;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03166;product=hypothetical protein
 ###
-6	aragorn	gene	382111	382184	.	-	.	ID=gene4706;Name=tRNA-Trp-gene
-6	aragorn	tRNA	382111	382184	.	-	.	ID=tRNA33;Parent=gene4706;Name=tRNA-Trp
+6	aragorn	gene	382111	382184	.	-	.	ID=gene4706;Name=trnW-CCA;product=tRNA-Trp
+6	aragorn	tRNA	382111	382184	.	-	.	ID=tRNA33;Parent=gene4706;Name=trnW-CCA;product=tRNA-Trp
 6	aragorn	exon	382111	382184	.	-	.	Parent=tRNA33
 ###
 6	prokka	gene	383312	383587	.	-	1	ID=gene4707;locus_tag=OU3MT_03168
@@ -14415,8 +14415,8 @@
 6	prokka	gene	404308	404586	.	+	1	ID=gene4728;locus_tag=OU3MT_03189
 6	Prodigal:2.6	mRNA	404308	404586	.	+	0	Parent=gene4728;Name=orf03189;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03189;product=hypothetical protein
 ###
-6	aragorn	gene	405066	405293	.	+	.	ID=gene4729;Name=tRNA-Val-gene
-6	aragorn	tRNA	405066	405293	.	+	.	ID=tRNA34;Parent=gene4729;Name=tRNA-Val
+6	aragorn	gene	405066	405293	.	+	.	ID=gene4729;Name=trnV-CAC;product=tRNA-Val
+6	aragorn	tRNA	405066	405293	.	+	.	ID=tRNA34;Parent=gene4729;Name=trnV-CAC;product=tRNA-Val
 6	aragorn	exon	405066	405099	.	+	.	Parent=tRNA34
 6	.	intron	405100	405235	.	+	.	Parent=tRNA34
 6	aragorn	exon	405236	405293	.	+	.	Parent=tRNA34
@@ -14566,15 +14566,15 @@
 6	prokka	gene	454798	455073	.	-	1	ID=gene4777;locus_tag=OU3MT_03238
 6	Prodigal:2.6	mRNA	454798	455073	.	-	0	Parent=gene4777;Name=orf03238;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03238;product=hypothetical protein
 ###
-6	aragorn	gene	456354	456425	.	+	.	ID=gene4778;Name=tRNA-Asn-gene
-6	aragorn	tRNA	456354	456425	.	+	.	ID=tRNA35;Parent=gene4778;Name=tRNA-Asn
+6	aragorn	gene	456354	456425	.	+	.	ID=gene4778;Name=trnN-GUU;product=tRNA-Asn
+6	aragorn	tRNA	456354	456425	.	+	.	ID=tRNA35;Parent=gene4778;Name=trnN-GUU;product=tRNA-Asn
 6	aragorn	exon	456354	456425	.	+	.	Parent=tRNA35
 ###
 6	prokka	gene	456601	456822	.	+	1	ID=gene4779;locus_tag=OU3MT_03240
 6	Prodigal:2.6	mRNA	456601	456822	.	+	0	Parent=gene4779;Name=orf03240;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03240;product=hypothetical protein
 ###
-6	aragorn	gene	457342	457425	.	+	.	ID=gene4780;Name=tRNA-Tyr-gene
-6	aragorn	tRNA	457342	457425	.	+	.	ID=tRNA36;Parent=gene4780;Name=tRNA-Tyr
+6	aragorn	gene	457342	457425	.	+	.	ID=gene4780;Name=trnY-GUA;product=tRNA-Tyr
+6	aragorn	tRNA	457342	457425	.	+	.	ID=tRNA36;Parent=gene4780;Name=trnY-GUA;product=tRNA-Tyr
 6	aragorn	exon	457342	457425	.	+	.	Parent=tRNA36
 ###
 6	prokka	gene	458943	459131	.	+	1	ID=gene4781;locus_tag=OU3MT_03242
@@ -15581,8 +15581,8 @@
 7	prokka	gene	168766	168960	.	-	1	ID=gene5113;locus_tag=OU3MT_03574
 7	Prodigal:2.6	mRNA	168766	168960	.	-	0	Parent=gene5113;Name=orf03574;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03574;product=hypothetical protein
 ###
-7	aragorn	gene	169894	169962	.	-	.	ID=gene5114;Name=tRNA-Arg-gene
-7	aragorn	tRNA	169894	169962	.	-	.	ID=tRNA37;Parent=gene5114;Name=tRNA-Arg
+7	aragorn	gene	169894	169962	.	-	.	ID=gene5114;Name=trnR-GCG;product=tRNA-Arg
+7	aragorn	tRNA	169894	169962	.	-	.	ID=tRNA37;Parent=gene5114;Name=trnR-GCG;product=tRNA-Arg
 7	aragorn	exon	169894	169962	.	-	.	Parent=tRNA37
 ###
 7	prokka	gene	171082	171243	.	-	1	ID=gene5115;locus_tag=OU3MT_03576
@@ -16119,8 +16119,8 @@
 7	prokka	gene	352138	352401	.	+	1	ID=gene5292;locus_tag=OU3MT_03753
 7	Prodigal:2.6	mRNA	352138	352401	.	+	0	Parent=gene5292;Name=orf03753;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03753;product=hypothetical protein
 ###
-7	aragorn	gene	352542	352622	.	+	.	ID=gene5293;Name=tRNA-Leu-gene
-7	aragorn	tRNA	352542	352622	.	+	.	ID=tRNA38;Parent=gene5293;Name=tRNA-Leu
+7	aragorn	gene	352542	352622	.	+	.	ID=gene5293;Name=trnL-CAA;product=tRNA-Leu
+7	aragorn	tRNA	352542	352622	.	+	.	ID=tRNA38;Parent=gene5293;Name=trnL-CAA;product=tRNA-Leu
 7	aragorn	exon	352542	352622	.	+	.	Parent=tRNA38
 ###
 7	prokka	gene	353912	354229	.	+	1	ID=gene5294;locus_tag=OU3MT_03755
@@ -16147,8 +16147,8 @@
 7	prokka	gene	366101	366238	.	+	1	ID=gene5301;locus_tag=OU3MT_03762
 7	Prodigal:2.6	mRNA	366101	366238	.	+	0	Parent=gene5301;Name=orf03762;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03762;product=hypothetical protein
 ###
-7	aragorn	gene	367853	369971	.	+	.	ID=gene5302;Name=tRNA-Asn-gene
-7	aragorn	tRNA	367853	369971	.	+	.	ID=tRNA39;Parent=gene5302;Name=tRNA-Asn
+7	aragorn	gene	367853	369971	.	+	.	ID=gene5302;Name=trnN-AUU;product=tRNA-Asn
+7	aragorn	tRNA	367853	369971	.	+	.	ID=tRNA39;Parent=gene5302;Name=trnN-AUU;product=tRNA-Asn
 7	aragorn	exon	367853	367883	.	+	.	Parent=tRNA39
 7	.	intron	367884	369914	.	+	.	Parent=tRNA39
 7	aragorn	exon	369915	369971	.	+	.	Parent=tRNA39
@@ -16758,12 +16758,12 @@
 8	prokka	gene	74233	74475	.	-	1	ID=gene5499;locus_tag=OU3MT_03961
 8	Prodigal:2.6	mRNA	74233	74475	.	-	0	Parent=gene5499;Name=orf03961;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03961;product=hypothetical protein
 ###
-8	aragorn	gene	74704	74773	.	+	.	ID=gene5500;Name=tRNA-Thr-gene
-8	aragorn	tRNA	74704	74773	.	+	.	ID=tRNA40;Parent=gene5500;Name=tRNA-Thr
+8	aragorn	gene	74704	74773	.	+	.	ID=gene5500;Name=trnT-AGU;product=tRNA-Thr
+8	aragorn	tRNA	74704	74773	.	+	.	ID=tRNA40;Parent=gene5500;Name=trnT-AGU;product=tRNA-Thr
 8	aragorn	exon	74704	74773	.	+	.	Parent=tRNA40
 ###
-8	aragorn	gene	74864	74934	.	+	.	ID=gene5501;Name=tRNA-Thr-gene
-8	aragorn	tRNA	74864	74934	.	+	.	ID=tRNA41;Parent=gene5501;Name=tRNA-Thr
+8	aragorn	gene	74864	74934	.	+	.	ID=gene5501;Name=trnT-UGU;product=tRNA-Thr
+8	aragorn	tRNA	74864	74934	.	+	.	ID=tRNA41;Parent=gene5501;Name=trnT-UGU;product=tRNA-Thr
 8	aragorn	exon	74864	74934	.	+	.	Parent=tRNA41
 ###
 8	prokka	gene	76409	76624	.	+	1	ID=gene5502;locus_tag=OU3MT_03964
@@ -17180,8 +17180,8 @@
 8	prokka	gene	233186	233419	.	+	1	ID=gene5639;locus_tag=OU3MT_04101
 8	Prodigal:2.6	mRNA	233186	233419	.	+	0	Parent=gene5639;Name=orf04101;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04101;product=hypothetical protein
 ###
-8	aragorn	gene	234486	236430	.	+	.	ID=gene5640;Name=tRNA-Pro-gene
-8	aragorn	tRNA	234486	236430	.	+	.	ID=tRNA42;Parent=gene5640;Name=tRNA-Pro
+8	aragorn	gene	234486	236430	.	+	.	ID=gene5640;Name=trnP-AGG;product=tRNA-Pro
+8	aragorn	tRNA	234486	236430	.	+	.	ID=tRNA42;Parent=gene5640;Name=trnP-AGG;product=tRNA-Pro
 8	aragorn	exon	234486	234515	.	+	.	Parent=tRNA42
 8	.	intron	234516	236374	.	+	.	Parent=tRNA42
 8	aragorn	exon	236375	236430	.	+	.	Parent=tRNA42
@@ -17495,8 +17495,8 @@
 9	prokka	gene	63402	63581	.	-	1	ID=gene5740;locus_tag=OU3MT_04201
 9	Prodigal:2.6	mRNA	63402	63581	.	-	0	Parent=gene5740;Name=orf04201;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04201;product=hypothetical protein
 ###
-9	aragorn	gene	66020	66741	.	+	.	ID=gene5741;Name=tRNA-Ser-gene
-9	aragorn	tRNA	66020	66741	.	+	.	ID=tRNA43;Parent=gene5741;Name=tRNA-Ser
+9	aragorn	gene	66020	66741	.	+	.	ID=gene5741;Name=trnS-GCU;product=tRNA-Ser
+9	aragorn	tRNA	66020	66741	.	+	.	ID=tRNA43;Parent=gene5741;Name=trnS-GCU;product=tRNA-Ser
 9	aragorn	exon	66020	66055	.	+	.	Parent=tRNA43
 9	.	intron	66056	66691	.	+	.	Parent=tRNA43
 9	aragorn	exon	66692	66741	.	+	.	Parent=tRNA43
@@ -17546,8 +17546,8 @@
 9	prokka	gene	83255	83449	.	+	1	ID=gene5756;locus_tag=OU3MT_04217
 9	Prodigal:2.6	mRNA	83255	83449	.	+	0	Parent=gene5756;Name=orf04217;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04217;product=hypothetical protein
 ###
-9	aragorn	gene	84137	84224	.	+	.	ID=gene5757;Name=tRNA-Leu-gene
-9	aragorn	tRNA	84137	84224	.	+	.	ID=tRNA44;Parent=gene5757;Name=tRNA-Leu
+9	aragorn	gene	84137	84224	.	+	.	ID=gene5757;Name=trnL-UAG;product=tRNA-Leu
+9	aragorn	tRNA	84137	84224	.	+	.	ID=tRNA44;Parent=gene5757;Name=trnL-UAG;product=tRNA-Leu
 9	aragorn	exon	84137	84173	.	+	.	Parent=tRNA44
 9	.	intron	84174	84186	.	+	.	Parent=tRNA44
 9	aragorn	exon	84187	84224	.	+	.	Parent=tRNA44
@@ -17826,8 +17826,8 @@
 9	prokka	gene	168110	168301	.	-	1	ID=gene5846;locus_tag=OU3MT_04307
 9	Prodigal:2.6	mRNA	168110	168301	.	-	0	Parent=gene5846;Name=orf04307;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04307;product=hypothetical protein
 ###
-9	aragorn	gene	168865	170209	.	+	.	ID=gene5847;Name=tRNA-Arg-gene
-9	aragorn	tRNA	168865	170209	.	+	.	ID=tRNA45;Parent=gene5847;Name=tRNA-Arg
+9	aragorn	gene	168865	170209	.	+	.	ID=gene5847;Name=trnR-GCG;product=tRNA-Arg
+9	aragorn	tRNA	168865	170209	.	+	.	ID=tRNA45;Parent=gene5847;Name=trnR-GCG;product=tRNA-Arg
 9	aragorn	exon	168865	168895	.	+	.	Parent=tRNA45
 9	.	intron	168896	170151	.	+	.	Parent=tRNA45
 9	aragorn	exon	170152	170209	.	+	.	Parent=tRNA45
@@ -17838,8 +17838,8 @@
 9	prokka	gene	172079	172414	.	+	1	ID=gene5849;locus_tag=OU3MT_04310
 9	Prodigal:2.6	mRNA	172079	172414	.	+	0	Parent=gene5849;Name=orf04310;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04310;product=hypothetical protein
 ###
-9	aragorn	gene	175766	176602	.	+	.	ID=gene5850;Name=tRNA-His-gene
-9	aragorn	tRNA	175766	176602	.	+	.	ID=tRNA46;Parent=gene5850;Name=tRNA-His
+9	aragorn	gene	175766	176602	.	+	.	ID=gene5850;Name=trnH-GUG;product=tRNA-His
+9	aragorn	tRNA	175766	176602	.	+	.	ID=tRNA46;Parent=gene5850;Name=trnH-GUG;product=tRNA-His
 9	aragorn	exon	175766	175798	.	+	.	Parent=tRNA46
 9	.	intron	175799	176543	.	+	.	Parent=tRNA46
 9	aragorn	exon	176544	176602	.	+	.	Parent=tRNA46
