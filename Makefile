@@ -222,7 +222,7 @@ prokka/%.gff.gene: prokka/%.gff
 
 # Extract DNA sequences of GFF features from a FASTA file
 %.gff.dna.fa: %.gff %.fa
-	gt extractfeat -type gene -matchdescstart -seqid -seqfile $*.fa $< >$@
+	gt extractfeat -type gene -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
 
 # Extract protein sequences of GFF features from a FASTA file
 %.aa.fa: %.dna.fa
