@@ -64,6 +64,22 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 		s/^>(.*gene=([^]]*).*)$$/>\2|\1/' \
 	|seqmagick -q convert --pattern-exclude '^lcl' --deduplicate-taxa - $@
 
+# Cycas taitungensis
+NC_010303.1.json: %.json:
+	bionode-ncbi search nuccore $* >$@
+
+%.uid: %.json
+	json uid <$< >$@
+
+%.fa: %.uid
+	curl http://togows.org/entry/nucleotide/`<$<`.fasta |seqtk seq >$@
+
+%.gb: %.uid
+	curl -o $@ http://togows.org/entry/nucleotide/`<$<`.gb
+
+%.gff: %.uid
+	curl -o $@ http://togows.org/entry/nucleotide/`<$<`.gff
+
 # RepeatModeler
 
 %.nin: %.fa
