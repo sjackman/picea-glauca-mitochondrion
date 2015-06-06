@@ -1,0 +1,105 @@
+---
+title: Analyse transcript abundance in white spruce (*Picea glauca*) mitochondrion
+author: Shaun Jackman
+output:
+  html_document:
+    keep_md: yes
+    toc: yes
+---
+
+# Load libraries
+```{r load-libraries}
+library(dplyr)
+library(NMF) # for aheatmap
+library(readr)
+library(uniqtag) # for make_unique
+
+# Bioconductor
+library(genomeIntervals)
+```
+
+# Read the GFF file of annotations
+```{r read-gff}
+gff_all <- readGff3('pg29mt-scaffolds.gff')
+gff <- gff_all[gff_all$type %in% c('gene', 'mRNA', 'rRNA', 'tRNA'),]
+ID_Name_all <- data.frame(
+		ID = getGffAttribute(gff, 'ID'),
+		Name = getGffAttribute(gff, 'Name'),
+		Type = gff$type,
+		Size = size(gff),
+		stringsAsFactors = FALSE) %>%
+	mutate(Name = sub('\\|.*', '', Name))
+ID_Name <- ID_Name_all %>%
+	filter(Type == 'gene' & complete.cases(.))
+```
+
+# Read the transcript abundance data
+```{r read-data}
+samples <- read_tsv("tissues.tsv")
+tissues <- samples$Tissue
+files <- paste0(tissues, "/abundance.txt")
+abundance_list <- lapply(files,
+	function(x) read_tsv(x, col_types = "ciddd"))
+gene_ids <- abundance_list[[1]]$target_id
+abundance_all <- lapply(abundance_list, function(x) x$tpm) %>%
+	setNames(tissues) %>%
+	data.frame(ID = gene_ids, .) %>%
+	left_join(ID_Name_all, by = 'ID') %>%
+	select(one_of(c("ID", "Name", tissues))) %>%
+	transform(Name = ifelse(is.na(Name), NA,
+		make_unique(Name)))
+```
+
+# Write the aggregated transcript abundance table
+```{r write-abundance-table}
+write.table(abundance_all, "abundance.tsv",
+	quote = FALSE, sep = "\t", row.names = FALSE)
+```
+
+# Remove ORFs and convert to a matrix
+```{r remove-orfs}
+abundance <- abundance_all %>%
+	filter(complete.cases(.))
+rownames(abundance) <- abundance$Name
+abundance <- abundance %>% select(-ID, -Name)
+abundance_matrix <- as.matrix(abundance)
+```
+
+# Heat map of transcript abundance
+```{r heatmap}
+NMF::aheatmap(abundance_matrix,
+	fontsize = 13, cexCol = 0.7)
+NMF::aheatmap(abundance_matrix,
+	fontsize = 13, cexCol = 0.7,
+	filename = "abundance.pdf")
+```
+
+# Heat map of transcript abundance log scale
+```{r heatmap-log}
+NMF::aheatmap(log10(1 + abundance_matrix),
+	fontsize = 13, cexCol = 0.7)
+NMF::aheatmap(log10(1 + abundance_matrix),
+	fontsize = 13, cexCol = 0.7,
+	filename = "abundance-log.pdf")
+```
+
+# Heat map of protein-coding transcript abundance
+```{r heatmap-cds}
+abundance_cds_matrix <- abundance_matrix %>%
+	.[!grepl("^rrn|^trn", rownames(.)),]
+
+NMF::aheatmap(abundance_cds_matrix,
+	fontsize = 13, cexCol = 0.7)
+NMF::aheatmap(abundance_cds_matrix,
+	fontsize = 13, cexCol = 0.7,
+	filename = "abundance-cds.pdf")
+```
+
+# Heat map of protein-coding transcript abundance log scale
+```{r heatmap-cds-log}
+NMF::aheatmap(log10(1 + abundance_cds_matrix),
+	fontsize = 13, cexCol = 0.7)
+NMF::aheatmap(log10(1 + abundance_cds_matrix),
+	fontsize = 13, cexCol = 0.7,
+	filename = "abundance-cds-log.pdf")
+```
