@@ -1,3 +1,7 @@
+*.bam
+*.bam.bai
+*.fq.gz
+
 Bark/
 Embryo/
 FlushBud/
@@ -6,3 +10,6 @@ Megagametophyte/
 SeedGermination/
 Xylem/
 YoungBuds/
+
+# Kallisto
+*.idx
