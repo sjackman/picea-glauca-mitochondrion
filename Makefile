@@ -80,6 +80,14 @@ NC_010303.1.json: %.json:
 %.gff: %.uid
 	curl -o $@ http://togows.org/entry/nucleotide/`<$<`.gff
 
+# Organelle Genome Resources
+# http://www.ncbi.nlm.nih.gov/genome/organelle/
+mitochondrion/all: mitochondrion/mitochondrion.1.1.genomic.fna.gz mitochondrion/mitochondrion.1.genomic.gbff.gz mitochondrion/mitochondrion.1.protein.faa.gz mitochondrion/mitochondrion.1.protein.gpff.gz mitochondrion/mitochondrion.1.rna.fna.gz mitochondrion/mitochondrion.1.rna.gbff.gz
+
+mitochondrion/mitochondrion.%.gz:
+	mkdir -p $(@D)
+	curl -o $@ ftp://ftp.ncbi.nlm.nih.gov/refseq/release/$@
+
 # RepeatModeler
 
 %.nin: %.fa
