@@ -237,6 +237,14 @@ prokka/%.gff.gene: prokka/%.gff
 	gt seqtranslate -reverse no -fastawidth 0 $< \
 	|sed -n '/ (1+)$$/{s/ (1+)$$//;p;n;p;n;n;n;n;}' >$@
 
+# Extract sequences of GFF intron features plus flanking sequence
+%.gff.intron.fa: %.gff %.fa.fai
+	(awk '$$3 == "intron"' $<; \
+		awk '$$3 == "intron"' $< |bedtools flank -b 100 -i stdin -g $*.fa.fai) \
+	|sort -k1,1n -k4,4n - \
+	|bedtools merge -i stdin \
+	|bedtools getfasta -bed stdin -fi $*.fa -fo $@
+
 # Split the GenBank file into one sequence per file
 gbk/%.00.gbk: %.gbk
 	gcsplit -sz -f $*. --suppress-matched $< '/\/\//' '{*}'
