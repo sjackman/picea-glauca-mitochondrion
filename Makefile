@@ -237,8 +237,12 @@ prokka/%.gff.gene: prokka/%.gff
 	gt seqtranslate -reverse no -fastawidth 0 $< \
 	|sed -n '/ (1+)$$/{s/ (1+)$$//;p;n;p;n;n;n;n;}' >$@
 
+# Extract sequences of GFF intron features
+%.gff.intron.fa: %.gff %.fa
+	gt extractfeat -type intron -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
+
 # Extract sequences of GFF intron features plus flanking sequence
-%.gff.intron.fa: %.gff %.fa.fai
+%.gff.intron.flank100.fa: %.gff %.fa.fai
 	(awk '$$3 == "intron"' $<; \
 		awk '$$3 == "intron"' $< |bedtools flank -b 100 -i stdin -g $*.fa.fai) \
 	|sort -k1,1n -k4,4n - \
