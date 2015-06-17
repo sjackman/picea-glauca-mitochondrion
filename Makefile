@@ -51,6 +51,7 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 	seqmagick -q convert \
 		--pattern-exclude 'gene=orf|hypothetical|putative|unnamed' \
 		--pattern-replace 'gene=apt' 'gene=atp' \
+		--pattern-replace 'gene=ccmFn' 'gene=ccmFN' \
 		--pattern-replace 'gene=coxIII' 'gene=cox3' \
 		--pattern-replace 'gene=coxII' 'gene=cox2' \
 		--pattern-replace 'gene=coxI' 'gene=cox1' \
