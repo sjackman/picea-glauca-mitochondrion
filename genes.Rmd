@@ -48,6 +48,7 @@ gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	'nad', 'complex I (NADH dehydrogenase)',
 	'ori', 'origin of replication',
 	'orf', 'open reading frames',
+	'psa', 'photosystem I',
 	'rna', 'DNA-dependent RNA polymerase',
 	'rpl', 'ribosomal proteins (LSU)',
 	'rpo', 'RNA polymerase',
@@ -56,10 +57,6 @@ gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	'sdh', 'complex II (succinate dehydrogenase)',
 	'trn', 'transfer RNAs',
 	'ymf', 'uncharacterized mitochondrial protein',
-	# Chloroplast
-	'psa', 'photosystem I (plastidial)',
-	'psb', 'photosystem II (plastidial)',
-	# Other
 	'oth', 'other genes')))
 gene.types <- data.frame(gene.types.matrix)
 colnames(gene.types) <- c('Family.short', 'Family')
@@ -225,11 +222,12 @@ barchart(Type ~ Count, data_grouped_without_orf, group = Family,
 ```
 
 # Barchart of type vs size
-```{r Barchart type vs size, fig.height = 9}
+```{r barchart-type-vs-size, fig.height = 9}
+ignore_families <- c("orf", "bla", "tns")
 barchart(Family ~ Size / 1e3,
-	data %>% filter(Family.short != "orf") %>% droplevels,
+	data %>% filter(!Family.short %in% ignore_families) %>% droplevels,
 	group = Gene,
-	stack = TRUE, auto.key = list(space = 'right'),
+	stack = TRUE, auto.key = list(reverse.rows = TRUE, space = 'right'),
 	xlab = 'Size (kbp)')
 
 barchart(~ Size / 1e3, data_grouped_without_orf, group = Family,
