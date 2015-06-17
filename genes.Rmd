@@ -73,6 +73,7 @@ gff <- gff.all[gff.all$type %in% c('mRNA', 'rRNA', 'tRNA'),]
 
 data <- droplevels(data.frame(
 	Type = gff$type,
+	ID = getGffAttribute(gff, 'ID'),
 	Name = getGffAttribute(gff, 'Name'),
 	Size = size(gff),
 	stringsAsFactors = FALSE))
@@ -133,7 +134,6 @@ tab['Sum',] <- colSums(tab)
 kable(tab)
 ```
 
-# Tabulate protein coding genes (mRNA)
 # Tabulate protein-coding genes (mRNA)
 ```{r tabulate-mrna}
 tab <- data_grouped %>%
@@ -165,6 +165,29 @@ data %>%
 # List other genes
 ```{r list-other-genes}
 data %>% filter(Family == "other genes") %>% kable
+```
+
+# Tabulate intons
+```{r tabulate-introns}
+introns_gff <- gff.all[gff.all$type == "intron",]
+introns <- data.frame(
+		getGffAttribute(introns_gff, 'Parent'),
+		Size = size(introns_gff),
+		stringsAsFactors = FALSE) %>%
+	left_join(data, by = c("Parent" = "ID")) %>%
+	rename(Intron_size = Size.x, Gene_size = Size.y) %>%
+	select(Type, Name, Intron_size, Gene_size) %>%
+	arrange(Type, Name) %>%
+	mutate(Name = sub('[|].*', '', Name))
+
+introns %>%
+	group_by(Type) %>%
+	summarize(Count = n(), Distinct = n_distinct(Name), Size = sum(Intron_size))
+
+introns %>%
+	group_by(Type, Name) %>%
+	summarize(Count = n(), Size = sum(Intron_size)) %>%
+	kable
 ```
 
 # Histogram of size (≤ 1000 bp)
