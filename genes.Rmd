@@ -53,11 +53,11 @@ gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	'rpl', 'ribosomal proteins (LSU)',
 	'rpo', 'RNA polymerase',
 	'rps', 'ribosomal proteins (SSU)',
-	'rrn', 'ribosomal RNAs',
 	'sdh', 'complex II (succinate dehydrogenase)',
-	'trn', 'transfer RNAs',
 	'ymf', 'uncharacterized mitochondrial protein',
-	'oth', 'other genes')))
+	'oth', 'other genes',
+	'rrn', 'ribosomal RNAs',
+	'trn', 'transfer RNAs')))
 gene.types <- data.frame(gene.types.matrix)
 colnames(gene.types) <- c('Family.short', 'Family')
 rownames(gene.types) <- gene.types$Short.name
@@ -74,7 +74,8 @@ data <- droplevels(data.frame(
 	Name = getGffAttribute(gff, 'Name'),
 	Size = size(gff),
 	stringsAsFactors = FALSE))
-data$Gene <- factor(tolower(
+data$Gene <- factor(
+	sub('RNA', 'RNA_pol',
 	sub('trn.*', 'trn*',
 	sub('ymf.*', 'ymf*',
 	sub('[-_|].*', '', data$Name)))))
