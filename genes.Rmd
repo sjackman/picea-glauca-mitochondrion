@@ -27,6 +27,12 @@ library(ggplot2)
 library(lattice)
 ```
 
+# Functions
+```{r functions}
+# Set the row names of x to value
+set_row_names <- function(x, value) { row.names(x) <- value; x }
+```
+
 # Gene families
 ```{r Gene families}
 gene.types.matrix <- t(matrix(nrow = 2, data = c(
@@ -54,7 +60,7 @@ gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	'psa', 'photosystem I (plastidial)',
 	'psb', 'photosystem II (plastidial)',
 	# Other
-	'unk', 'other genes')))
+	'oth', 'other genes')))
 gene.types <- data.frame(gene.types.matrix)
 colnames(gene.types) <- c('Family.short', 'Family')
 rownames(gene.types) <- gene.types$Short.name
@@ -89,16 +95,76 @@ data_grouped <- data %>%
 		Count = n(),
 		Size = sum(Size)) %>%
 	droplevels %>%
-	left_join(gene.types)
+	right_join(gene.types, .)
 data_grouped_without_orf <- data_grouped %>% filter(Family.short != "orf")
 ```
 
-# Tabulate the data
-```{r tabulate, results='asis'}
-tab <- data_grouped[c('Count', 'Size')]
-rownames(tab) <- data_grouped$Family
+# Tabulate genes by type
+```{r tabulate-genes-by-type}
+tab <- data %>%
+	group_by(Type) %>%
+	summarise(
+		Count = n(),
+		Size = sum(Size)) %>%
+	set_row_names(.$Type) %>%
+	select(Count, Size)
 tab['Sum',] <- colSums(tab)
 kable(tab)
+```
+
+# Tabulate genes by family
+```{r tabulate-genes-by-family}
+tab <- data_grouped %>%
+	set_row_names(.$Family) %>%
+	ungroup %>%
+	select(Count, Size)
+tab['Sum',] <- colSums(tab)
+kable(tab)
+```
+
+# Tabulate known genes without ORFs and other genes
+```{r tabulate-known-genes}
+tab <- data_grouped %>%
+	filter(!Family.short %in% c("orf", "oth")) %>%
+	set_row_names(paste(.$Family.short, .$Family)) %>%
+	ungroup %>%
+	select(Count, Size)
+tab['Sum',] <- colSums(tab)
+kable(tab)
+```
+
+# Tabulate protein coding genes (mRNA)
+# Tabulate protein-coding genes (mRNA)
+```{r tabulate-mrna}
+tab <- data_grouped %>%
+	filter(!Family.short %in% c("orf", "oth", "rrn", "trn")) %>%
+	set_row_names(paste(.$Family.short, .$Family)) %>%
+	ungroup %>%
+	select(Count, Size)
+tab['Sum',] <- colSums(tab)
+kable(tab)
+```
+
+# Tabulate open reading frames (ORF)
+```{r tabulate-orf}
+data_grouped %>% filter(Family.short == "orf") %>% kable
+```
+
+# Tabulate open reading frames (ORF) at least 300 bp
+```{r tabulate-orf-300bp}
+data %>%
+	filter(Family.short == "orf" & Size >= 300) %>%
+	group_by(Type, Family) %>%
+	summarise(
+		Count = n(),
+		Size = sum(Size)) %>%
+	right_join(gene.types, .) %>%
+	kable
+```
+
+# List other genes
+```{r list-other-genes}
+data %>% filter(Family == "other genes") %>% kable
 ```
 
 # Histogram of size (≤ 1000 bp)
