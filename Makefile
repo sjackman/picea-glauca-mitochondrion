@@ -271,6 +271,7 @@ gbk/%.00.gbk: %.gbk
 # Render HTML from RMarkdown
 %.html: %.Rmd
 	Rscript -e 'rmarkdown::render("$<", output_format = "html_document")'
+	mogrify -units PixelsPerInch -density 300 $*_files/figure-html/*.png
 
 # Dependencies
 
