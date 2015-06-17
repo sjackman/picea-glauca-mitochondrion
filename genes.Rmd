@@ -56,7 +56,7 @@ gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	# Other
 	'unk', 'other genes')))
 gene.types <- data.frame(gene.types.matrix)
-colnames(gene.types) <- c('Short.name', 'Full.name')
+colnames(gene.types) <- c('Family.short', 'Family')
 rownames(gene.types) <- gene.types$Short.name
 ```
 
@@ -76,21 +76,20 @@ data$Gene <- factor(tolower(
 	sub('[-_|].*', '', data$Name)))))
 data$Family.short <- tolower(substr(data$Name, 1, 3))
 data$Family = factor(data$Family.short,
-	levels = gene.types$Short.name,
-	labels = gene.types$Full.name)
-data[is.na(data$Family), 'Family'] <- 'unknown'
+	levels = gene.types$Family.short,
+	labels = gene.types$Family)
 data[is.na(data$Family), 'Family'] <- 'other genes'
 ```
 
 # Aggregate the data
 ```{r aggregate}
 data_grouped <- data %>%
-	group_by(Type, Family.short, Family) %>%
+	group_by(Type, Family) %>%
 	summarise(
 		Count = n(),
 		Size = sum(Size)) %>%
-	droplevels
-
+	droplevels %>%
+	left_join(gene.types)
 data_grouped_without_orf <- data_grouped %>% filter(Family.short != "orf")
 ```
 
