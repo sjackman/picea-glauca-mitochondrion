@@ -40,7 +40,6 @@ gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	'mat', 'maturases',
 	'mtt', 'membrane targeting and translocation',
 	'nad', 'complex I (NADH dehydrogenase)',
-	'nd5', 'complex I (NADH dehydrogenase subunit 5)',
 	'ori', 'origin of replication',
 	'orf', 'open reading frames',
 	'rna', 'DNA-dependent RNA polymerase',
@@ -55,9 +54,7 @@ gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	'psa', 'photosystem I (plastidial)',
 	'psb', 'photosystem II (plastidial)',
 	# Other
-	'bla', 'Beta-lactamase (bacterial)',
-	'tns', 'transposase (transposon)',
-	'unk', 'unknown')))
+	'unk', 'other genes')))
 gene.types <- data.frame(gene.types.matrix)
 colnames(gene.types) <- c('Short.name', 'Full.name')
 rownames(gene.types) <- gene.types$Short.name
@@ -82,6 +79,7 @@ data$Family = factor(data$Family.short,
 	levels = gene.types$Short.name,
 	labels = gene.types$Full.name)
 data[is.na(data$Family), 'Family'] <- 'unknown'
+data[is.na(data$Family), 'Family'] <- 'other genes'
 ```
 
 # Aggregate the data
