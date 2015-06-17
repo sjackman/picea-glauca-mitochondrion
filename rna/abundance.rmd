@@ -63,7 +63,7 @@ write.table(abundance_all, "abundance.tsv",
 abundance <- abundance_all %>%
 	filter(complete.cases(.))
 rownames(abundance) <- abundance$Name
-abundance <- abundance %>% select(-ID, -Name)
+abundance <- abundance %>% select(-ID, -Name, -Size)
 abundance_matrix <- as.matrix(abundance)
 ```
 
