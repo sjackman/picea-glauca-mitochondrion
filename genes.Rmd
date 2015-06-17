@@ -86,20 +86,20 @@ data[is.na(data$Family), 'Family'] <- 'unknown'
 
 # Aggregate the data
 ```{r aggregate}
-data.grouped.with.orf <- data %>%
+data_grouped <- data %>%
 	group_by(Type, Family.short, Family) %>%
 	summarise(
 		Count = n(),
 		Size = sum(Size)) %>%
 	droplevels
 
-data.grouped <- data.grouped.with.orf %>% filter(Family.short != "orf")
+data_grouped_without_orf <- data_grouped %>% filter(Family.short != "orf")
 ```
 
 # Tabulate the data
 ```{r tabulate, results='asis'}
-tab <- data.grouped.with.orf[c('Count', 'Size')]
-rownames(tab) <- data.grouped.with.orf$Family
+tab <- data_grouped[c('Count', 'Size')]
+rownames(tab) <- data_grouped$Family
 tab['Sum',] <- colSums(tab)
 kable(tab)
 ```
@@ -131,10 +131,10 @@ ggplot(data = data) +
 
 # Barchart of type vs count
 ```{r Barchart of type vs count}
-barchart(Family ~ Count, data.grouped,
+barchart(Family ~ Count, data_grouped_without_orf,
 	origin = 0)
 
-barchart(Type ~ Count, data.grouped, group = Family,
+barchart(Type ~ Count, data_grouped_without_orf, group = Family,
 	stack = TRUE, auto.key = list(space = 'right'))
 ```
 
@@ -146,13 +146,13 @@ barchart(Family ~ Size / 1e3,
 	stack = TRUE, auto.key = list(space = 'right'),
 	xlab = 'Size (kbp)')
 
-barchart(~ Size / 1e3, data.grouped, group = Family,
+barchart(~ Size / 1e3, data_grouped_without_orf, group = Family,
 	stack = TRUE, auto.key = list(space = 'right'),
 	xlab = 'Size (kbp)')
 ```
 
 # Write the tabulated data to a file
 ```{r Write the tabulated data to a file}
-write.table(data.grouped.with.orf, 'pg29mt-scaffolds.gff.tsv',
+write.table(data_grouped, 'pg29mt-scaffolds.gff.tsv',
 	quote = FALSE, sep = '\t', row.names = FALSE)
 ```
