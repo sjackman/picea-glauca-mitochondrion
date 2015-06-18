@@ -112,6 +112,10 @@ mitochondrion/mitochondrion.%.gz:
 %.aragorn.gff: %.aragorn.tsv
 	bin/aragorn_out_to_gff3.py --full <$< |gt gff3 -sort >$@
 
+# Annotate tRNA using tRNAscan-SE
+%.trnascan.orig.tsv: %.fa
+	tRNAscan-SE -O -o $@ -f $*.trnascan.txt $<
+
 # Barrnap
 
 %.barrnap.gff: %.fa
