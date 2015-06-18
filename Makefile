@@ -13,7 +13,7 @@ edirect_query='Viridiplantae[Organism] mitochondrion[Title] (complete genome[Tit
 all: $(name).gff $(name).gbk $(name).gbk.png \
 	$(name).maker.evidence.gff $(name).maker.repeat.gff \
 	$(name).maker.gff.gene $(name).prokka.gff.gene $(name).gff.gene \
-	genes.html
+	genes.html repeats.html
 
 clean:
 	rm -f $(name).gb $(name).gbk $(name).gff $(name).png
