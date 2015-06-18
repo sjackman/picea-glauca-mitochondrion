@@ -132,8 +132,8 @@ tab['Sum',] <- colSums(tab)
 kable(tab)
 ```
 
-# Tabulate protein-coding genes (mRNA)
-```{r tabulate-mrna}
+# Tabulate protein-coding genes (mRNA) by family
+```{r tabulate-mrna-by-family}
 tab <- data_grouped %>%
 	filter(!Family.short %in% c("orf", "oth", "rrn", "trn")) %>%
 	set_row_names(paste(.$Family.short, .$Family)) %>%
@@ -141,6 +141,22 @@ tab <- data_grouped %>%
 	select(Count, Size)
 tab['Sum',] <- colSums(tab)
 kable(tab)
+```
+
+# Tabulate protein-coding genes (mRNA) by gene
+```{r tabulate-mrna-by-gene}
+ignore_families <- c("orf", "bla", "tns", "rrn", "trn")
+
+data %>%
+	filter(!Family.short %in% ignore_families) %>%
+	summarize(Count = n(), Distinct = n_distinct(Gene), Size = sum(Size)) %>%
+	kable
+
+data %>%
+	filter(!Family.short %in% ignore_families) %>%
+	group_by(Gene) %>%
+	summarize(Count = n(), Size = sum(Size)) %>%
+	kable
 ```
 
 # Tabulate open reading frames (ORF)
