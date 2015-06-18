@@ -45,7 +45,7 @@ abundance.html: \
 	Megagametophyte/abundance.txt \
 	SeedGermination/abundance.txt \
 	Xylem/abundance.txt \
-	YoungBuds/abundance.txt \
+	YoungBuds/abundance.txt
 
 # Data
 
