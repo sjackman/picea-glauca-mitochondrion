@@ -65,7 +65,7 @@ rownames(gene.types) <- gene.types$Short.name
 
 # Load data
 ```{r Load data}
-gff.all <- readGff3('pg29mt-scaffolds.gff')
+gff.all <- readGff3("pg29mt-scaffolds.gff", isRightOpen = FALSE)
 gff <- gff.all[gff.all$type %in% c('mRNA', 'rRNA', 'tRNA'),]
 
 data <- droplevels(data.frame(
