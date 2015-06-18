@@ -11,6 +11,7 @@
 *.png
 *.pdf
 .Rhistory
+.Rproj.user
 2014*
 NC_*
 RM_*
