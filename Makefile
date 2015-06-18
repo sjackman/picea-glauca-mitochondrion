@@ -269,7 +269,7 @@ gbk/%.00.gbk: %.gbk
 	gt -q gff3_to_gtf $< >$@
 
 # Render HTML from RMarkdown
-%.html: %.Rmd
+%.html: %.rmd
 	Rscript -e 'rmarkdown::render("$<", output_format = "html_document")'
 	mogrify -units PixelsPerInch -density 300 $*_files/figure-html/*.png
 
