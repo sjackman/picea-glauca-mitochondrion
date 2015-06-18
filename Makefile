@@ -233,12 +233,16 @@ prokka/%.gff.gene: prokka/%.gff
 %.gff.gene: %.gff
 	bin/gff-gene-name $< >$@
 
-# Extract DNA sequences of GFF features from a FASTA file
-%.gff.dna.fa: %.gff %.fa
+# Extract DNA sequences of GFF gene features from a FASTA file
+%.gff.gene.fa: %.gff %.fa
 	gt extractfeat -type gene -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
 
-# Extract protein sequences of GFF features from a FASTA file
-%.aa.fa: %.dna.fa
+# Extract DNA sequences of GFF CDS features from a FASTA file
+%.gff.CDS.fa: %.gff %.fa
+	gt extractfeat -type CDS -join -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
+
+# Translate protein sequences of GFF CDS features from a FASTA file
+%.aa.fa: %.CDS.fa
 	gt seqtranslate -reverse no -fastawidth 0 $< \
 	|sed -n '/ (1+)$$/{s/ (1+)$$//;p;n;p;n;n;n;n;}' >$@
 
