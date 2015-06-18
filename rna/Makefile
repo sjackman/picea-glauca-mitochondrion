@@ -1,3 +1,8 @@
+# Written by Shaun Jackman @sjackman
+
+# For shell redirection <(gunzip -c reads.fq.gz)
+SHELL=/bin/bash
+
 all: abundance.html
 
 install-deps:
@@ -30,6 +35,18 @@ pg29mt-scaffolds.gff:
 %/abundance.txt: transcripts.idx %_1.fq.gz %_2.fq.gz
 	time kallisto quant -o $(@D) -i $^
 
+# Salmon
+
+# Index the reference
+%/bwaidx.bwt: %.fa
+	salmon index -t $< -i $(@D)
+
+# Quantify the transcripts
+%_quant/quant.sf: transcripts/bwaidx.bwt %_1.fq.gz %_2.fq.gz
+	salmon quant -i $(<D) -l IU -1 <(gunzip -c $*_1.fq.gz) -2 <(gunzip -c $*_2.fq.gz) -o $(@D)
+
+# RMarkdown
+
 # Render the report to HTML
 %.html: %.rmd
 	Rscript -e 'rmarkdown::render("$<", output_format = "html_document")'
@@ -46,6 +63,17 @@ abundance.html: \
 	SeedGermination/abundance.txt \
 	Xylem/abundance.txt \
 	YoungBuds/abundance.txt
+
+salmon.html: \
+	tissues.tsv \
+	Bark_quant/quant.sf \
+	Embryo_quant/quant.sf \
+	FlushBud_quant/quant.sf \
+	MatureNeedle_quant/quant.sf \
+	Megagametophyte_quant/quant.sf \
+	SeedGermination_quant/quant.sf \
+	Xylem_quant/quant.sf \
+	YoungBuds_quant/quant.sf
 
 # Data
 
