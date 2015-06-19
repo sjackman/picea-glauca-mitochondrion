@@ -237,7 +237,7 @@ prokka/%.gff.gene: prokka/%.gff
 # OrganellarGenomeDRAW
 
 %.gbk.png: %.gbk
-	drawgenemap --format png --infile $< --outfile $<
+	drawgenemap --density 150 --format png --infile $< --outfile $<
 
 # Report the annotated genes
 
@@ -284,7 +284,7 @@ gbk/%.00.gbk: %.gbk
 
 # Combine the OGDraw images into a single image
 %.gbk.montage.png: gbk/%.*.gbk.png
-	montage -geometry 1200x600 -units PixelsPerInch -density 1200 $^ $@
+	montage -tile 3 -geometry +0+0 -units PixelsPerInch -density 1200 $^ gbk/$*.00.gbk_legend.png $@
 
 # GenomeTools sketch
 %.gff.png: %.gff
