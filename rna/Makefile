@@ -3,7 +3,7 @@
 # For shell redirection <(gunzip -c reads.fq.gz)
 SHELL=/bin/bash
 
-all: abundance.html
+all: abundance.html salmon.html
 
 install-deps:
 	brew install kallisto samtools
