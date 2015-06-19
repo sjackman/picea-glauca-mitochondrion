@@ -218,7 +218,6 @@ prokka/%.gff.gene: prokka/%.gff
 
 %.gbk: %-header.gbk %.gb
 	(cat $< && sed -En '/^FEATURES/,$$ { \
-		s/Name="(trn[^-]*).*"/gene="\1"/; \
 		s/Name="([^|]*).*"/gene="\1"/; \
 		p; }' $*.gb) >$@
 
