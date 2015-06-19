@@ -280,7 +280,7 @@ gbk/%.00.gbk: %.gbk
 
 # Combine the OGDraw images into a single image
 %.gbk.montage.png: gbk/%.*.gbk.png
-	montage -geometry 1200x600 $^ $@
+	montage -geometry 1200x600 -units PixelsPerInch -density 1200 $^ $@
 
 # GenomeTools sketch
 %.gff.png: %.gff
