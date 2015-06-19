@@ -36,6 +36,12 @@ bin/aragorn_out_to_gff3.py:
 	curl -o $@ https://raw.githubusercontent.com/bgruening/galaxytools/master/tools/rna_tools/trna_prediction/aragorn_out_to_gff3.py
 	chmod +x $@
 
+# BLAST
+
+# Align the scaffolds to the nt database
+%.blastn: %.fa
+	blastn -db nt -query $< -out $@
+
 # Copy local data
 
 #PICEAGLAUCA_rpt2.0.fa: /genesis/extscratch/seqdev/PG/data/PICEAGLAUCA_rpt2.0
