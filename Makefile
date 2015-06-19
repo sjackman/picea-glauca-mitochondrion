@@ -176,10 +176,6 @@ $(name).maker.gff: $(name).rnammer.gff
 # Add the tRNA annotations to the GFF file
 $(name).maker.gff: $(name).aragorn.gff
 
-# Remove mRNA records
-%.nomrna.gff: %.gff
-	gsed '/\tmRNA\t/d' $< >$@
-
 # Prokka
 
 # Convert the FASTA file to the Prokka FASTA format
@@ -200,6 +196,7 @@ prokka/%.gff: %.fa cds_aa.prokka.fa
 %.prokka.gff: prokka/%.gff
 	gsed -E '/^##FASTA/,$$d; \
 		s/gene=([^;]*)/Name=\1;&/; \
+		/\tgene\t/{/gene=/!s/ID=[^_]*_([0-9]*)/Name=orf\1;&/;}; \
 		/\tCDS\t/{/gene=/!s/ID=[^_]*_([0-9]*)/Name=orf\1;&/; \
 			s/CDS/mRNA/;p; \
 			s/mRNA/CDS/;s/Parent=[^;]*;//;s/ID=/Parent=/;}; \
@@ -211,10 +208,16 @@ prokka/%.gff.gene: prokka/%.gff
 		puts $$1 if s =~ /\tgene\t.*gene=([^;]*)/ \
 	}' $< >$@
 
+# Remove mRNA and ORF annotations before converting to GBK
+%.pregbk.gff: %.gff
+	gsed -E '/\tmRNA\t|Name=orf/d' $< >$@
+
 # Convert to GenBank format
-%.gb: %.nomrna.gff %.fa
+%.gb: %.pregbk.gff %.fa
 	bin/gff_to_genbank.py $^
-	mv $*.nomrna.gb $@
+	sed -e '/DEFINITION/{h;s/$$/ mitochondrion/;}' \
+		-e '/ORGANISM/{g;s/DEFINITION/  ORGANISM/;}' \
+		$*.pregbk.gb >$@
 
 %.gbk: %-header.gbk %.gb
 	(cat $< && sed -En '/^FEATURES/,$$ { \
