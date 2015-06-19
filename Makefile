@@ -283,7 +283,24 @@ gbk/%.00.gbk: %.gbk
 	for i in $*.[0-9][0-9]; do mv $$i gbk/$$i.gbk; done
 
 # Combine the OGDraw images into a single image
-%.gbk.montage.png: gbk/%.*.gbk.png
+%.gbk.montage.png: \
+		gbk/%.00.gbk.png \
+		gbk/%.01.gbk.png \
+		gbk/%.02.gbk.png \
+		gbk/%.03.gbk.png \
+		gbk/%.04.gbk.png \
+		gbk/%.05.gbk.png \
+		gbk/%.06.gbk.png \
+		gbk/%.07.gbk.png \
+		gbk/%.08.gbk.png \
+		gbk/%.09.gbk.png \
+		gbk/%.10.gbk.png \
+		gbk/%.11.gbk.png \
+		gbk/%.15.gbk.png \
+		gbk/%.16.gbk.png \
+		gbk/%.17.gbk.png \
+		gbk/%.20.gbk.png \
+		gbk/%.23.gbk.png
 	montage -tile 3 -geometry +0+0 -units PixelsPerInch -density 1200 $^ gbk/$*.00.gbk_legend.png $@
 
 # GenomeTools sketch
