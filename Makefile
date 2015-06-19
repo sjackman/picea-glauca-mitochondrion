@@ -210,10 +210,14 @@ prokka/%.gff.gene: prokka/%.gff
 
 # Remove mRNA and ORF annotations before converting to GBK
 %.pregbk.gff: %.gff
-	gsed -E '/\tmRNA\t|Name=orf/d' $< >$@
+	gsed -E '/\tmRNA\t|Name=orf/d;/^[0-9]\t/s/^/0/' $< |uniq >$@
+
+# Add leading zeros to the FASTA IDs
+%.pregbk.fa: %.fa
+	sed '/^>[0-9]$$/s/^>/>0/' $< >$@
 
 # Convert to GenBank format
-%.gb: %.pregbk.gff %.fa
+%.gb: %.pregbk.gff %.pregbk.fa
 	bin/gff_to_genbank.py $^
 	sed -e '/DEFINITION/{h;s/$$/ mitochondrion/;}' \
 		-e '/ORGANISM/{g;s/DEFINITION/  ORGANISM/;}' \
