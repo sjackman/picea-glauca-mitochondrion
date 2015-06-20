@@ -22,7 +22,7 @@ library(genomeIntervals)
 
 # Read the GFF file of annotations
 ```{r read-gff}
-gff_all <- readGff3('pg29mt-scaffolds.gff')
+gff_all <- readGff3('pg29mt-scaffolds.gff', isRightOpen = FALSE)
 gff <- gff_all[gff_all$type %in% c('gene', 'mRNA', 'rRNA', 'tRNA'),]
 ID_Name_all <- data.frame(
 		ID = getGffAttribute(gff, 'ID'),
@@ -48,7 +48,7 @@ abundance_all <- lapply(abundance_list, function(x) x$tpm) %>%
 	data.frame(ID = gene_ids, .) %>%
 	left_join(ID_Name_all, by = 'ID') %>%
 	select(one_of(c("ID", "Name", "Size", tissues))) %>%
-	transform(Name = ifelse(is.na(Name), NA,
+	transform(Name = ifelse(grepl("^orf", Name), NA,
 		make_unique(Name)))
 ```
 
