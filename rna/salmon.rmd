@@ -1,0 +1,143 @@
+---
+title: Analyse transcript abundance in white spruce (*Picea glauca*) mitochondrion
+author: Shaun Jackman
+output:
+  html_document:
+    keep_md: yes
+    toc: yes
+---
+
+# Load libraries
+```{r load-libraries}
+library(dplyr)
+library(ggplot2)
+library(knitr) # for kable
+library(NMF) # for aheatmap
+library(readr)
+library(uniqtag) # for make_unique
+
+# Bioconductor
+library(genomeIntervals)
+```
+
+```{r knitr}
+opts_chunk$set(tidy = FALSE, fig.width = 20, fig.height = 20)
+```
+
+# Functions
+```{r functions}
+# Set the row names of x to value
+set_row_names <- function(x, value) { row.names(x) <- value; x }
+```
+
+# Read the GFF file of annotations
+```{r read-gff}
+gff_all <- readGff3('pg29mt-scaffolds.gff', isRightOpen = FALSE)
+gff <- gff_all[gff_all$type %in% c('gene', 'mRNA', 'rRNA', 'tRNA'),]
+ID_Name_all <- data.frame(
+		ID = getGffAttribute(gff, 'ID'),
+		Name = getGffAttribute(gff, 'Name'),
+		Type = gff$type,
+		Size = size(gff),
+		stringsAsFactors = FALSE) %>%
+	mutate(Name = sub('\\|.*', '', Name))
+ID_Name <- ID_Name_all %>%
+	filter(Type == 'gene' & complete.cases(.))
+```
+
+# Read the transcript abundance data
+```{r read-data}
+samples <- read_tsv("tissues.tsv")
+tissues <- samples$Tissue
+files <- paste0(tissues, "_quant/quant.sf")
+abundance_list <- lapply(files,
+	function(x) read_tsv(x, skip = 9, col_types = "cidd"))
+gene_ids <- abundance_list[[1]]$`# Name`
+abundance_all <- lapply(abundance_list, function(x) x$TPM) %>%
+	setNames(tissues) %>%
+	data.frame(ID = gene_ids, .) %>%
+	left_join(ID_Name_all, by = 'ID') %>%
+	select(one_of(c("ID", "Name", "Size", tissues))) %>%
+	transform(Name = ifelse(grepl("^orf", Name), NA,
+		make_unique(Name)))
+```
+
+# Write the aggregated transcript abundance table
+```{r write-abundance-table}
+write.table(abundance_all, "salmon.tsv",
+	quote = FALSE, sep = "\t", row.names = FALSE)
+```
+
+# Remove ORFs and all-zero rows and convert to a matrix
+```{r remove-orfs}
+abundance_matrix <- abundance_all %>%
+	filter(complete.cases(.)) %>%
+	set_row_names(.$Name) %>%
+	select(-ID, -Name, -Size) %>%
+	as.matrix %>%
+	.[rowSums(.) > 0,]
+```
+
+# Report max abundance of each tissue
+```{r max-abundance}
+max_abundance <- sapply(tissues,
+	function(x) abundance_all[which.max(abundance_all[,x]),]) %>% t
+kable(max_abundance)
+```
+
+# Heat map of transcript abundance
+```{r heatmap}
+NMF::aheatmap(abundance_matrix,
+	fontsize = 13, cexCol = 0.7)
+NMF::aheatmap(abundance_matrix,
+	fontsize = 13, cexCol = 0.7,
+	filename = "salmon.pdf")
+```
+
+# Heat map of transcript abundance log scale
+```{r heatmap-log}
+NMF::aheatmap(log10(1 + abundance_matrix),
+	fontsize = 13, cexCol = 0.7)
+NMF::aheatmap(log10(1 + abundance_matrix),
+	fontsize = 13, cexCol = 0.7,
+	filename = "salmon-log.pdf")
+```
+
+# Heat map of protein-coding transcript abundance
+```{r heatmap-cds}
+abundance_cds_matrix <- abundance_matrix %>%
+	.[!grepl("^rrn|^trn", rownames(.)),]
+
+NMF::aheatmap(abundance_cds_matrix,
+	fontsize = 13, cexCol = 0.7)
+NMF::aheatmap(abundance_cds_matrix,
+	fontsize = 13, cexCol = 0.7,
+	filename = "salmon-cds.pdf")
+```
+
+# Heat map of protein-coding transcript abundance log scale
+```{r heatmap-cds-log}
+NMF::aheatmap(log10(1 + abundance_cds_matrix),
+	fontsize = 13, cexCol = 0.7)
+NMF::aheatmap(log10(1 + abundance_cds_matrix),
+	fontsize = 13, cexCol = 0.7,
+	filename = "salmon-cds-log.pdf")
+```
+
+# Scatter plot of mean abundance vs length
+```{r mean-abundance-vs-length}
+mean_abundance = abundance_all %>%
+	mutate(Mean_abundance = (
+			Bark + Embryo + FlushBud + MatureNeedle +
+			Megagametophyte + SeedGermination + Xylem + YoungBuds) / 8,
+		Family = substr(Name, 1, 3))
+
+ggplot(mean_abundance %>% arrange(desc(is.na(Name))),
+		aes(x = Size, y = Mean_abundance, color = Family)) +
+	geom_point(alpha = 0.5) +
+	geom_vline(x = 300) +
+	geom_hline(y = 10) +
+	scale_x_log10() +
+	scale_y_log10() +
+	theme_bw()
+```
