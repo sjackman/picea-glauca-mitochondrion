@@ -253,8 +253,12 @@ prokka/%.gff.gene: prokka/%.gff
 %.gff.CDS.fa: %.gff %.fa
 	gt extractfeat -type CDS -join -coords -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
 
+# Extract aa sequences of GFF CDS features from a FASTA file
+%.gff.aa.fa: %.gff %.fa
+	gt extractfeat -type CDS -join -translate -coords -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
+
 # Translate protein sequences of GFF CDS features from a FASTA file
-%.aa.fa: %.CDS.fa
+%.aa.fa: %.fa
 	gt seqtranslate -reverse no -fastawidth 0 $< \
 	|sed -n '/ (1+)$$/{s/ (1+)$$//;p;n;p;n;n;n;n;}' >$@
 
