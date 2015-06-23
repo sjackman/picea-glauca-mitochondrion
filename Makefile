@@ -247,11 +247,11 @@ prokka/%.gff.gene: prokka/%.gff
 
 # Extract DNA sequences of GFF gene features from a FASTA file
 %.gff.gene.fa: %.gff %.fa
-	gt extractfeat -type gene -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
+	gt extractfeat -type gene -coords -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
 
 # Extract DNA sequences of GFF CDS features from a FASTA file
 %.gff.CDS.fa: %.gff %.fa
-	gt extractfeat -type CDS -join -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
+	gt extractfeat -type CDS -join -coords -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
 
 # Translate protein sequences of GFF CDS features from a FASTA file
 %.aa.fa: %.CDS.fa
@@ -266,7 +266,7 @@ prokka/%.gff.gene: prokka/%.gff
 
 # Extract sequences of GFF intron features
 %.gff.intron.fa: %.gff %.fa
-	gt extractfeat -type intron -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
+	gt extractfeat -type intron -coords -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
 
 # Extract sequences of GFF intron features plus flanking sequence
 %.gff.intron.flank100.fa: %.gff %.fa.fai
