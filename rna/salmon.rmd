@@ -12,6 +12,7 @@ output:
 library(dplyr)
 library(ggplot2)
 library(knitr) # for kable
+library(magrittr)
 library(NMF) # for aheatmap
 library(readr)
 library(uniqtag) # for make_unique
@@ -22,12 +23,6 @@ library(genomeIntervals)
 
 ```{r knitr}
 opts_chunk$set(tidy = FALSE, fig.width = 20, fig.height = 20)
-```
-
-# Functions
-```{r functions}
-# Set the row names of x to value
-set_row_names <- function(x, value) { row.names(x) <- value; x }
 ```
 
 # Read the GFF file of annotations
@@ -72,7 +67,7 @@ write.table(abundance_all, "salmon.tsv",
 ```{r remove-orfs}
 abundance_matrix <- abundance_all %>%
 	filter(complete.cases(.)) %>%
-	set_row_names(.$Name) %>%
+	set_rownames(.$Name) %>%
 	select(-ID, -Name, -Size) %>%
 	as.matrix %>%
 	.[rowSums(.) > 0,]
@@ -81,7 +76,7 @@ abundance_matrix <- abundance_all %>%
 # Remove all-zero rows and non-coding and convert to a matrix
 ```{r remove-zeros}
 abundance_cds_orf_matrix <- abundance_all %>%
-	set_row_names(with(abundance_all, ifelse(is.na(Name), ID, Name))) %>%
+	set_rownames(with(abundance_all, ifelse(is.na(Name), ID, Name))) %>%
 	select(-ID, -Name, -Size) %>%
 	as.matrix %>%
 	.[rowSums(.) > 0,] %>%
