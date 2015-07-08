@@ -65,7 +65,8 @@ abundance_all <- lapply(abundance_list, function(x) x$TPM) %>%
 		Name = make_unique(Name),
 		Class = factor_switch(substr(Name, 1, 3),
 			"mRNA", orf = "ORF", rrn = "rRNA", trn = "tRNA")) %>%
-	select(Class, ID, Name, Size, everything(), -Type)
+	select(Class, ID, Name, Size, everything(), -Type) %>%
+	filter(!Name %in% c("bla", "tnsA"))
 
 table(Class = abundance_all$Class) %>% data_frame %>% kable
 ```
