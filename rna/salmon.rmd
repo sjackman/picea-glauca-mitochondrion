@@ -53,7 +53,7 @@ abundance_all <- lapply(abundance_list, function(x) x$TPM) %>%
 	data.frame(ID = gene_ids, .) %>%
 	left_join(ID_Name_all, by = 'ID') %>%
 	select(one_of(c("ID", "Name", "Size", tissues))) %>%
-	transform(Name = ifelse(grepl("^orf", Name), NA,
+	mutate(Name = ifelse(grepl("^orf", Name), NA,
 		make_unique(Name)))
 ```
 
