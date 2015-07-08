@@ -21,6 +21,16 @@ library(uniqtag) # for make_unique
 library(genomeIntervals)
 ```
 
+# Functions
+```{r functions}
+factor_with_default <- function(x, levels) {
+	x <- factor(x, levels = names(levels), labels = levels)
+	x[is.na(x)] <- levels[names(levels) == ""]
+	x
+}
+factor_switch <- function(x, ...) factor_with_default(x, list(...))
+```
+
 ```{r knitr}
 opts_chunk$set(tidy = FALSE, fig.width = 20, fig.height = 20)
 ```
@@ -36,8 +46,7 @@ ID_Name_all <- data.frame(
 		Size = size(gff),
 		stringsAsFactors = FALSE) %>%
 	mutate(Name = sub('\\|.*', '', Name))
-ID_Name <- ID_Name_all %>%
-	filter(Type == 'gene' & complete.cases(.))
+ID_Name <- ID_Name_all %>% filter(Type == 'gene')
 ```
 
 # Read the transcript abundance data
@@ -53,8 +62,13 @@ abundance_all <- lapply(abundance_list, function(x) x$TPM) %>%
 	data.frame(ID = gene_ids, .) %>%
 	left_join(ID_Name_all, by = 'ID') %>%
 	select(one_of(c("ID", "Name", "Size", tissues))) %>%
-	mutate(Name = ifelse(grepl("^orf", Name), NA,
-		make_unique(Name)))
+	mutate(
+		Name = make_unique(Name),
+		Class = factor_switch(substr(Name, 1, 3),
+			"mRNA", orf = "ORF", rrn = "rRNA", trn = "tRNA")) %>%
+	select(Class, everything())
+
+table(Class = abundance_all$Class) %>% data.frame %>% kable
 ```
 
 # Write the aggregated transcript abundance table
@@ -66,38 +80,34 @@ write.table(abundance_all, "salmon.tsv",
 # Remove ORFs and all-zero rows and convert to a matrix
 ```{r remove-orfs}
 abundance_matrix <- abundance_all %>%
-	filter(complete.cases(.)) %>%
+	filter(Class != "ORF") %>%
 	set_rownames(.$Name) %>%
-	select(-ID, -Name, -Size) %>%
-	as.matrix %>%
-	.[rowSums(.) > 0,]
+	select(-Class, -ID, -Name, -Size) %>%
+	.[rowSums(.) > 0,] %>%
+	as.matrix
 ```
 
 # Remove all-zero rows and non-coding and convert to a matrix
 ```{r remove-zeros}
 abundance_cds_orf_matrix <- abundance_all %>%
-	set_rownames(with(abundance_all, ifelse(is.na(Name), ID, Name))) %>%
-	select(-ID, -Name, -Size) %>%
-	as.matrix %>%
+	filter(Class %in% c("mRNA", "ORF")) %>%
+	set_rownames(.$Name) %>%
+	select(-Class, -ID, -Name, -Size) %>%
 	.[rowSums(.) > 0,] %>%
-	.[!grepl("^rrn|^trn", rownames(.)),]
-
-abundance_orf_matrix <- abundance_cds_orf_matrix %>%
-	.[grepl("^gene", rownames(.)),]
+	as.matrix
 ```
 
 # Tabulate expressed genes by developmental stage
 ```{r tabulate-expressed-genes}
-abundance_tissue <- abundance_all %>%
+abundance_development <- abundance_all %>%
 	mutate(
-		ORF = is.na(Name),
 		Mature = Bark + FlushBud + MatureNeedle + Xylem + YoungBuds,
-		Developmental = Embryo + Megagametophyte + SeedGermination)
+		Developing = Embryo + Megagametophyte + SeedGermination)
 
 table(
-	Developmental = abundance_tissue$Developmental > 0,
-	Mature = abundance_tissue$Mature > 0,
-	ORF = abundance_tissue$ORF) %>%
+	Developing = abundance_development$Developing > 0,
+	Mature = abundance_development$Mature > 0,
+	Class = abundance_development$Class) %>%
 	addmargins
 ```
 
@@ -162,10 +172,10 @@ mean_abundance = abundance_all %>%
 	mutate(Mean_abundance = (
 			Bark + Embryo + FlushBud + MatureNeedle +
 			Megagametophyte + SeedGermination + Xylem + YoungBuds) / 8,
-		Family = substr(Name, 1, 3))
+		Family = substr(Name, 1, 3) %>% ifelse(. == "orf", NA, .))
 
-ggplot(mean_abundance %>% arrange(desc(is.na(Name))),
-		aes(x = Size, y = Mean_abundance, color = Family)) +
+ggplot(mean_abundance %>% arrange(Class != "ORF")) +
+	aes(x = Size, y = Mean_abundance, color = Family) +
 	geom_point(alpha = 0.5) +
 	geom_vline(x = 300) +
 	geom_hline(y = 10) +
