@@ -78,6 +78,34 @@ abundance_matrix <- abundance_all %>%
 	.[rowSums(.) > 0,]
 ```
 
+# Remove all-zero rows and non-coding and convert to a matrix
+```{r remove-zeros}
+abundance_cds_orf_matrix <- abundance_all %>%
+	set_row_names(with(abundance_all, ifelse(is.na(Name), ID, Name))) %>%
+	select(-ID, -Name, -Size) %>%
+	as.matrix %>%
+	.[rowSums(.) > 0,] %>%
+	.[!grepl("^rrn|^trn", rownames(.)),]
+
+abundance_orf_matrix <- abundance_cds_orf_matrix %>%
+	.[grepl("^gene", rownames(.)),]
+```
+
+# Tabulate expressed genes by developmental stage
+```{r tabulate-expressed-genes}
+abundance_tissue <- abundance_all %>%
+	mutate(
+		ORF = is.na(Name),
+		Mature = Bark + FlushBud + MatureNeedle + Xylem + YoungBuds,
+		Developmental = Embryo + Megagametophyte + SeedGermination)
+
+table(
+	Developmental = abundance_tissue$Developmental > 0,
+	Mature = abundance_tissue$Mature > 0,
+	ORF = abundance_tissue$ORF) %>%
+	addmargins
+```
+
 # Report max abundance of each tissue
 ```{r max-abundance}
 max_abundance <- sapply(tissues,
@@ -122,6 +150,15 @@ NMF::aheatmap(log10(1 + abundance_cds_matrix),
 NMF::aheatmap(log10(1 + abundance_cds_matrix),
 	fontsize = 13, cexCol = 0.7,
 	filename = "salmon-cds-log.pdf")
+```
+
+# Heat map of CDS and ORF transcript abundance log scale
+```{r heatmap-cds-orf-log}
+NMF::aheatmap(log10(1 + abundance_cds_orf_matrix),
+	fontsize = 13, cexCol = 0.7)
+NMF::aheatmap(log10(1 + abundance_cds_orf_matrix),
+	fontsize = 13, cexCol = 0.7,
+	filename = "salmon-cds-orf-log.pdf")
 ```
 
 # Scatter plot of mean abundance vs length
