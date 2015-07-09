@@ -95,6 +95,9 @@ abundance_cds_orf_matrix <- abundance_all %>%
 	select(-Class, -ID, -Name, -Size) %>%
 	.[rowSums(.) > 0,] %>%
 	as.matrix
+
+abundance_orf_matrix <- abundance_cds_orf_matrix %>%
+	.[grepl("^orf", rownames(.)),]
 ```
 
 # Tabulate expressed genes by developmental stage
@@ -159,6 +162,15 @@ NMF::aheatmap(log10(1 + abundance_cds_matrix),
 NMF::aheatmap(log10(1 + abundance_cds_matrix),
 	fontsize = 13, cexCol = 0.7,
 	filename = "salmon-cds-log.pdf")
+```
+
+# Heat map of ORF transcript abundance log scale
+```{r heatmap-orf-log}
+NMF::aheatmap(log10(1 + abundance_orf_matrix),
+	fontsize = 13, cexCol = 0.7)
+NMF::aheatmap(log10(1 + abundance_orf_matrix),
+	fontsize = 13, cexCol = 0.7,
+	filename = "salmon-orf-log.pdf")
 ```
 
 # Heat map of CDS and ORF transcript abundance log scale
