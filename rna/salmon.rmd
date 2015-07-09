@@ -101,14 +101,18 @@ abundance_cds_orf_matrix <- abundance_all %>%
 ```{r tabulate-expressed-genes}
 abundance_development <- abundance_all %>%
 	mutate(
+		Developing = Embryo + Megagametophyte + SeedGermination,
 		Mature = Bark + FlushBud + MatureNeedle + Xylem + YoungBuds,
-		Developing = Embryo + Megagametophyte + SeedGermination)
+		Expressed = factor_switch(paste(Developing > 0, Mature > 0),
+			"TRUE TRUE" = "Both",
+			"FALSE TRUE" = "Mature only",
+			"TRUE FALSE" = "Developing only",
+			"FALSE FALSE" = "Neither"))
 
-table(
-	Developing = abundance_development$Developing > 0,
-	Mature = abundance_development$Mature > 0,
-	Class = abundance_development$Class) %>%
-	addmargins
+abundance_development %>%
+	select(Class, Expressed) %>%
+	filter(Class %in% c("mRNA", "ORF")) %>% droplevels %>%
+	table %>% addmargins %>% kable
 ```
 
 # Report max abundance of each tissue
