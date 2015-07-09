@@ -77,27 +77,31 @@ write.table(abundance_all, "salmon.tsv",
 	quote = FALSE, sep = "\t", row.names = FALSE)
 ```
 
-# Remove ORFs and all-zero rows and convert to a matrix
-```{r remove-orfs}
-abundance_matrix <- abundance_all %>%
-	filter(Class != "ORF") %>%
+# Remove low-abundance transcripts and convert to a matrix
+```{r abundance-matrix}
+abundance_all_matrix <- abundance_all %>%
 	set_rownames(.$Name) %>%
 	select(-Class, -ID, -Name, -Size) %>%
-	.[rowSums(.) > 0,] %>%
+	.[apply(., 1, function(row) any(row >= 10)),] %>%
 	as.matrix
-```
 
-# Remove all-zero rows and non-coding and convert to a matrix
-```{r remove-zeros}
-abundance_cds_orf_matrix <- abundance_all %>%
-	filter(Class %in% c("mRNA", "ORF")) %>%
-	set_rownames(.$Name) %>%
-	select(-Class, -ID, -Name, -Size) %>%
-	.[rowSums(.) > 0,] %>%
-	as.matrix
+abundance_matrix <- abundance_all_matrix %>%
+	.[!grepl("^orf", rownames(.)),]
+
+abundance_cds_orf_matrix <- abundance_all_matrix %>%
+	.[!grepl("^rrn|^trn", rownames(.)),]
+
+abundance_cds_matrix <- abundance_cds_orf_matrix %>%
+	.[!grepl("^orf", rownames(.)),]
 
 abundance_orf_matrix <- abundance_cds_orf_matrix %>%
 	.[grepl("^orf", rownames(.)),]
+
+nrow(abundance_all_matrix)
+nrow(abundance_matrix)
+nrow(abundance_cds_orf_matrix)
+nrow(abundance_cds_matrix)
+nrow(abundance_orf_matrix)
 ```
 
 # Tabulate expressed genes by developmental stage
@@ -145,9 +149,6 @@ NMF::aheatmap(log10(1 + abundance_matrix),
 
 # Heat map of protein-coding transcript abundance
 ```{r heatmap-cds}
-abundance_cds_matrix <- abundance_matrix %>%
-	.[!grepl("^rrn|^trn", rownames(.)),]
-
 NMF::aheatmap(abundance_cds_matrix,
 	fontsize = 13, cexCol = 0.7)
 NMF::aheatmap(abundance_cds_matrix,
@@ -171,6 +172,18 @@ NMF::aheatmap(log10(1 + abundance_orf_matrix),
 NMF::aheatmap(log10(1 + abundance_orf_matrix),
 	fontsize = 13, cexCol = 0.7,
 	filename = "salmon-orf-log.pdf")
+```
+
+# Heat map of high-abundnace ORF transcript abundance log scale
+```{r heatmap-orf-high-log}
+abundance_orf_high_matrix <- abundance_orf_matrix %>%
+	.[apply(., 1, function(row) any(row >= 1000)),]
+
+NMF::aheatmap(log10(1 + abundance_orf_high_matrix),
+	fontsize = 13, cexCol = 0.7)
+NMF::aheatmap(log10(1 + abundance_orf_high_matrix),
+	fontsize = 13, cexCol = 0.7,
+	filename = "salmon-orf-high-log.pdf")
 ```
 
 # Heat map of CDS and ORF transcript abundance log scale
