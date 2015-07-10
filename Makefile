@@ -262,12 +262,6 @@ prokka/%.gff.gene: prokka/%.gff
 	gt seqtranslate -reverse no -fastawidth 0 $< \
 	|sed -n '/ (1+)$$/{s/ (1+)$$//;p;n;p;n;n;n;n;}' >$@
 
-# UniqTag
-
-# Generate UniqTag from DNA or amino acid sequence
-%.uniqtag: %.fa
-	uniqtag $< >$@
-
 # Extract sequences of GFF intron features
 %.gff.intron.fa: %.gff %.fa
 	gt extractfeat -type intron -coords -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
@@ -279,6 +273,14 @@ prokka/%.gff.gene: prokka/%.gff
 	|sort -k1,1n -k4,4n - \
 	|bedtools merge -i stdin \
 	|bedtools getfasta -bed stdin -fi $*.fa -fo $@
+
+# UniqTag
+
+# Generate UniqTag from DNA or amino acid sequence
+%.uniqtag: %.fa
+	uniqtag $< >$@
+
+# GenBank
 
 # Split the GenBank file into one sequence per file
 gbk/%.00.gbk: %.gbk
