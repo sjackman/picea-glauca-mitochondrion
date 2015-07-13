@@ -108,11 +108,11 @@ mitochondrion/mitochondrion.%.gz:
 
 # Annotate tRNA using ARAGORN and output TSV
 %.aragorn.tsv: %.fa
-	aragorn -gcstd -i -l -w -o $@ $<
+	aragorn -gcstd -l -w -o $@ $<
 
 # Annotate tRNA using ARAGORN and output text
 %.aragorn.txt: %.fa
-	aragorn -gcstd -i -l -o $@ $<
+	aragorn -gcstd -l -o $@ $<
 
 # Convert ARAGORN output to GFF
 %.aragorn.gff: %.aragorn.tsv
