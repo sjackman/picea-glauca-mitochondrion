@@ -274,6 +274,14 @@ prokka/%.gff.gene: prokka/%.gff
 	|bedtools merge -i stdin \
 	|bedtools getfasta -bed stdin -fi $*.fa -fo $@
 
+# Extract sequences of GFF rRNA features
+%.gff.rRNA.fa: %.gff %.fa
+	gt extractfeat -type rRNA -coords -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
+
+# Extract sequences of GFF tRNA features
+%.gff.tRNA.fa: %.gff %.fa
+	gt extractfeat -type tRNA -coords -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
+
 # UniqTag
 
 # Generate UniqTag from DNA or amino acid sequence
