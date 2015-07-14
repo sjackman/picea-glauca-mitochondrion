@@ -9282,9 +9282,9 @@
 17	Prodigal:2.6	mRNA	126535	126702	.	+	0	ID=mRNA2287;Parent=gene2302;Name=orf05434;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05434;product=hypothetical protein
 17	Prodigal:2.6	CDS	126535	126702	.	+	0	Parent=mRNA2287;Name=orf05434;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05434;product=hypothetical protein
 ###
-17	RNAmmer	gene	130167	133406	1.7e+03	+	.	ID=gene2303;Name=rrn23
-17	RNAmmer	rRNA	130167	133406	1.7e+03	+	.	ID=rRNA3;Parent=gene2303;Name=rrn23
-17	RNAmmer	exon	130167	133406	1.7e+03	+	.	Parent=rRNA3;Name=rrn23
+17	RNAmmer	gene	130167	133406	1.7e+03	+	.	ID=gene2303;Name=rrn26
+17	RNAmmer	rRNA	130167	133406	1.7e+03	+	.	ID=rRNA3;Parent=gene2303;Name=rrn26
+17	RNAmmer	exon	130167	133406	1.7e+03	+	.	Parent=rRNA3;Name=rrn26
 ###
 17	prokka	gene	133528	133674	.	+	1	ID=gene2304;Name=orf05436;locus_tag=OU3MT_05436
 17	Prodigal:2.6	mRNA	133528	133674	.	+	0	ID=mRNA2288;Parent=gene2304;Name=orf05436;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05436;product=hypothetical protein
@@ -9382,9 +9382,9 @@
 18	Prodigal:2.6	mRNA	4178	6148	.	-	0	ID=mRNA2311;Parent=gene2327;Name=ymfatpA_4;gene=ymfatpA_4;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:ymfatpA|lcl|M68929.1_prot_AAC09444.1_53;locus_tag=OU3MT_05459;product=atpA intron1 ORF
 18	Prodigal:2.6	CDS	4178	6148	.	-	0	Parent=mRNA2311;Name=ymfatpA_4;gene=ymfatpA_4;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:ymfatpA|lcl|M68929.1_prot_AAC09444.1_53;locus_tag=OU3MT_05459;product=atpA intron1 ORF
 ###
-18	RNAmmer	gene	6247	8015	1.2e+03	+	.	ID=gene2328;Name=rrn16
-18	RNAmmer	rRNA	6247	8015	1.2e+03	+	.	ID=rRNA4;Parent=gene2328;Name=rrn16
-18	RNAmmer	exon	6247	8015	1.2e+03	+	.	Parent=rRNA4;Name=rrn16
+18	RNAmmer	gene	6247	8015	1.2e+03	+	.	ID=gene2328;Name=rrn18
+18	RNAmmer	rRNA	6247	8015	1.2e+03	+	.	ID=rRNA4;Parent=gene2328;Name=rrn18
+18	RNAmmer	exon	6247	8015	1.2e+03	+	.	Parent=rRNA4;Name=rrn18
 ###
 18	prokka	gene	9217	9348	.	+	1	ID=gene2329;Name=orf05461;locus_tag=OU3MT_05461
 18	Prodigal:2.6	mRNA	9217	9348	.	+	0	ID=mRNA2312;Parent=gene2329;Name=orf05461;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05461;product=hypothetical protein
@@ -16255,9 +16255,9 @@
 4	Prodigal:2.6	mRNA	319196	319459	.	-	0	ID=mRNA4011;Parent=gene4036;Name=orf02496;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02496;product=hypothetical protein
 4	Prodigal:2.6	CDS	319196	319459	.	-	0	Parent=mRNA4011;Name=orf02496;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02496;product=hypothetical protein
 ###
-5	RNAmmer	gene	4	1772	1.2e+03	+	.	ID=gene4037;Name=rrn16
-5	RNAmmer	rRNA	4	1772	1.2e+03	+	.	ID=rRNA6;Parent=gene4037;Name=rrn16
-5	RNAmmer	exon	4	1772	1.2e+03	+	.	Parent=rRNA6;Name=rrn16
+5	RNAmmer	gene	4	1772	1.2e+03	+	.	ID=gene4037;Name=rrn18
+5	RNAmmer	rRNA	4	1772	1.2e+03	+	.	ID=rRNA6;Parent=gene4037;Name=rrn18
+5	RNAmmer	exon	4	1772	1.2e+03	+	.	Parent=rRNA6;Name=rrn18
 ###
 5	prokka	gene	2306	2707	.	-	1	ID=gene4038;Name=orf02498;locus_tag=OU3MT_02498
 5	Prodigal:2.6	mRNA	2306	2707	.	-	0	ID=mRNA4012;Parent=gene4038;Name=orf02498;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02498;product=hypothetical protein
@@ -19214,9 +19214,9 @@
 6	Prodigal:2.6	mRNA	446817	446951	.	+	0	ID=mRNA4743;Parent=gene4772;Name=orf03234;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03234;product=hypothetical protein
 6	Prodigal:2.6	CDS	446817	446951	.	+	0	Parent=mRNA4743;Name=orf03234;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03234;product=hypothetical protein
 ###
-6	RNAmmer	gene	448667	450435	1.2e+03	+	.	ID=gene4773;Name=rrn16
-6	RNAmmer	rRNA	448667	450435	1.2e+03	+	.	ID=rRNA7;Parent=gene4773;Name=rrn16
-6	RNAmmer	exon	448667	450435	1.2e+03	+	.	Parent=rRNA7;Name=rrn16
+6	RNAmmer	gene	448667	450435	1.2e+03	+	.	ID=gene4773;Name=rrn18
+6	RNAmmer	rRNA	448667	450435	1.2e+03	+	.	ID=rRNA7;Parent=gene4773;Name=rrn18
+6	RNAmmer	exon	448667	450435	1.2e+03	+	.	Parent=rRNA7;Name=rrn18
 ###
 6	prokka	gene	450981	451241	.	-	1	ID=gene4774;Name=orf03236;locus_tag=OU3MT_03236
 6	Prodigal:2.6	mRNA	450981	451241	.	-	0	ID=mRNA4744;Parent=gene4774;Name=orf03236;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_03236;product=hypothetical protein
