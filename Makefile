@@ -136,7 +136,8 @@ mitochondrion/mitochondrion.%.gz:
 # Convert GFF2 to GFF3
 %.rnammer.gff: %.rnammer.gff2
 	bin/convert_RNAmmer_to_gff3.pl --input=$< \
-		|sed -E 's/ID=([^s]*)s_rRNA_([0-9]*)/Name=rrn\1;&/' >$@
+		|sed -E -e 's/ID=([^s]*)s_rRNA_([0-9]*)/Name=rrn\1;&/' \
+			-e 's/rrn16/rrn18/g;s/rrn23/rrn26/g' >$@
 
 # MAKER
 
