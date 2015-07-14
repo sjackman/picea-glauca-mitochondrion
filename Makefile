@@ -116,7 +116,7 @@ mitochondrion/mitochondrion.%.gz:
 
 # Convert ARAGORN output to GFF
 %.aragorn.gff: %.aragorn.tsv
-	bin/aragorn_out_to_gff3.py --full <$< |gt gff3 -sort >$@
+	bin/aragorn_out_to_gff3.py --full <$< |gt gff3 -sort |bin/gt-bequeath Name |grep -v trnX >$@
 
 # Annotate tRNA using tRNAscan-SE
 %.trnascan.orig.tsv: %.fa
@@ -232,6 +232,7 @@ prokka/%.gff.gene: prokka/%.gff
 
 %.gff: %.prokka.gff %.maker.gff
 	bedtools intersect -v -header -a $< -b $*.maker.gff \
+		|grep -Fv 'tRNA-???' \
 		|gt gff3 -sort $*.maker.gff - >$@
 
 # OrganellarGenomeDRAW
