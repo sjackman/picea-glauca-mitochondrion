@@ -125,7 +125,7 @@ mitochondrion/mitochondrion.%.gz:
 # Barrnap
 
 %.barrnap.gff: %.fa
-	barrnap --kingdom mitochondria --threads $t $< >$@
+	barrnap --kingdom bac --threads $t $< >$@
 
 # Annotate rRNA using RNAmmer
 
