@@ -108,9 +108,9 @@ nrow(abundance_orf_matrix)
 ```{r tabulate-expressed-genes}
 abundance_development <- abundance_all %>%
 	mutate(
-		Developing = Embryo + Megagametophyte + SeedGermination,
-		Mature = Bark + FlushBud + MatureNeedle + Xylem + YoungBuds,
-		Expressed = factor_switch(paste(Developing > 0, Mature > 0),
+		Developing = Embryo >= 10 | Megagametophyte >= 10 | SeedGermination >= 10,
+		Mature = Bark >= 10 | FlushBud >= 10 | MatureNeedle >= 10 | Xylem >= 10 | YoungBuds >= 10,
+		Expressed = factor_switch(paste(Developing, Mature),
 			"TRUE TRUE" = "Both",
 			"FALSE TRUE" = "Mature only",
 			"TRUE FALSE" = "Developing only",
