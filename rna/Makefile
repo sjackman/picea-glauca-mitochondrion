@@ -1,12 +1,14 @@
 # Written by Shaun Jackman @sjackman
 
+ref=transcripts
+
 # For shell redirection <(gunzip -c reads.fq.gz)
 SHELL=/bin/bash
 
-all: abundance.html salmon.html
+all: abundance.html salmon.html rna-editing.html
 
 install-deps:
-	brew install kallisto samtools
+	brew install bcftools bwa datamash kallisto salmon samtools vcftools
 
 .PHONY: all
 .DELETE_ON_ERROR:
@@ -17,6 +19,11 @@ install-deps:
 pg29mt-scaffolds.gff:
 	ln -sf ../$@ .
 
+# Extract GFF attributes
+
+%.gff.ID-Name: %.gff
+	grep '\tgene\t' $< |gsed -E 's/.*ID=([^;]*);Name=([^;]*).*/\1\t\2/' >$@
+
 # Convert BAM to FASTQ
 
 %_1.fq.gz: %.bam
@@ -24,6 +31,73 @@ pg29mt-scaffolds.gff:
 
 %_2.fq.gz: %.bam
 	time samtools view -uf128 $< |samtools bam2fq - |gzip >$@
+
+# BWA
+
+# Index the reference
+%.fa.bwt: %.fa
+	bwa index $<
+
+# Align the paired FASTQ query to the reference
+$(ref).%.sam: %_1.fq.gz %_2.fq.gz $(ref).fa.bwt
+	bwa mem -t4 $(ref).fa $*_1.fq.gz $*_2.fq.gz >$@
+
+# samtools
+
+# Sort a SAM file and create a BAM file
+%.sort.bam: %.sam
+	samtools view -Su $< |samtools sort - $*.sort
+
+# Index a BAM file
+%.bam.bai: %.bam
+	samtools index $<
+
+# Call variants
+%.vcf.gz: %.fa
+	samtools mpileup -vf $^ >$@
+
+# bcftools
+
+# Compute stats of a VCF file
+%.vcf.gz.stats: %.vcf.gz
+	bcftools stats $< >$@
+
+# Call genotypes
+%.gt.vcf.gz: %.vcf.gz
+	bcftools call -mvf GQ,GP -Oz $< >$@
+
+# Filter high-quality biallelic SNV
+%.qual.vcf.gz: %.vcf.gz
+	bcftools filter -S . -e 'QUAL < 50 || FMT/GQ < 50' $< |bcftools view -a |bcftools view -m2 -M2 -v snps -Oz >$@
+
+# Identify regions of coding genes
+%.regions: %.ID-Name
+	egrep -v 'orf|rrn|trn' $< |awk '{print $$1 "\t1\t999999999"}' >$@
+
+# Filter coding genes
+%.cds.vcf.gz: %.vcf.gz pg29mt-scaffolds.gff.regions
+	bcftools view -T pg29mt-scaffolds.gff.regions -Oz $< >$@
+
+# Filter C-to-U edits
+%.ctou.vcf.gz: %.vcf.gz
+	bcftools view -v snps -i 'REF="C" && ALT~"T"' -Oz $< >$@
+
+# Count the number of C-to-U edits per gene
+%.ctou.tsv: %.vcf.gz.tsv
+	(printf "ID\tC>U\n"; grep '\tC\t.*[CT]/T' $< |datamash -g 1 count 1) >$@
+
+# vcftools
+
+# Convert VCF to TSV
+
+%.vcf.gz.tsv: %.vcf.gz
+	gunzip -c $< |vcf-to-tab >$@
+
+# tabix
+
+# Index a bgz compressed VCF file
+%.vcf.gz.tbi: %.vcf.gz
+	tabix -pvcf $<
 
 # Kallisto
 
@@ -54,6 +128,16 @@ pg29mt-scaffolds.gff:
 
 # Dependencies
 
+$(ref).vcf.gz: \
+	$(ref).Bark.sort.bam \
+	$(ref).Embryo.sort.bam \
+	$(ref).FlushBud.sort.bam \
+	$(ref).MatureNeedle.sort.bam \
+	$(ref).Megagametophyte.sort.bam \
+	$(ref).SeedGermination.sort.bam \
+	$(ref).Xylem.sort.bam \
+	$(ref).YoungBuds.sort.bam
+
 abundance.html: \
 	tissues.tsv \
 	Bark/abundance.txt \
@@ -75,6 +159,8 @@ salmon.html: \
 	SeedGermination_quant/quant.sf \
 	Xylem_quant/quant.sf \
 	YoungBuds_quant/quant.sf
+
+rna-editing.html: transcripts.gt.qual.ctou.tsv
 
 # Data
 
