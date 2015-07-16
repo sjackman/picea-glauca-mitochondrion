@@ -1595,8 +1595,8 @@
 1	Prodigal:2.6	mRNA	402313	402432	.	+	0	ID=mRNA386;Parent=gene387;Name=orf00392;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_00392;product=hypothetical protein
 1	Prodigal:2.6	CDS	402313	402432	.	+	0	Parent=mRNA386;Name=orf00392;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_00392;product=hypothetical protein
 ###
-1	maker	gene	404110	404679	.	+	.	ID=gene388;Name=nad6|lcl|NC_008333.1_prot_YP_740454.1_32-gene
-1	maker	mRNA	404110	404679	12.6	+	.	ID=mRNA387;Parent=gene388;Name=nad6|lcl|NC_008333.1_prot_YP_740454.1_32;_AED=0.13;_eAED=0.13;_QI=0|-1|0|1|-1|0|1|0|189
+1	maker	gene	404110	404679	.	+	.	ID=gene388;Name=nad6|lcl|DQ645537.1_prot_ABG65653.1_32-gene
+1	maker	mRNA	404110	404679	12.6	+	.	ID=mRNA387;Parent=gene388;Name=nad6|lcl|DQ645537.1_prot_ABG65653.1_32;_AED=0.13;_eAED=0.13;_QI=0|-1|0|1|-1|0|1|0|189
 1	maker	exon	404110	404679	.	+	.	Parent=mRNA387
 1	maker	CDS	404110	404679	.	+	0	Parent=mRNA387
 ###
@@ -3490,7 +3490,7 @@
 1	Prodigal:2.6	CDS	889655	889837	.	-	0	Parent=mRNA855;Name=orf00863;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_00863;product=hypothetical protein
 ###
 1	maker	gene	889877	890296	.	+	.	ID=gene859;Name=rps13|lcl|NC_010303.1_prot_YP_001661427.1_34-gene
-1	maker	mRNA	889877	890296	23.5	+	.	ID=mRNA856;Parent=gene859;Name=rps13|lcl|NC_010303.1_prot_YP_001661427.1_34;_AED=0.02;_eAED=0.02;_QI=0|-1|0|1|-1|0|1|0|139
+1	maker	mRNA	889877	890296	23.5	+	.	ID=mRNA856;Parent=gene859;Name=rps13|lcl|NC_010303.1_prot_YP_001661427.1_34;_AED=0.06;_eAED=0.06;_QI=0|-1|0|1|-1|0|1|0|139
 1	maker	exon	889877	890296	.	+	.	Parent=mRNA856
 1	maker	CDS	889877	890296	.	+	0	Parent=mRNA856
 ###
@@ -5201,7 +5201,7 @@
 10	Prodigal:2.6	CDS	88363	88791	.	-	0	Parent=mRNA1279;Name=orf04411;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04411;product=hypothetical protein
 ###
 10	maker	gene	88899	89141	.	-	.	ID=gene1285;Name=sdh3|lcl|NC_022796.1_prot_YP_008802487.1_5-gene
-10	maker	mRNA	88899	89141	9.46	-	.	ID=mRNA1280;Parent=gene1285;Name=sdh3|lcl|NC_022796.1_prot_YP_008802487.1_5;_AED=0.14;_eAED=0.14;_QI=0|-1|0|1|-1|0|1|0|80
+10	maker	mRNA	88899	89141	9.46	-	.	ID=mRNA1280;Parent=gene1285;Name=sdh3|lcl|NC_022796.1_prot_YP_008802487.1_5;_AED=0.03;_eAED=0.03;_QI=0|-1|0|1|-1|0|1|0|80
 10	maker	exon	88899	89141	.	-	.	Parent=mRNA1280
 10	maker	CDS	88899	89141	.	-	0	Parent=mRNA1280
 ###
@@ -6003,7 +6003,7 @@
 11	Prodigal:2.6	CDS	128443	129051	.	+	0	Parent=mRNA1475;Name=RNA_pol_5;gene=RNA_pol_5;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:RNA_pol|lcl|JN375330.1_prot_AEM43903.1_6;locus_tag=OU3MT_04610;product=DNA-dependent RNA polymerase
 ###
 11	maker	gene	129719	132532	.	+	.	ID=gene1485;Name=dpo|lcl|JF750427.1_prot_AFD29780.1_18-gene
-11	maker	mRNA	129719	132532	9.98	+	.	ID=mRNA1476;Parent=gene1485;Name=dpo|lcl|JF750427.1_prot_AFD29780.1_18;_AED=0.22;_eAED=0.22;_QI=0|-1|0|1|-1|0|1|0|937
+11	maker	mRNA	129719	132532	9.98	+	.	ID=mRNA1476;Parent=gene1485;Name=dpo|lcl|JF750427.1_prot_AFD29780.1_18;_AED=0.26;_eAED=0.26;_QI=0|-1|0|1|-1|0|1|0|937
 11	maker	exon	129719	132532	.	+	.	Parent=mRNA1476
 11	maker	CDS	129719	132532	.	+	0	Parent=mRNA1476
 ###
@@ -14498,8 +14498,8 @@
 3	Prodigal:2.6	mRNA	277036	277176	.	+	0	ID=mRNA3578;Parent=gene3600;Name=orf02106;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02106;product=hypothetical protein
 3	Prodigal:2.6	CDS	277036	277176	.	+	0	Parent=mRNA3578;Name=orf02106;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02106;product=hypothetical protein
 ###
-3	maker	gene	277440	279164	.	+	.	ID=gene3601;Name=ccmFn|lcl|NC_021399.1_prot_YP_008080938.1_25-gene
-3	maker	mRNA	277440	279164	21.7	+	.	ID=mRNA3579;Parent=gene3601;Name=ccmFn|lcl|NC_021399.1_prot_YP_008080938.1_25;_AED=0.14;_eAED=0.14;_QI=0|0|0|1|0|0|3|0|439
+3	maker	gene	277440	279164	.	+	.	ID=gene3601;Name=ccmFN|lcl|NC_021399.1_prot_YP_008080938.1_25-gene
+3	maker	mRNA	277440	279164	21.7	+	.	ID=mRNA3579;Parent=gene3601;Name=ccmFN|lcl|NC_021399.1_prot_YP_008080938.1_25;_AED=0.14;_eAED=0.14;_QI=0|0|0|1|0|0|3|0|439
 3	maker	exon	277440	277936	.	+	.	Parent=mRNA3579
 3	maker	CDS	277440	277936	.	+	0	ID=CDS8;Parent=mRNA3579
 3	.	intron	277937	278155	.	+	.	Parent=mRNA3579
