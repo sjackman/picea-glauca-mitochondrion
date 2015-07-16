@@ -3,13 +3,15 @@
 *.gbk
 *.gff
 *.gff.gene
+*.gff2
 *.html
 *.log
 *.maker.output
 *.md
 *.orig
-*.png
 *.pdf
+*.png
+*.tsv
 .Rhistory
 .Rproj.user
 2014*
