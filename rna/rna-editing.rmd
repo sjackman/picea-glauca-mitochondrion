@@ -1,0 +1,104 @@
+---
+Title: RNA editing in the white spruce mitochondrion
+Author: Shaun jackman
+output:
+  html_document:
+    keep_md: yes
+    toc: yes
+---
+
+# Load libraries
+```{r load-libraries, message = FALSE}
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(readr)
+
+# Bioconductor
+library(genomeIntervals)
+```
+
+# Read the GFF file of annotations
+```{r read-gff}
+gff_all <- readGff3('pg29mt-scaffolds.gff', isRightOpen = FALSE)
+gff <- gff_all[gff_all$type %in% c('gene', 'mRNA', 'rRNA', 'tRNA'),]
+ID_Name_all <- data.frame(
+		ID = getGffAttribute(gff, 'ID'),
+		Name = getGffAttribute(gff, 'Name'),
+		Type = gff$type,
+		Size = size(gff),
+		stringsAsFactors = FALSE) %>%
+	mutate(Name = sub('\\|.*', '', Name))
+ID_Name <- ID_Name_all %>%
+	filter(Type == 'gene' & complete.cases(.))
+```
+
+# Read the data
+```{r read-data}
+data <- read_tsv("transcripts.gt.qual.ctou.tsv") %>%
+	left_join(ID_Name, by = "ID") %>%
+	filter(complete.cases(.)) %>%
+	mutate(`Edits per 100 bp` = 100 * `C>U` / Size,
+		Rank = rank(`Edits per 100 bp`, ties.method = "first"))
+
+data_cds <- data %>%
+	filter(!grepl("^orf|^rrn|^trn", Name)) %>%
+	mutate(Rank = rank(`Edits per 100 bp`, ties.method = "first"))
+```
+
+# Strip plot of number of C>U edits per unit length
+```{r edits-per-100-bp}
+ggplot(data) +
+	aes(x = `Edits per 100 bp`, y = Rank, label = Name) +
+	geom_point() +
+	xlim(0, 9)
+
+ggplot(data %>% filter(`Edits per 100 bp` > 3)) +
+	aes(x = `Edits per 100 bp`, y = Rank, label = Name) +
+	geom_point() +
+	geom_text(hjust = -0.1) +
+	xlim(NA, 9)
+```
+
+# Strip plot of number of C>U edits per unit length of CDS
+```{r edits-per-100-bp-cds, fig.height = 12}
+ggplot(data_cds) +
+	aes(x = `Edits per 100 bp`, y = Rank, label = Name) +
+	geom_point() +
+	geom_text(hjust = -0.1) +
+	xlim(0, 9)
+```
+
+# Scatter plot of number of C>U edits per unit length vs gene size of CDS
+```{r size-vs-edits-per-100-bp}
+ggplot(data_cds) +
+	aes(x = `Edits per 100 bp`, y = Size, label = Name) +
+	geom_point() +
+	geom_text(hjust = -0.1) +
+	scale_y_log10() +
+	xlim(0, 9)
+```
+
+# Scatter plot of number of C>U edits vs gene size of CDS
+```{r ctou-vs-size}
+ggplot(data_cds) +
+	aes(x = Size, y = `C>U`, label = Name) +
+	geom_point() +
+	geom_text(hjust = -0.1)
+```
+
+# Table of number of edits per CDS
+```{r table-edits-per-gene-cds}
+data_cds %>%
+	select(Name, Size, `C>U`, `Edits per 100 bp`) %>%
+	arrange(desc(`Edits per 100 bp`)) %>%
+	kable
+```
+
+# Table of number of edits per gene
+```{r table-edits-per-gene}
+data %>%
+	select(Name, Size, `C>U`, `Edits per 100 bp`) %>%
+	arrange(desc(`Edits per 100 bp`)) %>%
+	kable
+```
