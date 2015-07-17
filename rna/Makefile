@@ -21,7 +21,7 @@ pg29mt-scaffolds.gff:
 
 # Extract GFF attributes
 
-%.gff.ID-Name: %.gff
+%.gff.ID-Name.tsv: %.gff
 	grep '\tgene\t' $< |gsed -E 's/.*ID=([^;]*);Name=([^;]*).*/\1\t\2/' >$@
 
 # Convert BAM to FASTQ
@@ -71,12 +71,12 @@ $(ref).%.sam: %_1.fq.gz %_2.fq.gz $(ref).fa.bwt
 	bcftools filter -S . -e 'QUAL < 50 || FMT/GQ < 50' $< |bcftools view -a |bcftools view -m2 -M2 -v snps -Oz >$@
 
 # Identify regions of coding genes
-%.regions: %.ID-Name
+%.regions.tsv: %.ID-Name.tsv
 	egrep -v 'orf|rrn|trn' $< |awk '{print $$1 "\t1\t999999999"}' >$@
 
 # Filter coding genes
-%.cds.vcf.gz: %.vcf.gz pg29mt-scaffolds.gff.regions
-	bcftools view -T pg29mt-scaffolds.gff.regions -Oz $< >$@
+%.cds.vcf.gz: %.vcf.gz pg29mt-scaffolds.gff.regions.tsv
+	bcftools view -T pg29mt-scaffolds.gff.regions.tsv -Oz $< >$@
 
 # Filter C-to-U edits
 %.ctou.vcf.gz: %.vcf.gz
