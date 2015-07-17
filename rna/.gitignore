@@ -1,6 +1,10 @@
 *.bam
 *.bam.bai
 *.fq.gz
+*.vcf.gz
+*.vcf.gz.stats
+*.vcf.gz.tbi
+*_quant
 
 Bark/
 Embryo/
