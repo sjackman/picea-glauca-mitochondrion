@@ -95,6 +95,12 @@ mitochondrion/mitochondrion.%.gz:
 	mkdir -p $(@D)
 	curl -o $@ ftp://ftp.ncbi.nlm.nih.gov/refseq/release/$@
 
+# Prodigal
+
+# Annotate genes using Prodigal
+%.prodigal.gff: %.fa
+	prodigal -c -m -g 1 -p single -f gff -a $*.prodigal.faa -d $*.prodigal.ffn -s $*.prodigal.tsv -i $< -o $@
+
 # RepeatModeler
 
 %.nin: %.fa
