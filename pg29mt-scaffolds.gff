@@ -3490,7 +3490,7 @@
 1	Prodigal:2.6	CDS	889655	889837	.	-	0	Parent=mRNA855;Name=orf00863;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_00863;product=hypothetical protein
 ###
 1	maker	gene	889877	890296	.	+	.	ID=gene859;Name=rps13|lcl|NC_010303.1_prot_YP_001661427.1_34-gene
-1	maker	mRNA	889877	890296	23.5	+	.	ID=mRNA856;Parent=gene859;Name=rps13|lcl|NC_010303.1_prot_YP_001661427.1_34;_AED=0.06;_eAED=0.06;_QI=0|-1|0|1|-1|0|1|0|139
+1	maker	mRNA	889877	890296	23.5	+	.	ID=mRNA856;Parent=gene859;Name=rps13|lcl|NC_010303.1_prot_YP_001661427.1_34;_AED=0.02;_eAED=0.02;_QI=0|-1|0|1|-1|0|1|0|139
 1	maker	exon	889877	890296	.	+	.	Parent=mRNA856
 1	maker	CDS	889877	890296	.	+	0	Parent=mRNA856
 ###
@@ -5201,7 +5201,7 @@
 10	Prodigal:2.6	CDS	88363	88791	.	-	0	Parent=mRNA1279;Name=orf04411;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04411;product=hypothetical protein
 ###
 10	maker	gene	88899	89141	.	-	.	ID=gene1285;Name=sdh3|lcl|NC_022796.1_prot_YP_008802487.1_5-gene
-10	maker	mRNA	88899	89141	9.46	-	.	ID=mRNA1280;Parent=gene1285;Name=sdh3|lcl|NC_022796.1_prot_YP_008802487.1_5;_AED=0.03;_eAED=0.03;_QI=0|-1|0|1|-1|0|1|0|80
+10	maker	mRNA	88899	89141	9.46	-	.	ID=mRNA1280;Parent=gene1285;Name=sdh3|lcl|NC_022796.1_prot_YP_008802487.1_5;_AED=0.14;_eAED=0.14;_QI=0|-1|0|1|-1|0|1|0|80
 10	maker	exon	88899	89141	.	-	.	Parent=mRNA1280
 10	maker	CDS	88899	89141	.	-	0	Parent=mRNA1280
 ###
@@ -6003,7 +6003,7 @@
 11	Prodigal:2.6	CDS	128443	129051	.	+	0	Parent=mRNA1475;Name=RNA_pol_5;gene=RNA_pol_5;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:RNA_pol|lcl|JN375330.1_prot_AEM43903.1_6;locus_tag=OU3MT_04610;product=DNA-dependent RNA polymerase
 ###
 11	maker	gene	129719	132532	.	+	.	ID=gene1485;Name=dpo|lcl|JF750427.1_prot_AFD29780.1_18-gene
-11	maker	mRNA	129719	132532	9.98	+	.	ID=mRNA1476;Parent=gene1485;Name=dpo|lcl|JF750427.1_prot_AFD29780.1_18;_AED=0.26;_eAED=0.26;_QI=0|-1|0|1|-1|0|1|0|937
+11	maker	mRNA	129719	132532	9.98	+	.	ID=mRNA1476;Parent=gene1485;Name=dpo|lcl|JF750427.1_prot_AFD29780.1_18;_AED=0.22;_eAED=0.22;_QI=0|-1|0|1|-1|0|1|0|937
 11	maker	exon	129719	132532	.	+	.	Parent=mRNA1476
 11	maker	CDS	129719	132532	.	+	0	Parent=mRNA1476
 ###
