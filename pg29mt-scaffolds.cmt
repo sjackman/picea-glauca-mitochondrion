@@ -1,0 +1,4 @@
+StructuredCommentPrefix	##Genome-Assembly-Data-START##
+Assembly Method	ABySS v. 1.3.7
+Genome Coverage	30x
+Sequencing Technology	Illumina HiSeq
