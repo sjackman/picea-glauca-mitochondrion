@@ -10294,7 +10294,6 @@
 2	Prodigal:2.6	mRNA	104227	104445	.	-	0	ID=mRNA2537;Parent=gene2555;Name=orf01284;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01284;product=hypothetical protein
 2	Prodigal:2.6	CDS	104227	104445	.	-	0	Parent=mRNA2537;Name=orf01284;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01284;product=hypothetical protein
 ###
-2	prokka	gene	105703	105780	.	-	1	Name=orf01285;locus_tag=OU3MT_01285
 2	prokka	gene	106364	106966	.	-	1	ID=gene2556;Name=orf01286;locus_tag=OU3MT_01286
 2	Prodigal:2.6	mRNA	106364	106966	.	-	0	ID=mRNA2538;Parent=gene2556;Name=orf01286;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01286;product=hypothetical protein
 2	Prodigal:2.6	CDS	106364	106966	.	-	0	Parent=mRNA2538;Name=orf01286;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01286;product=hypothetical protein
