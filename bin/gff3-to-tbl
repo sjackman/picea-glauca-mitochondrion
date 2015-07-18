@@ -92,11 +92,14 @@ def print_gene(f, gene_product_table):
 	else:
 		print_coord_type(f)
 
-	name = f.qualifiers['Name'][0].rpartition('-gene')[0]
+	name = f.qualifiers['Name'][0]
 	gene = name.partition('|')[0]
+	gene_without_suffix = re.sub("[-_][^-_]*$", "", gene)
 	locus_tag = "%s_%s" % (locus_tag_prefix, f.qualifiers['ID'][0])
-	product = gene_product_table[gene]
-	print "\t\t\tgene\t%s" % gene
+	product = gene_product_table.get(gene,
+		gene_product_table.get(gene_without_suffix, "hypothetical protein"))
+	if not gene.startswith("orf"):
+		print "\t\t\tgene\t%s" % gene
 	print "\t\t\tlocus_tag\t%s" % locus_tag
 	if 'exception' in f.qualifiers:
 		print "\t\t\texception\t%s" % f.qualifiers['exception'][0]
