@@ -333,6 +333,27 @@ gbk/%.00.gbk: %.gbk
 %.gtf: %.gff
 	gt -q gff3_to_gtf $< >$@
 
+# Extract gene and product names from GFF
+%.product.tsv: %.gff
+	(printf "gene\tproduct\n" \
+		&& sed -En 's/%2C/,/g;s~%2F~/~g; \
+			s/^.*gene=([^;]*);.*product=([^;]*).*$$/\1	\2/p' $< |sort -u) >$@
+
+# Convert GFF to TBL
+%.tbl: %.gff %.product.tsv
+	bin/gff3-to-tbl $^ >$@
+
+# Add structured comments to a FASTA file
+%.fsa: %.fa
+	sed 's/^>.*/& [organism=Picea glauca] [location=mitochondrion] [completeness=draft] [topology=linear] [gcode=1]/' $< >$@
+
+# tbl2asn
+
+# Convert TBL to GBK and SQN
+%.gbf %.sqn: %.fsa %.sbt %.tbl %.cmt
+	tbl2asn -i $< -t $*.sbt -w $*.cmt -Z $*.discrep -Vbv
+	gsed -i 's/DEFINITION  Picea glauca/& mitochondrion draft genome/' $*.gbf
+
 # Render HTML from RMarkdown
 %.html: %.rmd
 	Rscript -e 'rmarkdown::render("$<", output_format = "html_document")'
