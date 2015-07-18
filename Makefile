@@ -239,7 +239,7 @@ prokka/%.gff.gene: prokka/%.gff
 
 %.gff: %.prokka.gff %.maker.gff
 	bedtools intersect -v -header -a $< -b $*.maker.gff \
-		|grep -Fv 'tRNA-???' \
+		|sed '/tRNA-???/{N;d;}' \
 		|gt gff3 -sort $*.maker.gff - >$@
 
 # OrganellarGenomeDRAW
