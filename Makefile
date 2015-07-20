@@ -351,7 +351,7 @@ gbk/%.00.gbk: %.gbk
 
 # Convert TBL to GBK and SQN
 %.gbf %.sqn: %.fsa %.sbt %.tbl %.cmt
-	tbl2asn -i $< -t $*.sbt -w $*.cmt -Z $*.discrep -Vbv
+	tbl2asn -a s -i $< -t $*.sbt -w $*.cmt -Z $*.discrep -Vbv
 	gsed -i 's/DEFINITION  Picea glauca/& mitochondrion draft genome/' $*.gbf
 
 # Render HTML from RMarkdown
