@@ -42,6 +42,12 @@ bin/aragorn_out_to_gff3.py:
 %.blastn: %.fa
 	blastn -db nt -query $< -out $@
 
+# BWA
+
+# Align the reads to the assembled genome
+$(name).%.sort.bam.bai: $(name).fa %.fa.gz
+	biomake ref=$(name) z=.gz threads=$t $@
+
 # Copy local data
 
 #PICEAGLAUCA_rpt2.0.fa: /genesis/extscratch/seqdev/PG/data/PICEAGLAUCA_rpt2.0
