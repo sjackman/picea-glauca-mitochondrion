@@ -77,6 +77,19 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 		s/^>(.*gene=([^]]*).*)$$/>\2|\1/' \
 	|seqmagick -q convert --pattern-exclude '^lcl' --deduplicate-taxa - $@
 
+# Extract accession numbers from the FASTA file
+%.id: %.orig.fa
+	sed '/^>/!d;s/.*lcl|//;s/_prot_.*//' cds_aa.orig.fa |uniq |sort -u >$@
+
+# Fetch the records
+%.docsum.xml: %.id
+	esearch -db nuccore -query "`<$<`" |efetch -format docsum >$@
+
+# Convert XML to TSV
+%.docsum.tsv: %.docsum.xml
+	(printf "Caption\tTaxId\tOrganism\tTitle\n"; \
+		xtract -pattern DocumentSummary -element Caption,TaxId,Organism,Title <$<) >$@
+
 # Cycas taitungensis
 NC_010303.1.json: %.json:
 	bionode-ncbi search nuccore $* >$@
