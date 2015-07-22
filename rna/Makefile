@@ -1,11 +1,14 @@
 # Written by Shaun Jackman @sjackman
 
-ref=transcripts
+# Parameters
+genome=pg29mt-scaffolds
+transcripts=transcripts
+threads=4
 
 # For shell redirection <(gunzip -c reads.fq.gz)
 SHELL=/bin/bash
 
-all: abundance.html salmon.html rna-editing.html
+all: abundance.html salmon.html rna-editing.html $(genome).vcf.gz
 
 install-deps:
 	brew install bcftools bwa datamash kallisto salmon samtools vcftools
@@ -16,7 +19,7 @@ install-deps:
 
 # Create symlinks
 
-pg29mt-scaffolds.gff:
+$(genome).gff:
 	ln -sf ../$@ .
 
 # Extract GFF attributes
@@ -38,9 +41,13 @@ pg29mt-scaffolds.gff:
 %.fa.bwt: %.fa
 	bwa index $<
 
-# Align the paired FASTQ query to the reference
-$(ref).%.sam: %_1.fq.gz %_2.fq.gz $(ref).fa.bwt
-	bwa mem -t4 $(ref).fa $*_1.fq.gz $*_2.fq.gz >$@
+# Align the paired FASTQ query to the genome
+$(genome).%.sam: %_1.fq.gz %_2.fq.gz $(genome).fa.bwt
+	bwa mem -t$(threads) $(genome).fa $*_1.fq.gz $*_2.fq.gz >$@
+
+# Align the paired FASTQ query to the transcripts
+$(transcripts).%.sam: %_1.fq.gz %_2.fq.gz $(transcripts).fa.bwt
+	bwa mem -t$(threads) $(transcripts).fa $*_1.fq.gz $*_2.fq.gz >$@
 
 # samtools
 
@@ -75,8 +82,8 @@ $(ref).%.sam: %_1.fq.gz %_2.fq.gz $(ref).fa.bwt
 	egrep -v 'orf|rrn|trn' $< |awk '{print $$1 "\t1\t999999999"}' >$@
 
 # Filter coding genes
-%.cds.vcf.gz: %.vcf.gz pg29mt-scaffolds.gff.regions.tsv
-	bcftools view -T pg29mt-scaffolds.gff.regions.tsv -Oz $< >$@
+%.cds.vcf.gz: %.vcf.gz $(genome).gff.regions.tsv
+	bcftools view -T $(genome).gff.regions.tsv -Oz $< >$@
 
 # Filter C-to-U edits
 %.ctou.vcf.gz: %.vcf.gz
@@ -128,15 +135,25 @@ $(ref).%.sam: %_1.fq.gz %_2.fq.gz $(ref).fa.bwt
 
 # Dependencies
 
-$(ref).vcf.gz: \
-	$(ref).Bark.sort.bam \
-	$(ref).Embryo.sort.bam \
-	$(ref).FlushBud.sort.bam \
-	$(ref).MatureNeedle.sort.bam \
-	$(ref).Megagametophyte.sort.bam \
-	$(ref).SeedGermination.sort.bam \
-	$(ref).Xylem.sort.bam \
-	$(ref).YoungBuds.sort.bam
+$(genome).vcf.gz: \
+	$(genome).Bark.sort.bam \
+	$(genome).Embryo.sort.bam \
+	$(genome).FlushBud.sort.bam \
+	$(genome).MatureNeedle.sort.bam \
+	$(genome).Megagametophyte.sort.bam \
+	$(genome).SeedGermination.sort.bam \
+	$(genome).Xylem.sort.bam \
+	$(genome).YoungBuds.sort.bam
+
+$(transcripts).vcf.gz: \
+	$(transcripts).Bark.sort.bam \
+	$(transcripts).Embryo.sort.bam \
+	$(transcripts).FlushBud.sort.bam \
+	$(transcripts).MatureNeedle.sort.bam \
+	$(transcripts).Megagametophyte.sort.bam \
+	$(transcripts).SeedGermination.sort.bam \
+	$(transcripts).Xylem.sort.bam \
+	$(transcripts).YoungBuds.sort.bam
 
 abundance.html: \
 	tissues.tsv \
