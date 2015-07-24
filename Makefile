@@ -90,6 +90,14 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 	(printf "Caption\tTaxId\tOrganism\tTitle\n"; \
 		xtract -pattern DocumentSummary -element Caption,TaxId,Organism,Title <$<) >$@
 
+# Fetch a taxonomy tree from a list of TaxID
+%.taxid.xml: %.docsum.tsv
+	awk 'NR>1 {print $$2}' $< |epost -db taxonomy |efetch -format xml >$@
+
+# Convert NCBI XML taxonomy to Newick
+%.taxid.tree: %.taxid.xml
+	xsltproc bin/taxon2newick.xsl $< >$@
+
 # Cycas taitungensis
 NC_010303.1.json: %.json:
 	bionode-ncbi search nuccore $* >$@
