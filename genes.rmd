@@ -25,12 +25,7 @@ library(dplyr)
 library(genomeIntervals)
 library(ggplot2)
 library(lattice)
-```
-
-# Functions
-```{r functions}
-# Set the row names of x to value
-set_row_names <- function(x, value) { row.names(x) <- value; x }
+library(magrittr)
 ```
 
 # Gene families
@@ -94,7 +89,7 @@ data_grouped <- data %>%
 		Count = n(),
 		Size = sum(Size)) %>%
 	droplevels %>%
-	right_join(gene.types, .)
+	right_join(gene.types, ., by = "Family")
 data_grouped_without_orf <- data_grouped %>% filter(Family.short != "orf")
 ```
 
@@ -105,7 +100,7 @@ tab <- data %>%
 	summarise(
 		Count = n(),
 		Size = sum(Size)) %>%
-	set_row_names(.$Type) %>%
+	set_rownames(.$Type) %>%
 	select(Count, Size)
 tab['Sum',] <- colSums(tab)
 kable(tab)
@@ -114,7 +109,7 @@ kable(tab)
 # Tabulate genes by family
 ```{r tabulate-genes-by-family}
 tab <- data_grouped %>%
-	set_row_names(.$Family) %>%
+	set_rownames(.$Family) %>%
 	ungroup %>%
 	select(Count, Size)
 tab['Sum',] <- colSums(tab)
@@ -125,7 +120,7 @@ kable(tab)
 ```{r tabulate-known-genes}
 tab <- data_grouped %>%
 	filter(!Family.short %in% c("orf", "oth")) %>%
-	set_row_names(paste(.$Family.short, .$Family)) %>%
+	set_rownames(paste(.$Family.short, .$Family)) %>%
 	ungroup %>%
 	select(Count, Size)
 tab['Sum',] <- colSums(tab)
@@ -136,7 +131,7 @@ kable(tab)
 ```{r tabulate-mrna-by-family}
 tab <- data_grouped %>%
 	filter(!Family.short %in% c("orf", "oth", "rrn", "trn")) %>%
-	set_row_names(paste(.$Family.short, .$Family)) %>%
+	set_rownames(paste(.$Family.short, .$Family)) %>%
 	ungroup %>%
 	select(Count, Size)
 tab['Sum',] <- colSums(tab)
@@ -172,7 +167,7 @@ data %>%
 	summarise(
 		Count = n(),
 		Size = sum(Size)) %>%
-	right_join(gene.types, .) %>%
+	right_join(gene.types, ., by = "Family") %>%
 	kable
 ```
 
