@@ -12,20 +12,16 @@ library(knitr)
 opts_chunk$set(tidy = FALSE, fig.width = 10, fig.height = 5)
 ```
 
-```{r Install libraries, eval=FALSE, include=FALSE}
-install.packages('dplyr')
-install.packages('ggplot2')
-install.packages('lattice')
-source('http://bioconductor.org/biocLite.R')
-biocLite('genomeIntervals')
-```
-
 ```{r Load libraries, include=FALSE}
 library(dplyr)
-library(genomeIntervals)
 library(ggplot2)
 library(lattice)
 library(magrittr)
+library(RColorBrewer)
+library(stringr)
+
+# Bioconductor
+library(genomeIntervals)
 ```
 
 # Gene families
@@ -215,13 +211,16 @@ stripplot(Family ~ Size, data,
 	xlab = 'Size (bp)')
 ```
 
-# Density plot of type vs size
-```{r density-type-vs-size}
-ggplot(data = data) +
-	aes(x = Size) +
-	facet_wrap(~ Family.short) +
-	geom_density() +
-	xlab("Size (bp)")
+# Strip plot of type vs size by family
+```{r stripplot-type-vs-size, fig.height = 9}
+data %>%
+	filter(!Family.short %in% ignore_families) %>% droplevels %>%
+	group_by(Family, Gene) %>%
+	summarize(Size = sum(Size)) %>%
+ggplot() +
+	aes(x = Size / 1e3, y = Family, colour = Gene) +
+	geom_point() +
+	xlab('Size (kbp)')
 ```
 
 # Barchart of type vs count
@@ -234,14 +233,34 @@ barchart(Type ~ Count, data_grouped_without_orf, group = Family,
 ```
 
 # Barchart of type vs size
-```{r barchart-type-vs-size, fig.height = 9}
+```{r barchart-type-vs-size, fig.width = 7, fig.height = 9, dpi = 300}
 ignore_families <- c("orf", "bla", "tns")
 barchart(Family ~ Size / 1e3,
 	data %>% filter(!Family.short %in% ignore_families) %>% droplevels,
 	group = Gene,
 	stack = TRUE, auto.key = list(reverse.rows = TRUE, space = 'right'),
 	xlab = 'Size (kbp)')
+```
 
+# Barchart of type vs size
+```{r barchart-type-vs-size-ggplot, fig.width = 7, fig.height = 9, dpi = 300}
+data_barchart <- data %>%
+	filter(!Family.short %in% ignore_families) %>% droplevels %>%
+	transform(Family = str_wrap(paste(Family.short, Family, sep = ": "), 30))
+ggplot(data_barchart) +
+	theme_bw() +
+	theme(legend.key = element_rect(colour = "black")) + 
+	aes(y = Size / 1e3, x = Family, fill = Gene) +
+	geom_bar(stat = "identity", color = "black") +
+	coord_flip() +
+	scale_fill_manual(values = rep(brewer.pal(12, "Set3"), length.out = 99)) +
+	guides(fill = guide_legend(keyheight = 0.8, override.aes = list(colour = NULL))) +
+	xlim(data_barchart$Family %>% unique %>% sort(decreasing = TRUE)) +
+	ylab('Size (kbp)')
+```
+
+# Barchart of size grouped by family
+```{r barchart-size-by-family}
 barchart(~ Size / 1e3, data_grouped_without_orf, group = Family,
 	stack = TRUE, auto.key = list(space = 'right'),
 	xlab = 'Size (kbp)')
