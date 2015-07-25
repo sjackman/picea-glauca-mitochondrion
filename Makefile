@@ -102,6 +102,16 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 NC_010303.1.json: %.json:
 	bionode-ncbi search nuccore $* >$@
 
+# Extract a list of a gene names
+NC_010303.1.gff.gene: NC_010303.1.gff
+	gsed -nE 's/ND/nad/;/\tgene\t/s/.*ID=([^;]*).*/\1/p' $< |sort -u >$@
+
+# Extract a list of tRNA gene names
+NC_010303.1.gff.tRNA: NC_010303.1.gff
+	gsed -nE '/\ttRNA\t/!d;s/.*ID=([^;]*).*codon_recognized=([^;]*).*/\1-\2/p' $< \
+		|bioawk -F- '{print $$1 "-" revcomp($$2)}' |tr T U \
+		|sort -u >$@
+
 %.uid: %.json
 	json uid <$< >$@
 
@@ -279,6 +289,10 @@ prokka/%.gff.gene: prokka/%.gff
 # Extract the names of genes from a GFF file
 %.gff.gene: %.gff
 	bin/gff-gene-name $< >$@
+
+# Determine unique gene names
+%.gff.uniq.gene: %.gff.gene
+	sed '/orf/d;s/|.*//;s/[-_][0-9a-z]$$//' $< |sort -u >$@
 
 # Extract DNA sequences of GFF gene features from a FASTA file
 %.gff.gene.fa: %.gff %.fa
