@@ -7,14 +7,10 @@ output:
     toc: yes
 ---
 
-```{r knitr, include=FALSE}
-library(knitr)
-opts_chunk$set(tidy = FALSE, fig.width = 10, fig.height = 5)
-```
-
 ```{r Load libraries, include=FALSE}
 library(dplyr)
 library(ggplot2)
+library(knitr)
 library(lattice)
 library(magrittr)
 library(RColorBrewer)
@@ -22,6 +18,10 @@ library(stringr)
 
 # Bioconductor
 library(genomeIntervals)
+```
+
+```{r knitr, include=FALSE}
+opts_chunk$set(tidy = FALSE, fig.width = 10, fig.height = 5)
 ```
 
 # Gene families
@@ -60,6 +60,8 @@ gff.all <- readGff3("pg29mt-scaffolds.gff", isRightOpen = FALSE)
 gff <- gff.all[gff.all$type %in% c('mRNA', 'rRNA', 'tRNA'),]
 
 data <- droplevels(data.frame(
+	Scaffold = gff$seq_name,
+	Strand = gff$strand,
 	Type = gff$type,
 	ID = getGffAttribute(gff, 'ID'),
 	Name = getGffAttribute(gff, 'Name'),
@@ -256,6 +258,26 @@ ggplot(data_barchart) +
 	scale_fill_manual(values = rep(brewer.pal(12, "Set3"), length.out = 99)) +
 	guides(fill = guide_legend(keyheight = 0.8, override.aes = list(colour = NULL))) +
 	xlim(data_barchart$Family %>% unique %>% sort(decreasing = TRUE)) +
+	ylab('Size (kbp)')
+```
+
+# Barchart of genes by scaffold
+```{r barchart-genes-by-scaffold, fig.width = 7, fig.height = 9, dpi = 300}
+data_scaffolds <- data %>%
+	filter(!Family.short %in% ignore_families) %>% droplevels %>%
+	transform(Family = str_wrap(Family, 25))
+Family_count <- data_scaffolds$Family %>% unique %>% length
+ggplot(data_scaffolds) +
+	theme_bw() +
+	theme(legend.key = element_rect(colour = "black")) + 
+	aes(y = Size / 1e3, x = Scaffold, fill = Family) +
+	geom_bar(stat = "identity", color = "black") +
+	coord_flip() +
+	scale_fill_manual(values = colorRampPalette(
+		brewer.pal(12, "Set3"))(Family_count)) +
+	guides(fill = guide_legend(keyheight = 2, override.aes = list(colour = NULL))) +
+	xlim(data_scaffolds$Scaffold %>% unique %>% as.character %>% as.integer %>% sort(decreasing = TRUE) %>% as.character) +
+	#facet_grid(Scaffold ~ .) +
 	ylab('Size (kbp)')
 ```
 
