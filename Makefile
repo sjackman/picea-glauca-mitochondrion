@@ -281,8 +281,15 @@ prokka/%.gff.gene: prokka/%.gff
 
 # OrganellarGenomeDRAW
 
+# Draw a linear genome
 %.gbk.png: %.gbk
 	drawgenemap --density 150 --format png --infile $< --outfile $<
+
+# Draw a circular genome
+%.gbk.circular.png: %.gbk
+	drawgenemap --format png --infile $< --outfile $<.circular \
+		--gc --force_circular --density 126
+	mogrify -units PixelsPerInch -density 300 $@
 
 # Report the annotated genes
 
