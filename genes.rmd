@@ -270,9 +270,11 @@ Family_count <- data_scaffolds$Family %>% unique %>% length
 ggplot(data_scaffolds) +
 	theme_bw() +
 	theme(legend.key = element_rect(colour = "black")) + 
-	aes(y = Size / 1e3, x = Scaffold, fill = Family) +
+	aes(y = Size / 1e3, x = Scaffold, fill = Family,
+		label = ifelse(Size > 1000, Gene %>% as.character, "")) +
 	geom_bar(stat = "identity", color = "black") +
 	coord_flip() +
+	geom_text(position = "stack", hjust = 1.05) +
 	scale_fill_manual(values = colorRampPalette(
 		brewer.pal(12, "Set3"))(Family_count)) +
 	guides(fill = guide_legend(keyheight = 2, override.aes = list(colour = NULL))) +
