@@ -1,0 +1,76 @@
+gene	product
+RNA_pol	DNA-dependent RNA polymerase
+atp1	ATPase subunit 1
+atp4	ATPase subunit 4
+atp6	ATPase subunit 6
+atp8	ATPase subunit 8
+atp9	ATPase subunit 9
+bla	Beta-lactamase TEM precursor
+ccmB	cytochrome c biogenesis B
+ccmC	cytochrome c biogenesis C
+ccmFC1	cytochrome c biogenesis protein FC1
+ccmFC2	cytochrome c biogenesis protein FC2
+ccmFN	cytochrome c biogenesis FN
+cob	apocytochrome b
+cox1	cytochrome c oxidase subunit 1
+cox2	cytochrome c oxidase subunit 2
+cox3	cytochrome c oxidase subunit 3
+dpo	DNA polymerase
+matR	maturase
+mttB	transport membrane protein
+nad1	NADH dehydrogenase subunit 1
+nad2	NADH dehydrogenase subunit 2
+nad3	NADH dehydrogenase subunit 3
+nad4	NADH dehydrogenase subunit 4
+nad4L	NADH dehydrogenase subunit 4L
+nad4a	NADH dehydrogenase subunit 4a
+nad5	NADH dehydrogenase subunit 5
+nad6	NADH dehydrogenase subunit 6
+nad7	NADH dehydrogenase subunit 7
+nad9	NADH dehydrogenase subunit 9
+psaA	Photosystem I P700 chlorophyll a apoprotein A1
+psaB	Photosystem I P700 chlorophyll a apoprotein A2
+rpl10	ribosomal protein L10
+rpl16	ribosomal protein L16
+rpl2	ribosomal protein L2
+rpl5	ribosomal protein L5
+rps1	ribosomal protein S1
+rps10	ribosomal protein S10
+rps11	ribosomal protein S11
+rps12	ribosomal protein S12
+rps13	ribosomal protein S13
+rps14	ribosomal protein S14
+rps19	ribosomal protein S19
+rps2	ribosomal protein S2
+rps3	ribosomal protein S3
+rps4	ribosomal protein S4
+rps7	ribosomal protein S7
+rrn18	18S ribosomal RNA
+rrn26	26S ribosomal RNA
+rrn5	5S ribosomal RNA
+sdh3	succinate dehydrogenase subunit 3
+tnsA	Transposon Tn7 transposition protein TnsA
+trnA	tRNA-Ala
+trnC	tRNA-Cys
+trnD	tRNA-Asp
+trnE	tRNA-Glu
+trnF	tRNA-Phe
+trnG	tRNA-Gly
+trnH	tRNA-His
+trnI	tRNA-Ile
+trnK	tRNA-Lys
+trnL	tRNA-Leu
+trnM	tRNA-Met
+trnN	tRNA-Asn
+trnP	tRNA-Pro
+trnQ	tRNA-Gln
+trnR	tRNA-Arg
+trnS	tRNA-Ser
+trnT	tRNA-Thr
+trnV	tRNA-Val
+trnW	tRNA-Trp
+trnY	tRNA-Tyr
+ymf40	18S ribosomal RNA intron 1 ORF
+ymfatpA	atpA intron1 ORF
+ymfcob	cob intron3 ORF
+ymfcox1	coxI intron2 ORF
