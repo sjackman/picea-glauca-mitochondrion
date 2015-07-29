@@ -112,8 +112,9 @@ def print_gene(f, gene_product_table, translations):
 	gene = name.partition('|')[0]
 	gene_without_suffix = re.sub("[-_][^-_]*$", "", gene)
 	locus_tag = "%s_%s" % (locus_tag_prefix, f.qualifiers['ID'][0])
-	product = gene_product_table.get(gene,
-		gene_product_table.get(gene_without_suffix, "hypothetical protein"))
+	product = "hypothetical protein" if gene.startswith("orf") else \
+		gene_product_table.get(gene,
+			gene_product_table.get(gene_without_suffix, None))
 	if not gene.startswith("orf"):
 		print "\t\t\tgene\t%s" % gene
 	print "\t\t\tlocus_tag\t%s" % locus_tag
@@ -124,6 +125,7 @@ def print_gene(f, gene_product_table, translations):
 		if sf.type == 'mRNA':
 			print_mrna(sf, incomplete, locus_tag, product)
 			print_introns(sf)
+			assert product != None, "No product for %s" % gene
 		elif sf.type == 'rRNA':
 			print_coord_type(sf, incomplete)
 			size = name.partition('rrn')[2]
