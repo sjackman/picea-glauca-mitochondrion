@@ -14949,18 +14949,6 @@
 32	Prodigal:2.6	mRNA	2415	4253	.	+	0	ID=mRNA3687;Parent=gene3711;Name=orf05851;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05851;product=hypothetical protein
 32	Prodigal:2.6	CDS	2415	4253	.	+	0	Parent=mRNA3687;Name=orf05851;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05851;product=hypothetical protein
 ###
-33	prokka	gene	1297	2157	.	+	1	ID=gene3712;Name=bla;gene=bla;locus_tag=OU3MT_05852
-33	Prodigal:2.6	mRNA	1297	2157	.	+	0	ID=mRNA3688;Parent=gene3712;eC_number=3.5.2.6;Name=bla;gene=bla;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:UniProtKB:P62593;locus_tag=OU3MT_05852;product=Beta-lactamase TEM precursor
-33	Prodigal:2.6	CDS	1297	2157	.	+	0	Parent=mRNA3688;eC_number=3.5.2.6;Name=bla;gene=bla;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:UniProtKB:P62593;locus_tag=OU3MT_05852;product=Beta-lactamase TEM precursor
-###
-33	prokka	gene	3355	3657	.	+	1	ID=gene3713;Name=tnsA;gene=tnsA;locus_tag=OU3MT_05853
-33	Prodigal:2.6	mRNA	3355	3657	.	+	0	ID=mRNA3689;Parent=gene3713;Name=tnsA;gene=tnsA;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:UniProtKB:P13988;locus_tag=OU3MT_05853;product=Transposon Tn7 transposition protein TnsA
-33	Prodigal:2.6	CDS	3355	3657	.	+	0	Parent=mRNA3689;Name=tnsA;gene=tnsA;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:UniProtKB:P13988;locus_tag=OU3MT_05853;product=Transposon Tn7 transposition protein TnsA
-###
-33	prokka	gene	3512	3976	.	-	1	ID=gene3714;Name=orf05854;locus_tag=OU3MT_05854
-33	Prodigal:2.6	mRNA	3512	3976	.	-	0	ID=mRNA3690;Parent=gene3714;Name=orf05854;inference=ab initio prediction:Prodigal:2.6,protein motif:CLUSTERS:PRK03624;locus_tag=OU3MT_05854;product=putative acetyltransferase
-33	Prodigal:2.6	CDS	3512	3976	.	-	0	Parent=mRNA3690;Name=orf05854;inference=ab initio prediction:Prodigal:2.6,protein motif:CLUSTERS:PRK03624;locus_tag=OU3MT_05854;product=putative acetyltransferase
-###
 34	prokka	gene	1521	1631	.	+	1	ID=gene3715;Name=orf05855;locus_tag=OU3MT_05855
 34	Prodigal:2.6	mRNA	1521	1631	.	+	0	ID=mRNA3691;Parent=gene3715;Name=orf05855;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05855;product=hypothetical protein
 34	Prodigal:2.6	CDS	1521	1631	.	+	0	Parent=mRNA3691;Name=orf05855;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05855;product=hypothetical protein
@@ -15016,18 +15004,6 @@
 35	prokka	gene	6081	6269	.	+	1	ID=gene3728;Name=orf05868;locus_tag=OU3MT_05868
 35	Prodigal:2.6	mRNA	6081	6269	.	+	0	ID=mRNA3704;Parent=gene3728;Name=orf05868;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05868;product=hypothetical protein
 35	Prodigal:2.6	CDS	6081	6269	.	+	0	Parent=mRNA3704;Name=orf05868;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05868;product=hypothetical protein
-###
-36	prokka	gene	237	485	.	+	1	ID=gene3729;Name=orf05869;locus_tag=OU3MT_05869
-36	Prodigal:2.6	mRNA	237	485	.	+	0	ID=mRNA3705;Parent=gene3729;Name=orf05869;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05869;product=hypothetical protein
-36	Prodigal:2.6	CDS	237	485	.	+	0	Parent=mRNA3705;Name=orf05869;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05869;product=hypothetical protein
-###
-36	prokka	gene	581	724	.	-	1	ID=gene3730;Name=orf05870;locus_tag=OU3MT_05870
-36	Prodigal:2.6	mRNA	581	724	.	-	0	ID=mRNA3706;Parent=gene3730;Name=orf05870;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05870;product=hypothetical protein
-36	Prodigal:2.6	CDS	581	724	.	-	0	Parent=mRNA3706;Name=orf05870;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05870;product=hypothetical protein
-###
-36	prokka	gene	1763	2017	.	+	1	ID=gene3731;Name=orf05871;locus_tag=OU3MT_05871
-36	Prodigal:2.6	mRNA	1763	2017	.	+	0	ID=mRNA3707;Parent=gene3731;Name=orf05871;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05871;product=hypothetical protein
-36	Prodigal:2.6	CDS	1763	2017	.	+	0	Parent=mRNA3707;Name=orf05871;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05871;product=hypothetical protein
 ###
 37	prokka	gene	2	427	.	+	1	ID=gene3732;Name=orf05872;locus_tag=OU3MT_05872
 37	Prodigal:2.6	mRNA	2	427	.	+	0	ID=mRNA3708;Parent=gene3732;Name=orf05872;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_05872;product=hypothetical protein
