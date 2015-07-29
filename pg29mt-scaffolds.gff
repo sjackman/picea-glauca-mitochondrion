@@ -1279,14 +1279,14 @@
 1	Prodigal:2.6	mRNA	312189	313304	.	-	0	ID=mRNA310;Parent=gene310;Name=dpo_2;gene=dpo_2;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:dpo|lcl|HM562727.1_prot_ADK73335.1_10;locus_tag=OU3MT_00310;product=DNA polymerase
 1	Prodigal:2.6	CDS	312189	313304	.	-	0	Parent=mRNA310;Name=dpo_2;gene=dpo_2;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:dpo|lcl|HM562727.1_prot_ADK73335.1_10;locus_tag=OU3MT_00310;product=DNA polymerase
 ###
-1	maker	gene	313307	315652	.	-	.	ID=gene311;Name=RNA_pol|lcl|NC_016740.1_prot_YP_005090363.1_6-gene
-1	maker	mRNA	313307	315652	13.4	-	.	ID=mRNA311;Parent=gene311;Name=RNA_pol|lcl|NC_016740.1_prot_YP_005090363.1_6;_AED=0.24;_eAED=0.24;_QI=0|-1|0|1|-1|0|1|0|781
+1	maker	gene	313307	315652	.	-	.	ID=gene311;Name=rpo|lcl|NC_016740.1_prot_YP_005090363.1_6-gene
+1	maker	mRNA	313307	315652	13.4	-	.	ID=mRNA311;Parent=gene311;Name=rpo|lcl|NC_016740.1_prot_YP_005090363.1_6;_AED=0.24;_eAED=0.24;_QI=0|-1|0|1|-1|0|1|0|781
 1	maker	exon	313307	315652	.	-	.	Parent=mRNA311
 1	maker	CDS	313307	315652	.	-	0	Parent=mRNA311
 ###
-1	prokka	gene	315710	316093	.	-	1	ID=gene312;Name=RNA_pol_2;gene=RNA_pol_2;locus_tag=OU3MT_00312
-1	Prodigal:2.6	mRNA	315710	316093	.	-	0	ID=mRNA312;Parent=gene312;Name=RNA_pol_2;gene=RNA_pol_2;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:RNA_pol|lcl|NC_012119.1_prot_YP_002608352.1_16;locus_tag=OU3MT_00312;product=DNA-dependent RNA polymerase
-1	Prodigal:2.6	CDS	315710	316093	.	-	0	Parent=mRNA312;Name=RNA_pol_2;gene=RNA_pol_2;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:RNA_pol|lcl|NC_012119.1_prot_YP_002608352.1_16;locus_tag=OU3MT_00312;product=DNA-dependent RNA polymerase
+1	prokka	gene	315710	316093	.	-	1	ID=gene312;Name=rpo_2;gene=rpo_2;locus_tag=OU3MT_00312
+1	Prodigal:2.6	mRNA	315710	316093	.	-	0	ID=mRNA312;Parent=gene312;Name=rpo_2;gene=rpo_2;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:rpo|lcl|NC_012119.1_prot_YP_002608352.1_16;locus_tag=OU3MT_00312;product=DNA-dependent RNA polymerase
+1	Prodigal:2.6	CDS	315710	316093	.	-	0	Parent=mRNA312;Name=rpo_2;gene=rpo_2;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:rpo|lcl|NC_012119.1_prot_YP_002608352.1_16;locus_tag=OU3MT_00312;product=DNA-dependent RNA polymerase
 ###
 1	prokka	gene	316776	316886	.	+	1	ID=gene313;Name=orf00313;locus_tag=OU3MT_00313
 1	Prodigal:2.6	mRNA	316776	316886	.	+	0	ID=mRNA313;Parent=gene313;Name=orf00313;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_00313;product=hypothetical protein
@@ -3618,13 +3618,13 @@
 1	Prodigal:2.6	mRNA	940256	940573	.	-	0	ID=mRNA887;Parent=gene890;Name=orf00895;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_00895;product=hypothetical protein
 1	Prodigal:2.6	CDS	940256	940573	.	-	0	Parent=mRNA887;Name=orf00895;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_00895;product=hypothetical protein
 ###
-1	prokka	gene	941280	942962	.	-	1	ID=gene891;Name=RNA_pol_3;gene=RNA_pol_3;locus_tag=OU3MT_00896
-1	Prodigal:2.6	mRNA	941280	942962	.	-	0	ID=mRNA888;Parent=gene891;Name=RNA_pol_3;gene=RNA_pol_3;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:RNA_pol|lcl|NC_012119.1_prot_YP_002608352.1_16;locus_tag=OU3MT_00896;product=DNA-dependent RNA polymerase
-1	Prodigal:2.6	CDS	941280	942962	.	-	0	Parent=mRNA888;Name=RNA_pol_3;gene=RNA_pol_3;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:RNA_pol|lcl|NC_012119.1_prot_YP_002608352.1_16;locus_tag=OU3MT_00896;product=DNA-dependent RNA polymerase
+1	prokka	gene	941280	942962	.	-	1	ID=gene891;Name=rpo_3;gene=rpo_3;locus_tag=OU3MT_00896
+1	Prodigal:2.6	mRNA	941280	942962	.	-	0	ID=mRNA888;Parent=gene891;Name=rpo_3;gene=rpo_3;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:rpo|lcl|NC_012119.1_prot_YP_002608352.1_16;locus_tag=OU3MT_00896;product=DNA-dependent RNA polymerase
+1	Prodigal:2.6	CDS	941280	942962	.	-	0	Parent=mRNA888;Name=rpo_3;gene=rpo_3;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:rpo|lcl|NC_012119.1_prot_YP_002608352.1_16;locus_tag=OU3MT_00896;product=DNA-dependent RNA polymerase
 ###
-1	prokka	gene	943004	943921	.	-	1	ID=gene892;Name=RNA_pol_4;gene=RNA_pol_4;locus_tag=OU3MT_00897
-1	Prodigal:2.6	mRNA	943004	943921	.	-	0	ID=mRNA889;Parent=gene892;Name=RNA_pol_4;gene=RNA_pol_4;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:RNA_pol|lcl|JN375330.1_prot_AEM43903.1_6;locus_tag=OU3MT_00897;product=DNA-dependent RNA polymerase
-1	Prodigal:2.6	CDS	943004	943921	.	-	0	Parent=mRNA889;Name=RNA_pol_4;gene=RNA_pol_4;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:RNA_pol|lcl|JN375330.1_prot_AEM43903.1_6;locus_tag=OU3MT_00897;product=DNA-dependent RNA polymerase
+1	prokka	gene	943004	943921	.	-	1	ID=gene892;Name=rpo_4;gene=rpo_4;locus_tag=OU3MT_00897
+1	Prodigal:2.6	mRNA	943004	943921	.	-	0	ID=mRNA889;Parent=gene892;Name=rpo_4;gene=rpo_4;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:rpo|lcl|JN375330.1_prot_AEM43903.1_6;locus_tag=OU3MT_00897;product=DNA-dependent RNA polymerase
+1	Prodigal:2.6	CDS	943004	943921	.	-	0	Parent=mRNA889;Name=rpo_4;gene=rpo_4;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:rpo|lcl|JN375330.1_prot_AEM43903.1_6;locus_tag=OU3MT_00897;product=DNA-dependent RNA polymerase
 ###
 1	prokka	gene	944432	944704	.	+	1	ID=gene893;Name=orf00898;locus_tag=OU3MT_00898
 1	Prodigal:2.6	mRNA	944432	944704	.	+	0	ID=mRNA890;Parent=gene893;Name=orf00898;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_00898;product=hypothetical protein
@@ -5998,9 +5998,9 @@
 11	Prodigal:2.6	mRNA	127544	127858	.	-	0	ID=mRNA1474;Parent=gene1483;Name=orf04609;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04609;product=hypothetical protein
 11	Prodigal:2.6	CDS	127544	127858	.	-	0	Parent=mRNA1474;Name=orf04609;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04609;product=hypothetical protein
 ###
-11	prokka	gene	128443	129051	.	+	1	ID=gene1484;Name=RNA_pol_5;gene=RNA_pol_5;locus_tag=OU3MT_04610
-11	Prodigal:2.6	mRNA	128443	129051	.	+	0	ID=mRNA1475;Parent=gene1484;Name=RNA_pol_5;gene=RNA_pol_5;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:RNA_pol|lcl|JN375330.1_prot_AEM43903.1_6;locus_tag=OU3MT_04610;product=DNA-dependent RNA polymerase
-11	Prodigal:2.6	CDS	128443	129051	.	+	0	Parent=mRNA1475;Name=RNA_pol_5;gene=RNA_pol_5;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:RNA_pol|lcl|JN375330.1_prot_AEM43903.1_6;locus_tag=OU3MT_04610;product=DNA-dependent RNA polymerase
+11	prokka	gene	128443	129051	.	+	1	ID=gene1484;Name=rpo_5;gene=rpo_5;locus_tag=OU3MT_04610
+11	Prodigal:2.6	mRNA	128443	129051	.	+	0	ID=mRNA1475;Parent=gene1484;Name=rpo_5;gene=rpo_5;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:rpo|lcl|JN375330.1_prot_AEM43903.1_6;locus_tag=OU3MT_04610;product=DNA-dependent RNA polymerase
+11	Prodigal:2.6	CDS	128443	129051	.	+	0	Parent=mRNA1475;Name=rpo_5;gene=rpo_5;inference=ab initio prediction:Prodigal:2.6,similar to AA sequence:cds_aa.prokka.fa:rpo|lcl|JN375330.1_prot_AEM43903.1_6;locus_tag=OU3MT_04610;product=DNA-dependent RNA polymerase
 ###
 11	maker	gene	129719	132532	.	+	.	ID=gene1485;Name=dpo|lcl|JF750427.1_prot_AFD29780.1_18-gene
 11	maker	mRNA	129719	132532	9.98	+	.	ID=mRNA1476;Parent=gene1485;Name=dpo|lcl|JF750427.1_prot_AFD29780.1_18;_AED=0.22;_eAED=0.22;_QI=0|-1|0|1|-1|0|1|0|937
