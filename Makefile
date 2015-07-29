@@ -388,7 +388,7 @@ gbk/%.00.gbk: %.gbk
 			s/^.*gene=([^;]*);.*product=([^;]*).*$$/\1	\2/p' $< |sort -u) >$@
 
 # Convert GFF to TBL
-%.tbl: %.gff %.product.tsv
+%.tbl: %.gff %.product.tsv %.gff.aa.fa
 	bin/gff3-to-tbl $^ >$@
 
 # Add structured comments to a FASTA file

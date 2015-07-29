@@ -3,6 +3,7 @@
 # Written by Shaun Jackman <sjackman@gmail.com>.
 
 from BCBio import GFF
+from Bio import SeqIO
 import csv
 import re
 import sys
@@ -12,26 +13,24 @@ protein_id_dbname = "X"
 
 cdsid_regex = re.compile(r"_cdsid_(YP_.........\..)_")
 
-def print_coord(f):
+def print_coord(f, incomplete):
 	""" Print the coordinates of this feature.
 	"""
-	if f.strand == 1:
-		print "%d\t%d" % (f.location.start + 1, f.location.end)
-	else:
-		print "%d\t%d" % (f.location.end, f.location.start + 1)
+	coord = (f.location.start + 1, f.location.end) if f.strand == 1 else (f.location.end, f.location.start + 1)
+	flag = ("<" if incomplete[0] else "", ">" if incomplete[1] else "")
+	print "%s%d\t%s%d" % (flag[0], coord[0], flag[1], coord[1])
 
-def print_coord_override_type(f, type):
+def print_coord_override_type(f, type, incomplete):
 	""" Print the coordinates of this feature and a type.
 	"""
-	if f.strand == 1:
-		print "%d\t%d\t%s" % (f.location.start + 1, f.location.end, type)
-	else:
-		print "%d\t%d\t%s" % (f.location.end, f.location.start + 1, type)
+	coord = (f.location.start + 1, f.location.end) if f.strand == 1 else (f.location.end, f.location.start + 1)
+	flag = ("<" if incomplete[0] else "", ">" if incomplete[1] else "")
+	print "%s%d\t%s%d\t%s" % (flag[0], coord[0], flag[1], coord[1], type)
 
-def print_coord_type(f):
+def print_coord_type(f, incomplete):
 	""" Print the coordinates and type of this feature.
 	"""
-	print_coord_override_type(f, f.type)
+	print_coord_override_type(f, f.type, incomplete)
 
 def subfeatures(f):
 	""" Iterate over the subfeatures of this feature.
@@ -41,20 +40,25 @@ def subfeatures(f):
 	else:
 		return reversed(f.sub_features)
 
-def print_mrna(f, locus_tag, product):
+def print_mrna(f, incomplete, locus_tag, product):
 	""" Print a mRNA feature.
 	"""
 	if len(f.sub_features) == 0:
 		return
-	count = 0
-	for sf in subfeatures(f):
-		if sf.type != 'CDS':
-			continue
-		count += 1
-		if count == 1:
-			print_coord_type(sf)
+	cds = [sf for sf in subfeatures(f) if sf.type == "CDS"]
+	for i, sf in enumerate(cds):
+		if len(cds) == 1:
+			# Single exon
+			print_coord_type(sf, incomplete)
+		elif i == 0:
+			# First exon
+			print_coord_type(sf, (incomplete[0], False))
+		elif i == len(cds) - 1:
+			# Last exon
+			print_coord(sf, (False, incomplete[1]))
 		else:
-			print_coord(sf)
+			# Middle exon
+			print_coord(sf, (False, False))
 	name = f.qualifiers['Name'][0]
 	gene = name.partition('|')[0]
 	print "\t\t\tproduct\t%s" % product
@@ -67,9 +71,10 @@ def print_mrna(f, locus_tag, product):
 		print "\t\t\tinference\tsimilar to AA sequence:RefSeq:%s" % match.group(1)
 
 def print_introns(f):
+	incomplete = (False, False)
 	for sf in subfeatures(f):
 		if sf.type == 'intron':
-			print_coord_type(sf)
+			print_coord_type(sf, incomplete)
 
 def trans_spliced(f):
 	""" Return whether this feature is trans-spliced.
@@ -77,20 +82,31 @@ def trans_spliced(f):
 	return ('exception' in f.qualifiers
 		and f.qualifiers['exception'][0] == 'trans-splicing')
 
-def print_gene(f, gene_product_table):
+def incomplete_cds(f, translations):
+	""" Return whether this coding feature is incomplete.
+	"""
+	for sf in subfeatures(f):
+		if sf.type == 'mRNA':
+			id = sf.qualifiers['ID'][0]
+			seq = translations[id]
+			return (seq[0] != "M", seq[-1] != "*")
+	return (False, False)
+
+def print_gene(f, gene_product_table, translations):
 	""" Print a gene feature.
 	"""
+	incomplete = incomplete_cds(f, translations)
 	if trans_spliced(f):
 		# Print the coordinates of the trans-spliced mRNA.
 		count = 0
 		for sf in subfeatures(f):
 			count += 1
 			if count == 1:
-				print_coord_override_type(sf, 'gene')
+				print_coord_override_type(sf, 'gene', incomplete)
 			else:
-				print_coord(sf)
+				print_coord(sf, incomplete)
 	else:
-		print_coord_type(f)
+		print_coord_type(f, incomplete)
 
 	name = f.qualifiers['Name'][0]
 	gene = name.partition('|')[0]
@@ -106,22 +122,22 @@ def print_gene(f, gene_product_table):
 
 	for sf in subfeatures(f):
 		if sf.type == 'mRNA':
-			print_mrna(sf, locus_tag, product)
+			print_mrna(sf, incomplete, locus_tag, product)
 			print_introns(sf)
 		elif sf.type == 'rRNA':
-			print_coord_type(sf)
+			print_coord_type(sf, incomplete)
 			size = name.partition('rrn')[2]
 			print "\t\t\tproduct\t%s" % product
 			print_introns(sf)
 		elif sf.type == 'tRNA':
-			print_coord_type(sf)
+			print_coord_type(sf, incomplete)
 			aa = name[3]
 			anticodon = name.partition('-')[2]
 			print "\t\t\tproduct\t%s" % product
 			print "\t\t\tnote\tanticodon:%s" % anticodon
 			print_introns(sf)
 
-def main(gff_file, gene_product_file):
+def main(gff_file, gene_product_file, translation_file):
 	gene_product_table = {}
 	with open(gene_product_file) as tsvfile:
 		reader = csv.reader(tsvfile, dialect = "excel-tab")
@@ -129,6 +145,12 @@ def main(gff_file, gene_product_file):
 		assert header == ["gene", "product"]
 		for row in reader:
 			gene_product_table[row[0]] = row[1]
+
+	translations = {}
+	fasta_sequences = SeqIO.parse(open(translation_file), 'fasta')
+	for record in fasta_sequences:
+		name, sequence = record.id, record.seq.tostring()
+		translations[name] = sequence
 
 	for rec in GFF.parse(gff_file):
 		print ">Feature %s" % rec.id
@@ -142,7 +164,7 @@ def main(gff_file, gene_product_file):
 				if child in seen:
 					continue
 				seen[child] = True
-			print_gene(f, gene_product_table)
+			print_gene(f, gene_product_table, translations)
 
 if __name__ == "__main__":
 	main(*sys.argv[1:])
