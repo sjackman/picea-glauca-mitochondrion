@@ -1,5 +1,4 @@
 gene	product
-RNA_pol	DNA-dependent RNA polymerase
 atp1	ATPase subunit 1
 atp4	ATPase subunit 4
 atp6	ATPase subunit 6
@@ -34,6 +33,7 @@ rpl10	ribosomal protein L10
 rpl16	ribosomal protein L16
 rpl2	ribosomal protein L2
 rpl5	ribosomal protein L5
+rpo	RNA polymerase
 rps1	ribosomal protein S1
 rps10	ribosomal protein S10
 rps11	ribosomal protein S11
