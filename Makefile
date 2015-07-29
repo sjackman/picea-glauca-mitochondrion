@@ -93,7 +93,7 @@ cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 
 # Fetch a taxonomy tree from a list of TaxID
 %.taxid.xml: %.docsum.tsv
-	awk 'NR>1 {print $$2}' $< |epost -db taxonomy |efetch -format xml >$@
+	awk 'NR>1 {print $$2}' $< |sort -u |epost -db taxonomy |efetch -format xml >$@
 
 # Convert NCBI XML taxonomy to Newick
 %.taxid.tree: %.taxid.xml
