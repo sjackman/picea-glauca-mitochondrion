@@ -109,11 +109,10 @@ def print_gene(f, gene_product_table, translations):
 		print_coord_type(f, incomplete)
 
 	name = f.qualifiers['Name'][0]
-	gene = name.partition('|')[0]
-	gene_without_suffix = re.sub("[-_][^-_]*$", "", gene)
+	gene = re.sub("[-_].$", "", re.sub(r"\|.*$", "", name))
 	locus_tag = "%s_%s" % (locus_tag_prefix, f.qualifiers['ID'][0])
 	product = "hypothetical protein" if gene.startswith("orf") else \
-		gene_product_table[gene_without_suffix]
+		gene_product_table[re.sub("-.*$", "", gene)]
 
 	if not gene.startswith("orf"):
 		print "\t\t\tgene\t%s" % gene
