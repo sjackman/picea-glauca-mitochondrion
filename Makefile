@@ -382,12 +382,6 @@ gbk/%.00.gbk: %.gbk
 %.gtf: %.gff
 	gt -q gff3_to_gtf $< >$@
 
-# Extract gene and product names from GFF
-%.product.tsv: %.gff
-	(printf "gene\tproduct\n" \
-		&& sed -En 's/%2C/,/g;s~%2F~/~g; \
-			s/^.*gene=([^;]*);.*product=([^;]*).*$$/\1	\2/p' $< |sort -u) >$@
-
 # Convert GFF to TBL
 %.tbl: %.gff %.product.tsv %.gff.aa.fa
 	bin/gff3-to-tbl --centre=BCGSC --locustag=OU3MT $^ >$@
