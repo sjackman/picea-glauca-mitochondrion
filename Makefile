@@ -274,11 +274,14 @@ prokka/%.gff.gene: prokka/%.gff
 		p; }' $*.gb) >$@
 
 # Merge MAKER and Prokka annotations using bedtools
-
-%.gff: %.prokka.gff %.maker.gff
+%.orig.gff: %.prokka.gff %.maker.gff
 	bedtools intersect -v -header -a $< -b $*.maker.gff \
 		|sed '/tRNA-???/{N;d;}' \
 		|gt gff3 -sort $*.maker.gff - >$@
+
+# Remove contamination from the GFF file
+%.gff: %.orig.gff
+	sed -E '/^(33|36)[[:blank:]]/d' $< |uniq >$@
 
 # OrganellarGenomeDRAW
 
@@ -386,9 +389,12 @@ gbk/%.00.gbk: %.gbk
 %.tbl: %.gff %.product.tsv %.gff.aa.fa
 	bin/gff3-to-tbl --centre=BCGSC --locustag=OU3MT $^ >$@
 
-# Add structured comments to a FASTA file
+# Remove contamination and add structured comments to the FASTA file
 %.fsa: %.fa
-	sed 's/^>.*/& [organism=Picea glauca] [location=mitochondrion] [completeness=draft] [topology=linear] [gcode=1]/' $< >$@
+	seqtk seq $< \
+		|sed -E -e '/^>(33|36)$$/{N;d;}' \
+			-e 's/^>.*/& [organism=Picea glauca] [location=mitochondrion] [completeness=draft] [topology=linear] [gcode=1]/' \
+			>$@
 
 # tbl2asn
 
