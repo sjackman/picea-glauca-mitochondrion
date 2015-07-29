@@ -3,7 +3,8 @@ Submit-block ::= {
     contact {
       name name {
         last "Jackman",
-        first "Shaun"
+        first "Shaun",
+        initials "S.D.",
       },
       affil std {
         affil "BC Cancer Agency Genome Sciences Centre",
@@ -27,8 +28,10 @@ Submit-block ::= {
             last "Jackman",
             first "Shaun",
             initials "S.D.",
-            suffix ""
           }
+        },
+        {
+          name consortium "SMarTForests"
         }
       },
       affil std {
@@ -56,8 +59,10 @@ Seqdesc ::= pub {
               last "Jackman",
               first "Shaun",
               initials "S.D.",
-              suffix ""
             }
+          },
+          {
+            name consortium "SMarTForests"
           }
         },
         affil std {
