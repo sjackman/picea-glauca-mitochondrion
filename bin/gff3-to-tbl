@@ -1,15 +1,14 @@
 #!/usr/bin/env python
-# Usage: gff3-to-tbl project.gff gene-product.tsv >project.tbl
+# Convert GFFv3 to Sequin TBL
+# Usage: gff3-to-tbl project.gff product.tsv protein.fa >project.tbl
 # Written by Shaun Jackman <sjackman@gmail.com>.
 
 from BCBio import GFF
 from Bio import SeqIO
+import argparse
 import csv
 import re
 import sys
-
-locus_tag_prefix = "AAA"
-protein_id_dbname = "X"
 
 cdsid_regex = re.compile(r"_cdsid_(YP_.........\..)_")
 
@@ -62,7 +61,7 @@ def print_mrna(f, incomplete, locus_tag, product):
 	name = f.qualifiers['Name'][0]
 	gene = name.partition('|')[0]
 	print "\t\t\tproduct\t%s" % product
-	print "\t\t\tprotein_id\tgnl|%s|%s" % (protein_id_dbname, locus_tag)
+	print "\t\t\tprotein_id\tgnl|%s|%s" % (args.centre, locus_tag)
 	if 'exception' in f.qualifiers:
 		print "\t\t\texception\t%s" % f.qualifiers['exception'][0]
 	# Check whether the Name contains a RefSeq identifier of a similar protein.
@@ -110,7 +109,7 @@ def print_gene(f, gene_product_table, translations):
 
 	name = f.qualifiers['Name'][0]
 	gene = re.sub("[-_].$", "", re.sub(r"\|.*$", "", name))
-	locus_tag = "%s_%s" % (locus_tag_prefix, f.qualifiers['ID'][0])
+	locus_tag = "%s_%s" % (args.locustag, f.qualifiers['ID'][0])
 	product = "hypothetical protein" if gene.startswith("orf") else \
 		gene_product_table[re.sub("-.*$", "", gene)]
 
@@ -137,9 +136,9 @@ def print_gene(f, gene_product_table, translations):
 			print "\t\t\tnote\tanticodon:%s" % anticodon
 			print_introns(sf)
 
-def main(gff_file, gene_product_file, translation_file):
+def main(args):
 	gene_product_table = {}
-	with open(gene_product_file) as tsvfile:
+	with open(args.gene_product_file) as tsvfile:
 		reader = csv.reader(tsvfile, dialect = "excel-tab")
 		header = reader.next()
 		assert header == ["gene", "product"]
@@ -147,12 +146,12 @@ def main(gff_file, gene_product_file, translation_file):
 			gene_product_table[row[0]] = row[1]
 
 	translations = {}
-	fasta_sequences = SeqIO.parse(open(translation_file), 'fasta')
+	fasta_sequences = SeqIO.parse(open(args.translation_file), 'fasta')
 	for record in fasta_sequences:
 		name, sequence = record.id, record.seq.tostring()
 		translations[name] = sequence
 
-	for rec in GFF.parse(gff_file):
+	for rec in GFF.parse(args.gff_file):
 		print ">Feature %s" % rec.id
 		seen = {}
 		for f in rec.features:
@@ -166,5 +165,13 @@ def main(gff_file, gene_product_file, translation_file):
 				seen[child] = True
 			print_gene(f, gene_product_table, translations)
 
+parser = argparse.ArgumentParser(description="Convert GFFv3 to Sequin TBL")
+parser.add_argument("--centre", help="Sequencing centre ID")
+parser.add_argument("--locustag", help="Locus tag prefix")
+parser.add_argument("gff_file", metavar="project.gff", help="GFF file of annotations")
+parser.add_argument("gene_product_file", metavar="product.tsv", help="TSV of gene products")
+parser.add_argument("translation_file", metavar="protein.fa", help="FASTA of protein sequences")
+args = parser.parse_args()
+
 if __name__ == "__main__":
-	main(*sys.argv[1:])
+	main(args)

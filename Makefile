@@ -10,7 +10,7 @@ t=4
 # Green plant mitochondria
 edirect_query='Viridiplantae[Organism] mitochondrion[Title] (complete genome[Title] OR complete sequence[Title])'
 
-all: $(name).gff $(name).gbk $(name).gbk.png \
+all: $(name).gff $(name).gbk $(name).gbk.png $(name).tbl $(name).sqn \
 	$(name).maker.evidence.gff $(name).maker.repeat.gff \
 	$(name).maker.gff.gene $(name).prokka.gff.gene $(name).gff.gene \
 	genes.html repeats.html
@@ -390,7 +390,7 @@ gbk/%.00.gbk: %.gbk
 
 # Convert GFF to TBL
 %.tbl: %.gff %.product.tsv %.gff.aa.fa
-	bin/gff3-to-tbl $^ >$@
+	bin/gff3-to-tbl --centre=BCGSC --locustag=OU3MT $^ >$@
 
 # Add structured comments to a FASTA file
 %.fsa: %.fa
