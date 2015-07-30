@@ -12,7 +12,7 @@ edirect_query='Viridiplantae[Organism] mitochondrion[Title] (complete genome[Tit
 
 all: $(name).gff $(name).gbk $(name).gbk.png $(name).tbl $(name).sqn \
 	$(name).maker.evidence.gff $(name).maker.repeat.gff \
-	$(name).maker.gff.gene $(name).prokka.gff.gene $(name).gff.gene \
+	$(name).maker.gff.gene $(name).prokka.gff.gene $(name).gff.gene $(name).tbl.gene \
 	genes.html repeats.html
 
 clean:
@@ -388,6 +388,10 @@ gbk/%.00.gbk: %.gbk
 # Convert GFF to TBL
 %.tbl: %.gff %.product.tsv %.gff.aa.fa
 	bin/gff3-to-tbl --centre=BCGSC --locustag=OU3MT $^ >$@
+
+# Extract the names of genes from a TBL file
+%.tbl.gene: %.tbl
+	awk '$$1 == "gene" {print $$2}' $< >$@
 
 # Remove contamination and add structured comments to the FASTA file
 %.fsa: %.fa
