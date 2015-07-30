@@ -10,7 +10,9 @@ import csv
 import re
 import sys
 
-cdsid_regex = re.compile(r"_cdsid_(YP_.........\..)_")
+genbank_regex = re.compile(r"_prot_([A-Z]+[0-9]+\.[0-9])_")
+refseq_regex = re.compile(r"_prot_([A-Z]+_[0-9]+\.[0-9])_")
+uniprot_regex = re.compile(r"UniProtKB:([A-Z0-9]+)")
 
 def print_coord(f, incomplete):
 	""" Print the coordinates of this feature.
@@ -64,10 +66,16 @@ def print_mrna(f, incomplete, locus_tag, product):
 	print "\t\t\tprotein_id\tgnl|%s|%s" % (args.centre, locus_tag)
 	if 'exception' in f.qualifiers:
 		print "\t\t\texception\t%s" % f.qualifiers['exception'][0]
-	# Check whether the Name contains a RefSeq identifier of a similar protein.
-	match = cdsid_regex.search(name)
+
+	# Check whether inference or Name contains evidence of a similar protein.
+	inference = f.qualifiers["inference"][-1] if "inference" in f.qualifiers else name
+	genbank_match = genbank_regex.search(inference)
+	refseq_match = refseq_regex.search(inference)
+	uniprot_match = uniprot_regex.search(inference)
+	db = "INSD" if genbank_match else "RefSeq" if refseq_match else "UniProtKB" if uniprot_match else None
+	match = genbank_match or refseq_match or uniprot_match
 	if match:
-		print "\t\t\tinference\tsimilar to AA sequence:RefSeq:%s" % match.group(1)
+		print "\t\t\tinference\tsimilar to AA sequence:%s:%s" % (db, match.group(1))
 
 def print_introns(f):
 	incomplete = (False, False)
