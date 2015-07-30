@@ -281,6 +281,38 @@ ggplot(data_scaffolds) +
 	ylab('Size (kbp)')
 ```
 
+
+# Genes by scaffold and strand
+```{r genes-by-scaffold, fig.width = 7, fig.height = 9, dpi = 300}
+data_scaffolds <- data %>%
+	filter(!Family.short %in% ignore_families) %>% droplevels %>%
+	mutate(Family = str_wrap(Family, 25),
+		ScaffoldInt = Scaffold %>% as.character %>% as.integer,
+		TextSize = pmax(Size, 2000) + 100) %>%
+	group_by(Scaffold) %>%
+	mutate(x = cumsum(TextSize) - TextSize / 2) %>%
+	ungroup()
+Family_count <- data_scaffolds$Family %>% unique %>% length
+
+ggplot(data_scaffolds) +
+	theme_bw(base_size = 10) +
+	theme(legend.key = element_rect(colour = "black"),
+		legend.position = "bottom") + 
+	aes(x = x / 1e3,
+		y = Strand,
+		width = Size / 1e3,
+		fill = Family,
+		label = Gene) +
+	facet_grid(ScaffoldInt ~ .) +
+	geom_tile(color = "black") +
+	geom_text(size = 1.5) +
+	scale_fill_manual(values = colorRampPalette(
+		brewer.pal(12, "Set3"))(Family_count)) +
+	guides(fill = guide_legend(nrow = 4, override.aes = list(colour = NULL))) +
+	ylim("-", "+") + 
+	xlab('Relative position and size of genes (kbp)')
+```
+
 # Barchart of size grouped by family
 ```{r barchart-size-by-family}
 barchart(~ Size / 1e3, data_grouped_without_orf, group = Family,
