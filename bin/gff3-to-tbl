@@ -96,7 +96,10 @@ def incomplete_cds(f, translations):
 		if sf.type == 'mRNA':
 			id = sf.qualifiers['ID'][0]
 			seq = translations[id]
-			return (seq[0] != "M", seq[-1] != "*")
+			# ACG codes for T and is edited to AUG, which codes for M.
+			rna_editing = seq[0] == "T" and "exception" in sf.qualifiers \
+				and sf.qualifiers["exception"][0] == "RNA editing"
+			return (seq[0] != "M" and not rna_editing, seq[-1] != "*")
 	return (False, False)
 
 def print_gene(f, gene_product_table, translations):
