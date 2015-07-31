@@ -303,6 +303,14 @@ prokka/%.gff.gene: prokka/%.gff
 
 # Report the annotated genes
 
+# Convert a GFF file to a TSV file
+%.gff.tsv: %.gff
+	(printf "SeqID\tSource\tType\tStart\tEnd\tStrand\tName\n"; \
+		egrep '\t(mRNA|rRNA|tRNA)\t' $< \
+		|cut -sf 1,2,3,4,5,7,9 \
+		|gsed 's/\t[^\t]*Name=/\t/;s/;.*//;s/|.*//;s/[-_].$$//;s/Prodigal:[0-9.]*/prokka/' \
+		) >$@
+
 # Extract the names of genes from a GFF file
 %.gff.gene: %.gff
 	bin/gff-gene-name $< >$@
