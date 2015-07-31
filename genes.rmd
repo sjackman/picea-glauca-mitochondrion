@@ -322,6 +322,6 @@ barchart(~ Size / 1e3, data_grouped_without_orf, group = Family,
 
 # Write the tabulated data to a file
 ```{r Write the tabulated data to a file}
-write.table(data_grouped, 'pg29mt-scaffolds.gff.tsv',
+write.table(data_grouped, 'pg29mt-scaffolds.gff.family.tsv',
 	quote = FALSE, sep = '\t', row.names = FALSE)
 ```
