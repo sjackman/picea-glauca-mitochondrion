@@ -10,8 +10,8 @@ import csv
 import re
 import sys
 
-genbank_regex = re.compile(r"_prot_([A-Z]+[0-9]+\.[0-9])_")
-refseq_regex = re.compile(r"_prot_([A-Z]+_[0-9]+\.[0-9])_")
+genbank_regex = re.compile(r"(?:INSD:|_prot_)([A-Z]+[0-9]+\.[0-9])")
+refseq_regex = re.compile(r"(?:RefSeq:|_prot_)([A-Z]+_[0-9]+\.[0-9])")
 uniprot_regex = re.compile(r"UniProtKB:([A-Z0-9]+)")
 
 def print_coord(f, incomplete):
