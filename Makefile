@@ -42,6 +42,10 @@ bin/aragorn_out_to_gff3.py:
 %.blastn: %.fa
 	blastn -db nt -query $< -out $@
 
+# Align the scaffolds to Cycas taitungensis NC_010303.1
+NC_010303.1.%.blastn: %.fa NC_010303.1.fa
+	blastn -subject NC_010303.1.fa -query $< -out $@
+
 # BWA
 
 # Align the reads to the assembled genome
