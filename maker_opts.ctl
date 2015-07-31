@@ -21,3 +21,4 @@ cpus=4 #max number of cpus to use in BLAST and RepeatMasker (not for MPI, leave 
 est_forward=1 #map names and attributes forward from EST evidence, 1 = yes, 0 = no
 single_exon=1 #consider single exon EST evidence when generating annotations, 1 = yes, 0 = no
 #single_length=50 #min length required for single exon ESTs if 'single_exon is enabled'
+#min_intron=250 #minimum intron length
