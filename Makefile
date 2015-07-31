@@ -393,6 +393,11 @@ gbk/%.00.gbk: %.gbk
 %.tbl.gene: %.tbl
 	awk '$$1 == "gene" {print $$2}' $< >$@
 
+# Extract the names of genes from MFannot annotation
+%.mfannot.gene: %.mfannot
+	gsed '/List of genes added/,/^;;$$/!d;s/^;; *//;/^-/d;/^$$/d;s/  *$$//;s/   */\n/g;s/ .*//' $< \
+		|gsed '/orf/d;s/(/-/;s/-.*/\U&/;s/)//' >$@
+
 # Remove contamination and add structured comments to the FASTA file
 %.fsa: %.fa
 	seqtk seq $< \
