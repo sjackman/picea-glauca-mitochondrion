@@ -274,10 +274,16 @@ prokka/%.gff.gene: prokka/%.gff
 		p; }' $*.gb) >$@
 
 # Merge MAKER and Prokka annotations using bedtools
-%.orig.gff: %.prokka.gff %.maker.gff
+%.maker.prokka.gff: %.prokka.gff %.maker.gff
 	bedtools intersect -v -header -a $< -b $*.maker.gff \
 		|sed '/tRNA-???/{N;d;}' \
 		|gt gff3 -sort $*.maker.gff - >$@
+
+# Merge manual, MAKER and Prokka annotations using bedtools
+%.orig.gff: %.maker.prokka.gff %.manual.gff
+	bedtools intersect -v -header -a $< -b $*.manual.gff \
+		|sed '/tRNA-???/{N;d;}' \
+		|gt gff3 -sort $*.manual.gff - >$@
 
 # Remove contamination from the GFF file
 %.gff: %.orig.gff
