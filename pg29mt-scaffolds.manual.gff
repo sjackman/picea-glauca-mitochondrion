@@ -1,0 +1,19 @@
+##gff-version   3
+##sequence-region   2 535335 536021
+##sequence-region   5 17809 24144
+2	manual	gene	535335	536021	.	+	.	ID=gene1;Name=rps1
+2	manual	mRNA	535335	536021	12.8	+	.	ID=mRNA1;Parent=gene1;Name=rps1;inference=similar to AA sequence:INSD:AJK91393.1
+2	manual	exon	535335	536021	.	+	.	Parent=mRNA1
+2	manual	CDS	535335	536021	.	+	0	Parent=mRNA1
+###
+5	manual	gene	17809	24144	.	-	.	ID=gene2;Name=rps3
+5	manual	mRNA	17809	24144	.	-	.	ID=mRNA2;Parent=gene2;Name=rps3;exception=RNA editing;inference=similar to AA sequence:INSD:AEK26534.1
+5	manual	exon	17809	19211	.	-	.	Parent=mRNA2
+5	manual	CDS	17809	19211	.	-	2	ID=CDS1;Parent=mRNA2
+5	manual	intron	19212	21796	.	-	.	Parent=mRNA2
+5	manual	exon	21797	21999	.	-	.	Parent=mRNA2
+5	manual	CDS	21797	21999	.	-	1	ID=CDS1;Parent=mRNA2
+5	manual	intron	22000	24070	.	-	.	Parent=mRNA2
+5	manual	exon	24071	24144	.	-	.	Parent=mRNA2
+5	manual	CDS	24071	24144	.	-	0	ID=CDS1;Parent=mRNA2
+###
