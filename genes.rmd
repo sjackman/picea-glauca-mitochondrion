@@ -67,7 +67,6 @@ data <- droplevels(data.frame(
 	Size = size(gff),
 	stringsAsFactors = FALSE))
 data$Gene <- data$Name %>%
-	sub("trn.*", "trn*", .) %>%
 	sub("ymf.*", "ymf*", .) %>%
 	sub("[-_|].*", "", .)
 data$Family.short <- tolower(substr(data$Name, 1, 3))
@@ -284,33 +283,49 @@ ggplot(data_scaffolds) +
 
 # Genes by scaffold and strand
 ```{r genes-by-scaffold, fig.width = 7, fig.height = 9, dpi = 300}
-data_scaffolds <- data %>%
+data_genes <- data %>%
 	filter(!Family.short %in% ignore_families) %>% droplevels %>%
-	mutate(Family = str_wrap(Family, 25),
+	mutate(
+		Gene = sub("ccm.*", "ccm*", Gene),
 		ScaffoldInt = Scaffold %>% as.character %>% as.integer,
+		Size = pmax(Size, 500),
 		TextSize = pmax(Size, 2000) + 100) %>%
 	group_by(Scaffold) %>%
 	mutate(x = cumsum(TextSize) - TextSize / 2) %>%
 	ungroup()
-Family_count <- data_scaffolds$Family %>% unique %>% length
+Family_count <- data_genes$Family %>% unique %>% length
 
-ggplot(data_scaffolds) +
-	theme_bw(base_size = 10) +
-	theme(legend.key = element_rect(colour = "black"),
-		legend.position = "bottom") + 
+ggplot(data_genes) +
+	theme_bw(base_size = 12) +
+	theme(axis.ticks.y = element_blank(),
+		axis.title.x = element_text(hjust = 0.04),
+		axis.title.y = element_text(hjust = 1),
+		legend.key = element_rect(colour = "black"),
+		legend.justification = c(1, 0),
+		legend.position = c(1.025, 0),
+		panel.border = element_rect(colour = NA),
+		panel.grid = element_blank(),
+		strip.text = element_text(hjust = 0),
+		strip.background = element_rect(colour = NA, fill = NA)) + 
 	aes(x = x / 1e3,
 		y = Strand,
 		width = Size / 1e3,
 		fill = Family,
 		label = Gene) +
-	facet_grid(ScaffoldInt ~ .) +
+	facet_wrap(~ ScaffoldInt, ncol = 1) +
 	geom_tile(color = "black") +
-	geom_text(size = 1.5) +
-	scale_fill_manual(values = colorRampPalette(
-		brewer.pal(12, "Set3"))(Family_count)) +
-	guides(fill = guide_legend(nrow = 4, override.aes = list(colour = NULL))) +
-	ylim("-", "+") + 
-	xlab('Relative position and size of genes (kbp)')
+	geom_text(size = 1.5, vjust = 2.5) +
+	geom_hline(yintercept = 2.5, colour = "grey") +
+	guides(fill = guide_legend(override.aes = list(colour = NULL))) +
+	# See http://tools.medialab.sciences-po.fr/iwanthue/
+	scale_fill_manual("", values = c(
+		"#7A6BCA", "#87D94A", "#D0592C", "#7BC3C3",
+		"#475333", "#D0B245", "#CE559B", "#C8A597",
+		"#404B61", "#90D798", "#CA53D4", "#CB5261",
+		"#703929", "#648D3E", "#9C9ED1", "#683360")) +
+	scale_x_continuous("Gene size (kbp)", breaks = 0:5) +
+	ylab("") +
+	ylim("", "-", "+")
 ```
 
 # Barchart of size grouped by family
