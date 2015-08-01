@@ -67,11 +67,12 @@ gff.all <- readGff3("pg29mt-scaffolds.gff", isRightOpen = FALSE)
 gff <- gff.all[gff.all$type %in% c('mRNA', 'rRNA', 'tRNA'),]
 
 scaffold_sizes <- read_tsv("pg29mt-scaffolds.fa.fai",
-	col_names = c("Scaffold", "Size", "Pos", "Line", "Stride")) %>%
-		select(Scaffold, ScaffoldSize = Size) %>%
-		mutate(ScaffoldInt = Scaffold %>% as.integer) %>%
-		arrange(ScaffoldInt)
-	
+		col_names = c("Scaffold", "Size", "Pos", "Width", "Stride")) %>%
+	select(Scaffold, ScaffoldSize = Size) %>%
+	mutate(ScaffoldInt = Scaffold %>% as.integer) %>%
+	arrange(ScaffoldInt) %>%
+	mutate(ScaffoldNameAndSize = paste(Scaffold, " ", round(ScaffoldSize / 1e3), "kbp") %>% factor(., .))
+
 data <- data.frame(
 	Scaffold = gff$seq_name,
 	Strand = gff$strand,
@@ -285,13 +286,15 @@ ggplot(data_scaffolds) +
 data_genes <- data %>%
 	filter(Family.short != "orf") %>%
 	mutate(
+		Family = paste(Family.short, Family, sep = ": "),
 		Gene = sub("ccm.*", "ccm*", Gene),
 		ScaffoldInt = Scaffold %>% as.character %>% as.integer,
 		Size = pmax(Size, 200),
 		TextSize = pmax(Size, 2000) + 100) %>%
 	group_by(Scaffold) %>%
 	mutate(x = cumsum(TextSize) - TextSize / 2) %>%
-	ungroup()
+	ungroup() %>%
+	left_join(scaffold_sizes, by = "ScaffoldInt")
 Family_count <- data_genes$Family %>% unique %>% length
 
 ggplot(data_genes) +
@@ -311,7 +314,7 @@ ggplot(data_genes) +
 		width = Size / 1e3,
 		fill = Family,
 		label = Gene) +
-	facet_wrap(~ ScaffoldInt, ncol = 1) +
+	facet_wrap(~ ScaffoldNameAndSize, ncol = 1) +
 	geom_tile(color = "black") +
 	geom_text(size = 1.5, vjust = 2.5) +
 	geom_hline(yintercept = 2.5, colour = "grey") +
