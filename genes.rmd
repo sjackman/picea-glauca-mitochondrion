@@ -280,14 +280,14 @@ ggplot(data_scaffolds) +
 	ylab('Size (kbp)')
 ```
 
-# Gene order
-```{r gene-order, fig.width = 7, fig.height = 9, dpi = 300}
+# Gene order and size
+```{r gene-order-and-size, fig.width = 7, fig.height = 9, dpi = 300}
 data_genes <- data %>%
 	filter(Family.short != "orf") %>%
 	mutate(
 		Gene = sub("ccm.*", "ccm*", Gene),
 		ScaffoldInt = Scaffold %>% as.character %>% as.integer,
-		Size = pmax(Size, 500),
+		Size = pmax(Size, 200),
 		TextSize = pmax(Size, 2000) + 100) %>%
 	group_by(Scaffold) %>%
 	mutate(x = cumsum(TextSize) - TextSize / 2) %>%
