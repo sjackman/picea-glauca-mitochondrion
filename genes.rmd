@@ -14,6 +14,7 @@ library(knitr)
 library(lattice)
 library(magrittr)
 library(RColorBrewer)
+library(readr)
 library(stringr)
 
 # Bioconductor
@@ -51,6 +52,13 @@ gene.types.matrix <- t(matrix(nrow = 2, data = c(
 gene.types <- data.frame(gene.types.matrix)
 colnames(gene.types) <- c('Family.short', 'Family')
 rownames(gene.types) <- gene.types$Short.name
+
+# See http://tools.medialab.sciences-po.fr/iwanthue/
+family_colour <- c(
+	"#7A6BCA", "#87D94A", "#D0592C", "#7BC3C3",
+	"#475333", "#D0B245", "#CE559B", "#C8A597",
+	"#404B61", "#90D798", "#CA53D4", "#CB5261",
+	"#703929", "#648D3E", "#9C9ED1", "#683360")
 ```
 
 # Load data
@@ -58,12 +66,19 @@ rownames(gene.types) <- gene.types$Short.name
 gff.all <- readGff3("pg29mt-scaffolds.gff", isRightOpen = FALSE)
 gff <- gff.all[gff.all$type %in% c('mRNA', 'rRNA', 'tRNA'),]
 
+scaffold_sizes <- read_tsv("pg29mt-scaffolds.fa.fai",
+	col_names = c("Scaffold", "Size", "Pos", "Line", "Stride")) %>%
+		select(Scaffold, ScaffoldSize = Size) %>%
+		mutate(ScaffoldInt = Scaffold %>% as.integer) %>%
+		arrange(ScaffoldInt)
+	
 data <- droplevels(data.frame(
 	Scaffold = gff$seq_name,
 	Strand = gff$strand,
 	Type = gff$type,
 	ID = getGffAttribute(gff, 'ID'),
 	Name = getGffAttribute(gff, 'Name'),
+	Position = as.matrix(gff)[,1],
 	Size = size(gff),
 	stringsAsFactors = FALSE))
 data$Gene <- data$Name %>%
@@ -245,7 +260,9 @@ barchart(Family ~ Size / 1e3,
 ```{r barchart-type-vs-size-ggplot, fig.width = 7, fig.height = 9, dpi = 300}
 data_barchart <- data %>%
 	filter(!Family.short %in% ignore_families) %>% droplevels %>%
-	transform(Family = str_wrap(paste(Family.short, Family, sep = ": "), 30))
+	transform(Family = str_wrap(paste(Family.short, Family, sep = ": "), 30),
+		Gene = sub("trn.*", "trn*", Gene)) %>%
+	arrange(Gene)
 ggplot(data_barchart) +
 	theme_bw() +
 	theme(legend.key = element_rect(colour = "black")) + 
@@ -280,9 +297,8 @@ ggplot(data_scaffolds) +
 	ylab('Size (kbp)')
 ```
 
-
-# Genes by scaffold and strand
-```{r genes-by-scaffold, fig.width = 7, fig.height = 9, dpi = 300}
+# Gene order
+```{r gene-order, fig.width = 7, fig.height = 9, dpi = 300}
 data_genes <- data %>%
 	filter(!Family.short %in% ignore_families) %>% droplevels %>%
 	mutate(
@@ -317,15 +333,73 @@ ggplot(data_genes) +
 	geom_text(size = 1.5, vjust = 2.5) +
 	geom_hline(yintercept = 2.5, colour = "grey") +
 	guides(fill = guide_legend(override.aes = list(colour = NULL))) +
-	# See http://tools.medialab.sciences-po.fr/iwanthue/
-	scale_fill_manual("", values = c(
-		"#7A6BCA", "#87D94A", "#D0592C", "#7BC3C3",
-		"#475333", "#D0B245", "#CE559B", "#C8A597",
-		"#404B61", "#90D798", "#CA53D4", "#CB5261",
-		"#703929", "#648D3E", "#9C9ED1", "#683360")) +
+	scale_fill_manual("", values = family_colour) +
 	scale_x_continuous("Gene size (kbp)", breaks = 0:5) +
 	ylab("") +
 	ylim("", "-", "+")
+```
+
+# Gene position
+```{r gene-position, fig.width = 7, fig.height = 9, dpi = 300}
+data_position <- data %>%
+	filter(!Family.short %in% ignore_families) %>% droplevels %>%
+	mutate(
+		Gene = sub("ccm.*", "ccm*", Gene),
+		ScaffoldInt = Scaffold %>% as.character %>% as.integer,
+		StrandInt = 3 - 2 * as.integer(Strand),
+		Size = pmax(Size, 2000)) %>%
+	group_by(Scaffold) %>%
+	mutate(Rank = rank(Position) - 1) %>%
+	ungroup() %>%
+	mutate(x = Rank / max(Rank) * max(Position))
+Family_count <- data_position$Family %>% unique %>% length
+
+ggplot(data_position) +
+	theme_bw(base_size = 12) +
+	theme(axis.ticks.y = element_blank(),
+		axis.title.x = element_text(hjust = 0.04),
+		axis.title.y = element_text(hjust = 1),
+		legend.key = element_rect(colour = "black"),
+		legend.justification = c(1, 0),
+		legend.position = c(1.025, 0),
+		panel.border = element_rect(colour = NA),
+		panel.grid = element_blank(),
+		strip.text = element_text(hjust = 0),
+		strip.background = element_rect(colour = NA, fill = NA)) + 
+	facet_wrap(~ ScaffoldInt, ncol = 1) +
+	geom_tile(aes(
+			x = Position / 1e3,
+			y = 0.5 * StrandInt,
+			width = Size / 1e3,
+			fill = Family),
+		height = 1.5) +
+	geom_segment(aes(
+			x = x / 1e3,
+			xend = Position / 1e3,
+			y = 3 * StrandInt,
+			yend = 1.5 * StrandInt),
+		colour = "black",
+		size = 0.1) +
+	geom_text(aes(
+			x = x / 1e3,
+			y = 5 * StrandInt,
+			label = Gene),
+		size = 1.75) +
+	geom_segment(data = scaffold_sizes %>%
+			filter(Scaffold %in% data_position$Scaffold),
+		aes(
+			x = 0,
+			xend = ScaffoldSize / 1e3,
+			y = 0,
+			yend = 0),
+		size = 0.1) +
+	guides(fill = guide_legend(override.aes = list(colour = NULL))) +
+	scale_fill_manual("", values = family_colour) +
+	scale_y_continuous(limits = c(-6.5, 6),
+		breaks = c(-3, 3),
+		labels = c("-", "+")) +
+	xlab("Position (kbp)") +
+	ylab("")
 ```
 
 # Barchart of size grouped by family
