@@ -246,7 +246,7 @@ ggplot() + theme_bw() +
 ```{r gene-size-by-family, fig.width = 7, fig.height = 9, dpi = 300}
 data_barchart <- data %>%
 	filter(Family.short != "orf") %>%
-	transform(Family = str_wrap(paste(Family.short, Family, sep = ": "), 30)) %>%
+	mutate(Family = str_wrap(paste(Family.short, Family, sep = ": "), 30)) %>%
 	arrange(Gene)
 ggplot(data_barchart) +
 	theme_bw() +
@@ -264,7 +264,7 @@ ggplot(data_barchart) +
 ```{r gene-size-by-scaffold, fig.width = 7, fig.height = 9, dpi = 300}
 data_scaffolds <- data %>%
 	filter(Family.short != "orf") %>%
-	transform(Family = str_wrap(Family, 25))
+	mutate(Family = str_wrap(Family, 25))
 Family_count <- data_scaffolds$Family %>% unique %>% length
 ggplot(data_scaffolds) +
 	theme_bw() +
