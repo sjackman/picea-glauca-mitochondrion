@@ -7,11 +7,11 @@ output:
     toc: yes
 ---
 
-```{r Load libraries, include=FALSE}
+# Load libraries
+```{r load-libraries, include=FALSE}
 library(dplyr)
 library(ggplot2)
 library(knitr)
-library(lattice)
 library(magrittr)
 library(RColorBrewer)
 library(readr)
@@ -26,7 +26,7 @@ opts_chunk$set(tidy = FALSE, fig.width = 10, fig.height = 5)
 ```
 
 # Gene families
-```{r Gene families}
+```{r gene-families}
 gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	'atp', 'ATP synthase',
 	'ccb', 'cytochrome c biogenesis',
@@ -62,7 +62,7 @@ family_colour <- c(
 ```
 
 # Load data
-```{r Load data}
+```{r load-data}
 gff.all <- readGff3("pg29mt-scaffolds.gff", isRightOpen = FALSE)
 gff <- gff.all[gff.all$type %in% c('mRNA', 'rRNA', 'tRNA'),]
 
@@ -72,7 +72,7 @@ scaffold_sizes <- read_tsv("pg29mt-scaffolds.fa.fai",
 		mutate(ScaffoldInt = Scaffold %>% as.integer) %>%
 		arrange(ScaffoldInt)
 	
-data <- droplevels(data.frame(
+data <- data.frame(
 	Scaffold = gff$seq_name,
 	Strand = gff$strand,
 	Type = gff$type,
@@ -80,7 +80,7 @@ data <- droplevels(data.frame(
 	Name = getGffAttribute(gff, 'Name'),
 	Position = as.matrix(gff)[,1],
 	Size = size(gff),
-	stringsAsFactors = FALSE))
+	stringsAsFactors = FALSE)
 data$Gene <- data$Name %>%
 	sub("ymf.*", "ymf*", .) %>%
 	sub("[-_|].*", "", .)
@@ -119,17 +119,7 @@ kable(tab)
 # Tabulate genes by family
 ```{r tabulate-genes-by-family}
 tab <- data_grouped %>%
-	set_rownames(.$Family) %>%
-	ungroup %>%
-	select(Count, Size)
-tab['Sum',] <- colSums(tab)
-kable(tab)
-```
-
-# Tabulate known genes without ORFs and other genes
-```{r tabulate-known-genes}
-tab <- data_grouped %>%
-	filter(!Family.short %in% c("orf", "oth")) %>%
+	filter(Family.short != "orf") %>%
 	set_rownames(paste(.$Family.short, .$Family)) %>%
 	ungroup %>%
 	select(Count, Size)
@@ -140,7 +130,7 @@ kable(tab)
 # Tabulate protein-coding genes (mRNA) by family
 ```{r tabulate-mrna-by-family}
 tab <- data_grouped %>%
-	filter(!Family.short %in% c("orf", "oth", "rrn", "trn")) %>%
+	filter(!Family.short %in% c("orf", "rrn", "trn")) %>%
 	set_rownames(paste(.$Family.short, .$Family)) %>%
 	ungroup %>%
 	select(Count, Size)
@@ -150,15 +140,13 @@ kable(tab)
 
 # Tabulate protein-coding genes (mRNA) by gene
 ```{r tabulate-mrna-by-gene}
-ignore_families <- c("orf", "bla", "tns", "rrn", "trn")
-
 data %>%
-	filter(!Family.short %in% ignore_families) %>%
+	filter(Family.short != "orf") %>%
 	summarize(Count = n(), Distinct = n_distinct(Gene), Size = sum(Size)) %>%
 	kable
 
 data %>%
-	filter(!Family.short %in% ignore_families) %>%
+	filter(Family.short != "orf") %>%
 	group_by(Gene) %>%
 	summarize(Count = n(), Size = sum(Size)) %>%
 	kable
@@ -209,59 +197,55 @@ introns %>%
 	kable
 ```
 
-# Histogram of size (≤ 1000 bp)
-```{r gene-size-density}
-ggplot(data = data) +
+# Histogram of gene size (≤ 1000 bp)
+```{r gene-size-histogram}
+ggplot(data) + theme_bw() +
 	aes(x = Size) +
 	geom_histogram(binwidth = 50) +
 	scale_x_continuous(limits = c(0, 1000), breaks = seq(0, 1000, 100)) +
 	xlab("Size (bp)")
 ```
 
-# Stripplot of type vs size
-```{r Stripplot of type vs size}
-stripplot(Family ~ Size, data,
-	jitter = TRUE,
-	xlab = 'Size (bp)')
-```
-
-# Strip plot of type vs size by family
-```{r stripplot-type-vs-size, fig.height = 9}
+# Gene size by family
+```{r gene-size-by-family-strip}
 data %>%
-	filter(!Family.short %in% ignore_families) %>% droplevels %>%
-	group_by(Family, Gene) %>%
-	summarize(Size = sum(Size)) %>%
-ggplot() +
+	filter(Family.short != "orf") %>%
+ggplot() + theme_bw() +
 	aes(x = Size / 1e3, y = Family, colour = Gene) +
 	geom_point() +
+	scale_colour_manual(values = rep(brewer.pal(12, "Set3"), length.out = 99)) +
 	xlab('Size (kbp)')
 ```
 
-# Barchart of type vs count
-```{r Barchart of type vs count}
-barchart(Family ~ Count, data_grouped_without_orf,
-	origin = 0)
-
-barchart(Type ~ Count, data_grouped_without_orf, group = Family,
-	stack = TRUE, auto.key = list(space = 'right'))
+# Total gene size by family
+```{r stripplot-total-gene-size-by-family, fig.height = 9}
+data %>%
+	filter(Family.short != "orf") %>%
+	group_by(Family, Gene) %>%
+	summarize(Size = sum(Size)) %>%
+ggplot() + theme_bw() +
+	aes(x = Size / 1e3, y = Family, colour = Gene) +
+	geom_point() +
+	scale_colour_manual(values = rep(brewer.pal(12, "Set3"), length.out = 99)) +
+	xlab('Size (kbp)')
 ```
 
-# Barchart of type vs size
-```{r barchart-type-vs-size, fig.width = 7, fig.height = 9, dpi = 300}
-ignore_families <- c("orf", "bla", "tns")
-barchart(Family ~ Size / 1e3,
-	data %>% filter(!Family.short %in% ignore_families) %>% droplevels,
-	group = Gene,
-	stack = TRUE, auto.key = list(reverse.rows = TRUE, space = 'right'),
-	xlab = 'Size (kbp)')
+# Gene counts by family
+```{r gene-counts-by-family}
+data %>%
+	filter(Family.short != "orf") %>%
+ggplot() + theme_bw() +
+	aes(x = Family, fill = Gene) +
+	geom_bar(colour = "black") +
+	coord_flip() +
+	scale_fill_manual(values = rep(brewer.pal(12, "Set3"), length.out = 99))
 ```
 
-# Barchart of type vs size
-```{r barchart-type-vs-size-ggplot, fig.width = 7, fig.height = 9, dpi = 300}
+# Gene size by family
+```{r gene-size-by-family, fig.width = 7, fig.height = 9, dpi = 300}
 data_barchart <- data %>%
-	filter(!Family.short %in% ignore_families) %>% droplevels %>%
-	transform(Family = str_wrap(paste(Family.short, Family, sep = ": "), 30),
-		Gene = sub("trn.*", "trn*", Gene)) %>%
+	filter(Family.short != "orf") %>%
+	transform(Family = str_wrap(paste(Family.short, Family, sep = ": "), 30)) %>%
 	arrange(Gene)
 ggplot(data_barchart) +
 	theme_bw() +
@@ -275,10 +259,10 @@ ggplot(data_barchart) +
 	ylab('Size (kbp)')
 ```
 
-# Barchart of genes by scaffold
-```{r barchart-genes-by-scaffold, fig.width = 7, fig.height = 9, dpi = 300}
+# Gene size by scaffold
+```{r gene-size-by-scaffold, fig.width = 7, fig.height = 9, dpi = 300}
 data_scaffolds <- data %>%
-	filter(!Family.short %in% ignore_families) %>% droplevels %>%
+	filter(Family.short != "orf") %>%
 	transform(Family = str_wrap(Family, 25))
 Family_count <- data_scaffolds$Family %>% unique %>% length
 ggplot(data_scaffolds) +
@@ -293,14 +277,13 @@ ggplot(data_scaffolds) +
 		brewer.pal(12, "Set3"))(Family_count)) +
 	guides(fill = guide_legend(keyheight = 2, override.aes = list(colour = NULL))) +
 	xlim(data_scaffolds$Scaffold %>% unique %>% as.character %>% as.integer %>% sort(decreasing = TRUE) %>% as.character) +
-	#facet_grid(Scaffold ~ .) +
 	ylab('Size (kbp)')
 ```
 
 # Gene order
 ```{r gene-order, fig.width = 7, fig.height = 9, dpi = 300}
 data_genes <- data %>%
-	filter(!Family.short %in% ignore_families) %>% droplevels %>%
+	filter(Family.short != "orf") %>%
 	mutate(
 		Gene = sub("ccm.*", "ccm*", Gene),
 		ScaffoldInt = Scaffold %>% as.character %>% as.integer,
@@ -342,7 +325,7 @@ ggplot(data_genes) +
 # Gene position
 ```{r gene-position, fig.width = 7, fig.height = 9, dpi = 300}
 data_position <- data %>%
-	filter(!Family.short %in% ignore_families) %>% droplevels %>%
+	filter(Family.short != "orf") %>%
 	mutate(
 		Gene = sub("ccm.*", "ccm*", Gene),
 		ScaffoldInt = Scaffold %>% as.character %>% as.integer,
@@ -402,15 +385,8 @@ ggplot(data_position) +
 	ylab("")
 ```
 
-# Barchart of size grouped by family
-```{r barchart-size-by-family}
-barchart(~ Size / 1e3, data_grouped_without_orf, group = Family,
-	stack = TRUE, auto.key = list(space = 'right'),
-	xlab = 'Size (kbp)')
-```
-
-# Write the tabulated data to a file
-```{r Write the tabulated data to a file}
+# Store the data grouped by family
+```{r write-data-by-family}
 write.table(data_grouped, 'pg29mt-scaffolds.gff.family.tsv',
 	quote = FALSE, sep = '\t', row.names = FALSE)
 ```
