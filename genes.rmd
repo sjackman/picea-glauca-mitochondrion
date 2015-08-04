@@ -27,12 +27,13 @@ opts_chunk$set(tidy = FALSE, fig.width = 10, fig.height = 5)
 
 # Gene families
 ```{r gene-families}
-# Four shades each of red, green, blue, brown.
+# Four shades each of blue, green, red, brown.
 family_colour <- c(
-	nad = "#E2B6DB",  sdh = "#BD7EB5",  cob = "#8C3984",  cox = "#60135B",
-	rpl = "#B6E2CF",  rps = "#7EBD9C",  rrn = "#398C60",  trn = "#136034",
-	atp = "#B6D4E2",  dpo = "#7EADBD",  rpo = "#39798C",  mat = "#135160",
-	ccm = "#E2CCB5",  mtt = "#BD9D7E",  psa = "#8C6239",  ymf = "#603813") %>%
+	atp = "#B6D4E2", dpo = "#7EADBD", rpo = "#39798C", mat = "#135160",
+	rpl = "#B6E2CF", rps = "#7EBD9C", rrn = "#398C60", trn = "#136034",
+	nad = "#E2B6DB", sdh = "#BD7EB5", cob = "#8C3984", cox = "#60135B",
+	ccm = "#E2CCB5", mtt = "#BD9D7E", psa = "#8C6239", ymf = "#603813",
+	orf = "#C0C0C0", oth = "#808080") %>%
 	data_frame(Family.short = names(.), Colour = .)
 
 gene.types <- matrix(nrow = 2, data = c(
@@ -59,9 +60,7 @@ gene.types <- matrix(nrow = 2, data = c(
 	'trn', 'transfer RNAs')) %>%
 	t %>% data.frame %>%
 	set_colnames(c('Family.short', 'Family')) %>%
-	left_join(family_colour, by = "Family.short") %>%
-	filter(complete.cases(.)) %>%
-	arrange(Family.short)
+	right_join(family_colour, by = "Family.short")
 ```
 
 # Load data
@@ -249,7 +248,8 @@ ggplot() + theme_bw() +
 ```{r gene-size-by-family, fig.width = 7, fig.height = 9, dpi = 300}
 data_barchart <- data %>%
 	filter(Family.short != "orf") %>%
-	mutate(Family = str_wrap(paste(Family.short, Family, sep = ": "), 30)) %>%
+	mutate(Family = str_wrap(paste(Family.short, Family, sep = ": "), 30),
+		Gene = sub("trn.*", "trn*", Gene)) %>%
 	arrange(Gene)
 ggplot(data_barchart) +
 	theme_bw() +
@@ -289,7 +289,9 @@ ggplot(data_scaffolds) +
 data_genes <- data %>%
 	filter(Family.short != "orf") %>%
 	mutate(
-		Family = paste(Family.short, Family, sep = ": "),
+		Family = factor(Family.short,
+			levels = gene.types$Family.short,
+			labels = paste(gene.types$Family.short, gene.types$Family, sep = ": ")),
 		Gene = sub("ccm.*", "ccm*", Gene),
 		ScaffoldInt = Scaffold %>% as.character %>% as.integer,
 		Size = pmax(Size, 200),
