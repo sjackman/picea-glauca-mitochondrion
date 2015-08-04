@@ -31,6 +31,83 @@ Submit-block ::= {
           }
         },
         {
+          name name {
+            last "Warren",
+            first "Rene",
+            initials "R.",
+          }
+        },
+        {
+          name name {
+            last "Gibb",
+            first "Ewan",
+            initials "E.",
+          }
+        },
+        {
+          name name {
+            last "Vandervalk",
+            first "Ben",
+            initials "B.",
+          }
+        },
+        {
+          name name {
+            last "Mohamadi",
+            first "Hamid",
+            initials "H.",
+          }
+        },
+        {
+          name name {
+            last "Chu",
+            first "Justin",
+            initials "J.",
+          }
+        },
+        {
+          name name {
+            last "Raymond",
+            first "Anthony",
+            initials "A.",
+          }
+        },
+        {
+          name name {
+            last "Coope",
+            first "Robin",
+            initials "R.",
+          }
+        },
+        {
+          name name {
+            last "Ritland",
+            first "Carol",
+            initials "C.",
+          }
+        },
+        {
+          name name {
+            last "Jones",
+            first "Steven",
+            initials "S.J.M.",
+          }
+        },
+        {
+          name name {
+            last "Bohlmann",
+            first "Joerg",
+            initials "J.C.",
+          }
+        },
+        {
+          name name {
+            last "Birol",
+            first "Inanc",
+            initials "I.",
+          }
+        },
+        {
           name consortium "SMarTForests"
         }
       },
@@ -62,6 +139,83 @@ Seqdesc ::= pub {
             }
           },
           {
+            name name {
+              last "Warren",
+              first "Rene",
+              initials "R.",
+            }
+          },
+          {
+            name name {
+              last "Gibb",
+              first "Ewan",
+              initials "E.",
+            }
+          },
+          {
+            name name {
+              last "Vandervalk",
+              first "Ben",
+              initials "B.",
+            }
+          },
+          {
+            name name {
+              last "Mohamadi",
+              first "Hamid",
+              initials "H.",
+            }
+          },
+          {
+            name name {
+              last "Chu",
+              first "Justin",
+              initials "J.",
+            }
+          },
+          {
+            name name {
+              last "Raymond",
+              first "Anthony",
+              initials "A.",
+            }
+          },
+          {
+            name name {
+              last "Coope",
+              first "Robin",
+              initials "R.",
+            }
+          },
+          {
+            name name {
+              last "Ritland",
+              first "Carol",
+              initials "C.",
+            }
+          },
+          {
+            name name {
+              last "Jones",
+              first "Steven",
+              initials "S.J.M.",
+            }
+          },
+          {
+            name name {
+              last "Bohlmann",
+              first "Joerg",
+              initials "J.C.",
+            }
+          },
+          {
+            name name {
+              last "Birol",
+              first "Inanc",
+              initials "I.",
+            }
+          },
+          {
             name consortium "SMarTForests"
           }
         },
@@ -75,8 +229,7 @@ Seqdesc ::= pub {
           postal-code "V5Z 4S6"
         }
       },
-      title "Organellar Genomes of White Spruce (Picea glauca): Assembly and
- Annotation"
+      title "Organellar Genomes of White Spruce (Picea glauca): Assembly and Annotation"
     }
   }
 }
