@@ -27,7 +27,15 @@ opts_chunk$set(tidy = FALSE, fig.width = 10, fig.height = 5)
 
 # Gene families
 ```{r gene-families}
-gene.types.matrix <- t(matrix(nrow = 2, data = c(
+# Four shades each of red, green, blue, brown.
+family_colour <- c(
+	nad = "#E2B6DB",  sdh = "#BD7EB5",  cob = "#8C3984",  cox = "#60135B",
+	rpl = "#B6E2CF",  rps = "#7EBD9C",  rrn = "#398C60",  trn = "#136034",
+	atp = "#B6D4E2",  dpo = "#7EADBD",  rpo = "#39798C",  mat = "#135160",
+	ccm = "#E2CCB5",  mtt = "#BD9D7E",  psa = "#8C6239",  ymf = "#603813") %>%
+	data_frame(Family.short = names(.), Colour = .)
+
+gene.types <- matrix(nrow = 2, data = c(
 	'atp', 'ATP synthase',
 	'ccb', 'cytochrome c biogenesis',
 	'ccm', 'cytochrome c maturation',
@@ -48,17 +56,12 @@ gene.types.matrix <- t(matrix(nrow = 2, data = c(
 	'ymf', 'uncharacterized mitochondrial protein',
 	'oth', 'other genes',
 	'rrn', 'ribosomal RNAs',
-	'trn', 'transfer RNAs')))
-gene.types <- data.frame(gene.types.matrix)
-colnames(gene.types) <- c('Family.short', 'Family')
-rownames(gene.types) <- gene.types$Short.name
-
-# See http://tools.medialab.sciences-po.fr/iwanthue/
-family_colour <- c(
-	"#7A6BCA", "#87D94A", "#D0592C", "#7BC3C3",
-	"#475333", "#D0B245", "#CE559B", "#C8A597",
-	"#404B61", "#90D798", "#CA53D4", "#CB5261",
-	"#703929", "#648D3E", "#9C9ED1", "#683360")
+	'trn', 'transfer RNAs')) %>%
+	t %>% data.frame %>%
+	set_colnames(c('Family.short', 'Family')) %>%
+	left_join(family_colour, by = "Family.short") %>%
+	filter(complete.cases(.)) %>%
+	arrange(Family.short)
 ```
 
 # Load data
@@ -319,7 +322,7 @@ ggplot(data_genes) +
 	geom_text(size = 1.5, vjust = 2.5) +
 	geom_hline(yintercept = 2.5, colour = "grey") +
 	guides(fill = guide_legend(override.aes = list(colour = NULL))) +
-	scale_fill_manual("", values = family_colour) +
+	scale_fill_manual("", values = gene.types$Colour) +
 	scale_x_continuous("Gene size (kbp)", breaks = 0:5) +
 	ylab("") +
 	ylim("", "-", "+")
@@ -380,7 +383,7 @@ ggplot(data_position) +
 			yend = 0),
 		size = 0.1) +
 	guides(fill = guide_legend(override.aes = list(colour = NULL))) +
-	scale_fill_manual("", values = family_colour) +
+	scale_fill_manual("", values = gene.types$Colour) +
 	scale_y_continuous(limits = c(-6.5, 6),
 		breaks = c(-3, 3),
 		labels = c("-", "+")) +
