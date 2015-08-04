@@ -84,9 +84,7 @@ data <- data.frame(
 	Position = as.matrix(gff)[,1],
 	Size = size(gff),
 	stringsAsFactors = FALSE)
-data$Gene <- data$Name %>%
-	sub("ymf.*", "ymf*", .) %>%
-	sub("[-_|].*", "", .)
+data$Gene <- data$Name %>% sub("[-_|].*", "", .)
 data$Family.short <- tolower(substr(data$Name, 1, 3))
 data$Family = factor(data$Family.short,
 	levels = gene.types$Family.short,
@@ -144,12 +142,12 @@ kable(tab)
 # Tabulate protein-coding genes (mRNA) by gene
 ```{r tabulate-mrna-by-gene}
 data %>%
-	filter(Family.short != "orf") %>%
+	filter(!Family.short %in% c("orf", "rrn", "trn")) %>%
 	summarize(Count = n(), Distinct = n_distinct(Gene), Size = sum(Size)) %>%
 	kable
 
 data %>%
-	filter(Family.short != "orf") %>%
+	filter(!Family.short %in% c("orf", "rrn", "trn")) %>%
 	group_by(Gene) %>%
 	summarize(Count = n(), Size = sum(Size)) %>%
 	kable
@@ -249,7 +247,8 @@ ggplot() + theme_bw() +
 data_barchart <- data %>%
 	filter(Family.short != "orf") %>%
 	mutate(Family = str_wrap(paste(Family.short, Family, sep = ": "), 30),
-		Gene = sub("trn.*", "trn*", Gene)) %>%
+		Gene = Gene %>% sub("trn.*", "trn*", .) %>%
+			sub("ccm.*", "ccm*", .) %>% sub("ymf.*", "ymf*", .)) %>%
 	arrange(Gene)
 ggplot(data_barchart) +
 	theme_bw() +
@@ -292,7 +291,7 @@ data_genes <- data %>%
 		Family = factor(Family.short,
 			levels = gene.types$Family.short,
 			labels = paste(gene.types$Family.short, gene.types$Family, sep = ": ")),
-		Gene = sub("ccm.*", "ccm*", Gene),
+		Gene = Gene %>% sub("ccm.*", "ccm*", .) %>% sub("ymf.*", "ymf*", .),
 		ScaffoldInt = Scaffold %>% as.character %>% as.integer,
 		Size = pmax(Size, 200),
 		TextSize = pmax(Size, 2000) + 100) %>%
@@ -334,7 +333,7 @@ ggplot(data_genes) +
 data_position <- data %>%
 	filter(Family.short != "orf") %>%
 	mutate(
-		Gene = sub("ccm.*", "ccm*", Gene),
+		Gene = Gene %>% sub("ccm.*", "ccm*", .) %>% sub("ymf.*", "ymf*", .),
 		ScaffoldInt = Scaffold %>% as.character %>% as.integer,
 		StrandInt = 3 - 2 * as.integer(Strand),
 		Size = pmax(Size, 2000)) %>%
