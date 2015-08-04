@@ -321,7 +321,7 @@ ggplot(data_genes) +
 	facet_wrap(~ ScaffoldNameAndSize, ncol = 1) +
 	geom_tile() +
 	geom_text(size = 1.5, vjust = 2.5) +
-	geom_hline(yintercept = 2.5, colour = "black") +
+	geom_hline(yintercept = 2.5, size = 0.2) +
 	guides(fill = guide_legend(override.aes = list(colour = NULL))) +
 	scale_fill_manual("", values = gene.types$Colour) +
 	scale_x_continuous("Gene size (kbp)", breaks = 0:5) +
