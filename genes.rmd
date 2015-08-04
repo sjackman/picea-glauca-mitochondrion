@@ -305,7 +305,6 @@ ggplot(data_genes) +
 	theme(axis.ticks.y = element_blank(),
 		axis.title.x = element_text(hjust = 0.04),
 		axis.title.y = element_text(hjust = 1),
-		legend.key = element_rect(colour = "black"),
 		legend.justification = c(1, 0),
 		legend.position = c(1.025, 0),
 		panel.border = element_rect(colour = NA),
@@ -318,9 +317,9 @@ ggplot(data_genes) +
 		fill = Family,
 		label = Gene) +
 	facet_wrap(~ ScaffoldNameAndSize, ncol = 1) +
-	geom_tile(color = "black") +
+	geom_tile() +
 	geom_text(size = 1.5, vjust = 2.5) +
-	geom_hline(yintercept = 2.5, colour = "grey") +
+	geom_hline(yintercept = 2.5, colour = "black") +
 	guides(fill = guide_legend(override.aes = list(colour = NULL))) +
 	scale_fill_manual("", values = gene.types$Colour) +
 	scale_x_continuous("Gene size (kbp)", breaks = 0:5) +
