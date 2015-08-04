@@ -53,7 +53,7 @@ $(transcripts).%.sam: %_1.fq.gz %_2.fq.gz $(transcripts).fa.bwt
 
 # Sort a SAM file and create a BAM file
 %.sort.bam: %.sam
-	samtools view -Su $< |samtools sort - $*.sort
+	samtools sort -@$(threads) -m8G -T/var/tmp/sjackman/$@ -Obam -o$@ $<
 
 # Index a BAM file
 %.bam.bai: %.bam
