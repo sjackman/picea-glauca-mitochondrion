@@ -8,7 +8,7 @@ threads=4
 # For shell redirection <(gunzip -c reads.fq.gz)
 SHELL=/bin/bash
 
-all: abundance.html salmon.html rna-editing.html $(genome).vcf.gz
+all: salmon.html rna-editing.html $(genome).vcf.gz
 
 install-deps:
 	brew install bcftools bwa datamash kallisto salmon samtools vcftools
