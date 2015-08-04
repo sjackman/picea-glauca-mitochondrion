@@ -74,6 +74,13 @@ Submit-block ::= {
         },
         {
           name name {
+            last "Pleasance",
+            first "Stephen",
+            initials "S.",
+          }
+        },
+        {
+          name name {
             last "Coope",
             first "Robin",
             initials "R.",
@@ -178,6 +185,13 @@ Seqdesc ::= pub {
               last "Raymond",
               first "Anthony",
               initials "A.",
+            }
+          },
+          {
+            name name {
+              last "Pleasance",
+              first "Stephen",
+              initials "S.",
             }
           },
           {
