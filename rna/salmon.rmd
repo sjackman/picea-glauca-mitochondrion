@@ -70,7 +70,7 @@ abundance_all <- lapply(abundance_list, function(x) x$TPM) %>%
 	select(Class, ID, Name, Size, everything(), -Type) %>%
 	filter(!Name %in% c("bla", "tnsA"))
 
-table(Class = abundance_all$Class) %>% data_frame %>% kable
+table(Class = abundance_all$Class) %>% as.data.frame %>% kable
 ```
 
 # Write the aggregated transcript abundance table
@@ -106,8 +106,8 @@ nrow(abundance_cds_matrix)
 nrow(abundance_orf_matrix)
 ```
 
-# Rescale columns to 1,000,000
 ```{r rescale-columns, eval = FALSE, include = FALSE}
+# Rescale columns to 1,000,000
 if (FALSE) {
 	abundance_all_matrix %<>% rescale_tpm
 	abundance_cds_matrix %<>% rescale_tpm
