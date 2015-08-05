@@ -88,6 +88,13 @@ Submit-block ::= {
         },
         {
           name name {
+            last "Wildung",
+            first "Mark",
+            initials "M.R.",
+          }
+        },
+        {
+          name name {
             last "Ritland",
             first "Carol",
             initials "C.",
@@ -199,6 +206,13 @@ Seqdesc ::= pub {
               last "Coope",
               first "Robin",
               initials "R.",
+            }
+          },
+          {
+            name name {
+              last "Wildung",
+              first "Mark",
+              initials "M.R.",
             }
           },
           {
