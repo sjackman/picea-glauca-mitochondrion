@@ -47,7 +47,7 @@ ID_Name <- data.frame(
 		Type = gff$type,
 		Size = size(gff),
 		stringsAsFactors = FALSE) %>%
-	mutate(Name = sub('\\|.*', '', Name)) %>%
+	mutate(Name = Name %>% sub("\\|.*", "", .) %>% sub("[-_].$", "", .)) %>%
 	filter(Type == 'gene')
 ```
 
