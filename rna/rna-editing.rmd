@@ -38,12 +38,28 @@ ID_Name <- ID_Name_all %>%
 data <- read_tsv("transcripts.gt.qual.ctou.tsv") %>%
 	left_join(ID_Name, by = "ID") %>%
 	filter(complete.cases(.)) %>%
-	mutate(`Edits per 100 bp` = 100 * `C>U` / Size,
+	mutate(
+		Family.short = substr(Name, 1, 3),
+		`Edits per 100 bp` = 100 * `C>U` / Size,
 		Rank = rank(`Edits per 100 bp`, ties.method = "first"))
 
 data_cds <- data %>%
 	filter(!grepl("^orf|^rrn|^trn", Name)) %>%
 	mutate(Rank = rank(`Edits per 100 bp`, ties.method = "first"))
+```
+
+# Count edited genes by family
+```{r count-edited-genes}
+data %>%
+	select(Family.short) %>%
+	table %>% addmargins %>%
+	as.data.frame %>% kable
+
+data %>%
+	filter(!Family.short %in% c("orf", "rrn", "trn")) %>%
+	select(Family.short) %>%
+	table %>% addmargins %>%
+	as.data.frame %>% kable
 ```
 
 # Strip plot of number of C>U edits per unit length
