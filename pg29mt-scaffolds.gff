@@ -12293,7 +12293,7 @@
 2	Prodigal:2.6	CDS	355384	355572	.	+	0	Parent=mRNA3035;Name=orf01650;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_01650;product=hypothetical protein
 ###
 2	manual	gene	357975	358583	.	+	.	ID=gene3056;Name=nad1
-2	manual	mRNA	357975	358583	.	+	.	ID=mRNA3036;Parent=gene3056;Name=nad1;exception=RNA editing;inference=similar to AA sequence:INSD:AHY20338.1
+2	manual	mRNA	357975	358583	.	+	.	ID=mRNA3036;Parent=gene3056;Name=nad1;inference=similar to AA sequence:INSD:AHY20338.1;exception=RNA editing;transl_except=(pos:357975..357977%2Caa:Met)
 2	manual	exon	357975	358583	.	+	.	Parent=mRNA3036
 2	manual	CDS	357975	358583	.	+	0	Parent=mRNA3036
 ###
@@ -15719,7 +15719,7 @@
 3	Prodigal:2.6	CDS	254523	254726	.	+	0	Parent=mRNA3887;Name=orf02252;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_02252;product=hypothetical protein
 ###
 3	manual	gene	255503	256252	.	-	.	ID=gene3910;Name=mttB
-3	manual	mRNA	255503	256252	.	-	.	ID=mRNA3888;Parent=gene3910;Name=mttB;exception=RNA editing;inference=similar to AA sequence:RefSeq:YP_004935343.1
+3	manual	mRNA	255503	256252	.	-	.	ID=mRNA3888;Parent=gene3910;Name=mttB;inference=similar to AA sequence:RefSeq:YP_004935343.1;exception=RNA editing;transl_except=(pos:256252..256250%2Caa:Met)
 3	manual	exon	255503	256252	.	-	.	Parent=mRNA3888
 3	manual	CDS	255503	256252	.	-	0	Parent=mRNA3888
 ###
@@ -17893,7 +17893,7 @@
 5	maker	CDS	17590	17694	.	-	0	Parent=mRNA4424
 ###
 5	manual	gene	17809	24144	.	-	.	ID=gene4451;Name=rps3
-5	manual	mRNA	17809	24144	.	-	.	ID=mRNA4425;Parent=gene4451;Name=rps3;exception=RNA editing;inference=similar to AA sequence:INSD:AEK26534.1
+5	manual	mRNA	17809	24144	.	-	.	ID=mRNA4425;Parent=gene4451;Name=rps3;inference=similar to AA sequence:INSD:AEK26534.1;exception=RNA editing;transl_except=(pos:24144..24142%2Caa:Met)
 5	manual	exon	17809	19211	.	-	.	Parent=mRNA4425
 5	manual	CDS	17809	19211	.	-	2	ID=CDS4;Parent=mRNA4425
 5	manual	intron	19212	21796	.	-	.	Parent=mRNA4425
@@ -24936,7 +24936,7 @@
 8	Prodigal:2.6	CDS	254054	254416	.	+	0	Parent=mRNA6169;Name=orf04507;inference=ab initio prediction:Prodigal:2.6;locus_tag=OU3MT_04507;product=hypothetical protein
 ###
 8	manual	gene	254797	255849	.	+	.	ID=gene6207;Name=rps4
-8	manual	mRNA	254797	255849	.	+	.	ID=mRNA6170;Parent=gene6207;Name=rps4;exception=RNA editing;inference=similar to AA sequence:INSD:AIB08815.1
+8	manual	mRNA	254797	255849	.	+	.	ID=mRNA6170;Parent=gene6207;Name=rps4;inference=similar to AA sequence:INSD:AIB08815.1;exception=RNA editing;transl_except=(pos:254797..254799%2Caa:Met)
 8	manual	exon	254797	255849	.	+	.	Parent=mRNA6170
 8	manual	CDS	254797	255849	.	+	0	Parent=mRNA6170
 ###
