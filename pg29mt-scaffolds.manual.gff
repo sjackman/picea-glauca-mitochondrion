@@ -5,7 +5,7 @@
 ##sequence-region   5 17809 24144
 ##sequence-region   8 254797 255849
 2	manual	gene	357975	358583	.	+	.	ID=gene1;Name=nad1
-2	manual	mRNA	357975	358583	.	+	.	ID=mRNA1;Parent=gene1;Name=nad1;exception=RNA editing;inference=similar to AA sequence:INSD:AHY20338.1
+2	manual	mRNA	357975	358583	.	+	.	ID=mRNA1;Parent=gene1;Name=nad1;inference=similar to AA sequence:INSD:AHY20338.1;exception=RNA editing;transl_except=(pos:357975..357977%2Caa:Met)
 2	manual	exon	357975	358583	.	+	.	Parent=mRNA1
 2	manual	CDS	357975	358583	.	+	0	Parent=mRNA1
 ###
@@ -19,12 +19,12 @@
 24	manual	CDS	1559	1813	.	+	0	Parent=mRNA3
 ###
 3	manual	gene	255503	256252	.	-	.	ID=gene4;Name=mttB
-3	manual	mRNA	255503	256252	.	-	.	ID=mRNA4;Parent=gene4;Name=mttB;exception=RNA editing;inference=similar to AA sequence:RefSeq:YP_004935343.1
+3	manual	mRNA	255503	256252	.	-	.	ID=mRNA4;Parent=gene4;Name=mttB;inference=similar to AA sequence:RefSeq:YP_004935343.1;exception=RNA editing;transl_except=(pos:256252..256250%2Caa:Met)
 3	manual	exon	255503	256252	.	-	.	Parent=mRNA4
 3	manual	CDS	255503	256252	.	-	0	Parent=mRNA4
 ###
 5	manual	gene	17809	24144	.	-	.	ID=gene5;Name=rps3
-5	manual	mRNA	17809	24144	.	-	.	ID=mRNA5;Parent=gene5;Name=rps3;exception=RNA editing;inference=similar to AA sequence:INSD:AEK26534.1
+5	manual	mRNA	17809	24144	.	-	.	ID=mRNA5;Parent=gene5;Name=rps3;inference=similar to AA sequence:INSD:AEK26534.1;exception=RNA editing;transl_except=(pos:24144..24142%2Caa:Met)
 5	manual	exon	17809	19211	.	-	.	Parent=mRNA5
 5	manual	CDS	17809	19211	.	-	2	ID=CDS1;Parent=mRNA5
 5	manual	intron	19212	21796	.	-	.	Parent=mRNA5
@@ -35,7 +35,7 @@
 5	manual	CDS	24071	24144	.	-	0	ID=CDS1;Parent=mRNA5
 ###
 8	manual	gene	254797	255849	.	+	.	ID=gene6;Name=rps4
-8	manual	mRNA	254797	255849	.	+	.	ID=mRNA6;Parent=gene6;Name=rps4;exception=RNA editing;inference=similar to AA sequence:INSD:AIB08815.1
+8	manual	mRNA	254797	255849	.	+	.	ID=mRNA6;Parent=gene6;Name=rps4;inference=similar to AA sequence:INSD:AIB08815.1;exception=RNA editing;transl_except=(pos:254797..254799%2Caa:Met)
 8	manual	exon	254797	255849	.	+	.	Parent=mRNA6
 8	manual	CDS	254797	255849	.	+	0	Parent=mRNA6
 ###
