@@ -248,7 +248,7 @@ data_barchart <- data %>%
 	filter(Family.short != "orf") %>%
 	mutate(Family = str_wrap(paste(Family.short, Family, sep = ": "), 30),
 		Gene = Gene %>% sub("trn.*", "trn*", .) %>%
-			sub("ccm.*", "ccm*", .) %>% sub("ymf.*", "ymf*", .)) %>%
+			sub("ymf.*", "ymf*", .)) %>%
 	arrange(Gene)
 ggplot(data_barchart) +
 	theme_bw() +
