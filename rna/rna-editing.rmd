@@ -13,6 +13,7 @@ library(dplyr)
 library(ggplot2)
 library(knitr)
 library(readr)
+library(uniqtag)
 
 # Bioconductor
 library(genomeIntervals)
@@ -28,9 +29,10 @@ ID_Name_all <- data.frame(
 		Type = gff$type,
 		Size = size(gff),
 		stringsAsFactors = FALSE) %>%
-	mutate(Name = sub('\\|.*', '', Name))
+	mutate(Name = Name %>% sub("\\|.*", "", .) %>% sub("[-_].$", "", .))
 ID_Name <- ID_Name_all %>%
-	filter(Type == 'gene' & complete.cases(.))
+	filter(Type == 'gene' & complete.cases(.)) %>%
+	mutate(Name = make_unique(Name))
 ```
 
 # Read the data
