@@ -64,8 +64,6 @@ def print_mrna(f, incomplete, locus_tag, product):
 	gene = name.partition('|')[0]
 	print "\t\t\tproduct\t%s" % product
 	print "\t\t\tprotein_id\tgnl|%s|%s" % (args.centre, locus_tag)
-	if 'exception' in f.qualifiers:
-		print "\t\t\texception\t%s" % f.qualifiers['exception'][0]
 
 	# Check whether inference or Name contains evidence of a similar protein.
 	inference = f.qualifiers["inference"][-1] if "inference" in f.qualifiers else name
@@ -76,6 +74,10 @@ def print_mrna(f, incomplete, locus_tag, product):
 	match = genbank_match or refseq_match or uniprot_match
 	if match:
 		print "\t\t\tinference\tsimilar to AA sequence:%s:%s" % (db, match.group(1))
+
+	for tag in "exception", "transl_except":
+		if tag in f.qualifiers:
+			print "\t\t\t%s\t%s" % (tag, f.qualifiers[tag][0])
 
 def print_introns(f):
 	incomplete = (False, False)
