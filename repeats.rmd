@@ -36,6 +36,7 @@ data <- data.frame(
 	mutate(
 		Family = Name %>%
 			sub('.*genus:([^ ;]*).*', '\\1', .) %>%
+			sub("NHF", "Unknown", .) %>%
 			sub("UNK", "Unknown", .),
 		Class = factor(sub('/.*', '', Family)),
 		Family = factor(Family))
@@ -82,7 +83,7 @@ barchart(~ Size / 1e3, data.grouped, group = Family,
 ```
 
 # Barchart of repeat class vs size
-```{r barchart-class-vs-size, fig.width = 7, fig.height = 5, dpi = 300}
+```{r barchart-class-vs-size, fig.width = 7, fig.height = 3, dpi = 300}
 ggplot(data.grouped) +
 	aes(y = Size / 1e3, x = Class, fill = Family) +
 	theme_bw() +
