@@ -243,7 +243,7 @@ ggplot() + theme_bw() +
 ```
 
 # Gene size by family
-```{r gene-size-by-family, fig.width = 7, fig.height = 9, dpi = 300}
+```{r gene-size-by-family, fig.width = 7, fig.height = 7, dpi = 300}
 data_barchart <- data %>%
 	filter(Family.short != "orf") %>%
 	mutate(Family = str_wrap(paste(Family.short, Family, sep = ": "), 30),
@@ -252,12 +252,13 @@ data_barchart <- data %>%
 	arrange(Gene)
 ggplot(data_barchart) +
 	theme_bw() +
-	theme(legend.key = element_rect(colour = "black")) + 
+	theme(legend.key = element_rect(colour = "black"),
+		legend.text = element_text(size = 10)) + 
 	aes(y = Size / 1e3, x = Family, fill = Gene) +
 	geom_bar(stat = "identity", color = "black") +
 	coord_flip() +
 	scale_fill_manual(values = rep(brewer.pal(12, "Set3"), length.out = 99)) +
-	guides(fill = guide_legend(keyheight = 0.8, override.aes = list(colour = NULL))) +
+	guides(fill = guide_legend(keyheight = 0.6, override.aes = list(colour = NULL))) +
 	xlim(data_barchart$Family %>% unique %>% sort(decreasing = TRUE)) +
 	ylab('Size (kbp)')
 ```
