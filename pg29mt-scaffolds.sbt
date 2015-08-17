@@ -47,8 +47,8 @@ Submit-block ::= {
         {
           name name {
             last "Vandervalk",
-            first "Ben",
-            initials "B.",
+            first "Benjamin",
+            initials "B.P.",
           }
         },
         {
@@ -97,7 +97,14 @@ Submit-block ::= {
           name name {
             last "Ritland",
             first "Carol",
-            initials "C.",
+            initials "C.E.",
+          }
+        },
+        {
+          name name {
+            last "Bousquet",
+            first "Jean",
+            initials "J.",
           }
         },
         {
@@ -169,8 +176,8 @@ Seqdesc ::= pub {
           {
             name name {
               last "Vandervalk",
-              first "Ben",
-              initials "B.",
+              first "Benjamin",
+              initials "B.P.",
             }
           },
           {
@@ -219,7 +226,14 @@ Seqdesc ::= pub {
             name name {
               last "Ritland",
               first "Carol",
-              initials "C.",
+              initials "C.E.",
+            }
+          },
+          {
+            name name {
+              last "Bousquet",
+              first "Jean",
+              initials "J.",
             }
           },
           {
