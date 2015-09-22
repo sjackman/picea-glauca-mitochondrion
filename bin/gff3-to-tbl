@@ -122,7 +122,7 @@ def print_gene(f, gene_product_table, translations):
 
 	name = f.qualifiers['Name'][0]
 	gene = re.sub("[-_].$", "", re.sub(r"\|.*$", "", name))
-	locus_tag = "%s_%s" % (args.locustag, f.qualifiers['ID'][0])
+	locus_tag = "%s%s" % (args.locustag, f.qualifiers['ID'][0])
 	product = "hypothetical protein" if gene.startswith("orf") else \
 		gene_product_table[re.sub("-.*$", "", gene)]
 
