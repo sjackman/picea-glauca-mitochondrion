@@ -15408,7 +15408,6 @@
 			protein_id	gnl|BCGSC|ABT39_MTgene3056
 			inference	similar to AA sequence:INSD:AHY20338.1
 			exception	RNA editing
-			transl_except	(pos:357975..357977,aa:Met)
 359558	359686	gene
 			locus_tag	ABT39_MTgene3057
 359558	359686	CDS
@@ -19722,7 +19721,6 @@
 			protein_id	gnl|BCGSC|ABT39_MTgene3910
 			inference	similar to AA sequence:RefSeq:YP_004935343.1
 			exception	RNA editing
-			transl_except	(pos:256252..256250,aa:Met)
 256828	256962	gene
 			locus_tag	ABT39_MTgene3911
 256828	256962	CDS
@@ -22468,7 +22466,6 @@
 			protein_id	gnl|BCGSC|ABT39_MTgene4451
 			inference	similar to AA sequence:INSD:AEK26534.1
 			exception	RNA editing
-			transl_except	(pos:24144..24142,aa:Met)
 24070	22000	intron
 21796	19212	intron
 24375	24148	gene
@@ -31318,7 +31315,6 @@
 			protein_id	gnl|BCGSC|ABT39_MTgene6207
 			inference	similar to AA sequence:INSD:AIB08815.1
 			exception	RNA editing
-			transl_except	(pos:254797..254799,aa:Met)
 256893	256708	gene
 			locus_tag	ABT39_MTgene6208
 256893	256708	CDS
