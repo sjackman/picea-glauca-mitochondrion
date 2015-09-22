@@ -426,7 +426,7 @@ gbk/%.00.gbk: %.gbk
 # tbl2asn
 
 # Convert TBL to GBK and SQN
-%.gbf %.sqn: %.fsa %.sbt %.tbl %.cmt
+%.gbf %.sqn: %.fsa %.sbt %.tbl %.cmt %.pep
 	tbl2asn -a s -i $< -t $*.sbt -w $*.cmt -Z $*.discrep -Vbv
 	gsed -i 's/DEFINITION  Picea glauca/& mitochondrion draft genome/' $*.gbf
 
