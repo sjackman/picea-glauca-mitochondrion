@@ -1,41 +1,41 @@
-##gff-version   3
-##sequence-region   2 357975 536021
-##sequence-region   24 1559 1813
-##sequence-region   3 255503 256252
-##sequence-region   5 17809 24144
-##sequence-region   8 254797 255849
-2	manual	gene	357975	358583	.	+	.	ID=gene1;Name=nad1
-2	manual	mRNA	357975	358583	.	+	.	ID=mRNA1;Parent=gene1;Name=nad1;inference=similar to AA sequence:INSD:AHY20338.1;exception=RNA editing
-2	manual	exon	357975	358583	.	+	.	Parent=mRNA1
-2	manual	CDS	357975	358583	.	+	0	Parent=mRNA1
+##gff-version 3
+##sequence-region LKAM01000002.1 1 676873
+##sequence-region LKAM01000003.1 1 369480
+##sequence-region LKAM01000005.1 1 308816
+##sequence-region LKAM01000008.1 1 284015
+##sequence-region LKAM01000024.1 1 14473
+LKAM01000002.1	manual	gene	357975	358583	.	+	.	ID=gene1;Name=nad1
+LKAM01000002.1	manual	mRNA	357975	358583	.	+	.	ID=mRNA1;Parent=gene1;Name=nad1;inference=similar to AA sequence:INSD:AHY20338.1;exception=RNA editing
+LKAM01000002.1	manual	exon	357975	358583	.	+	.	Parent=mRNA1
+LKAM01000002.1	manual	CDS	357975	358583	.	+	0	Parent=mRNA1
 ###
-2	manual	gene	535335	536021	.	+	.	ID=gene2;Name=rps1
-2	manual	mRNA	535335	536021	.	+	.	ID=mRNA2;Parent=gene2;Name=rps1;inference=similar to AA sequence:INSD:AJK91393.1
-2	manual	exon	535335	536021	.	+	.	Parent=mRNA2
-2	manual	CDS	535335	536021	.	+	0	Parent=mRNA2
+LKAM01000002.1	manual	gene	535335	536021	.	+	.	ID=gene2;Name=rps1
+LKAM01000002.1	manual	mRNA	535335	536021	.	+	.	ID=mRNA2;Parent=gene2;Name=rps1;inference=similar to AA sequence:INSD:AJK91393.1
+LKAM01000002.1	manual	exon	535335	536021	.	+	.	Parent=mRNA2
+LKAM01000002.1	manual	CDS	535335	536021	.	+	0	Parent=mRNA2
 ###
-24	manual	gene	1559	1813	.	+	1	ID=gene3;Name=cox3;gene=cox3;locus_tag=OU3MT_05775
-24	manual	mRNA	1559	1813	.	+	0	ID=mRNA3;Parent=gene3;Name=cox3;gene=cox3;inference=similar to AA sequence:INSD:JQ002659.1
-24	manual	CDS	1559	1813	.	+	0	Parent=mRNA3
+LKAM01000003.1	manual	gene	255503	256252	.	-	.	ID=gene4;Name=mttB
+LKAM01000003.1	manual	mRNA	255503	256252	.	-	.	ID=mRNA4;Parent=gene4;Name=mttB;inference=similar to AA sequence:RefSeq:YP_004935343.1;exception=RNA editing
+LKAM01000003.1	manual	exon	255503	256252	.	-	.	Parent=mRNA4
+LKAM01000003.1	manual	CDS	255503	256252	.	-	0	Parent=mRNA4
 ###
-3	manual	gene	255503	256252	.	-	.	ID=gene4;Name=mttB
-3	manual	mRNA	255503	256252	.	-	.	ID=mRNA4;Parent=gene4;Name=mttB;inference=similar to AA sequence:RefSeq:YP_004935343.1;exception=RNA editing
-3	manual	exon	255503	256252	.	-	.	Parent=mRNA4
-3	manual	CDS	255503	256252	.	-	0	Parent=mRNA4
+LKAM01000005.1	manual	gene	17809	24144	.	-	.	ID=gene5;Name=rps3
+LKAM01000005.1	manual	mRNA	17809	24144	.	-	.	ID=mRNA5;Parent=gene5;Name=rps3;inference=similar to AA sequence:INSD:AEK26534.1;exception=RNA editing
+LKAM01000005.1	manual	exon	17809	19211	.	-	.	Parent=mRNA5
+LKAM01000005.1	manual	CDS	17809	19211	.	-	2	ID=CDS1;Parent=mRNA5
+LKAM01000005.1	manual	intron	19212	21796	.	-	.	Parent=mRNA5
+LKAM01000005.1	manual	exon	21797	21999	.	-	.	Parent=mRNA5
+LKAM01000005.1	manual	CDS	21797	21999	.	-	1	ID=CDS1;Parent=mRNA5
+LKAM01000005.1	manual	intron	22000	24070	.	-	.	Parent=mRNA5
+LKAM01000005.1	manual	exon	24071	24144	.	-	.	Parent=mRNA5
+LKAM01000005.1	manual	CDS	24071	24144	.	-	0	ID=CDS1;Parent=mRNA5
 ###
-5	manual	gene	17809	24144	.	-	.	ID=gene5;Name=rps3
-5	manual	mRNA	17809	24144	.	-	.	ID=mRNA5;Parent=gene5;Name=rps3;inference=similar to AA sequence:INSD:AEK26534.1;exception=RNA editing
-5	manual	exon	17809	19211	.	-	.	Parent=mRNA5
-5	manual	CDS	17809	19211	.	-	2	ID=CDS1;Parent=mRNA5
-5	manual	intron	19212	21796	.	-	.	Parent=mRNA5
-5	manual	exon	21797	21999	.	-	.	Parent=mRNA5
-5	manual	CDS	21797	21999	.	-	1	ID=CDS1;Parent=mRNA5
-5	manual	intron	22000	24070	.	-	.	Parent=mRNA5
-5	manual	exon	24071	24144	.	-	.	Parent=mRNA5
-5	manual	CDS	24071	24144	.	-	0	ID=CDS1;Parent=mRNA5
+LKAM01000008.1	manual	gene	254797	255849	.	+	.	ID=gene6;Name=rps4
+LKAM01000008.1	manual	mRNA	254797	255849	.	+	.	ID=mRNA6;Parent=gene6;Name=rps4;inference=similar to AA sequence:INSD:AIB08815.1;exception=RNA editing
+LKAM01000008.1	manual	exon	254797	255849	.	+	.	Parent=mRNA6
+LKAM01000008.1	manual	CDS	254797	255849	.	+	0	Parent=mRNA6
 ###
-8	manual	gene	254797	255849	.	+	.	ID=gene6;Name=rps4
-8	manual	mRNA	254797	255849	.	+	.	ID=mRNA6;Parent=gene6;Name=rps4;inference=similar to AA sequence:INSD:AIB08815.1;exception=RNA editing
-8	manual	exon	254797	255849	.	+	.	Parent=mRNA6
-8	manual	CDS	254797	255849	.	+	0	Parent=mRNA6
+LKAM01000024.1	manual	gene	1559	1813	.	+	1	ID=gene3;Name=cox3;gene=cox3;locus_tag=OU3MT_05775
+LKAM01000024.1	manual	mRNA	1559	1813	.	+	0	ID=mRNA3;Parent=gene3;Name=cox3;gene=cox3;inference=similar to AA sequence:INSD:JQ002659.1
+LKAM01000024.1	manual	CDS	1559	1813	.	+	0	Parent=mRNA3
 ###
