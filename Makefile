@@ -301,6 +301,7 @@ prokka/%.gff: %.fa cds_aa.prokka.fa
 # Remove the FASTA section from the Prokka GFF file
 %.prokka.gff: prokka/%.gff
 	gsed -E -e '/^##FASTA/,$$d' \
+		-e 's/=atpD/=atpB/g' \
 		-e 's/=ltrA/=ymfltrA/g' \
 		-e 's/=rplB/=rpl2/g' \
 		-e 's/=smc/=dpo/g' \
