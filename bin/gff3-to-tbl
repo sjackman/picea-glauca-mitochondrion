@@ -60,8 +60,10 @@ def print_mrna(f, incomplete, locus_tag, product):
 		else:
 			# Middle exon
 			print_coord(sf, (False, False))
-	name = f.qualifiers['Name'][0]
-	gene = name.partition('|')[0]
+	name = f.qualifiers["Name"][0]
+	phase = int(cds[0].qualifiers["phase"][0])
+	if phase != 0:
+		print "\t\t\tcodon_start\t%d" % (1 + phase)
 	print "\t\t\tproduct\t%s" % product
 	print "\t\t\tprotein_id\tgnl|%s|%s" % (args.centre, locus_tag)
 
@@ -77,7 +79,28 @@ def print_mrna(f, incomplete, locus_tag, product):
 
 	for tag in "exception", "transl_except":
 		if tag in f.qualifiers:
-			print "\t\t\t%s\t%s" % (tag, f.qualifiers[tag][0])
+			for value in f.qualifiers[tag]:
+				print "\t\t\t%s\t%s" % (tag, value)
+
+def print_trna(f, locus_tag, product):
+	""" Print a tRNA gene.
+	"""
+	incomplete = (False, False)
+	exons = [sf for sf in subfeatures(f) if sf.type == "exon"]
+	for i, sf in enumerate(exons):
+		if i == 0:
+			print_coord_override_type(sf, "tRNA", incomplete)
+		else:
+			print_coord(sf, incomplete)
+	name = f.qualifiers['Name'][0]
+	anticodon = name.partition('-')[2]
+	print "\t\t\tproduct\t%s" % product
+	print "\t\t\tnote\tanticodon:%s" % anticodon
+
+	for tag in "exception":
+		if tag in f.qualifiers:
+			for value in f.qualifiers[tag]:
+				print "\t\t\t%s\t%s" % (tag, value)
 
 def print_introns(f):
 	incomplete = (False, False)
@@ -88,20 +111,40 @@ def print_introns(f):
 def trans_spliced(f):
 	""" Return whether this feature is trans-spliced.
 	"""
-	return ('exception' in f.qualifiers
-		and f.qualifiers['exception'][0] == 'trans-splicing')
+	return "exception" in f.qualifiers and "trans-splicing" in f.qualifiers["exception"]
 
 def incomplete_cds(f, translations):
 	""" Return whether this coding feature is incomplete.
 	"""
 	for sf in subfeatures(f):
 		if sf.type == 'mRNA':
-			id = sf.qualifiers['ID'][0]
+			if not 'ID' in sf.qualifiers:
+				continue
+			name = sf.qualifiers["Name"][0]
+			id = sf.qualifiers["ID"][0]
 			seq = translations[id]
 			# ACG codes for T and is edited to AUG, which codes for M.
-			rna_editing = seq[0] == "T" and "exception" in sf.qualifiers \
-				and sf.qualifiers["exception"][0] == "RNA editing"
-			return (seq[0] != "M" and not rna_editing, seq[-1] != "*")
+			acg_start = seq[0] == "T" \
+				and "exception" in sf.qualifiers and "note" in sf.qualifiers \
+				and "RNA editing" in sf.qualifiers["exception"] \
+				and "putative start codon created by RNA editing" in sf.qualifiers["note"]
+			# GCG codes for A and is edited to GUG, which codes for V, an alternative start codon.
+			gcg_start = seq[0] == "A" \
+				and "exception" in sf.qualifiers and "note" in sf.qualifiers \
+				and "RNA editing" in sf.qualifiers["exception"] \
+				and "putative alternative GUG start codon created by RNA editing" in sf.qualifiers["note"]
+			# matR starts with a GGG codon, which codes for G.
+			ggg_start = seq[0] == "G" and name == "matR"
+			# rpl16 starts with a GUG codon, which codes for V.
+			gtg_start = seq[0] == "V" and name == "rpl16"
+			# CAG codes for Q and is edited to UAG, which is a stop codon.
+			cag_stop = seq[-1] == "Q" \
+				and "exception" in sf.qualifiers and "note" in sf.qualifiers \
+				and "RNA editing" in sf.qualifiers["exception"] \
+				and "putative stop codon created by RNA editing" in sf.qualifiers["note"]
+			good_start = seq[0] == "M" or acg_start or gcg_start or ggg_start or gtg_start
+			good_stop = seq[-1] == "*" or cag_stop
+			return (not good_start, not good_stop)
 	return (False, False)
 
 def print_gene(f, gene_product_table, translations):
@@ -120,17 +163,18 @@ def print_gene(f, gene_product_table, translations):
 	else:
 		print_coord_type(f, incomplete)
 
-	name = f.qualifiers['Name'][0]
-	gene = re.sub("[-_].$", "", re.sub(r"\|.*$", "", name))
-	locus_tag = "%s%s" % (args.locustag, f.qualifiers['ID'][0])
+	name = re.sub("-gene$", "", f.qualifiers['Name'][0])
+	gene = re.sub("[-_][0-9]+$", "", re.sub(r"\|.*$", "", name))
+	locus_tag = "%s_%s" % (args.locustag, f.qualifiers['ID'][0])
 	product = "hypothetical protein" if gene.startswith("orf") else \
-		gene_product_table[re.sub("-.*$", "", gene)]
+		gene_product_table[re.sub("[-_].*$", "", gene)]
 
-	if not gene.startswith("orf"):
-		print "\t\t\tgene\t%s" % gene
+	print "\t\t\tgene\t%s" % gene
 	print "\t\t\tlocus_tag\t%s" % locus_tag
 	if 'exception' in f.qualifiers:
 		print "\t\t\texception\t%s" % f.qualifiers['exception'][0]
+	if 'pseudo' in f.qualifiers:
+		print "\t\t\tpseudo"
 
 	for sf in subfeatures(f):
 		if sf.type == 'mRNA':
@@ -142,11 +186,7 @@ def print_gene(f, gene_product_table, translations):
 			print "\t\t\tproduct\t%s" % product
 			print_introns(sf)
 		elif sf.type == 'tRNA':
-			print_coord_type(sf, incomplete)
-			aa = name[3]
-			anticodon = name.partition('-')[2]
-			print "\t\t\tproduct\t%s" % product
-			print "\t\t\tnote\tanticodon:%s" % anticodon
+			print_trna(sf, locus_tag, product)
 			print_introns(sf)
 
 def main(args):
