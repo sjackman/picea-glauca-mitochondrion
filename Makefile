@@ -7,6 +7,9 @@ name=pg29mt-scaffolds
 # Number of threads
 t=4
 
+# Parallel compression with pigz.
+gzip=pigz -p$t
+
 # Green plant mitochondria
 edirect_query='Viridiplantae[Organism] mitochondrion[Title] (complete genome[Title] OR complete sequence[Title])'
 
@@ -46,6 +49,17 @@ bin/aragorn_out_to_gff3.py:
 NC_010303.1.%.blastn: %.fa NC_010303.1.fa
 	blastn -subject NC_010303.1.fa -query $< -out $@
 
+# Align proteins to the NR database and output TSV.
+%.blastp.tsv: %.fa
+	(printf 'qaccver\tsaccver\tpident\tlength\tmismatch\tgapopen\tqstart\tqend\tsstart\tsend\tevalue\tbitscore\tqlen\tslen\tqcovs\tstaxid\tstitle\n'; \
+	blastp -remote -db nr -max_target_seqs 5 -outfmt '6 std qlen slen qcovs staxid stitle' -query $<) >$@
+
+# Align proteins to the NR database and output PAF.
+%.blastp.paf.gz: %.fa
+	blastp -remote -db nr -max_target_seqs 5 -outfmt '6 qaccver qlen qstart qend sstrand saccver slen sstart send nident length evalue staxid stitle' -query $< \
+	| awk -F'\t' -vOFS='\t' '{ $$5 = "+"; $$13 = "tx:i:" $$13; $$14 = "ti:z:" $$14; print }' \
+	| $(gzip) >$@
+
 # BWA
 
 # Align the reads to the assembled genome
@@ -57,7 +71,16 @@ $(name).%.sort.bam.bai: $(name).fa %.fa.gz
 #PICEAGLAUCA_rpt2.0.fa: /genesis/extscratch/seqdev/PG/data/PICEAGLAUCA_rpt2.0
 #	cp -a $< $@
 
-# Fetch data from NCBI
+# NCBI
+#-------------------------------------------------------------------------------
+
+# Download the Picea glauca mitochondrion FASTA.
+pg29mt-scaffolds.orig.fa:
+	curl ftp://ftp.ncbi.nlm.nih.gov/sra/wgs_aux/LK/AM/LKAM01/LKAM01.1.fsa_nt.gz | gunzip -c | seqtk seq >$@
+
+# Rename the sequences.
+pg29mt-scaffolds.fa: pg29mt-scaffolds.orig.fa
+	gsed -E 's/^>(.*gb[|]([^|]*).*)[|]/>\2 \1/' $< >$@
 
 cds_aa.orig.fa cds_na.orig.fa: %.fa:
 	esearch -db nuccore -query $(edirect_query) \
@@ -137,13 +160,22 @@ mitochondrion/mitochondrion.%.gz:
 	mkdir -p $(@D)
 	curl -o $@ ftp://ftp.ncbi.nlm.nih.gov/refseq/release/$@
 
+# Samtools
+#-------------------------------------------------------------------------------
+
+# Index a FASTA file.
+%.fa.fai: %.fa
+	samtools faidx $<
+
 # Prodigal
+#-------------------------------------------------------------------------------
 
 # Annotate genes using Prodigal
 %.prodigal.gff: %.fa
 	prodigal -c -m -g 1 -p single -f gff -a $*.prodigal.faa -d $*.prodigal.ffn -s $*.prodigal.tsv -i $< -o $@
 
 # RepeatModeler
+#-------------------------------------------------------------------------------
 
 %.nin: %.fa
 	BuildDatabase -name $* -engine ncbi $<
@@ -153,6 +185,7 @@ mitochondrion/mitochondrion.%.gz:
 	cp -a RM_*/consensi.fa.classified $@
 
 # ARAGORN
+#-------------------------------------------------------------------------------
 
 # Annotate tRNA using ARAGORN and output TSV
 %.aragorn.tsv: %.fa
@@ -171,11 +204,18 @@ mitochondrion/mitochondrion.%.gz:
 	tRNAscan-SE -O -o $@ -f $*.trnascan.txt $<
 
 # Barrnap
+#-------------------------------------------------------------------------------
 
-%.barrnap.gff: %.fa
+# Identify ribosomal RNA (rRNA) genes.
+%.barrnap.orig.gff: %.fa
 	barrnap --kingdom bac --threads $t $< >$@
 
+# Rename the rRNA genes.
+%.barrnap.gff: %.barrnap.orig.gff
+	sed -e 's/16S_rRNA/rrn16/' -e 's/23S_rRNA/rrn23/' $< >$@
+
 # Annotate rRNA using RNAmmer
+#-------------------------------------------------------------------------------
 
 %.rnammer.gff2: %.fa
 	mkdir -p rnammer
@@ -188,6 +228,7 @@ mitochondrion/mitochondrion.%.gz:
 			-e 's/rrn16/rrn18/g;s/rrn23/rrn26/g' >$@
 
 # MAKER
+#-------------------------------------------------------------------------------
 
 maker_bopts.ctl:
 	maker -BOPTS
@@ -226,11 +267,11 @@ $(name).maker.gff: $(name).rnammer.gff
 $(name).maker.gff: $(name).aragorn.gff
 
 # Prokka
+#-------------------------------------------------------------------------------
 
 # Convert the FASTA file to the Prokka FASTA format
 cds_aa.prokka.fa: %.prokka.fa: %.fa
-	sed -E 's/^>([^ ]*) .*gene=([^]]*).*protein=([^]]*).*$$/>\1 ~~~\2~~~\3/; \
-		s/^-//' $< >$@
+	sed -E 's/^>([^ ]*) .*gene=([^]]*).*protein=([^]]*).*$$/>\1 ~~~\2~~~\3/; s/^-//' $< >$@
 
 # Annotate genes using Prokka
 prokka/%.gff: %.fa cds_aa.prokka.fa
@@ -243,13 +284,10 @@ prokka/%.gff: %.fa cds_aa.prokka.fa
 
 # Remove the FASTA section from the Prokka GFF file
 %.prokka.gff: prokka/%.gff
-	gsed -E '/^##FASTA/,$$d; \
-		s/gene=([^;]*)/Name=\1;&/; \
-		/\tgene\t/{/gene=/!s/ID=[^_]*_([0-9]*)/Name=orf\1;&/;}; \
-		/\tCDS\t/{/gene=/!s/ID=[^_]*_([0-9]*)/Name=orf\1;&/; \
-			s/CDS/mRNA/;p; \
-			s/mRNA/CDS/;s/Parent=[^;]*;//;s/ID=/Parent=/;}; \
-		' $< >$@
+	gsed -E -e '/^##FASTA/,$$d' \
+		-e '/\tgene\t/{/gene=/!s/ID=ABT39_MT_([0-9]*)/Name=orf\1;&/;}' \
+		-e '/\tCDS\t/{/gene=/!s/ID=ABT39_MT_([0-9]*)/Name=orf\1;&/; s/CDS/mRNA/;p; s/mRNA/CDS/;s/Parent=[^;]*;//;s/ID=/Parent=/;}' \
+		$< >$@
 
 # Report the genes annotated by Prokka
 prokka/%.gff.gene: prokka/%.gff
@@ -328,12 +366,23 @@ prokka/%.gff.gene: prokka/%.gff
 	gt extractfeat -type gene -coords -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
 
 # Extract DNA sequences of GFF CDS features from a FASTA file
-%.gff.CDS.fa: %.gff %.fa
-	gt extractfeat -type CDS -join -coords -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
+%.gff.cds.fa: %.gff %.fa
+	gsed -E 's/Name=([^;]*)/Target=\1 0 0/' $< \
+	| gt extractfeat -type CDS -join -coords -target -matchdescstart -retainids -seqid -seqfile $*.fa - \
+	| gsed -E 's/>(.*target IDs ([^]|]*).*)/>\2_\1/' >$@
+
+# Extract the coding sequences of known genes.
+%.cds.known.fa: %.cds.fa
+	seqmagick convert --sort=name-asc --line-wrap=0 \
+		 --pattern-include='atp1|atp4|atp6|atp8|atp9|ccmB|ccmC|ccmFC|ccmFN|cob|cox1|cox2|cox3|dpo|matR|mttB|nad1|nad2|nad3|nad4L|nad4|nad5|nad6|nad7|nad9|rpl10|rpl16|rpl2|rpl5|rpo|rps10|rps11|rps12|rps13|rps14|rps19|rps1|rps2|rps3|rps4|rps7|sdh3|sdh4' \
+		 $< - \
+	| sed -e 's/_part1//g' -e '/_part[2-9]/d' \
+	| seqtk seq >$@
 
 # Extract aa sequences of GFF CDS features from a FASTA file
 %.gff.aa.fa: %.gff %.fa
-	gt extractfeat -type CDS -join -translate -coords -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
+	gsed -E 's/Name=([^;]*)/Target=\1 0 0/' $< \
+	| gt extractfeat -type CDS -join -translate -coords -target -matchdescstart -retainids -seqid -seqfile $*.fa - >$@
 
 # Translate protein sequences of GFF CDS features from a FASTA file
 %.aa.fa: %.fa
