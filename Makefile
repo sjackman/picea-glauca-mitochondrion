@@ -13,7 +13,7 @@ gzip=pigz -p$t
 # Green plant mitochondria
 edirect_query='Viridiplantae[Organism] mitochondrion[Title] (complete genome[Title] OR complete sequence[Title])'
 
-all: $(name).gff $(name).gbk $(name).gbk.png $(name).tbl $(name).sqn \
+all: $(name).gff $(name).gbk $(name).tbl $(name).sqn \
 	$(name).maker.evidence.gff $(name).maker.repeat.gff \
 	$(name).maker.gff.gene $(name).prokka.gff.gene $(name).gff.gene $(name).tbl.gene \
 	genes.html repeats.html
@@ -270,11 +270,11 @@ rmlib.fa: PICEAGLAUCA_rpt2.0.fa $(name).RepeatModeler.fa
 
 %.maker.gff: %.maker.orig.gff
 	gt gff3 -sort $^ \
-	|gsed -E ' \
-		/\tintron\t/d; \
-		s/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g; \
-		/\trRNA\t/s/ID=([^;]*)s_rRNA/Name=rrn\1;&/g' \
-	|gt gff3 -addintrons -sort - >$@
+	| gsed -E \
+		-e '/\tintron\t/d' \
+		-e 's/Name=trnascan-[^-]*-noncoding-([^-]*)-gene/Name=trn\1/g' \
+		-e '/\trRNA\t/s/ID=([^;]*)s_rRNA/Name=rrn\1;&/g' \
+	| gt gff3 -addintrons -sort - >$@
 
 # Add the rRNA annotations to the GFF file
 $(name).maker.gff: $(name).rnammer.gff
@@ -301,6 +301,9 @@ prokka/%.gff: %.fa cds_aa.prokka.fa
 # Remove the FASTA section from the Prokka GFF file
 %.prokka.gff: prokka/%.gff
 	gsed -E -e '/^##FASTA/,$$d' \
+		-e 's/=ltrA/=ymfltrA/g' \
+		-e 's/=rplB/=rpl2/g' \
+		-e 's/=smc/=dpo/g' \
 		-e '/\tgene\t/{/gene=/!s/ID=ABT39_MT_([0-9]*)/Name=orf\1;&/;}' \
 		-e '/\tCDS\t/{/gene=/!s/ID=ABT39_MT_([0-9]*)/Name=orf\1;&/; s/CDS/mRNA/;p; s/mRNA/CDS/;s/Parent=[^;]*;//;s/ID=/Parent=/;}' \
 		$< >$@
@@ -327,9 +330,7 @@ prokka/%.gff.gene: prokka/%.gff
 		$*.pregbk.gb >$@
 
 %.gbk: %-header.gbk %.gb
-	(cat $< && sed -En '/^FEATURES/,$$ { \
-		s/Name="([^|]*).*"/gene="\1"/; \
-		p; }' $*.gb) >$@
+	(cat $< && sed -En -e '/^FEATURES/,$$ { s/Name="([^|]*).*"/gene="\1"/; p; }' $*.gb) >$@
 
 # Merge MAKER and Prokka annotations using bedtools
 %.maker.prokka.gff: %.prokka.gff %.maker.gff
@@ -485,7 +486,7 @@ gbk/%.00.gbk: %.gbk
 %.fsa: %.fa
 	seqtk seq $< \
 		|sed -E -e '/^>(33|36)$$/{N;d;}' \
-			-e 's/^>.*/& [organism=Picea glauca] [location=mitochondrion] [completeness=draft] [topology=linear] [gcode=1]/' \
+			-e 's/^>.*/& [organism=Picea glauca] [isolate=PG29] [location=mitochondrion] [completeness=draft] [topology=linear] [gcode=1]/' \
 			>$@
 
 # tbl2asn
