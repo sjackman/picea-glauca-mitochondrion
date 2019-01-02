@@ -8,8 +8,7 @@ atpB	ATP synthase CF1 beta subunit
 bla	Beta-lactamase TEM precursor
 ccmB	cytochrome c biogenesis B
 ccmC	cytochrome c biogenesis C
-ccmFC1	cytochrome c biogenesis protein FC1
-ccmFC2	cytochrome c biogenesis protein FC2
+ccmFC	cytochrome c biogenesis FC
 ccmFN	cytochrome c biogenesis FN
 cob	apocytochrome b
 cox1	cytochrome c oxidase subunit 1
@@ -50,6 +49,7 @@ rrn18	18S ribosomal RNA
 rrn26	26S ribosomal RNA
 rrn5	5S ribosomal RNA
 sdh3	succinate dehydrogenase subunit 3
+sdh4	succinate dehydrogenase subunit 4
 tnsA	Transposon Tn7 transposition protein TnsA
 trnA	tRNA-Ala
 trnC	tRNA-Cys
