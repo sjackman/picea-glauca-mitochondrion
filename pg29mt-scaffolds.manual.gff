@@ -172,10 +172,10 @@ LKAM01000006.1	manual	intron	330441	331385	.	+	.	Parent=mRNA27
 LKAM01000006.1	manual	exon	331386	331454	.	+	.	Parent=mRNA27
 LKAM01000006.1	manual	CDS	331386	331454	.	+	1	Parent=mRNA27
 ###
-LKAM01000006.1	manual	gene	469262	469282	.	-	.	ID=gene29;Name=nad5
-LKAM01000006.1	manual	mRNA	469262	469282	.	-	.	ID=mRNA28;Parent=gene29;Name=nad5_part2;part=2/3;exception=trans-splicing
-LKAM01000006.1	manual	exon	469262	469282	.	-	.	Parent=mRNA28
-LKAM01000006.1	manual	CDS	469262	469282	.	-	2	Parent=mRNA28
+LKAM01000006.1	manual	gene	469262	469283	.	-	.	ID=gene29;Name=nad5
+LKAM01000006.1	manual	mRNA	469262	469283	.	-	.	ID=mRNA28;Parent=gene29;Name=nad5_part2;part=2/3;exception=trans-splicing
+LKAM01000006.1	manual	exon	469262	469283	.	-	.	Parent=mRNA28
+LKAM01000006.1	manual	CDS	469262	469283	.	-	0	Parent=mRNA28
 ###
 LKAM01000007.1	manual	gene	404819	408075	.	-	.	ID=gene30;Name=ccmFC
 LKAM01000007.1	manual	mRNA	404819	408075	.	-	.	ID=mRNA29;Parent=gene30;Name=ccmFC
@@ -195,13 +195,13 @@ LKAM01000007.1	manual	mRNA	446138	446533	.	+	.	ID=mRNA31;Parent=gene32;Name=sdh4
 LKAM01000007.1	manual	exon	446138	446533	.	+	.	Parent=mRNA31
 LKAM01000007.1	manual	CDS	446138	446533	.	+	0	Parent=mRNA31
 ###
-LKAM01000008.1	manual	gene	58761	61207	.	+	.	ID=gene33;Name=nad5
-LKAM01000008.1	manual	mRNA	58761	61207	.	+	.	ID=mRNA32;Parent=gene33;Name=nad5_part1;part=1/3;exception=trans-splicing
+LKAM01000008.1	manual	gene	58761	61206	.	+	.	ID=gene33;Name=nad5
+LKAM01000008.1	manual	mRNA	58761	61206	.	+	.	ID=mRNA32;Parent=gene33;Name=nad5_part1;part=1/3;exception=trans-splicing
 LKAM01000008.1	manual	exon	58761	58991	.	+	.	Parent=mRNA32
 LKAM01000008.1	manual	CDS	58761	58991	.	+	0	Parent=mRNA32
 LKAM01000008.1	manual	intron	58992	59982	.	+	.	Parent=mRNA32
-LKAM01000008.1	manual	exon	59983	61207	.	+	.	Parent=mRNA32
-LKAM01000008.1	manual	CDS	59983	61207	.	+	0	Parent=mRNA32
+LKAM01000008.1	manual	exon	59983	61206	.	+	.	Parent=mRNA32
+LKAM01000008.1	manual	CDS	59983	61206	.	+	0	Parent=mRNA32
 ###
 LKAM01000008.1	manual	gene	254797	255849	.	+	.	ID=gene34;Name=rps4
 LKAM01000008.1	manual	mRNA	254797	255849	.	+	.	ID=mRNA33;Parent=gene34;Name=rps4;exception=RNA editing;note=putative start codon created by RNA editing
