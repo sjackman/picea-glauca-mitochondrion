@@ -61,12 +61,18 @@ NC_010303.1.%.blastn: %.fa NC_010303.1.fa
 	| $(gzip) >$@
 
 # BWA
+#-------------------------------------------------------------------------------
 
-# Align the reads to the assembled genome
-$(name).%.sort.bam.bai: $(name).fa %.fa.gz
-	biomake ref=$(name) z=.gz threads=$t $@
+# Index the target genome.
+%.fa.bwt: %.fa
+	bwa index $<
+
+# Align a FASTA file to the draft genome using BWA-MEM.
+$(ref).bwa.%.sam.gz: %.fa $(ref).fa.bwt
+	bwa mem $(ref).fa $< | $(gzip) >$@
 
 # Copy local data
+#-------------------------------------------------------------------------------
 
 #PICEAGLAUCA_rpt2.0.fa: /genesis/extscratch/seqdev/PG/data/PICEAGLAUCA_rpt2.0
 #	cp -a $< $@
@@ -82,6 +88,12 @@ pg29mt-scaffolds.orig.fa:
 pg29mt-scaffolds.fa: pg29mt-scaffolds.orig.fa
 	gsed -E 's/^>(.*gb[|]([^|]*).*)[|]/>\2 \1/' $< >$@
 
+# Download the Pinus strobus CDS FASTA.
+pstrobusmt.cds.orig.fa:
+	esearch -db nuccore -query 'Pinus strobus[Organism] AND mitochondrion[filter]' \
+		| efetch -format fasta_cds_na \
+		| seqmagick convert --pattern-include 'AJP335' --line-wrap=0 - $@
+
 # Download the Pinus strobus protein FASTA.
 pstrobusmt.aa.orig.fa:
 	esearch -db nuccore -query 'Pinus strobus[Organism] AND mitochondrion[filter]' \
@@ -89,6 +101,16 @@ pstrobusmt.aa.orig.fa:
 		| seqmagick convert --pattern-include 'AJP335' --line-wrap=0 - $@
 
 # Rename the coding sequences.
+%.cds.fa: %.cds.orig.fa
+	gsed -E \
+		-e 's/>(.*gene=([^]]*)].*protein_id=([^]]*)].*)/>\2_\3 \1/' -e '/gene=.*protein_id=/n' \
+		-e 's/>(.*gene=([^]]*)].*locus_tag=([^]]*)].*)/>\2_\3 \1/' -e '/gene=.*locus_tag=/n' \
+		-e 's/>(.*protein_id=([^]]*)].*)/>\2 \1/' -e '/protein_id=/n' \
+		-e 's/>(.*locus_tag=([^]]*)].*)/>\2 \1/' $< \
+	| seqmagick convert --deduplicate-sequences --line-wrap=0 - $@
+	seqmagick convert --sort=name-asc --line-wrap=0 $@ $@
+
+# Rename the protein sequences.
 %.aa.fa: %.aa.orig.fa
 	gsed -E \
 		-e 's/>(.*gene=([^]]*)].*protein_id=([^]]*)].*)/>\2_\3 \1/' -e '/gene=.*protein_id=/n' \
@@ -182,6 +204,14 @@ mitochondrion/mitochondrion.%.gz:
 # Index a FASTA file.
 %.fa.fai: %.fa
 	samtools faidx $<
+
+# Sort a SAM file by target position.
+%.sort.bam: %.sam.gz
+	samtools sort -@$t -T$$(mktemp -u -t $@.XXXXXX) -o $@ $<
+
+# Index a BAM file.
+%.bam.bai: %.bam
+	samtools index -@$t $<
 
 # Prodigal
 #-------------------------------------------------------------------------------
