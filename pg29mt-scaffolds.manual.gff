@@ -167,10 +167,10 @@ LKAM01000006.1	manual	intron	330441	331385	.	+	.	Parent=mRNA26
 LKAM01000006.1	manual	exon	331386	331454	.	+	.	Parent=mRNA26
 LKAM01000006.1	manual	CDS	331386	331454	.	+	1	Parent=mRNA26
 ###
-LKAM01000006.1	manual	gene	469263	469283	.	-	.	ID=gene28;Name=nad5
-LKAM01000006.1	manual	mRNA	469263	469283	.	-	.	ID=mRNA27;Parent=gene28;Name=nad5_part2;part=2/3;exception=trans-splicing
-LKAM01000006.1	manual	exon	469263	469283	.	-	.	Parent=mRNA27
-LKAM01000006.1	manual	CDS	469263	469283	.	-	0	Parent=mRNA27
+LKAM01000006.1	manual	gene	469262	469282	.	-	.	ID=gene28;Name=nad5
+LKAM01000006.1	manual	mRNA	469262	469282	.	-	.	ID=mRNA27;Parent=gene28;Name=nad5_part2;part=2/3;exception=trans-splicing
+LKAM01000006.1	manual	exon	469262	469282	.	-	.	Parent=mRNA27
+LKAM01000006.1	manual	CDS	469262	469282	.	-	2	Parent=mRNA27
 ###
 LKAM01000007.1	manual	gene	404819	408075	.	-	.	ID=gene29;Name=ccmFC
 LKAM01000007.1	manual	mRNA	404819	408075	.	-	.	ID=mRNA28;Parent=gene29;Name=ccmFC
