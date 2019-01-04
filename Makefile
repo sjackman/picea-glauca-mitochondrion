@@ -260,9 +260,10 @@ mitochondrion/mitochondrion.%.gz:
 %.barrnap.gff: %.barrnap.orig.gff
 	sed -e 's/16S_rRNA/rrn16/' -e 's/23S_rRNA/rrn23/' $< >$@
 
-# Annotate rRNA using RNAmmer
+# RNAmmer
 #-------------------------------------------------------------------------------
 
+# Annotate rRNA using RNAmmer
 %.rnammer.gff2: %.fa
 	mkdir -p rnammer
 	rnammer -S bac -gff $@ -xml rnammer/$*.xml -f rnammer/$*.fa -h rnammer/$*.hmm $<
@@ -272,6 +273,40 @@ mitochondrion/mitochondrion.%.gz:
 	bin/convert_RNAmmer_to_gff3.pl --input=$< \
 		|sed -E -e 's/ID=([^s]*)s_rRNA_([0-9]*)/Name=rrn\1;&/' \
 			-e 's/rrn16/rrn18/g;s/rrn23/rrn26/g' >$@
+
+# Infernal and RFAM
+#-------------------------------------------------------------------------------
+# See https://rfam.readthedocs.io/en/latest/genome-annotation.html
+
+# Download RFAM clans.
+Rfam.clanin:
+	curl -o $@ ftp://ftp.ebi.ac.uk/pub/databases/Rfam/14.0/Rfam.clanin
+
+# Download RFAM.
+Rfam.cm:
+	curl ftp://ftp.ebi.ac.uk/pub/databases/Rfam/14.0/Rfam.cm.gz | gunzip -c >$@
+
+# Download RFAM Motif Domain-V (RM00007).
+domainV.cm:
+	curl -o $@ http://rfam.xfam.org/motif/RM00007/cm
+
+# Compress RFAM using Infernal.
+%.cm.i1m: %.cm
+	cmpress $<
+
+# Identify RNA families using Infernal.
+%.rfam.infernal: %.fa Rfam.clanin Rfam.cm.i1m
+	cmscan --cpu=$t --mid --cut_ga --nohmmonly --fmt 2 --tblout $*.rfam.infernal --clanin Rfam.clanin Rfam.cm $< >$*.rfam.txt
+
+# Identify group II domain V motif using Infernal.
+%.domainV.infernal: %.fa domainV.cm.i1m
+	cmscan --cpu=$t --mid --cut_ga --nohmmonly --fmt 2 --tblout $*.domainV.infernal domainV.cm $< >$*.domainV.txt
+	gsed -i 's/ -       / RM00007 /' $@
+
+# Convert Infernal TBL format to GFF.
+%.gff: %.infernal
+	awk -vOFS='\t' 'BEGIN { print "##gff-version 3" } /^#/ { next } { a = $$10; b = $$11; } $$10 >= $$11 { a = $$11; b = $$10 } { print $$4, "Infernal", "match", a, b, $$17, $$12, ".", "Name=" $$2 ";e=" $$18 ";Target=" $$3 " " $$8 " " $$9 }' $< \
+	| gt gff3 -sort >$@
 
 # MAKER
 #-------------------------------------------------------------------------------
