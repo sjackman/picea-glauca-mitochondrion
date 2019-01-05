@@ -88,6 +88,13 @@ pg29mt-scaffolds.orig.fa:
 pg29mt-scaffolds.fa: pg29mt-scaffolds.orig.fa
 	gsed -E 's/^>(.*gb[|]([^|]*).*)[|]/>\2 \1/' $< >$@
 
+# Download the Picea glauca mitochondrion GFF.
+LKAM01.1.gff:
+	(echo '##gff-version 3'; \
+	for i in $$(seq -w 1 36); do \
+		curl -s "https://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?db=nuccore&report=gff3&id=LKAM010000$$i.1"; \
+	done) | sed '/^$$/d' >$@
+
 # Download the Pinus strobus CDS FASTA.
 pstrobusmt.cds.orig.fa:
 	esearch -db nuccore -query 'Pinus strobus[Organism] AND mitochondrion[filter]' \
