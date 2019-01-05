@@ -92,8 +92,11 @@ def print_trna(f, locus_tag, product):
 			print_coord_override_type(sf, "tRNA", incomplete)
 		else:
 			print_coord(sf, incomplete)
-	name = f.qualifiers['Name'][0]
-	anticodon = name.partition('-')[2]
+	if "Name" in f.qualifiers:
+		name = f.qualifiers["Name"][0]
+	else:
+		name = f.qualifiers["gene"][0]
+	anticodon = name.partition("-")[2]
 	print "\t\t\tproduct\t%s" % product
 	print "\t\t\tnote\tanticodon:%s" % anticodon
 
@@ -163,9 +166,12 @@ def print_gene(f, gene_product_table, translations):
 	else:
 		print_coord_type(f, incomplete)
 
-	name = re.sub("-gene$", "", f.qualifiers['Name'][0])
-	gene = re.sub("[-_][0-9]+$", "", re.sub(r"\|.*$", "", name))
-	locus_tag = "%s_%s" % (args.locustag, f.qualifiers['ID'][0])
+	name = re.sub("-gene$", "", f.qualifiers["Name"][0])
+	if "gene" in name:
+		gene = re.sub("^.*gene", "orf", name)
+	else:
+		gene = re.sub("[-_][0-9]+$", "", re.sub(r"\|.*$", "", name))
+	locus_tag = "%s_%s" % (args.locustag, f.qualifiers["ID"][0])
 	product = "hypothetical protein" if gene.startswith("orf") else \
 		gene_product_table[re.sub("[-_].*$", "", gene)]
 
