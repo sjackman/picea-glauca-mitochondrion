@@ -451,5 +451,5 @@ ggplot(data_position) +
 
 # Store the data grouped by family
 ```{r write-data-by-family}
-write_tsv(data_grouped, "psitchensismt_18.gff.family.tsv")
+write_tsv(data_grouped, "pg29mt-scaffolds.gff.family.tsv")
 ```
