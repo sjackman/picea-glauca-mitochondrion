@@ -286,9 +286,13 @@ Rfam.clanin:
 Rfam.cm:
 	curl ftp://ftp.ebi.ac.uk/pub/databases/Rfam/14.0/Rfam.cm.gz | gunzip -c >$@
 
-# Download RFAM Motif Domain-V (RM00007).
+# Download RFAM motif Domain-V (RM00007).
 domainV.cm:
 	curl -o $@ http://rfam.xfam.org/motif/RM00007/cm
+
+# Download RFAM family Intron_gpII (RF00029), which includes domains V and VI.
+groupII.cm:
+	curl -o $@ http://rfam.xfam.org/family/RF00029/cm
 
 # Compress RFAM using Infernal.
 %.cm.i1m: %.cm
@@ -303,9 +307,13 @@ domainV.cm:
 	cmscan --cpu=$t --mid --cut_ga --nohmmonly --fmt 2 --tblout $*.domainV.infernal domainV.cm $< >$*.domainV.txt
 	gsed -i 's/ -       / RM00007 /' $@
 
+# Identify group II domains V and VI family using Infernal.
+%.groupII.infernal: %.fa groupII.cm.i1m
+	cmscan --cpu=$t --mid --incT=20 --fmt 2 --tblout $@ groupII.cm $< >$*.groupII.txt
+
 # Convert Infernal TBL format to GFF.
 %.gff: %.infernal
-	awk -vOFS='\t' 'BEGIN { print "##gff-version 3" } /^#/ { next } { a = $$10; b = $$11; } $$10 >= $$11 { a = $$11; b = $$10 } { print $$4, "Infernal", "match", a, b, $$17, $$12, ".", "Name=" $$2 ";e=" $$18 ";Target=" $$3 " " $$8 " " $$9 }' $< \
+	awk -vOFS='\t' 'BEGIN { print "##gff-version 3" } /^#/ { next } { a = $$10; b = $$11; } $$10 >= $$11 { a = $$11; b = $$10 } { print $$4, "Infernal", "match", a, b, $$17, $$12, ".", "Name=" $$2 ";Target=" $$3 " " $$8 " " $$9 ";e=" $$18 }' $< \
 	| gt gff3 -sort >$@
 
 # MAKER
