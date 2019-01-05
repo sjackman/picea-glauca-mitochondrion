@@ -404,7 +404,7 @@ prokka/%.gff: %.fa cds_aa.prokka.fa
 	prokka --kingdom bac --gcode 1 --addgenes --proteins cds_aa.prokka.fa --rnammer \
 		--cpus $t \
 		--genus Picea --species 'glauca mitochondrion' \
-		--locustag ABT39_MT \
+		--locustag PG29MT \
 		--force --outdir prokka --prefix $* \
 		$<
 
@@ -415,8 +415,8 @@ prokka/%.gff: %.fa cds_aa.prokka.fa
 		-e 's/=ltrA/=ymfltrA/g' \
 		-e 's/=rplB/=rpl2/g' \
 		-e 's/=smc/=dpo/g' \
-		-e '/\tgene\t/{/gene=/!s/ID=ABT39_MT_([0-9]*)/Name=orf\1;&/;}' \
-		-e '/\tCDS\t/{/gene=/!s/ID=ABT39_MT_([0-9]*)/Name=orf\1;&/; s/CDS/mRNA/;p; s/mRNA/CDS/;s/Parent=[^;]*;//;s/ID=/Parent=/;}' \
+		-e '/\tgene\t/{/gene=/!s/ID=[^_]*_([0-9]*)/Name=orf\1;&/;}' \
+		-e '/\tCDS\t/{/gene=/!s/ID=[^_]*_([0-9]*)/Name=orf\1;&/; s/CDS/mRNA/;p; s/mRNA/CDS/;s/Parent=[^;]*;//;s/ID=/Parent=/;}' \
 		$< >$@
 
 # Report the genes annotated by Prokka
@@ -509,8 +509,8 @@ prokka/%.gff.gene: prokka/%.gff
 
 # Extract aa sequences of GFF CDS features from a FASTA file
 %.gff.aa.fa: %.gff %.fa
-	gsed -E 's/Name=([^;]*)/Target=\1 0 0/' $< \
-	| gt extractfeat -type CDS -join -translate -coords -target -matchdescstart -retainids -seqid -seqfile $*.fa - >$@
+	gsed -E 's/^.*Parent=([^;]*).*Name=([^;]*).*/&;Target=\2_\1 0 0/' $< \
+	| gt extractfeat -type CDS -join -translate -coords -target -matchdescstart -retainids -seqid -seqfile $*.fa >$@
 
 # Translate protein sequences of GFF CDS features from a FASTA file
 %.aa.fa: %.fa
@@ -582,7 +582,7 @@ gbk/%.00.gbk: %.gbk
 
 # Convert GFF to TBL
 %.tbl: %.gff %.product.tsv %.gff.aa.fa
-	bin/gff3-to-tbl --centre=BCGSC --locustag=ABT39_MT $^ >$@
+	bin/gff3-to-tbl --centre=BCGSC --locustag=PG29MT $^ >$@
 
 # Extract the names of genes from a TBL file
 %.tbl.gene: %.tbl
@@ -601,13 +601,25 @@ gbk/%.00.gbk: %.gbk
 			>$@
 
 # tbl2asn
+#-------------------------------------------------------------------------------
 
-# Convert TBL to GBK and SQN
+# Extract the IDs of protein sequences with unusual start codons.
+%.alt: %.gff
+	grep 'note=.*start codon' $< | egrep -o 'mRNA[0-9]+' >$@
+
+# Extract protein sequences with unusual start codons.
+%.pep: %.gff.aa.fa %.alt
+	seqtk subseq $^ \
+	| sed -E -e 's/^>(.*(gene[0-9]*).*)/>gnl|BCGSC|PG29MT_\2 \1/' \
+		-e 's/^T/M/' \
+		-e 's/^A/V/' >$@
+
+# Convert TBL to GBK and SQN.
 %.gbf %.sqn: %.fsa %.sbt %.tbl %.cmt %.pep
 	tbl2asn -a s -i $< -t $*.sbt -w $*.cmt -Z $*.discrep -Vbv
 	gsed -i 's/DEFINITION  Picea glauca/& mitochondrion draft genome/' $*.gbf
 
-# Render HTML from RMarkdown
+# Render HTML from RMarkdown.
 %.html: %.rmd
 	Rscript -e 'rmarkdown::render("$<", output_format = "html_document")'
 	mogrify -units PixelsPerInch -density 300 $*_files/figure-html/*.png
