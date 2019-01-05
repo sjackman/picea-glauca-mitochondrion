@@ -47,7 +47,7 @@ LKAM01000001.1	manual	exon	878603	878864	.	-	.	Parent=mRNA6
 LKAM01000001.1	manual	CDS	878603	878864	.	-	1	Parent=mRNA6
 ###
 LKAM01000001.1	manual	gene	879180	881372	.	-	.	ID=gene7;Name=matR
-LKAM01000001.1	manual	mRNA	879180	881372	.	-	.	ID=mRNA7;Parent=gene7;Name=matR
+LKAM01000001.1	manual	mRNA	879180	881372	.	-	.	ID=mRNA7;Parent=gene7;Name=matR;note=putative alternative GGG start codon
 LKAM01000001.1	manual	exon	879180	881372	.	-	.	Parent=mRNA7
 LKAM01000001.1	manual	CDS	879180	881372	.	-	0	Parent=mRNA7
 ###
@@ -129,7 +129,7 @@ LKAM01000003.1	manual	exon	277401	279164	.	+	.	Parent=mRNA20
 LKAM01000003.1	manual	CDS	277401	279164	.	+	0	Parent=mRNA20
 ###
 LKAM01000005.1	manual	gene	17378	17791	.	-	.	ID=gene22;Name=rpl16
-LKAM01000005.1	manual	mRNA	17378	17791	.	-	.	ID=mRNA21;Parent=gene22;Name=rpl16
+LKAM01000005.1	manual	mRNA	17378	17791	.	-	.	ID=mRNA21;Parent=gene22;Name=rpl16;note=putative alternative GUG start codon
 LKAM01000005.1	manual	exon	17378	17791	.	-	.	Parent=mRNA21
 LKAM01000005.1	manual	CDS	17378	17791	.	-	0	Parent=mRNA21
 ###
