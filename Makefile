@@ -287,29 +287,66 @@ Rfam.cm:
 	curl ftp://ftp.ebi.ac.uk/pub/databases/Rfam/14.0/Rfam.cm.gz | gunzip -c >$@
 
 # Download RFAM motif Domain-V (RM00007).
-domainV.cm:
+RM00007.cm:
 	curl -o $@ http://rfam.xfam.org/motif/RM00007/cm
 
+# Add the accession number to domain V.
+domainV.cm: RM00007.cm
+	gsed 's/^NAME.*$$/&\nACC      RM00007/' $< >$@
+
+# Download RFAM covariance models.
+RF%.cm:
+	curl -o $@ http://rfam.xfam.org/family/RF$*/cm
+
 # Download RFAM family Intron_gpII (RF00029), which includes domains V and VI.
-groupII.cm:
-	curl -o $@ http://rfam.xfam.org/family/RF00029/cm
+# Decrease the bit score threshold from 40 to 20.
+groupII.cm: RF00029.cm
+	sed 's/^GA.*/GA       20.00/' $< >$@
+
+# Download RFAM clan group-II-D1D4 (CL00102).
+# Decrease the bit score threshold from to 10.
+d1d4.cm: RF01998.cm RF01999.cm RF02001.cm RF02003.cm RF02004.cm RF02005.cm RF02012.cm
+	sed 's/^GA.*/GA       10.00/' $^ >$@
+
+# Download a covariance model of bacterial 5S, 18S, and 26S rRNA.
+rRNA.cm: RF00001.cm RF00177.cm RF02541.cm
+	cat $^ >$@
+
+# Download a covariance model of tRNA.
+tRNA.cm: RF00005.cm
+	cat $^ >$@
+
+# Download a covariance model of RFAM families relevant to mitochondria.
+mt.cm: rRNA.cm tRNA.cm domainV.cm groupII.cm d1d4.cm
+	cat $^ >$@
+
+# Create a clan file for the mitochondrial covariance model.
+mt.clanin: Rfam.clanin
+	grep CL00102 $< >$@
 
 # Compress RFAM using Infernal.
 %.cm.i1m: %.cm
 	cmpress $<
 
-# Identify RNA families using Infernal.
+# Identify RFAM families for mitochondria using Infernal.
+%.mt.infernal: %.fa mt.clanin mt.cm.i1m
+	cmscan --cpu=$t --mid --cut_ga --fmt 2 --tblout $*.mt.infernal --clanin mt.clanin mt.cm $< >$*.mt.txt
+
+# Identify RFAM families using Infernal.
 %.rfam.infernal: %.fa Rfam.clanin Rfam.cm.i1m
-	cmscan --cpu=$t --mid --cut_ga --nohmmonly --fmt 2 --tblout $*.rfam.infernal --clanin Rfam.clanin Rfam.cm $< >$*.rfam.txt
+	cmscan --cpu=$t --mid --cut_ga --fmt 2 --tblout $*.rfam.infernal --clanin Rfam.clanin Rfam.cm $< >$*.rfam.txt
 
 # Identify group II domain V motif using Infernal.
 %.domainV.infernal: %.fa domainV.cm.i1m
-	cmscan --cpu=$t --mid --cut_ga --nohmmonly --fmt 2 --tblout $*.domainV.infernal domainV.cm $< >$*.domainV.txt
-	gsed -i 's/ -       / RM00007 /' $@
+	cmscan --cpu=$t --mid --cut_ga --fmt 2 --tblout $*.domainV.infernal domainV.cm $< >$*.domainV.txt
 
 # Identify group II domains V and VI family using Infernal.
 %.groupII.infernal: %.fa groupII.cm.i1m
 	cmscan --cpu=$t --mid --incT=20 --fmt 2 --tblout $@ groupII.cm $< >$*.groupII.txt
+
+# Identify RFAM clan group-II-D1D4 (CL00102) using Infernal.
+%.d1d4.infernal: %.fa d1d4.cm.i1m
+	cmscan --cpu=$t --nohmm --incT=10 --fmt 2 --tblout $@ d1d4.cm $< >$*.d1d4.txt
 
 # Convert Infernal TBL format to GFF.
 %.gff: %.infernal
