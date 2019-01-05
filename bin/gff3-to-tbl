@@ -77,7 +77,7 @@ def print_mrna(f, incomplete, locus_tag, product):
 	if match:
 		print "\t\t\tinference\tsimilar to AA sequence:%s:%s" % (db, match.group(1))
 
-	for tag in "exception", "transl_except":
+	for tag in "exception", "note", "transl_except":
 		if tag in f.qualifiers:
 			for value in f.qualifiers[tag]:
 				print "\t\t\t%s\t%s" % (tag, value)
@@ -100,7 +100,7 @@ def print_trna(f, locus_tag, product):
 	print "\t\t\tproduct\t%s" % product
 	print "\t\t\tnote\tanticodon:%s" % anticodon
 
-	for tag in "exception":
+	for tag in "exception", "note":
 		if tag in f.qualifiers:
 			for value in f.qualifiers[tag]:
 				print "\t\t\t%s\t%s" % (tag, value)
