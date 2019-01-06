@@ -185,15 +185,19 @@ def print_gene(f, gene_product_table, translations):
 		print "\t\t\tpseudo"
 
 	for sf in subfeatures(f):
-		if sf.type == 'mRNA':
+		if sf.type == "CDS":
+			print_mrna(f, incomplete, locus_tag, product)
+			print_introns(f)
+			return
+		elif sf.type == "mRNA":
 			print_mrna(sf, incomplete, locus_tag, product)
 			print_introns(sf)
-		elif sf.type == 'rRNA':
+		elif sf.type == "rRNA":
 			print_coord_type(sf, incomplete)
-			size = name.partition('rrn')[2]
+			size = name.partition("rrn")[2]
 			print "\t\t\tproduct\t%s" % product
 			print_introns(sf)
-		elif sf.type == 'tRNA':
+		elif sf.type == "tRNA":
 			print_trna(sf, locus_tag, product)
 			print_introns(sf)
 
