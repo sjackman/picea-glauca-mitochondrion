@@ -81,6 +81,8 @@ def print_mrna(f, incomplete, locus_tag, product):
 		if tag in f.qualifiers:
 			for value in f.qualifiers[tag]:
 				print "\t\t\t%s\t%s" % (tag, value)
+				if tag == "exception" and value == "trans-splicing":
+					print "\t\t\tnote\tpart=%s" % f.qualifiers["part"][0]
 
 def print_trna(f, locus_tag, product):
 	""" Print a tRNA gene.
