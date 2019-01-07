@@ -87,6 +87,18 @@ $(ref).minimap2.%.sam.gz: $(ref).fa %.fa
 # NCBI
 #-------------------------------------------------------------------------------
 
+# Download the Picea glauca plastid FASTA.
+pglaucacp.fa:
+	curl 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?id=NC_028594.1&retmode=text&db=nucleotide&rettype=fasta' | seqtk seq >$@
+
+# Download the Picea glauca plastid CDS FASTA.
+pglaucacp.cds.orig.fa:
+	curl -o $@ 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?id=NC_028594.1&retmode=text&db=nucleotide&rettype=fasta_cds_na'
+
+# Download the Picea glauca plastid GFF.
+pglaucacp.gff:
+	curl 'https://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?id=NC_028594.1&db=nuccore&report=gff3' >$@
+
 # Download the Picea glauca mitochondrion FASTA.
 pg29mt-scaffolds.orig.fa:
 	curl ftp://ftp.ncbi.nlm.nih.gov/sra/wgs_aux/LK/AM/LKAM01/LKAM01.1.fsa_nt.gz | gunzip -c | seqtk seq >$@
