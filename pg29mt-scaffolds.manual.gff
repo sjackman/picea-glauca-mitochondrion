@@ -204,64 +204,72 @@ LKAM01000008.1	manual	intron	58992	59982	.	+	.	Parent=mRNA32
 LKAM01000008.1	manual	exon	59983	61206	.	+	.	Parent=mRNA32
 LKAM01000008.1	manual	CDS	59983	61206	.	+	0	Parent=mRNA32
 ###
-LKAM01000008.1	manual	gene	254797	255849	.	+	.	ID=gene34;Name=rps4
-LKAM01000008.1	manual	mRNA	254797	255849	.	+	.	ID=mRNA33;Parent=gene34;Name=rps4;exception=RNA editing;note=putative start codon created by RNA editing
-LKAM01000008.1	manual	exon	254797	255849	.	+	.	Parent=mRNA33
-LKAM01000008.1	manual	CDS	254797	255849	.	+	0	Parent=mRNA33
+LKAM01000008.1	manual	gene	163667	164845	.	+	.	ID=gene34;Name=rpl2
+LKAM01000008.1	manual	mRNA	163667	164845	.	+	.	ID=mRNA33;Parent=gene34;Name=rpl2
+LKAM01000008.1	manual	exon	163667	163988	.	+	.	Parent=mRNA33
+LKAM01000008.1	manual	CDS	163667	163988	.	+	0	Parent=mRNA33
+LKAM01000008.1	manual	intron	163989	164654	.	+	.	Parent=mRNA33
+LKAM01000008.1	manual	exon	164655	164845	.	+	.	Parent=mRNA33
+LKAM01000008.1	manual	CDS	164655	164845	.	+	2	Parent=mRNA33
 ###
-LKAM01000009.1	manual	gene	29678	31023	.	-	.	ID=gene35;Name=nad5
-LKAM01000009.1	manual	mRNA	29678	31023	.	-	.	ID=mRNA34;Parent=gene35;Name=nad5
-LKAM01000009.1	manual	exon	29678	29827	.	-	.	Parent=mRNA34
-LKAM01000009.1	manual	CDS	29678	29827	.	-	0	Parent=mRNA34
-LKAM01000009.1	manual	intron	29828	30765	.	-	.	Parent=mRNA34
-LKAM01000009.1	manual	exon	30766	31023	.	-	.	Parent=mRNA34
-LKAM01000009.1	manual	CDS	30766	31023	.	-	0	Parent=mRNA34
+LKAM01000008.1	manual	gene	254797	255849	.	+	.	ID=gene35;Name=rps4
+LKAM01000008.1	manual	mRNA	254797	255849	.	+	.	ID=mRNA34;Parent=gene35;Name=rps4;exception=RNA editing;note=putative start codon created by RNA editing
+LKAM01000008.1	manual	exon	254797	255849	.	+	.	Parent=mRNA34
+LKAM01000008.1	manual	CDS	254797	255849	.	+	0	Parent=mRNA34
 ###
-LKAM01000010.1	manual	gene	38074	39835	.	-	.	ID=gene36;Name=nad7
-LKAM01000010.1	manual	mRNA	38074	39835	.	-	.	ID=mRNA35;Parent=gene36;Name=nad7_part2;part=2/3;exception=trans-splicing
-LKAM01000010.1	manual	exon	38074	38317	.	-	.	Parent=mRNA35
-LKAM01000010.1	manual	CDS	38074	38317	.	-	2	Parent=mRNA35
-LKAM01000010.1	manual	intron	38318	39368	.	-	.	Parent=mRNA35
-LKAM01000010.1	manual	exon	39369	39835	.	-	.	Parent=mRNA35
-LKAM01000010.1	manual	CDS	39369	39835	.	-	1	Parent=mRNA35
+LKAM01000009.1	manual	gene	29678	31023	.	-	.	ID=gene36;Name=nad5
+LKAM01000009.1	manual	mRNA	29678	31023	.	-	.	ID=mRNA35;Parent=gene36;Name=nad5
+LKAM01000009.1	manual	exon	29678	29827	.	-	.	Parent=mRNA35
+LKAM01000009.1	manual	CDS	29678	29827	.	-	0	Parent=mRNA35
+LKAM01000009.1	manual	intron	29828	30765	.	-	.	Parent=mRNA35
+LKAM01000009.1	manual	exon	30766	31023	.	-	.	Parent=mRNA35
+LKAM01000009.1	manual	CDS	30766	31023	.	-	0	Parent=mRNA35
 ###
-LKAM01000010.1	manual	gene	118644	120422	.	-	.	ID=gene37;Name=rps10
-LKAM01000010.1	manual	mRNA	118644	120422	.	-	.	ID=mRNA36;Parent=gene37;Name=rps10;exception=RNA editing;note=putative start codon created by RNA editing
-LKAM01000010.1	manual	exon	118644	118744	.	-	.	Parent=mRNA36
-LKAM01000010.1	manual	CDS	118644	118744	.	-	2	Parent=mRNA36
-LKAM01000010.1	manual	intron	118745	120181	.	-	.	Parent=mRNA36
-LKAM01000010.1	manual	exon	120182	120422	.	-	.	Parent=mRNA36
-LKAM01000010.1	manual	CDS	120182	120422	.	-	0	Parent=mRNA36
+LKAM01000010.1	manual	gene	38074	39835	.	-	.	ID=gene37;Name=nad7
+LKAM01000010.1	manual	mRNA	38074	39835	.	-	.	ID=mRNA36;Parent=gene37;Name=nad7_part2;part=2/3;exception=trans-splicing
+LKAM01000010.1	manual	exon	38074	38317	.	-	.	Parent=mRNA36
+LKAM01000010.1	manual	CDS	38074	38317	.	-	2	Parent=mRNA36
+LKAM01000010.1	manual	intron	38318	39368	.	-	.	Parent=mRNA36
+LKAM01000010.1	manual	exon	39369	39835	.	-	.	Parent=mRNA36
+LKAM01000010.1	manual	CDS	39369	39835	.	-	1	Parent=mRNA36
 ###
-LKAM01000010.1	manual	gene	126075	126336	.	+	.	ID=gene38;Name=nad7
-LKAM01000010.1	manual	mRNA	126075	126336	.	+	.	ID=mRNA37;Parent=gene38;Name=nad7_part3;part=3/3;exception=trans-splicing
-LKAM01000010.1	manual	exon	126075	126336	.	+	.	Parent=mRNA37
-LKAM01000010.1	manual	CDS	126075	126336	.	+	1	Parent=mRNA37
+LKAM01000010.1	manual	gene	118644	120422	.	-	.	ID=gene38;Name=rps10
+LKAM01000010.1	manual	mRNA	118644	120422	.	-	.	ID=mRNA37;Parent=gene38;Name=rps10;exception=RNA editing;note=putative start codon created by RNA editing
+LKAM01000010.1	manual	exon	118644	118744	.	-	.	Parent=mRNA37
+LKAM01000010.1	manual	CDS	118644	118744	.	-	2	Parent=mRNA37
+LKAM01000010.1	manual	intron	118745	120181	.	-	.	Parent=mRNA37
+LKAM01000010.1	manual	exon	120182	120422	.	-	.	Parent=mRNA37
+LKAM01000010.1	manual	CDS	120182	120422	.	-	0	Parent=mRNA37
 ###
-LKAM01000010.1	manual	gene	126859	126932	.	+	.	ID=gene39;Name=trnI-CAU;product=tRNA-Met
-LKAM01000010.1	manual	tRNA	126859	126932	.	+	.	ID=tRNA2;Parent=gene39;Name=trnI-CAU;product=tRNA-Met
+LKAM01000010.1	manual	gene	126075	126336	.	+	.	ID=gene39;Name=nad7
+LKAM01000010.1	manual	mRNA	126075	126336	.	+	.	ID=mRNA38;Parent=gene39;Name=nad7_part3;part=3/3;exception=trans-splicing
+LKAM01000010.1	manual	exon	126075	126336	.	+	.	Parent=mRNA38
+LKAM01000010.1	manual	CDS	126075	126336	.	+	1	Parent=mRNA38
+###
+LKAM01000010.1	manual	gene	126859	126932	.	+	.	ID=gene40;Name=trnI-CAU;product=tRNA-Met
+LKAM01000010.1	manual	tRNA	126859	126932	.	+	.	ID=tRNA2;Parent=gene40;Name=trnI-CAU;product=tRNA-Met
 LKAM01000010.1	manual	exon	126859	126932	.	+	.	Parent=tRNA2;Name=trnI-CAU
 ###
-LKAM01000011.1	manual	gene	134326	134786	.	-	.	ID=gene40;Name=nad4
-LKAM01000011.1	manual	mRNA	134326	134786	.	-	.	ID=mRNA38;Parent=gene40;Name=nad4_part1;part=1/2;exception=trans-splicing
-LKAM01000011.1	manual	exon	134326	134786	.	-	.	Parent=mRNA38
-LKAM01000011.1	manual	CDS	134326	134786	.	-	0	Parent=mRNA38
+LKAM01000011.1	manual	gene	134326	134786	.	-	.	ID=gene41;Name=nad4
+LKAM01000011.1	manual	mRNA	134326	134786	.	-	.	ID=mRNA39;Parent=gene41;Name=nad4_part1;part=1/2;exception=trans-splicing
+LKAM01000011.1	manual	exon	134326	134786	.	-	.	Parent=mRNA39
+LKAM01000011.1	manual	CDS	134326	134786	.	-	0	Parent=mRNA39
 ###
-LKAM01000011.1	manual	gene	142205	144202	.	+	.	ID=gene41;Name=nad2
-LKAM01000011.1	manual	mRNA	142205	144202	.	+	.	ID=mRNA39;Parent=gene41;Name=nad2_part1;part=1/3;exception=trans-splicing
-LKAM01000011.1	manual	exon	142205	142357	.	+	.	Parent=mRNA39
-LKAM01000011.1	manual	CDS	142205	142357	.	+	0	Parent=mRNA39
-LKAM01000011.1	manual	intron	142358	143808	.	+	.	Parent=mRNA39
-LKAM01000011.1	manual	exon	143809	144202	.	+	.	Parent=mRNA39
-LKAM01000011.1	manual	CDS	143809	144202	.	+	0	Parent=mRNA39
+LKAM01000011.1	manual	gene	142205	144202	.	+	.	ID=gene42;Name=nad2
+LKAM01000011.1	manual	mRNA	142205	144202	.	+	.	ID=mRNA40;Parent=gene42;Name=nad2_part1;part=1/3;exception=trans-splicing
+LKAM01000011.1	manual	exon	142205	142357	.	+	.	Parent=mRNA40
+LKAM01000011.1	manual	CDS	142205	142357	.	+	0	Parent=mRNA40
+LKAM01000011.1	manual	intron	142358	143808	.	+	.	Parent=mRNA40
+LKAM01000011.1	manual	exon	143809	144202	.	+	.	Parent=mRNA40
+LKAM01000011.1	manual	CDS	143809	144202	.	+	0	Parent=mRNA40
 ###
-LKAM01000012.1	manual	gene	95476	96669	.	+	.	ID=gene42;Name=cob
-LKAM01000012.1	manual	mRNA	95476	96669	.	+	.	ID=mRNA40;Parent=gene42;Name=cob
-LKAM01000012.1	manual	exon	95476	96669	.	+	.	Parent=mRNA40
-LKAM01000012.1	manual	CDS	95476	96669	.	+	0	Parent=mRNA40
+LKAM01000012.1	manual	gene	95476	96669	.	+	.	ID=gene43;Name=cob
+LKAM01000012.1	manual	mRNA	95476	96669	.	+	.	ID=mRNA41;Parent=gene43;Name=cob
+LKAM01000012.1	manual	exon	95476	96669	.	+	.	Parent=mRNA41
+LKAM01000012.1	manual	CDS	95476	96669	.	+	0	Parent=mRNA41
 ###
-LKAM01000016.1	manual	gene	7560	7747	.	+	.	ID=gene43;Name=nad2
-LKAM01000016.1	manual	mRNA	7560	7747	.	+	.	ID=mRNA41;Parent=gene43;Name=nad2_part3;part=3/3;exception=trans-splicing
-LKAM01000016.1	manual	exon	7560	7747	.	+	.	Parent=mRNA41
-LKAM01000016.1	manual	CDS	7560	7747	.	+	2	Parent=mRNA41
+LKAM01000016.1	manual	gene	7560	7747	.	+	.	ID=gene44;Name=nad2
+LKAM01000016.1	manual	mRNA	7560	7747	.	+	.	ID=mRNA42;Parent=gene44;Name=nad2_part3;part=3/3;exception=trans-splicing
+LKAM01000016.1	manual	exon	7560	7747	.	+	.	Parent=mRNA42
+LKAM01000016.1	manual	CDS	7560	7747	.	+	2	Parent=mRNA42
 ###
