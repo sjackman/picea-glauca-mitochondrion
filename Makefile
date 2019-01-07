@@ -71,6 +71,13 @@ NC_010303.1.%.blastn: %.fa NC_010303.1.fa
 $(ref).bwa.%.sam.gz: %.fa $(ref).fa.bwt
 	bwa mem $(ref).fa $< | $(gzip) >$@
 
+# minimap2
+#-------------------------------------------------------------------------------
+
+# Align a FASTA file to the draft genome using minimap2.
+$(ref).minimap2.%.sam.gz: $(ref).fa %.fa
+	minimap2 -a -xsplice $^ | $(gzip) >$@
+
 # Copy local data
 #-------------------------------------------------------------------------------
 
