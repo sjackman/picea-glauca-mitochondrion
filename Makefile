@@ -485,7 +485,16 @@ prokka/%.gff.gene: prokka/%.gff
 %.gff: %.orig.gff
 	sed -E '/^(33|36)[[:blank:]]/d' $< |uniq >$@
 
+# LKAM01.2 Picea glauca mitochondrion
+#-------------------------------------------------------------------------------
+
+# Merge the previous annotation LKAM01.1 with the current manual annotation.
+LKAM01.2.gff: LKAM01.1.gff pg29mt-scaffolds.gff
+	bedtools intersect -v -header -a $< -b pg29mt-scaffolds.manual.gff \
+		| gt gff3 -sort pg29mt-scaffolds.manual.gff - >$@
+
 # OrganellarGenomeDRAW
+#-------------------------------------------------------------------------------
 
 # Draw a linear genome
 %.gbk.png: %.gbk
