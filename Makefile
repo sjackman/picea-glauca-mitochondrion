@@ -107,6 +107,12 @@ pg29mt-scaffolds.orig.fa:
 pg29mt-scaffolds.fa: pg29mt-scaffolds.orig.fa
 	gsed -E 's/^>(.*gb[|]([^|]*).*)[|]/>\2 \1/' $< >$@
 
+# Download the Picea glauca mitochondrion TBL.
+LKAM01.1.tbl:
+	(for i in $$(seq -w 1 36); do \
+		curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?id=LKAM010000$$i.1;retmode=text&db=nucleotide&rettype=ft"; \
+	done) | sed '/^$$/d' >$@
+
 # Download the Picea glauca mitochondrion GFF.
 LKAM01.1.gff:
 	(echo '##gff-version 3'; \
