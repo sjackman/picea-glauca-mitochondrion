@@ -545,7 +545,9 @@ prokka/%.gff.gene: prokka/%.gff
 
 # Extract sequences of GFF intron features
 %.gff.intron.fa: %.gff %.fa
-	gt extractfeat -type intron -coords -matchdescstart -retainids -seqid -seqfile $*.fa $< >$@
+	gsed -E 's/Name=([^;]*)/Target=\1 0 0/' $< \
+	| gt extractfeat -type intron -coords -target -matchdescstart -retainids -seqid -seqfile $*.fa - \
+	| gsed -E 's/>(.*target IDs ([^]|]*).*)/>\2 \1/' >$@
 
 # Extract sequences of GFF intron features plus flanking sequence
 %.gff.intron.flank100.fa: %.gff %.fa.fai
