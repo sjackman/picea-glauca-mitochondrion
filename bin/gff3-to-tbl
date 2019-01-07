@@ -118,44 +118,51 @@ def trans_spliced(f):
 	"""
 	return "exception" in f.qualifiers and "trans-splicing" in f.qualifiers["exception"]
 
-def incomplete_cds(f, translations):
+def incomplete_mrna(f, translations):
+	""" Return whether this mRNA is incomplete.
+	"""
+	if not "ID" in f.qualifiers:
+		return
+	name = f.qualifiers["Name"][0]
+	id = f.qualifiers["ID"][0]
+	seq = translations[id]
+	# ACG codes for T and is edited to AUG, which codes for M.
+	acg_start = seq[0] == "T" \
+		and "exception" in f.qualifiers and "note" in f.qualifiers \
+		and "RNA editing" in f.qualifiers["exception"] \
+		and "putative start codon created by RNA editing" in f.qualifiers["note"]
+	# GCG codes for A and is edited to GUG, which codes for V, an alternative start codon.
+	gcg_start = seq[0] == "A" \
+		and "exception" in f.qualifiers and "note" in f.qualifiers \
+		and "RNA editing" in f.qualifiers["exception"] \
+		and "putative alternative GUG start codon created by RNA editing" in f.qualifiers["note"]
+	# matR starts with a GGG codon, which codes for G.
+	ggg_start = seq[0] == "G" and name == "matR"
+	# rpl16 starts with a GUG codon, which codes for V.
+	gtg_start = seq[0] == "V" and name == "rpl16"
+	# CAG codes for Q and is edited to UAG, which is a stop codon.
+	cag_stop = seq[-1] == "Q" \
+		and "exception" in f.qualifiers and "note" in f.qualifiers \
+		and "RNA editing" in f.qualifiers["exception"] \
+		and "putative stop codon created by RNA editing" in f.qualifiers["note"]
+	good_start = seq[0] == "M" or acg_start or gcg_start or ggg_start or gtg_start
+	good_stop = seq[-1] == "*" or cag_stop
+	return (not good_start, not good_stop)
+
+def incomplete_feature(f, translations):
 	""" Return whether this coding feature is incomplete.
 	"""
 	for sf in subfeatures(f):
-		if sf.type == 'mRNA':
-			if not 'ID' in sf.qualifiers:
-				continue
-			name = sf.qualifiers["Name"][0]
-			id = sf.qualifiers["ID"][0]
-			seq = translations[id]
-			# ACG codes for T and is edited to AUG, which codes for M.
-			acg_start = seq[0] == "T" \
-				and "exception" in sf.qualifiers and "note" in sf.qualifiers \
-				and "RNA editing" in sf.qualifiers["exception"] \
-				and "putative start codon created by RNA editing" in sf.qualifiers["note"]
-			# GCG codes for A and is edited to GUG, which codes for V, an alternative start codon.
-			gcg_start = seq[0] == "A" \
-				and "exception" in sf.qualifiers and "note" in sf.qualifiers \
-				and "RNA editing" in sf.qualifiers["exception"] \
-				and "putative alternative GUG start codon created by RNA editing" in sf.qualifiers["note"]
-			# matR starts with a GGG codon, which codes for G.
-			ggg_start = seq[0] == "G" and name == "matR"
-			# rpl16 starts with a GUG codon, which codes for V.
-			gtg_start = seq[0] == "V" and name == "rpl16"
-			# CAG codes for Q and is edited to UAG, which is a stop codon.
-			cag_stop = seq[-1] == "Q" \
-				and "exception" in sf.qualifiers and "note" in sf.qualifiers \
-				and "RNA editing" in sf.qualifiers["exception"] \
-				and "putative stop codon created by RNA editing" in sf.qualifiers["note"]
-			good_start = seq[0] == "M" or acg_start or gcg_start or ggg_start or gtg_start
-			good_stop = seq[-1] == "*" or cag_stop
-			return (not good_start, not good_stop)
+		if sf.type == "CDS":
+			return incomplete_mrna(f, translations)
+		elif sf.type == "mRNA":
+			return incomplete_mrna(sf, translations)
 	return (False, False)
 
 def print_gene(f, gene_product_table, translations):
 	""" Print a gene feature.
 	"""
-	incomplete = incomplete_cds(f, translations)
+	incomplete = incomplete_feature(f, translations)
 	if trans_spliced(f):
 		# Print the coordinates of the trans-spliced mRNA.
 		count = 0
