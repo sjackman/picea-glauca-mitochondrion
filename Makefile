@@ -114,11 +114,16 @@ LKAM01.1.tbl:
 	done) | sed '/^$$/d' >$@
 
 # Download the Picea glauca mitochondrion GFF.
-LKAM01.1.gff:
+LKAM01.1.orig.gff:
 	(echo '##gff-version 3'; \
 	for i in $$(seq -w 1 36); do \
 		curl -s "https://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?db=nuccore&report=gff3&id=LKAM010000$$i.1"; \
 	done) | sed '/^$$/d' >$@
+
+# Rename CDS of the Picea glauca mitochondrion GFF.
+LKAM01.1.gff: LKAM01.1.orig.gff
+	gsed -E '/\tCDS\t/s/Name=([^;]*);gbkey=CDS;gene=([^;]*);/Name=\2;gbkey=CDS;gene=\2;/' $< \
+	| gt gff3 -sort - | uniq >$@
 
 # Download the Pinus strobus CDS FASTA.
 pstrobusmt.cds.orig.fa:
