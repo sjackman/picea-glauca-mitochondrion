@@ -11,7 +11,7 @@ t=4
 gzip=pigz -p$t
 
 # Green plant mitochondria
-edirect_query='Viridiplantae[Organism] mitochondrion[Title] (complete genome[Title] OR complete sequence[Title])'
+edirect_query='Viridiplantae[Organism] mitochondrion[Filter] (complete genome[Title] OR complete sequence[Title])'
 
 all: LKAM01.2.gff LKAM01.2.gff.aa.fa LKAM01.2.gff.cds.known.aa.fa \
 	LKAM01.2.tbl LKAM01.2.gbf
