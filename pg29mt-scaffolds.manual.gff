@@ -12,22 +12,22 @@
 ##sequence-region   LKAM01000012.1 1 131948
 ##sequence-region   LKAM01000016.1 1 107813
 LKAM01000001.1	manual	gene	279747	280064	.	-	.	ID=gene1;Name=cox2
-LKAM01000001.1	manual	mRNA	279747	280064	.	-	.	ID=mRNA1;Parent=gene1;Name=cox2_part2;part=2/3;exception=trans-splicing
+LKAM01000001.1	manual	mRNA	279747	280064	.	-	.	ID=mRNA1;Parent=gene1;Name=cox2_part2;part=2/3;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33533.1
 LKAM01000001.1	manual	exon	279747	280064	.	-	.	Parent=mRNA1
 LKAM01000001.1	manual	CDS	279747	280064	.	-	2	Parent=mRNA1
 ###
 LKAM01000001.1	manual	gene	308997	309381	.	+	.	ID=gene2;Name=nad1
-LKAM01000001.1	manual	mRNA	308997	309381	.	+	.	ID=mRNA2;Parent=gene2;Name=nad1_part1;part=1/4;exception=trans-splicing,RNA editing;note=putative start codon created by RNA editing
+LKAM01000001.1	manual	mRNA	308997	309381	.	+	.	ID=mRNA2;Parent=gene2;Name=nad1_part1;part=1/4;exception=trans-splicing,RNA editing;note=putative start codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33537.1
 LKAM01000001.1	manual	exon	308997	309381	.	+	.	Parent=mRNA2
 LKAM01000001.1	manual	CDS	308997	309381	.	+	0	Parent=mRNA2
 ###
 LKAM01000001.1	manual	gene	361267	361325	.	-	.	ID=gene3;Name=nad1
-LKAM01000001.1	manual	mRNA	361267	361325	.	-	.	ID=mRNA3;Parent=gene3;Name=nad1_part3;part=3/4;exception=trans-splicing
+LKAM01000001.1	manual	mRNA	361267	361325	.	-	.	ID=mRNA3;Parent=gene3;Name=nad1_part3;part=3/4;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33537.1
 LKAM01000001.1	manual	exon	361267	361325	.	-	.	Parent=mRNA3
 LKAM01000001.1	manual	CDS	361267	361325	.	-	0	Parent=mRNA3
 ###
 LKAM01000001.1	manual	gene	369818	376437	.	-	.	ID=gene4;Name=nad4
-LKAM01000001.1	manual	mRNA	369818	376437	.	-	.	ID=mRNA4;Parent=gene4;Name=nad4_part2;part=2/2;exception=trans-splicing
+LKAM01000001.1	manual	mRNA	369818	376437	.	-	.	ID=mRNA4;Parent=gene4;Name=nad4_part2;part=2/2;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33540.1
 LKAM01000001.1	manual	exon	369818	369996	.	-	.	Parent=mRNA4
 LKAM01000001.1	manual	CDS	369818	369996	.	-	2	Parent=mRNA4
 LKAM01000001.1	manual	intron	369997	372424	.	-	.	Parent=mRNA4
@@ -38,38 +38,38 @@ LKAM01000001.1	manual	exon	375923	376437	.	-	.	Parent=mRNA4
 LKAM01000001.1	manual	CDS	375923	376437	.	-	1	Parent=mRNA4
 ###
 LKAM01000001.1	manual	gene	404065	404679	.	+	.	ID=gene5;Name=nad6
-LKAM01000001.1	manual	mRNA	404065	404679	.	+	.	ID=mRNA5;Parent=gene5;Name=nad6;exception=RNA editing;note=putative start codon created by RNA editing
+LKAM01000001.1	manual	mRNA	404065	404679	.	+	.	ID=mRNA5;Parent=gene5;Name=nad6;exception=RNA editing;note=putative start codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33543.1
 LKAM01000001.1	manual	exon	404065	404679	.	+	.	Parent=mRNA5
 LKAM01000001.1	manual	CDS	404065	404679	.	+	0	Parent=mRNA5
 ###
 LKAM01000001.1	manual	gene	878603	878864	.	-	.	ID=gene6;Name=nad1
-LKAM01000001.1	manual	mRNA	878603	878864	.	-	.	ID=mRNA6;Parent=gene6;Name=nad1_part4;part=4/4;exception=trans-splicing
+LKAM01000001.1	manual	mRNA	878603	878864	.	-	.	ID=mRNA6;Parent=gene6;Name=nad1_part4;part=4/4;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33537.1
 LKAM01000001.1	manual	exon	878603	878864	.	-	.	Parent=mRNA6
 LKAM01000001.1	manual	CDS	878603	878864	.	-	1	Parent=mRNA6
 ###
 LKAM01000001.1	manual	gene	879180	881372	.	-	.	ID=gene7;Name=matR
-LKAM01000001.1	manual	mRNA	879180	881372	.	-	.	ID=mRNA7;Parent=gene7;Name=matR;note=putative alternative GGG start codon
+LKAM01000001.1	manual	mRNA	879180	881372	.	-	.	ID=mRNA7;Parent=gene7;Name=matR;note=putative alternative GGG start codon;inference=similar to AA sequence:INSD:AJP33535.1
 LKAM01000001.1	manual	exon	879180	881372	.	-	.	Parent=mRNA7
 LKAM01000001.1	manual	CDS	879180	881372	.	-	0	Parent=mRNA7
 ###
 LKAM01000001.1	manual	gene	883353	883869	.	-	.	ID=gene8;Name=trnV-UAC;product=tRNA-Tyr
-LKAM01000001.1	manual	tRNA	883353	883869	.	-	.	ID=tRNA1;Parent=gene8;Name=trnV-UAC;product=tRNA-Tyr
+LKAM01000001.1	manual	tRNA	883353	883869	.	-	.	ID=tRNA1;Parent=gene8;Name=trnV-UAC;product=tRNA-Tyr;note=similar to DNA sequence:RefSeq:NC_010303.1:GeneID:5867575:locus_tag:CyTaMpt24
 LKAM01000001.1	manual	exon	883353	883387	.	-	.	Parent=tRNA1;Name=trnV-UAC
 LKAM01000001.1	manual	intron	883388	883830	.	-	.	Parent=tRNA1;Name=trnV-UAC
 LKAM01000001.1	manual	exon	883831	883869	.	-	.	Parent=tRNA1;Name=trnV-UAC
 ###
 LKAM01000002.1	manual	gene	259013	259495	.	-	.	ID=gene9;Name=atp8
-LKAM01000002.1	manual	mRNA	259013	259495	.	-	.	ID=mRNA8;Parent=gene9;Name=atp8
+LKAM01000002.1	manual	mRNA	259013	259495	.	-	.	ID=mRNA8;Parent=gene9;Name=atp8;inference=similar to AA sequence:RefSeq:YP_009531511.1
 LKAM01000002.1	manual	exon	259013	259495	.	-	.	Parent=mRNA8
 LKAM01000002.1	manual	CDS	259013	259495	.	-	0	Parent=mRNA8
 ###
 LKAM01000002.1	manual	gene	272398	273993	.	+	.	ID=gene10;Name=cox1
-LKAM01000002.1	manual	mRNA	272398	273993	.	+	.	ID=mRNA9;Parent=gene10;Name=cox1
+LKAM01000002.1	manual	mRNA	272398	273993	.	+	.	ID=mRNA9;Parent=gene10;Name=cox1;inference=similar to AA sequence:RefSeq:YP_009531494.1
 LKAM01000002.1	manual	exon	272398	273993	.	+	.	Parent=mRNA9
 LKAM01000002.1	manual	CDS	272398	273993	.	+	0	Parent=mRNA9
 ###
 LKAM01000002.1	manual	gene	354855	358121	.	+	.	ID=gene11;Name=nad1
-LKAM01000002.1	manual	mRNA	354855	358121	.	+	.	ID=mRNA10;Parent=gene11;Name=nad1_part2;part=2/4;exception=trans-splicing
+LKAM01000002.1	manual	mRNA	354855	358121	.	+	.	ID=mRNA10;Parent=gene11;Name=nad1_part2;part=2/4;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33537.1
 LKAM01000002.1	manual	exon	354855	354937	.	+	.	Parent=mRNA10
 LKAM01000002.1	manual	CDS	354855	354937	.	+	2	Parent=mRNA10
 LKAM01000002.1	manual	intron	354938	357929	.	+	.	Parent=mRNA10
@@ -77,7 +77,7 @@ LKAM01000002.1	manual	exon	357930	358121	.	+	.	Parent=mRNA10
 LKAM01000002.1	manual	CDS	357930	358121	.	+	0	Parent=mRNA10
 ###
 LKAM01000002.1	manual	gene	430540	432706	.	-	.	ID=gene12;Name=nad2
-LKAM01000002.1	manual	mRNA	430540	432706	.	-	.	ID=mRNA11;Parent=gene12;Name=nad2_part2;part=2/3;exception=trans-splicing
+LKAM01000002.1	manual	mRNA	430540	432706	.	-	.	ID=mRNA11;Parent=gene12;Name=nad2_part2;part=2/3;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33538.1
 LKAM01000002.1	manual	exon	430540	431112	.	-	.	Parent=mRNA11
 LKAM01000002.1	manual	CDS	430540	431112	.	-	2	Parent=mRNA11
 LKAM01000002.1	manual	intron	431113	432541	.	-	.	Parent=mRNA11
@@ -85,57 +85,57 @@ LKAM01000002.1	manual	exon	432542	432706	.	-	.	Parent=mRNA11
 LKAM01000002.1	manual	CDS	432542	432706	.	-	2	Parent=mRNA11
 ###
 LKAM01000002.1	manual	gene	434352	434742	.	-	.	ID=gene13;Name=cox2
-LKAM01000002.1	manual	mRNA	434352	434742	.	-	.	ID=mRNA12;Parent=gene13;Name=cox2_part1;part=1/3;exception=trans-splicing
+LKAM01000002.1	manual	mRNA	434352	434742	.	-	.	ID=mRNA12;Parent=gene13;Name=cox2_part1;part=1/3;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33533.1
 LKAM01000002.1	manual	exon	434352	434742	.	-	.	Parent=mRNA12
 LKAM01000002.1	manual	CDS	434352	434742	.	-	0	Parent=mRNA12
 ###
 LKAM01000002.1	manual	gene	520109	520194	.	+	.	ID=gene14;Name=cox2
-LKAM01000002.1	manual	mRNA	520109	520194	.	+	.	ID=mRNA13;Parent=gene14;Name=cox2_part3;part=3/3;exception=trans-splicing
+LKAM01000002.1	manual	mRNA	520109	520194	.	+	.	ID=mRNA13;Parent=gene14;Name=cox2_part3;part=3/3;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33533.1
 LKAM01000002.1	manual	exon	520109	520194	.	+	.	Parent=mRNA13
 LKAM01000002.1	manual	CDS	520109	520194	.	+	2	Parent=mRNA13
 ###
 LKAM01000002.1	manual	gene	520530	521168	.	+	.	ID=gene15;Name=atp4
-LKAM01000002.1	manual	mRNA	520530	521168	.	+	.	ID=mRNA14;Parent=gene15;Name=atp4;exception=RNA editing;note=putative start codon created by RNA editing
+LKAM01000002.1	manual	mRNA	520530	521168	.	+	.	ID=mRNA14;Parent=gene15;Name=atp4;exception=RNA editing;note=putative start codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33523.1
 LKAM01000002.1	manual	exon	520530	521168	.	+	.	Parent=mRNA14
 LKAM01000002.1	manual	CDS	520530	521168	.	+	0	Parent=mRNA14
 ###
 LKAM01000002.1	manual	gene	535335	536021	.	+	.	ID=gene16;Name=rps1
-LKAM01000002.1	manual	mRNA	535335	536021	.	+	.	ID=mRNA15;Parent=gene16;Name=rps1
+LKAM01000002.1	manual	mRNA	535335	536021	.	+	.	ID=mRNA15;Parent=gene16;Name=rps1;inference=similar to AA sequence:INSD:AJP33555.1
 LKAM01000002.1	manual	exon	535335	536021	.	+	.	Parent=mRNA15
 LKAM01000002.1	manual	CDS	535335	536021	.	+	0	Parent=mRNA15
 ###
 LKAM01000002.1	manual	gene	579435	580157	.	-	.	ID=gene17;Name=rpl2
-LKAM01000002.1	manual	mRNA	579435	580157	.	-	.	ID=mRNA16;Parent=gene17;Name=rpl2_part1;part=1/2;exception=trans-splicing
+LKAM01000002.1	manual	mRNA	579435	580157	.	-	.	ID=mRNA16;Parent=gene17;Name=rpl2_part1;part=1/2;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33548.1
 LKAM01000002.1	manual	exon	579435	580157	.	-	.	Parent=mRNA16
 LKAM01000002.1	manual	CDS	579435	580157	.	-	0	Parent=mRNA16
 ###
 LKAM01000002.1	manual	gene	641636	642226	.	+	.	ID=gene18;Name=nad9
-LKAM01000002.1	manual	mRNA	641636	642226	.	+	.	ID=mRNA17;Parent=gene18;Name=nad9;exception=RNA editing;note=putative start codon created by RNA editing
+LKAM01000002.1	manual	mRNA	641636	642226	.	+	.	ID=mRNA17;Parent=gene18;Name=nad9;exception=RNA editing;note=putative start codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33545.1
 LKAM01000002.1	manual	exon	641636	642226	.	+	.	Parent=mRNA17
 LKAM01000002.1	manual	CDS	641636	642226	.	+	0	Parent=mRNA17
 ###
 LKAM01000003.1	manual	gene	121114	121773	.	+	.	ID=gene19;Name=ccmB
-LKAM01000003.1	manual	mRNA	121114	121773	.	+	.	ID=mRNA18;Parent=gene19;Name=ccmB
+LKAM01000003.1	manual	mRNA	121114	121773	.	+	.	ID=mRNA18;Parent=gene19;Name=ccmB;inference=similar to AA sequence:INSD:AJP33527.1
 LKAM01000003.1	manual	exon	121114	121773	.	+	.	Parent=mRNA18
 LKAM01000003.1	manual	CDS	121114	121773	.	+	0	Parent=mRNA18
 ###
 LKAM01000003.1	manual	gene	255503	256252	.	-	.	ID=gene20;Name=mttB
-LKAM01000003.1	manual	mRNA	255503	256252	.	-	.	ID=mRNA19;Parent=gene20;Name=mttB;exception=RNA editing;note=putative start codon created by RNA editing
+LKAM01000003.1	manual	mRNA	255503	256252	.	-	.	ID=mRNA19;Parent=gene20;Name=mttB;exception=RNA editing;note=putative start codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33536.1
 LKAM01000003.1	manual	exon	255503	256252	.	-	.	Parent=mRNA19
 LKAM01000003.1	manual	CDS	255503	256252	.	-	0	Parent=mRNA19
 ###
 LKAM01000003.1	manual	gene	277401	279164	.	+	.	ID=gene21;Name=ccmFN
-LKAM01000003.1	manual	mRNA	277401	279164	.	+	.	ID=mRNA20;Parent=gene21;Name=ccmFN
+LKAM01000003.1	manual	mRNA	277401	279164	.	+	.	ID=mRNA20;Parent=gene21;Name=ccmFN;inference=similar to AA sequence:INSD:AJP33530.1
 LKAM01000003.1	manual	exon	277401	279164	.	+	.	Parent=mRNA20
 LKAM01000003.1	manual	CDS	277401	279164	.	+	0	Parent=mRNA20
 ###
 LKAM01000005.1	manual	gene	17378	17791	.	-	.	ID=gene22;Name=rpl16
-LKAM01000005.1	manual	mRNA	17378	17791	.	-	.	ID=mRNA21;Parent=gene22;Name=rpl16;note=putative alternative GUG start codon
+LKAM01000005.1	manual	mRNA	17378	17791	.	-	.	ID=mRNA21;Parent=gene22;Name=rpl16;note=putative alternative GUG start codon;inference=similar to AA sequence:INSD:AJP33547.1
 LKAM01000005.1	manual	exon	17378	17791	.	-	.	Parent=mRNA21
 LKAM01000005.1	manual	CDS	17378	17791	.	-	0	Parent=mRNA21
 ###
 LKAM01000005.1	manual	gene	17809	24144	.	-	.	ID=gene23;Name=rps3
-LKAM01000005.1	manual	mRNA	17809	24144	.	-	.	ID=mRNA22;Parent=gene23;Name=rps3;exception=RNA editing;note=putative start codon created by RNA editing
+LKAM01000005.1	manual	mRNA	17809	24144	.	-	.	ID=mRNA22;Parent=gene23;Name=rps3;exception=RNA editing;note=putative start codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33557.1
 LKAM01000005.1	manual	exon	17809	19215	.	-	.	Parent=mRNA22
 LKAM01000005.1	manual	CDS	17809	19215	.	-	0	Parent=mRNA22
 LKAM01000005.1	manual	intron	19216	21806	.	-	.	Parent=mRNA22
@@ -146,27 +146,27 @@ LKAM01000005.1	manual	exon	24071	24144	.	-	.	Parent=mRNA22
 LKAM01000005.1	manual	CDS	24071	24144	.	-	0	Parent=mRNA22
 ###
 LKAM01000005.1	manual	gene	24148	24429	.	-	.	ID=gene24;Name=rps19
-LKAM01000005.1	manual	mRNA	24148	24429	.	-	.	ID=mRNA23;Parent=gene24;Name=rps19;exception=RNA editing;note=putative alternative GUG start codon created by RNA editing
+LKAM01000005.1	manual	mRNA	24148	24429	.	-	.	ID=mRNA23;Parent=gene24;Name=rps19;exception=RNA editing;note=putative alternative GUG start codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33554.1
 LKAM01000005.1	manual	exon	24148	24429	.	-	.	Parent=mRNA23
 LKAM01000005.1	manual	CDS	24148	24429	.	-	0	Parent=mRNA23
 ###
 LKAM01000005.1	manual	gene	24433	25137	.	-	.	ID=gene25;Name=rpl2
-LKAM01000005.1	manual	mRNA	24433	25137	.	-	.	ID=mRNA24;Parent=gene25;Name=rpl2_part2;part=2/2;exception=trans-splicing,RNA editing;note=putative stop codon created by RNA editing
+LKAM01000005.1	manual	mRNA	24433	25137	.	-	.	ID=mRNA24;Parent=gene25;Name=rpl2_part2;part=2/2;exception=trans-splicing,RNA editing;note=putative stop codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33548.1
 LKAM01000005.1	manual	exon	24433	25137	.	-	.	Parent=mRNA24
 LKAM01000005.1	manual	CDS	24433	25137	.	-	0	Parent=mRNA24
 ###
 LKAM01000005.1	manual	gene	99342	100091	.	+	.	ID=gene26;Name=atp6
-LKAM01000005.1	manual	mRNA	99342	100091	.	+	.	ID=mRNA25;Parent=gene26;Name=atp6;exception=RNA editing;note=putative start codon created by RNA editing
+LKAM01000005.1	manual	mRNA	99342	100091	.	+	.	ID=mRNA25;Parent=gene26;Name=atp6;exception=RNA editing;note=putative start codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33524.1
 LKAM01000005.1	manual	exon	99342	100091	.	+	.	Parent=mRNA25
 LKAM01000005.1	manual	CDS	99342	100091	.	+	0	Parent=mRNA25
 ###
 LKAM01000006.1	manual	gene	61473	61867	.	+	.	ID=gene27;Name=nad5
-LKAM01000006.1	manual	mRNA	61473	61867	.	+	.	ID=mRNA26;Parent=gene27;Name=nad5_part3;part=3/3;exception=trans-splicing
+LKAM01000006.1	manual	mRNA	61473	61867	.	+	.	ID=mRNA26;Parent=gene27;Name=nad5_part3;part=3/3;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33542.1
 LKAM01000006.1	manual	exon	61473	61867	.	+	.	Parent=mRNA26
 LKAM01000006.1	manual	CDS	61473	61867	.	+	2	Parent=mRNA26
 ###
 LKAM01000006.1	manual	gene	330298	331454	.	+	.	ID=gene28;Name=nad7
-LKAM01000006.1	manual	mRNA	330298	331454	.	+	.	ID=mRNA27;Parent=gene28;Name=nad7_part1;part=1/3;exception=trans-splicing
+LKAM01000006.1	manual	mRNA	330298	331454	.	+	.	ID=mRNA27;Parent=gene28;Name=nad7_part1;part=1/3;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33544.1
 LKAM01000006.1	manual	exon	330298	330440	.	+	.	Parent=mRNA27
 LKAM01000006.1	manual	CDS	330298	330440	.	+	0	Parent=mRNA27
 LKAM01000006.1	manual	intron	330441	331385	.	+	.	Parent=mRNA27
@@ -174,12 +174,12 @@ LKAM01000006.1	manual	exon	331386	331454	.	+	.	Parent=mRNA27
 LKAM01000006.1	manual	CDS	331386	331454	.	+	1	Parent=mRNA27
 ###
 LKAM01000006.1	manual	gene	469262	469283	.	-	.	ID=gene29;Name=nad5
-LKAM01000006.1	manual	mRNA	469262	469283	.	-	.	ID=mRNA28;Parent=gene29;Name=nad5_part2;part=2/3;exception=trans-splicing
+LKAM01000006.1	manual	mRNA	469262	469283	.	-	.	ID=mRNA28;Parent=gene29;Name=nad5_part2;part=2/3;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33542.1
 LKAM01000006.1	manual	exon	469262	469283	.	-	.	Parent=mRNA28
 LKAM01000006.1	manual	CDS	469262	469283	.	-	0	Parent=mRNA28
 ###
 LKAM01000007.1	manual	gene	404819	408075	.	-	.	ID=gene30;Name=ccmFC
-LKAM01000007.1	manual	mRNA	404819	408075	.	-	.	ID=mRNA29;Parent=gene30;Name=ccmFC
+LKAM01000007.1	manual	mRNA	404819	408075	.	-	.	ID=mRNA29;Parent=gene30;Name=ccmFC;inference=similar to AA sequence:INSD:AJP33529.1
 LKAM01000007.1	manual	exon	404819	405420	.	-	.	Parent=mRNA29
 LKAM01000007.1	manual	CDS	404819	405420	.	-	2	Parent=mRNA29
 LKAM01000007.1	manual	intron	405421	407279	.	-	.	Parent=mRNA29
@@ -187,17 +187,17 @@ LKAM01000007.1	manual	exon	407280	408075	.	-	.	Parent=mRNA29
 LKAM01000007.1	manual	CDS	407280	408075	.	-	0	Parent=mRNA29
 ###
 LKAM01000007.1	manual	gene	445413	446210	.	+	.	ID=gene31;Name=cox3
-LKAM01000007.1	manual	mRNA	445413	446210	.	+	.	ID=mRNA30;Parent=gene31;Name=cox3
+LKAM01000007.1	manual	mRNA	445413	446210	.	+	.	ID=mRNA30;Parent=gene31;Name=cox3;inference=similar to AA sequence:INSD:AJP33534.1
 LKAM01000007.1	manual	exon	445413	446210	.	+	.	Parent=mRNA30
 LKAM01000007.1	manual	CDS	445413	446210	.	+	0	Parent=mRNA30
 ###
 LKAM01000007.1	manual	gene	446138	446533	.	+	.	ID=gene32;Name=sdh4
-LKAM01000007.1	manual	mRNA	446138	446533	.	+	.	ID=mRNA31;Parent=gene32;Name=sdh4
+LKAM01000007.1	manual	mRNA	446138	446533	.	+	.	ID=mRNA31;Parent=gene32;Name=sdh4;inference=similar to AA sequence:INSD:AJP33561.1
 LKAM01000007.1	manual	exon	446138	446533	.	+	.	Parent=mRNA31
 LKAM01000007.1	manual	CDS	446138	446533	.	+	0	Parent=mRNA31
 ###
 LKAM01000008.1	manual	gene	58761	61206	.	+	.	ID=gene33;Name=nad5
-LKAM01000008.1	manual	mRNA	58761	61206	.	+	.	ID=mRNA32;Parent=gene33;Name=nad5_part1;part=1/3;exception=trans-splicing
+LKAM01000008.1	manual	mRNA	58761	61206	.	+	.	ID=mRNA32;Parent=gene33;Name=nad5_part1;part=1/3;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33542.1
 LKAM01000008.1	manual	exon	58761	58991	.	+	.	Parent=mRNA32
 LKAM01000008.1	manual	CDS	58761	58991	.	+	0	Parent=mRNA32
 LKAM01000008.1	manual	intron	58992	59982	.	+	.	Parent=mRNA32
@@ -205,7 +205,7 @@ LKAM01000008.1	manual	exon	59983	61206	.	+	.	Parent=mRNA32
 LKAM01000008.1	manual	CDS	59983	61206	.	+	0	Parent=mRNA32
 ###
 LKAM01000008.1	manual	gene	163667	164845	.	+	.	ID=gene34;Name=rpl2
-LKAM01000008.1	manual	mRNA	163667	164845	.	+	.	ID=mRNA33;Parent=gene34;Name=rpl2
+LKAM01000008.1	manual	mRNA	163667	164845	.	+	.	ID=mRNA33;Parent=gene34;Name=rpl2;inference=similar to AA sequence:INSD:AJP33548.1
 LKAM01000008.1	manual	exon	163667	163988	.	+	.	Parent=mRNA33
 LKAM01000008.1	manual	CDS	163667	163988	.	+	0	Parent=mRNA33
 LKAM01000008.1	manual	intron	163989	164654	.	+	.	Parent=mRNA33
@@ -213,12 +213,12 @@ LKAM01000008.1	manual	exon	164655	164845	.	+	.	Parent=mRNA33
 LKAM01000008.1	manual	CDS	164655	164845	.	+	2	Parent=mRNA33
 ###
 LKAM01000008.1	manual	gene	254797	255849	.	+	.	ID=gene35;Name=rps4
-LKAM01000008.1	manual	mRNA	254797	255849	.	+	.	ID=mRNA34;Parent=gene35;Name=rps4;exception=RNA editing;note=putative start codon created by RNA editing
+LKAM01000008.1	manual	mRNA	254797	255849	.	+	.	ID=mRNA34;Parent=gene35;Name=rps4;exception=RNA editing;note=putative start codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33558.1
 LKAM01000008.1	manual	exon	254797	255849	.	+	.	Parent=mRNA34
 LKAM01000008.1	manual	CDS	254797	255849	.	+	0	Parent=mRNA34
 ###
 LKAM01000009.1	manual	gene	29678	31023	.	-	.	ID=gene36;Name=nad5
-LKAM01000009.1	manual	mRNA	29678	31023	.	-	.	ID=mRNA35;Parent=gene36;Name=nad5
+LKAM01000009.1	manual	mRNA	29678	31023	.	-	.	ID=mRNA35;Parent=gene36;Name=nad5;inference=similar to AA sequence:INSD:AJP33542.1
 LKAM01000009.1	manual	exon	29678	29827	.	-	.	Parent=mRNA35
 LKAM01000009.1	manual	CDS	29678	29827	.	-	0	Parent=mRNA35
 LKAM01000009.1	manual	intron	29828	30765	.	-	.	Parent=mRNA35
@@ -226,7 +226,7 @@ LKAM01000009.1	manual	exon	30766	31023	.	-	.	Parent=mRNA35
 LKAM01000009.1	manual	CDS	30766	31023	.	-	0	Parent=mRNA35
 ###
 LKAM01000010.1	manual	gene	38074	39835	.	-	.	ID=gene37;Name=nad7
-LKAM01000010.1	manual	mRNA	38074	39835	.	-	.	ID=mRNA36;Parent=gene37;Name=nad7_part2;part=2/3;exception=trans-splicing
+LKAM01000010.1	manual	mRNA	38074	39835	.	-	.	ID=mRNA36;Parent=gene37;Name=nad7_part2;part=2/3;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33544.1
 LKAM01000010.1	manual	exon	38074	38317	.	-	.	Parent=mRNA36
 LKAM01000010.1	manual	CDS	38074	38317	.	-	2	Parent=mRNA36
 LKAM01000010.1	manual	intron	38318	39368	.	-	.	Parent=mRNA36
@@ -234,7 +234,7 @@ LKAM01000010.1	manual	exon	39369	39835	.	-	.	Parent=mRNA36
 LKAM01000010.1	manual	CDS	39369	39835	.	-	1	Parent=mRNA36
 ###
 LKAM01000010.1	manual	gene	118644	120422	.	-	.	ID=gene38;Name=rps10
-LKAM01000010.1	manual	mRNA	118644	120422	.	-	.	ID=mRNA37;Parent=gene38;Name=rps10;exception=RNA editing;note=putative start codon created by RNA editing
+LKAM01000010.1	manual	mRNA	118644	120422	.	-	.	ID=mRNA37;Parent=gene38;Name=rps10;exception=RNA editing;note=putative start codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33550.1
 LKAM01000010.1	manual	exon	118644	118744	.	-	.	Parent=mRNA37
 LKAM01000010.1	manual	CDS	118644	118744	.	-	2	Parent=mRNA37
 LKAM01000010.1	manual	intron	118745	120181	.	-	.	Parent=mRNA37
@@ -242,7 +242,7 @@ LKAM01000010.1	manual	exon	120182	120422	.	-	.	Parent=mRNA37
 LKAM01000010.1	manual	CDS	120182	120422	.	-	0	Parent=mRNA37
 ###
 LKAM01000010.1	manual	gene	126075	126336	.	+	.	ID=gene39;Name=nad7
-LKAM01000010.1	manual	mRNA	126075	126336	.	+	.	ID=mRNA38;Parent=gene39;Name=nad7_part3;part=3/3;exception=trans-splicing
+LKAM01000010.1	manual	mRNA	126075	126336	.	+	.	ID=mRNA38;Parent=gene39;Name=nad7_part3;part=3/3;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33544.1
 LKAM01000010.1	manual	exon	126075	126336	.	+	.	Parent=mRNA38
 LKAM01000010.1	manual	CDS	126075	126336	.	+	1	Parent=mRNA38
 ###
@@ -251,12 +251,12 @@ LKAM01000010.1	manual	tRNA	126859	126932	.	+	.	ID=tRNA2;Parent=gene40;Name=trnI-
 LKAM01000010.1	manual	exon	126859	126932	.	+	.	Parent=tRNA2;Name=trnI-CAU
 ###
 LKAM01000011.1	manual	gene	134326	134786	.	-	.	ID=gene41;Name=nad4
-LKAM01000011.1	manual	mRNA	134326	134786	.	-	.	ID=mRNA39;Parent=gene41;Name=nad4_part1;part=1/2;exception=trans-splicing
+LKAM01000011.1	manual	mRNA	134326	134786	.	-	.	ID=mRNA39;Parent=gene41;Name=nad4_part1;part=1/2;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33540.1
 LKAM01000011.1	manual	exon	134326	134786	.	-	.	Parent=mRNA39
 LKAM01000011.1	manual	CDS	134326	134786	.	-	0	Parent=mRNA39
 ###
 LKAM01000011.1	manual	gene	142205	144202	.	+	.	ID=gene42;Name=nad2
-LKAM01000011.1	manual	mRNA	142205	144202	.	+	.	ID=mRNA40;Parent=gene42;Name=nad2_part1;part=1/3;exception=trans-splicing
+LKAM01000011.1	manual	mRNA	142205	144202	.	+	.	ID=mRNA40;Parent=gene42;Name=nad2_part1;part=1/3;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33538.1
 LKAM01000011.1	manual	exon	142205	142357	.	+	.	Parent=mRNA40
 LKAM01000011.1	manual	CDS	142205	142357	.	+	0	Parent=mRNA40
 LKAM01000011.1	manual	intron	142358	143808	.	+	.	Parent=mRNA40
@@ -264,12 +264,12 @@ LKAM01000011.1	manual	exon	143809	144202	.	+	.	Parent=mRNA40
 LKAM01000011.1	manual	CDS	143809	144202	.	+	0	Parent=mRNA40
 ###
 LKAM01000012.1	manual	gene	95476	96669	.	+	.	ID=gene43;Name=cob
-LKAM01000012.1	manual	mRNA	95476	96669	.	+	.	ID=mRNA41;Parent=gene43;Name=cob
+LKAM01000012.1	manual	mRNA	95476	96669	.	+	.	ID=mRNA41;Parent=gene43;Name=cob;inference=similar to AA sequence:INSD:AJP33531.1
 LKAM01000012.1	manual	exon	95476	96669	.	+	.	Parent=mRNA41
 LKAM01000012.1	manual	CDS	95476	96669	.	+	0	Parent=mRNA41
 ###
 LKAM01000016.1	manual	gene	7560	7747	.	+	.	ID=gene44;Name=nad2
-LKAM01000016.1	manual	mRNA	7560	7747	.	+	.	ID=mRNA42;Parent=gene44;Name=nad2_part3;part=3/3;exception=trans-splicing
+LKAM01000016.1	manual	mRNA	7560	7747	.	+	.	ID=mRNA42;Parent=gene44;Name=nad2_part3;part=3/3;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33538.1
 LKAM01000016.1	manual	exon	7560	7747	.	+	.	Parent=mRNA42
 LKAM01000016.1	manual	CDS	7560	7747	.	+	2	Parent=mRNA42
 ###
