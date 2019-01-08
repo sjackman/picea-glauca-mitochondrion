@@ -171,28 +171,37 @@ pstrobusmt.aa.orig.fa:
 	| seqmagick convert --deduplicate-sequences --line-wrap=0 - $@
 	seqmagick convert --sort=name-asc --line-wrap=0 $@ $@
 
-cds_aa.orig.fa cds_na.orig.fa: %.fa:
+cds_aa.orig.fa cds_na.orig.fa: %.orig.fa:
 	esearch -db nuccore -query $(edirect_query) \
-		|efetch -format fasta_$* >$@
+		| efetch -format fasta_$* >$@
 
 cds_aa.fa cds_na.fa: %.fa: %.orig.fa
 	seqmagick -q convert \
 		--pattern-exclude 'gene=orf|hypothetical|putative|unnamed' \
 		--pattern-replace 'gene=apt' 'gene=atp' \
+		--pattern-replace 'gene=ccmc' 'gene=ccmC' \
+		--pattern-replace 'gene=ccmFc' 'gene=ccmFC' \
 		--pattern-replace 'gene=ccmFn' 'gene=ccmFN' \
+		--pattern-replace 'gene=cof' 'gene=ymfpetA' \
+		--pattern-replace 'gene=COX3' 'gene=cox3' \
 		--pattern-replace 'gene=coxIII' 'gene=cox3' \
 		--pattern-replace 'gene=coxII' 'gene=cox2' \
 		--pattern-replace 'gene=coxI' 'gene=cox1' \
 		--pattern-replace 'gene=cytb' 'gene=cob' \
-		--pattern-replace 'gene=nd' 'gene=nad' \
+		--pattern-replace 'gene=ltrA' 'gene=ymfltrA' \
+		--pattern-replace 'gene=nad(?i)' 'gene=nad' \
+		--pattern-replace 'gene=nd(?i)' 'gene=nad' \
+		--pattern-replace 'gene=petA' 'gene=ymfpetA' \
 		--pattern-replace 'gene=RNA_pol' 'gene=rpo' \
+		--pattern-replace 'gene=rpL2' 'gene=rpl2' \
+		--pattern-replace 'gene=sdh3b' 'gene=sdh3' \
 		--pattern-replace 'gene=yejU' 'gene=ccmC' \
 		--pattern-replace 'gene=yejV' 'gene=ccmB' \
 		--pattern-replace 'gene=18S rRNA' 'gene=40' \
 		$< - \
-	|gsed -E '/protein=[^]]*intron[^]]*ORF/s/gene=/gene=ymf/; \
-		s/^>(.*gene=([^]]*).*)$$/>\2|\1/' \
-	|seqmagick -q convert --pattern-exclude '^lcl' --deduplicate-taxa - $@
+	| gsed -E -e '/protein=[^]]*intron[^]]*ORF/s/gene=/gene=ymf/' \
+		-e 's/^>(.*gene=([^]]*).*)$$/>\2|\1/' \
+	| seqmagick -q convert --pattern-exclude '^lcl' --deduplicate-taxa - $@
 
 # Extract accession numbers from the FASTA file
 %.id: %.orig.fa
