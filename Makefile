@@ -101,6 +101,10 @@ $(ref).minimap2.%.sam.gz: $(ref).fa %.fa
 pglaucacp.fa:
 	curl 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?id=NC_028594.1&retmode=text&db=nucleotide&rettype=fasta' | seqtk seq >$@
 
+# Download the Picea glauca plastid protein FASTA.
+pglaucacp.aa.orig.fa:
+	curl -o $@ 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?retmode=text&id=NC_028594.1&db=nucleotide&rettype=fasta_cds_aa'
+
 # Download the Picea glauca plastid CDS FASTA.
 pglaucacp.cds.orig.fa:
 	curl -o $@ 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?id=NC_028594.1&retmode=text&db=nucleotide&rettype=fasta_cds_na'
