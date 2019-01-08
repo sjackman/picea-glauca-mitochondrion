@@ -205,7 +205,7 @@ LKAM01000008.1	manual	exon	59983	61206	.	+	.	Parent=mRNA32
 LKAM01000008.1	manual	CDS	59983	61206	.	+	0	Parent=mRNA32
 ###
 LKAM01000008.1	manual	gene	163667	164845	.	+	.	ID=gene34;Name=rpl2
-LKAM01000008.1	manual	mRNA	163667	164845	.	+	.	ID=mRNA33;Parent=gene34;Name=rpl2;inference=similar to AA sequence:INSD:AJP33548.1
+LKAM01000008.1	manual	mRNA	163667	164845	.	+	.	ID=mRNA33;Parent=gene34;Name=rpl2;inference=similar to AA sequence:RefSeq:YP_009306511.1
 LKAM01000008.1	manual	exon	163667	163988	.	+	.	Parent=mRNA33
 LKAM01000008.1	manual	CDS	163667	163988	.	+	0	Parent=mRNA33
 LKAM01000008.1	manual	intron	163989	164654	.	+	.	Parent=mRNA33;Name=rpl2_intron1
@@ -218,7 +218,7 @@ LKAM01000008.1	manual	exon	254797	255849	.	+	.	Parent=mRNA34
 LKAM01000008.1	manual	CDS	254797	255849	.	+	0	Parent=mRNA34
 ###
 LKAM01000009.1	manual	gene	29678	31023	.	-	.	ID=gene36;Name=nad5
-LKAM01000009.1	manual	mRNA	29678	31023	.	-	.	ID=mRNA35;Parent=gene36;Name=nad5;inference=similar to AA sequence:INSD:AJP33542.1
+LKAM01000009.1	manual	mRNA	29678	31023	.	-	.	ID=mRNA35;Parent=gene36;Name=nad5;inference=similar to AA sequence:INSD:AHX81295.1
 LKAM01000009.1	manual	exon	29678	29827	.	-	.	Parent=mRNA35
 LKAM01000009.1	manual	CDS	29678	29827	.	-	0	Parent=mRNA35
 LKAM01000009.1	manual	intron	29828	30765	.	-	.	Parent=mRNA35;Name=nad5_intron1
