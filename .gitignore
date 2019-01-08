@@ -44,3 +44,6 @@ prokka
 # tbl2asn
 *.discrep
 *.val
+
+!LKAM01.2.fa
+!LKAM01.2.product.tsv
