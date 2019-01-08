@@ -523,7 +523,7 @@ prokka/%.gff.gene: prokka/%.gff
 #-------------------------------------------------------------------------------
 
 # Merge the previous annotation LKAM01.1 with the current manual annotation.
-LKAM01.2.gff: LKAM01.1.gff pg29mt-scaffolds.gff
+LKAM01.2.gff: LKAM01.1.gff pg29mt-scaffolds.manual.gff
 	bedtools intersect -v -header -a $< -b pg29mt-scaffolds.manual.gff \
 		| gt gff3 -sort pg29mt-scaffolds.manual.gff - >$@
 
