@@ -16,6 +16,13 @@ edirect_query='Viridiplantae[Organism] mitochondrion[Filter] (complete genome[Ti
 all: LKAM01.2.gff LKAM01.2.gff.aa.fa LKAM01.2.gff.cds.known.aa.fa \
 	LKAM01.2.tbl LKAM01.2.gbf
 
+rna: \
+	LKAM01.2.aragorn.tsv \
+	LKAM01.2.aragorn.txt \
+	LKAM01.2.trnascan.bed \
+	LKAM01.2.barrnap.gff \
+	LKAM01.2.rnammer.gff
+
 pg29mt-scaffolds: $(name).gff $(name).gbk $(name).tbl $(name).sqn \
 	$(name).maker.evidence.gff $(name).maker.repeat.gff \
 	$(name).maker.gff.gene $(name).prokka.gff.gene $(name).gff.gene $(name).tbl.gene \
