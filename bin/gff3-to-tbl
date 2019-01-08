@@ -68,7 +68,12 @@ def print_mrna(f, incomplete, locus_tag, product):
 	print "\t\t\tprotein_id\tgnl|%s|%s" % (args.centre, locus_tag)
 
 	# Check whether inference or Name contains evidence of a similar protein.
-	inference = f.qualifiers["inference"][-1] if "inference" in f.qualifiers else name
+	if "inference" in f.qualifiers:
+		inference = f.qualifiers["inference"][-1]
+	elif "inference" in cds[0].qualifiers:
+		inference = cds[0].qualifiers["inference"][-1]
+	else:
+		inference = name
 	genbank_match = genbank_regex.search(inference)
 	refseq_match = refseq_regex.search(inference)
 	uniprot_match = uniprot_regex.search(inference)
