@@ -107,7 +107,7 @@ def print_trna(f, locus_tag, product):
 	print "\t\t\tproduct\t%s" % product
 	print "\t\t\tnote\tanticodon:%s" % anticodon
 
-	for tag in "exception", "note":
+	for tag in "inference", "exception", "note":
 		if tag in f.qualifiers:
 			for value in f.qualifiers[tag]:
 				print "\t\t\t%s\t%s" % (tag, value)
