@@ -13,7 +13,10 @@ gzip=pigz -p$t
 # Green plant mitochondria
 edirect_query='Viridiplantae[Organism] mitochondrion[Title] (complete genome[Title] OR complete sequence[Title])'
 
-all: $(name).gff $(name).gbk $(name).tbl $(name).sqn \
+all: LKAM01.2.gff LKAM01.2.gff.aa.fa LKAM01.2.gff.cds.known.aa.fa \
+	LKAM01.2.tbl LKAM01.2.gbf
+
+pg29mt-scaffolds: $(name).gff $(name).gbk $(name).tbl $(name).sqn \
 	$(name).maker.evidence.gff $(name).maker.repeat.gff \
 	$(name).maker.gff.gene $(name).prokka.gff.gene $(name).gff.gene $(name).tbl.gene \
 	genes.html repeats.html
