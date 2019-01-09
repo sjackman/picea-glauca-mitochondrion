@@ -16,10 +16,10 @@ LKAM01000001.1	manual	mRNA	279747	280064	.	-	.	ID=mRNA1;Parent=gene1;Name=cox2_p
 LKAM01000001.1	manual	exon	279747	280064	.	-	.	Parent=mRNA1
 LKAM01000001.1	manual	CDS	279747	280064	.	-	2	Parent=mRNA1
 ###
-LKAM01000001.1	manual	gene	308997	309381	.	+	.	ID=gene2;Name=nad1
-LKAM01000001.1	manual	mRNA	308997	309381	.	+	.	ID=mRNA2;Parent=gene2;Name=nad1_part1;part=1/4;exception=trans-splicing,RNA editing;note=putative start codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33537.1
-LKAM01000001.1	manual	exon	308997	309381	.	+	.	Parent=mRNA2
-LKAM01000001.1	manual	CDS	308997	309381	.	+	0	Parent=mRNA2
+LKAM01000001.1	manual	gene	308997	309383	.	+	.	ID=gene2;Name=nad1
+LKAM01000001.1	manual	mRNA	308997	309383	.	+	.	ID=mRNA2;Parent=gene2;Name=nad1_part1;part=1/4;exception=trans-splicing,RNA editing;note=putative start codon created by RNA editing;inference=similar to AA sequence:INSD:AJP33537.1
+LKAM01000001.1	manual	exon	308997	309383	.	+	.	Parent=mRNA2
+LKAM01000001.1	manual	CDS	308997	309383	.	+	0	Parent=mRNA2
 ###
 LKAM01000001.1	manual	gene	361267	361325	.	-	.	ID=gene3;Name=nad1
 LKAM01000001.1	manual	mRNA	361267	361325	.	-	.	ID=mRNA3;Parent=gene3;Name=nad1_part3;part=3/4;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33537.1
@@ -68,10 +68,10 @@ LKAM01000002.1	manual	mRNA	272398	273993	.	+	.	ID=mRNA9;Parent=gene10;Name=cox1;
 LKAM01000002.1	manual	exon	272398	273993	.	+	.	Parent=mRNA9
 LKAM01000002.1	manual	CDS	272398	273993	.	+	0	Parent=mRNA9
 ###
-LKAM01000002.1	manual	gene	354855	358121	.	+	.	ID=gene11;Name=nad1
-LKAM01000002.1	manual	mRNA	354855	358121	.	+	.	ID=mRNA10;Parent=gene11;Name=nad1_part2;part=2/4;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33537.1
-LKAM01000002.1	manual	exon	354855	354937	.	+	.	Parent=mRNA10
-LKAM01000002.1	manual	CDS	354855	354937	.	+	2	Parent=mRNA10
+LKAM01000002.1	manual	gene	354857	358121	.	+	.	ID=gene11;Name=nad1
+LKAM01000002.1	manual	mRNA	354857	358121	.	+	.	ID=mRNA10;Parent=gene11;Name=nad1_part2;part=2/4;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33537.1
+LKAM01000002.1	manual	exon	354857	354937	.	+	.	Parent=mRNA10
+LKAM01000002.1	manual	CDS	354857	354937	.	+	0	Parent=mRNA10
 LKAM01000002.1	manual	intron	354938	357929	.	+	.	Parent=mRNA10;Name=nad1_part2_intron2
 LKAM01000002.1	manual	exon	357930	358121	.	+	.	Parent=mRNA10
 LKAM01000002.1	manual	CDS	357930	358121	.	+	0	Parent=mRNA10
