@@ -246,9 +246,9 @@ LKAM01000010.1	manual	mRNA	126075	126336	.	+	.	ID=mRNA38;Parent=gene39;Name=nad7
 LKAM01000010.1	manual	exon	126075	126336	.	+	.	Parent=mRNA38
 LKAM01000010.1	manual	CDS	126075	126336	.	+	1	Parent=mRNA38
 ###
-LKAM01000010.1	manual	gene	126859	126932	.	+	.	ID=gene40;Name=trnI-CAU;product=tRNA-Met
-LKAM01000010.1	manual	tRNA	126859	126932	.	+	.	ID=tRNA2;Parent=gene40;Name=trnI-CAU;product=tRNA-Met
-LKAM01000010.1	manual	exon	126859	126932	.	+	.	Parent=tRNA2;Name=trnI-CAU
+LKAM01000010.1	manual	gene	126859	126932	.	+	.	ID=gene40;Name=trnI-CAU;product=tRNA-Ile
+LKAM01000010.1	manual	tRNA	126859	126932	.	+	.	ID=tRNA2;Parent=gene40;Name=trnI-CAU;product=tRNA-Ile;exception=RNA editing;note=C assumed to be post-transcriptionally modified to lysidine%2C which pairs with A rather than G;inference=similar to DNA sequence:INSD:X53392.1
+LKAM01000010.1	manual	exon	126859	126932	.	+	.	Parent=tRNA2
 ###
 LKAM01000011.1	manual	gene	134326	134786	.	-	.	ID=gene41;Name=nad4
 LKAM01000011.1	manual	mRNA	134326	134786	.	-	.	ID=mRNA39;Parent=gene41;Name=nad4_part1;part=1/2;exception=trans-splicing;inference=similar to AA sequence:INSD:AJP33540.1
