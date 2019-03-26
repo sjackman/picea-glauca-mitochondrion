@@ -273,3 +273,72 @@ LKAM01000016.1	manual	mRNA	7560	7747	.	+	.	ID=mRNA42;Parent=gene44;Name=nad2_par
 LKAM01000016.1	manual	exon	7560	7747	.	+	.	Parent=mRNA42
 LKAM01000016.1	manual	CDS	7560	7747	.	+	2	Parent=mRNA42
 ###
+LKAM01000005.1	manual	gene	13228	14751	.	-	.	ID=gene2731;Name=atp1
+LKAM01000005.1	manual	mRNA	13228	14751	.	-	.	ID=mRNA2719;Parent=gene2731;Name=atp1;inference=similar to AA sequence:INSD:AJP33522.1
+LKAM01000005.1	manual	exon	13228	14751	.	-	.	Parent=mRNA2719
+LKAM01000005.1	manual	CDS	13228	14751	.	-	0	Parent=mRNA2719
+###
+LKAM01000003.1	manual	gene	342272	342520	.	+	.	ID=gene2339;Name=atp9
+LKAM01000003.1	manual	mRNA	342272	342520	.	+	.	ID=mRNA2327;Parent=gene2339;Name=atp9;inference=similar to AA sequence:INSD:AJP33526.1
+LKAM01000003.1	manual	exon	342272	342520	.	+	.	Parent=mRNA2327
+LKAM01000003.1	manual	CDS	342272	342520	.	+	0	Parent=mRNA2327
+###
+LKAM01000009.1	manual	gene	158098	158817	.	+	.	ID=gene4663;Name=ccmC
+LKAM01000009.1	manual	mRNA	158098	158817	.	+	.	ID=mRNA4642;Parent=gene4663;Name=ccmC;inference=similar to AA sequence:INSD:AJP33528.1
+LKAM01000009.1	manual	exon	158098	158817	.	+	.	Parent=mRNA4642
+LKAM01000009.1	manual	CDS	158098	158817	.	+	0	Parent=mRNA4642
+###
+LKAM01000005.1	manual	gene	16114	16470	.	-	.	ID=gene2734;Name=nad3
+LKAM01000005.1	manual	mRNA	16114	16470	.	-	.	ID=mRNA2722;Parent=gene2734;Name=nad3;inference=similar to AA sequence:INSD:AJP33539.1
+LKAM01000005.1	manual	exon	16114	16470	.	-	.	Parent=mRNA2722
+LKAM01000005.1	manual	CDS	16114	16470	.	-	0	Parent=mRNA2722
+###
+LKAM01000001.1	manual	gene	429170	429667	.	-	.	ID=gene453;Name=nad4L
+LKAM01000001.1	manual	mRNA	429170	429667	.	-	.	ID=mRNA452;Parent=gene453;Name=nad4L;inference=similar to AA sequence:INSD:AJP33540.1
+LKAM01000001.1	manual	exon	429170	429667	.	-	.	Parent=mRNA452
+LKAM01000001.1	manual	CDS	429170	429667	.	-	0	Parent=mRNA452
+###
+LKAM01000009.1	manual	gene	159496	159978	.	+	.	ID=gene4664;Name=rpl10
+LKAM01000009.1	manual	mRNA	159496	159978	.	+	.	ID=mRNA4643;Parent=gene4664;Name=rpl10;inference=similar to AA sequence:INSD:AJP33546.1
+LKAM01000009.1	manual	exon	159496	159978	.	+	.	Parent=mRNA4643
+LKAM01000009.1	manual	CDS	159496	159978	.	+	0	Parent=mRNA4643
+###
+LKAM01000007.1	manual	gene	16009	16584	.	+	.	ID=gene3721;Name=rpl5
+LKAM01000007.1	manual	mRNA	16009	16584	.	+	.	ID=mRNA3704;Parent=gene3721;Name=rpl5;inference=similar to AA sequence:INSD:AJP33549.1
+LKAM01000007.1	manual	exon	16009	16584	.	+	.	Parent=mRNA3704
+LKAM01000007.1	manual	CDS	16009	16584	.	+	0	Parent=mRNA3704
+###
+LKAM01000002.1	manual	gene	149783	150295	.	-	.	ID=gene1434;Name=rps11
+LKAM01000002.1	manual	mRNA	149783	150295	.	-	.	ID=mRNA1428;Parent=gene1434;Name=rps11;inference=similar to AA sequence:INSD:AJP33551.1
+LKAM01000002.1	manual	exon	149783	150295	.	-	.	Parent=mRNA1428
+LKAM01000002.1	manual	CDS	149783	150295	.	-	0	Parent=mRNA1428
+###
+LKAM01000005.1	manual	gene	15527	16066	.	-	.	ID=gene2733;Name=rps12
+LKAM01000005.1	manual	mRNA	15527	16066	.	-	.	ID=mRNA2721;Parent=gene2733;Name=rps12;inference=similar to AA sequence:INSD:AJP33552.1
+LKAM01000005.1	manual	exon	15527	16066	.	-	.	Parent=mRNA2721
+LKAM01000005.1	manual	CDS	15527	16066	.	-	0	Parent=mRNA2721
+###
+LKAM01000001.1	manual	gene	889877	890296	.	+	.	ID=gene939;Name=rps13
+LKAM01000001.1	manual	mRNA	889877	890296	.	+	.	ID=mRNA936;Parent=gene939;Name=rps13;inference=similar to AA sequence:INSD:AJP33553.1
+LKAM01000001.1	manual	exon	889877	890296	.	+	.	Parent=mRNA936
+LKAM01000001.1	manual	CDS	889877	890296	.	+	0	Parent=mRNA936
+###
+LKAM01000007.1	manual	gene	16589	16891	.	+	.	ID=gene3722;Name=rps14
+LKAM01000007.1	manual	mRNA	16589	16891	.	+	.	ID=mRNA3705;Parent=gene3722;Name=rps14;inference=similar to AA sequence:RefSeq:YP_009531527.1
+LKAM01000007.1	manual	exon	16589	16891	.	+	.	Parent=mRNA3705
+LKAM01000007.1	manual	CDS	16589	16891	.	+	0	Parent=mRNA3705
+###
+LKAM01000002.1	manual	gene	636821	637540	.	-	.	ID=gene1928;Name=rps2
+LKAM01000002.1	manual	mRNA	636821	637540	.	-	.	ID=mRNA1919;Parent=gene1928;Name=rps2;inference=similar to AA sequence:RefSeq:YP_009531498.1
+LKAM01000002.1	manual	exon	636821	637540	.	-	.	Parent=mRNA1919
+LKAM01000002.1	manual	CDS	636821	637540	.	-	0	Parent=mRNA1919
+###
+LKAM01000001.1	manual	gene	452590	453177	.	+	.	ID=gene477;Name=rps7
+LKAM01000001.1	manual	mRNA	452590	453177	.	+	.	ID=mRNA476;Parent=gene477;Name=rps7;inference=similar to AA sequence:INSD:AJP33559.1
+LKAM01000001.1	manual	exon	452590	453177	.	+	.	Parent=mRNA476
+LKAM01000001.1	manual	CDS	452590	453177	.	+	0	Parent=mRNA476
+###
+LKAM01000002.1	manual	gene	443857	444366	.	-	.	ID=gene1731;Name=sdh3
+LKAM01000002.1	manual	mRNA	443857	444366	.	-	.	ID=mRNA1723;Parent=gene1731;Name=sdh3;inference=similar to AA sequence:INSD:AJP33560.1
+LKAM01000002.1	manual	exon	443857	444366	.	-	.	Parent=mRNA1723
+LKAM01000002.1	manual	CDS	443857	444366	.	-	0	Parent=mRNA1723
