@@ -186,8 +186,18 @@ def print_gene(f, gene_product_table, translations):
 	else:
 		gene = re.sub("[-_][0-9]+$", "", re.sub(r"\|.*$", "", name))
 	locus_tag = "%s_%s" % (args.locustag, f.qualifiers["ID"][0])
-	product = "hypothetical protein" if gene.startswith("orf") else \
-		gene_product_table[re.sub("[-_].*$", "", gene)]
+
+	if gene.startswith("orf"):
+		product = "hypothetical protein"
+	elif gene in gene_product_table:
+		product = gene_product_table[gene]
+	elif gene.startswith("trn") and gene[0:4] in gene_product_table:
+		product = gene_product_table[gene[0:4]]
+	elif gene.startswith("ymf") and gene[3:] in gene_product_table:
+		product = "putative " + gene_product_table[gene[3:]]
+	else:
+		print >>sys.stderr, "Error: gene", gene, "not found in", args.gene_product_file
+		sys.exit(1)
 
 	print "\t\t\tgene\t%s" % gene
 	print "\t\t\tlocus_tag\t%s" % locus_tag
