@@ -1,0 +1,153 @@
+---
+title: Plot the genes of a GFF file
+author: Shaun Jackman
+params:
+  input_fai:
+    label: "Input FASTA FAI file"
+    value: "psitchensismt.fa.fai"
+    input: text
+  input_gff:
+    label: "Input GFF file"
+    value: "psitchensismt.gff"
+    input: text
+---
+
+# Load libraries
+```{r setup, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(magrittr)
+library(RColorBrewer)
+library(readr)
+library(scales)
+library(stringr)
+library(tidyr)
+
+# Bioconductor
+library(genomeIntervals)
+
+knit_print.data.frame <- function(x, ...) kable(x) %>% paste(collapse = "\n") %>% asis_output
+
+input_fai <- params$input_fai
+input_gff <- params$input_gff
+cat(input_fai)
+cat(input_gff)
+```
+
+# Gene families
+```{r gene-families}
+# Four shades each of blue, green, red, brown.
+family_colour <- tribble(
+	~Family_short, ~Colour,
+	"atp", "#B6D4E2", "dpo", "#7EADBD", "rpo", "#39798C", "mat", "#135160",
+	"rpl", "#B6E2CF", "rps", "#7EBD9C", "rrn", "#398C60", "trn", "#136034",
+	"nad", "#E2B6DB", "sdh", "#BD7EB5", "cob", "#8C3984", "cox", "#60135B",
+	"ccm", "#E2CCB5", "mtt", "#BD9D7E", "psa", "#8C6239", "ymf", "#603813",
+	"orf", "#C0C0C0", "oth", "#808080")
+
+gene_types <- tribble(
+	~Family_short, ~Family,
+	'atp', 'ATP synthase',
+	'ccb', 'cytochrome c biogenesis',
+	'ccm', 'cytochrome c maturation',
+	'clp', 'maturases (clp)',
+	'cob', 'complex III (ubichinol cytochrome c reductase)',
+	'cox', 'complex IV (cytochrome c oxidase)',
+	'dpo', 'DNA polymerase',
+	'mat', 'maturases',
+	'mtt', 'membrane targeting and translocation',
+	'nad', 'complex I (NADH dehydrogenase)',
+	'ori', 'origin of replication',
+	'orf', 'open reading frames',
+	'psa', 'photosystem I',
+	'rpl', 'ribosomal proteins (LSU)',
+	'rpo', 'RNA polymerase',
+	'rps', 'ribosomal proteins (SSU)',
+	'sdh', 'complex II (succinate dehydrogenase)',
+	'ymf', 'uncharacterized mitochondrial protein',
+	'oth', 'other genes',
+	'rrn', 'ribosomal RNAs',
+	'trn', 'transfer RNAs') %>%
+	right_join(family_colour, by = "Family_short") %>%
+	mutate(Family_both = paste(Family_short, Family, sep = ": "))
+```
+
+# Load data
+```{r load-data}
+gff_all <- readGff3(input_gff, isRightOpen = FALSE, quiet = TRUE)
+
+gff <- gff_all[gff_all$type %in% c('mRNA', 'rRNA', 'tRNA'),]
+
+scaffold_sizes <- read_tsv(input_fai,
+		col_names = c("Scaffold", "Size", "Pos", "Width", "Stride"),
+		col_types = c("ciiii")) %>%
+	transmute(Scaffold, ScaffoldSize = Size,
+		ScaffoldNameAndSize = paste(Scaffold, " ",
+			round(ScaffoldSize / 1e3), "kbp") %>% factor(., .))
+
+data_orig <- tibble(
+	Scaffold = as.character(gff$seq_name),
+	Strand = as.character(gff$strand),
+	Type = as.character(gff$type),
+	ID = as.character(getGffAttribute(gff, 'ID')),
+	Name = as.character(getGffAttribute(gff, 'Name')),
+	Position = as.integer(as.matrix(gff)[,1]),
+	Size = as.integer(size(gff))) %>%
+	mutate(
+		Gene =  sub("(trn.)-.*", "\\1", sub("[-_|].*", "", sub("-e", "e", Name))),
+		Family_short = tolower(substr(Name, 1, 3))) %>%
+	left_join(gene_types, by = "Family_short") %>%
+	replace_na(list(Family = "other genes", Family_both = "oth: other genes"))
+
+data_genes <- data_orig %>%
+	filter(Family_short != "orf", Family_short != "ymf") %>%
+	mutate(
+		Family = factor(Family_short, levels = gene_types$Family_short, labels = gene_types$Family_both),
+		Gene = sub("ymf.*", "ymf*", Gene),
+		Size = pmax(Size, 200),
+		TextSize = pmax(Size, 2000) + 100) %>%
+	replace_na(list(Family = "oth: other genes")) %>%
+	left_join(scaffold_sizes, by = "Scaffold") %>%
+	arrange(desc(ScaffoldSize)) %>%
+	mutate(ScaffoldNameAndSize = factor(ScaffoldNameAndSize, unique(ScaffoldNameAndSize))) %>%
+	group_by(Scaffold) %>%
+	mutate(Index = row_number(), x = cumsum(TextSize) - TextSize / 2) %>%
+	ungroup()
+```
+
+# Plot genes
+```{r genes, fig.width = 7, fig.height = 8, dpi = 300}
+ggplot(data_genes) +
+	theme_bw(base_size = 12) +
+	theme(axis.ticks.y = element_blank(),
+		axis.title.x = element_text(hjust = 0.04),
+		axis.title.y = element_text(hjust = 1),
+		legend.justification = c(1, 0),
+		legend.position = c(1, 0),
+		legend.text = element_text(size = 7.5),
+		panel.border = element_rect(colour = NA),
+		panel.grid = element_blank(),
+		strip.text = element_text(hjust = 0),
+		strip.background = element_rect(colour = NA, fill = NA)) + 
+	aes(x = x / 1e3,
+		y = Strand,
+		width = Size / 1e3,
+		fill = Family,
+		label = Gene) +
+	facet_wrap(~ ScaffoldNameAndSize, ncol = 1) +
+	geom_tile() +
+	geom_text(size = 2, vjust = 2.5) +
+	geom_segment(aes(xend = (x + Size/2 + 1000)/1e3), x = 0, y = 2.5, yend = 2.5, size = 0.2) +
+	guides(fill = guide_legend(ncol = 2, override.aes = list(colour = NULL))) +
+	scale_fill_manual("", values = gene_types %$% setNames(Colour, Family_both)) +
+	scale_x_continuous("Gene size (kbp)", breaks = 0:5) +
+	ylab("") +
+	ylim("", "-", "+")
+```
+
+```{r save-plot}
+pdf_filename <- paste0(input_gff, ".pdf")
+ggsave(pdf_filename, width = 7, height = 8, units = "in")
+cat(pdf_filename)
+```
