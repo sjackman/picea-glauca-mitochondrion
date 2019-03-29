@@ -698,6 +698,10 @@ gbk/%.00.gbk: %.gbk
 	Rscript -e 'rmarkdown::render("$<", output_format = "html_document")'
 	mogrify -units PixelsPerInch -density 300 $*_files/figure-html/*.png
 
+# Plot a GFF file.
+%.gff.pdf: %.fa.fai %.gff plot-gff.rmd
+	Rscript -e 'rmarkdown::render("plot-gff.rmd", "html_document", "$*.gff.html", params=list(input_fai="$*.fa.fai", input_gff="$*.gff"))'
+
 # Dependencies
 
 genes.html: pg29mt-scaffolds.gff
