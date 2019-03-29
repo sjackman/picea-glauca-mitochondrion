@@ -522,8 +522,12 @@ prokka/%.gff.gene: prokka/%.gff
 # LKAM01.2 Picea glauca mitochondrion
 #-------------------------------------------------------------------------------
 
+# Add a ymf prefix to genes discovered by MAKER and Prokka.
+LKAM01.1.ymf.gff: LKAM01.1.gff
+	gsed -E '/rrn|trn|orf|ymf|Name=ABT39_MTgene|Name=KUM|Name=MT/!s/Name=/Name=ymf/g' $< >$@
+
 # Merge the previous annotation LKAM01.1 with the current manual annotation.
-LKAM01.2.gff: LKAM01.1.gff pg29mt-scaffolds.manual.gff
+LKAM01.2.gff: LKAM01.1.ymf.gff pg29mt-scaffolds.manual.gff
 	bedtools intersect -v -header -a $< -b pg29mt-scaffolds.manual.gff \
 		| gt gff3 -sort pg29mt-scaffolds.manual.gff - >$@
 
