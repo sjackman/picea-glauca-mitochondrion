@@ -119,13 +119,13 @@ data_genes <- data_orig %>%
 # Plot genes
 ```{r genes, fig.width = 7, fig.height = 8, dpi = 300}
 ggplot(data_genes) +
-	theme_bw(base_size = 12) +
+	theme_bw(base_size = 10) +
 	theme(axis.ticks.y = element_blank(),
 		axis.title.x = element_text(hjust = 0.04),
 		axis.title.y = element_text(hjust = 1),
 		legend.justification = c(1, 0),
 		legend.position = c(1, 0),
-		legend.text = element_text(size = 7.5),
+		legend.text = element_text(size = 7),
 		panel.border = element_rect(colour = NA),
 		panel.grid = element_blank(),
 		strip.text = element_text(hjust = 0),
@@ -135,9 +135,10 @@ ggplot(data_genes) +
 		width = Size / 1e3,
 		fill = Family,
 		label = Gene) +
+	coord_cartesian(clip = "off") +
 	facet_wrap(~ ScaffoldNameAndSize, ncol = 1) +
 	geom_tile() +
-	geom_text(size = 2, vjust = 2.5) +
+	geom_text(size = 2, vjust = 2) +
 	geom_segment(aes(xend = (x + Size/2 + 1000)/1e3), x = 0, y = 2.5, yend = 2.5, size = 0.2) +
 	guides(fill = guide_legend(ncol = 2, override.aes = list(colour = NULL))) +
 	scale_fill_manual("", values = gene_types %$% setNames(Colour, Family_both)) +
