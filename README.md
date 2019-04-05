@@ -1,7 +1,9 @@
 Annotate the mitochondrial genome of white spruce (Picea glauca)
 ================================================================================
 
-+ [GFF](pg29mt-scaffolds.gff)
++ [NCBI GenBank LKAM00000000.1](https://www.ncbi.nlm.nih.gov/nuccore/LKAM00000000.1)
++ [GFF](LKAM01.2.gff)
++ [TBL](LKAM01.2.tbl)
 
 # Notes
 
