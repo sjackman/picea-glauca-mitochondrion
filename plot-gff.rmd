@@ -4,11 +4,11 @@ author: Shaun Jackman
 params:
   input_fai:
     label: "Input FASTA FAI file"
-    value: "psitchensismt.fa.fai"
+    value: "LKAM01.2.fa.fai"
     input: text
   input_gff:
     label: "Input GFF file"
-    value: "psitchensismt.gff"
+    value: "LKAM01.2.gff"
     input: text
 ---
 
