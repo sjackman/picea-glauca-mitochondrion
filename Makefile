@@ -13,7 +13,8 @@ gzip=pigz -p$t
 # Green plant mitochondria
 edirect_query='Viridiplantae[Organism] mitochondrion[Filter] (complete genome[Title] OR complete sequence[Title])'
 
-all: LKAM01.2.gff LKAM01.2.gff.aa.fa LKAM01.2.gff.cds.known.aa.fa \
+all: LKAM01.2.gff LKAM01.2.gff.pdf \
+	LKAM01.2.gff.aa.fa LKAM01.2.gff.cds.known.aa.fa \
 	LKAM01.2.tbl LKAM01.2.gbf
 
 rna: \
@@ -528,7 +529,8 @@ LKAM01.1.ymf.gff: LKAM01.1.gff
 
 # Merge the previous annotation LKAM01.1 with the current manual annotation.
 LKAM01.2.gff: LKAM01.1.ymf.gff pg29mt-scaffolds.manual.gff
-	bedtools intersect -v -header -a $< -b pg29mt-scaffolds.manual.gff \
+	bin/gt-bequeath Name <$< \
+		| bedtools intersect -v -header -a - -b pg29mt-scaffolds.manual.gff \
 		| gt gff3 -sort pg29mt-scaffolds.manual.gff - >$@
 
 # OrganellarGenomeDRAW
