@@ -72,7 +72,6 @@ trnV	tRNA-Val
 trnW	tRNA-Trp
 trnY	tRNA-Tyr
 ymf40	18S ribosomal RNA intron 1 ORF
-ymfatpA	atpA intron1 ORF
-ymfcob	cob intron3 ORF
-ymfcox1	coxI intron2 ORF
-ymfltrA	group II intron reverse transcriptase/maturase
+ymfatpAi1orf	atpA intron1 ORF
+ymfcobi3orf	cob intron3 ORF
+ymfcox1i2orf	cox1 intron2 ORF

@@ -525,7 +525,11 @@ prokka/%.gff.gene: prokka/%.gff
 
 # Add a ymf prefix to genes discovered by MAKER and Prokka.
 LKAM01.1.ymf.gff: LKAM01.1.gff
-	gsed -E '/rrn|trn|orf|ymf|Name=ABT39_MTgene|Name=KUM|Name=MT/!s/Name=/Name=ymf/g' $< >$@
+	gsed -E \
+		-e 's/ymfatpA/ymfatpAi1orf/' \
+		-e 's/ymfcob/ymfcobi3orf/' \
+		-e 's/ymfcox1/ymfcox1i2orf/' \
+		-e '/rrn|trn|orf|ymf|Name=ABT39_MTgene|Name=KUM|Name=MT/!s/Name=/Name=ymf/g' $< >$@
 
 # Merge the previous annotation LKAM01.1 with the current manual annotation.
 LKAM01.2.gff: LKAM01.1.ymf.gff pg29mt-scaffolds.manual.gff
