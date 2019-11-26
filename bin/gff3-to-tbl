@@ -234,6 +234,15 @@ def print_gene(f, gene_product_table, translations):
 			print_introns(sf)
 
 def main(args):
+	feature_names = {}
+	fasta_sequences = SeqIO.parse(open(args.genome_fasta_file), 'fasta')
+	for record in fasta_sequences:
+		if record.id.startswith("gnl|WGS:"):
+			accession = record.id.split("|")[4]
+			feature_names[accession] = record.id
+		else:
+			feature_names[record.id] = record.id
+
 	gene_product_table = {}
 	with open(args.gene_product_file) as tsvfile:
 		reader = csv.reader(tsvfile, dialect = "excel-tab")
@@ -249,7 +258,8 @@ def main(args):
 		translations[name] = sequence
 
 	for rec in GFF.parse(args.gff_file):
-		print(f">Feature gnl|{args.centre}|gb|{rec.id}")
+		feature_name = feature_names[rec.id]
+		print(f">Feature {feature_name}")
 		seen = {}
 		for f in rec.features:
 			if f.type != 'gene':
@@ -265,6 +275,7 @@ def main(args):
 parser = argparse.ArgumentParser(description="Convert GFFv3 to Sequin TBL")
 parser.add_argument("--centre", help="Sequencing centre ID")
 parser.add_argument("--locustag", help="Locus tag prefix")
+parser.add_argument("genome_fasta_file", metavar="project.fsa", help="FASTA file of genome sequences")
 parser.add_argument("gff_file", metavar="project.gff", help="GFF file of annotations")
 parser.add_argument("gene_product_file", metavar="product.tsv", help="TSV of gene products")
 parser.add_argument("translation_file", metavar="protein.fa", help="FASTA of protein sequences")
