@@ -665,7 +665,7 @@ gbk/%.00.gbk: %.gbk
 	gt -q gff3_to_gtf $< >$@
 
 # Convert GFF to TBL
-%.tbl: %.gff %.product.tsv %.gff.aa.fa
+%.tbl: %.fsa %.gff %.product.tsv %.gff.aa.fa
 	bin/gff3-to-tbl --centre=WGS:LKAM --locustag=ABT39 $^ >$@
 
 # Extract the names of genes from a TBL file
@@ -695,7 +695,11 @@ gbk/%.00.gbk: %.gbk
 # Extract protein sequences with unusual start codons.
 %.pep: %.gff.aa.fa %.alt
 	seqtk subseq $^ \
-	| sed -E -e 's/^>(.*(gene[0-9]*).*)/>gnl|BCGSC|PG29MT_\2 \1/' \
+	| sed -E \
+		-e 's/gene([0-9])]/gene000\1/' \
+		-e 's/gene([0-9][0-9])]/gene00\1/' \
+		-e 's/gene([0-9][0-9][0-9])]/gene0\1/' \
+		-e 's/^>(.*gene([0-9]*).*)/>gnl|WGS:LKAM|ABT39_\2 \1/' \
 		-e 's/^T/M/' \
 		-e 's/^A/V/' >$@
 
