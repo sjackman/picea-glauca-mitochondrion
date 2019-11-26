@@ -65,7 +65,11 @@ def print_mrna(f, incomplete, locus_tag, product):
 	if phase != 0:
 		print("\t\t\tcodon_start\t%d" % (1 + phase))
 	print("\t\t\tproduct\t%s" % product)
-	print("\t\t\tprotein_id\tgnl|%s|%s" % (args.centre, locus_tag))
+
+	protein_id = f"gnl|{args.centre}|{locus_tag}"
+	if "protein_id" in cds[0].qualifiers:
+		protein_id += f"|gb|{cds[0].qualifiers['protein_id'][0]}"
+	print("\t\t\tprotein_id\t", protein_id, sep="")
 
 	# Check whether inference or Name contains evidence of a similar protein.
 	if "inference" in f.qualifiers:
@@ -185,7 +189,13 @@ def print_gene(f, gene_product_table, translations):
 		gene = re.sub("^.*gene", "orf", name)
 	else:
 		gene = re.sub("[-_][0-9]+$", "", re.sub(r"\|.*$", "", name))
-	locus_tag = "%s_%s" % (args.locustag, f.qualifiers["ID"][0])
+	if "locus_tag" in f.qualifiers:
+		locus_tag = f.qualifiers["locus_tag"][0]
+	else:
+		id = f.qualifiers["ID"][0]
+		if id.startswith("gene"):
+			id = id[4:].zfill(4)
+		locus_tag = "%s_%s" % (args.locustag, id)
 
 	if gene.startswith("orf"):
 		product = "hypothetical protein"
