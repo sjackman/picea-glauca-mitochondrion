@@ -666,7 +666,7 @@ gbk/%.00.gbk: %.gbk
 
 # Convert GFF to TBL
 %.tbl: %.gff %.product.tsv %.gff.aa.fa
-	bin/gff3-to-tbl --centre=BCGSC --locustag=PG29MT $^ >$@
+	bin/gff3-to-tbl --centre=WGS:LKAM --locustag=ABT39 $^ >$@
 
 # Extract the names of genes from a TBL file
 %.tbl.gene: %.tbl
@@ -681,6 +681,7 @@ gbk/%.00.gbk: %.gbk
 %.fsa: %.fa
 	seqtk seq $< \
 		|sed -E -e '/^>(33|36)$$/{N;d;}' \
+			-e 's/^>/>gnl|WGS:LKAM|gb|/' \
 			-e 's/^>.*/& [organism=Picea glauca] [isolate=PG29] [location=mitochondrion] [completeness=draft] [topology=linear] [gcode=1]/' \
 			>$@
 
