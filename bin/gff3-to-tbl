@@ -249,7 +249,7 @@ def main(args):
 		translations[name] = sequence
 
 	for rec in GFF.parse(args.gff_file):
-		print(">Feature %s" % rec.id)
+		print(f">Feature gnl|{args.centre}|gb|{rec.id}")
 		seen = {}
 		for f in rec.features:
 			if f.type != 'gene':
