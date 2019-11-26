@@ -1,7 +1,7 @@
-#!/usr/bin/env python
-# Convert GFFv3 to Sequin TBL
-# Usage: gff3-to-tbl project.gff product.tsv protein.fa >project.tbl
-# Written by Shaun Jackman <sjackman@gmail.com>.
+#!/usr/bin/env python3
+# Convert GFFv3 to Sequin TBL3
+# Usage: gff3-to-tbl project.gff product.tsv protein.fa >project.tbl3
+# Written by Shaun Jackman <sjackman@gmail.com>.3
 
 from BCBio import GFF
 from Bio import SeqIO
@@ -19,14 +19,14 @@ def print_coord(f, incomplete):
 	"""
 	coord = (f.location.start + 1, f.location.end) if f.strand == 1 else (f.location.end, f.location.start + 1)
 	flag = ("<" if incomplete[0] else "", ">" if incomplete[1] else "")
-	print "%s%d\t%s%d" % (flag[0], coord[0], flag[1], coord[1])
+	print("%s%d\t%s%d" % (flag[0], coord[0], flag[1], coord[1]))
 
 def print_coord_override_type(f, type, incomplete):
 	""" Print the coordinates of this feature and a type.
 	"""
 	coord = (f.location.start + 1, f.location.end) if f.strand == 1 else (f.location.end, f.location.start + 1)
 	flag = ("<" if incomplete[0] else "", ">" if incomplete[1] else "")
-	print "%s%d\t%s%d\t%s" % (flag[0], coord[0], flag[1], coord[1], type)
+	print("%s%d\t%s%d\t%s" % (flag[0], coord[0], flag[1], coord[1], type))
 
 def print_coord_type(f, incomplete):
 	""" Print the coordinates and type of this feature.
@@ -63,9 +63,9 @@ def print_mrna(f, incomplete, locus_tag, product):
 	name = f.qualifiers["Name"][0]
 	phase = int(cds[0].qualifiers["phase"][0])
 	if phase != 0:
-		print "\t\t\tcodon_start\t%d" % (1 + phase)
-	print "\t\t\tproduct\t%s" % product
-	print "\t\t\tprotein_id\tgnl|%s|%s" % (args.centre, locus_tag)
+		print("\t\t\tcodon_start\t%d" % (1 + phase))
+	print("\t\t\tproduct\t%s" % product)
+	print("\t\t\tprotein_id\tgnl|%s|%s" % (args.centre, locus_tag))
 
 	# Check whether inference or Name contains evidence of a similar protein.
 	if "inference" in f.qualifiers:
@@ -80,14 +80,14 @@ def print_mrna(f, incomplete, locus_tag, product):
 	db = "INSD" if genbank_match else "RefSeq" if refseq_match else "UniProtKB" if uniprot_match else None
 	match = genbank_match or refseq_match or uniprot_match
 	if match:
-		print "\t\t\tinference\tsimilar to AA sequence:%s:%s" % (db, match.group(1))
+		print("\t\t\tinference\tsimilar to AA sequence:%s:%s" % (db, match.group(1)))
 
 	for tag in "exception", "note", "transl_except":
 		if tag in f.qualifiers:
 			for value in f.qualifiers[tag]:
-				print "\t\t\t%s\t%s" % (tag, value)
+				print("\t\t\t%s\t%s" % (tag, value))
 				if tag == "exception" and value == "trans-splicing":
-					print "\t\t\tnote\tpart=%s" % f.qualifiers["part"][0]
+					print("\t\t\tnote\tpart=%s" % f.qualifiers["part"][0])
 
 def print_trna(f, locus_tag, product):
 	""" Print a tRNA gene.
@@ -104,13 +104,13 @@ def print_trna(f, locus_tag, product):
 	else:
 		name = f.qualifiers["gene"][0]
 	anticodon = name.partition("-")[2]
-	print "\t\t\tproduct\t%s" % product
-	print "\t\t\tnote\tanticodon:%s" % anticodon
+	print("\t\t\tproduct\t%s" % product)
+	print("\t\t\tnote\tanticodon:%s" % anticodon)
 
 	for tag in "inference", "exception", "note":
 		if tag in f.qualifiers:
 			for value in f.qualifiers[tag]:
-				print "\t\t\t%s\t%s" % (tag, value)
+				print("\t\t\t%s\t%s" % (tag, value))
 
 def print_introns(f):
 	incomplete = (False, False)
@@ -196,15 +196,15 @@ def print_gene(f, gene_product_table, translations):
 	elif gene.startswith("ymf") and gene[3:] in gene_product_table:
 		product = "putative " + gene_product_table[gene[3:]]
 	else:
-		print >>sys.stderr, "Error: gene", gene, "not found in", args.gene_product_file
+		print("Error: gene", gene, "not found in", args.gene_product_file, file=sys.stderr)
 		sys.exit(1)
 
-	print "\t\t\tgene\t%s" % gene
-	print "\t\t\tlocus_tag\t%s" % locus_tag
+	print("\t\t\tgene\t%s" % gene)
+	print("\t\t\tlocus_tag\t%s" % locus_tag)
 	if 'exception' in f.qualifiers:
-		print "\t\t\texception\t%s" % f.qualifiers['exception'][0]
+		print("\t\t\texception\t%s" % f.qualifiers['exception'][0])
 	if 'pseudo' in f.qualifiers:
-		print "\t\t\tpseudo"
+		print("\t\t\tpseudo")
 
 	for sf in subfeatures(f):
 		if sf.type == "CDS":
@@ -217,7 +217,7 @@ def print_gene(f, gene_product_table, translations):
 		elif sf.type == "rRNA":
 			print_coord_type(sf, incomplete)
 			size = name.partition("rrn")[2]
-			print "\t\t\tproduct\t%s" % product
+			print("\t\t\tproduct\t%s" % product)
 			print_introns(sf)
 		elif sf.type == "tRNA":
 			print_trna(sf, locus_tag, product)
@@ -227,7 +227,7 @@ def main(args):
 	gene_product_table = {}
 	with open(args.gene_product_file) as tsvfile:
 		reader = csv.reader(tsvfile, dialect = "excel-tab")
-		header = reader.next()
+		header = next(reader)
 		assert header == ["gene", "product"]
 		for row in reader:
 			gene_product_table[row[0]] = row[1]
@@ -235,11 +235,11 @@ def main(args):
 	translations = {}
 	fasta_sequences = SeqIO.parse(open(args.translation_file), 'fasta')
 	for record in fasta_sequences:
-		name, sequence = record.id, record.seq.tostring()
+		name, sequence = record.id, record.seq
 		translations[name] = sequence
 
 	for rec in GFF.parse(args.gff_file):
-		print ">Feature %s" % rec.id
+		print(">Feature %s" % rec.id)
 		seen = {}
 		for f in rec.features:
 			if f.type != 'gene':
