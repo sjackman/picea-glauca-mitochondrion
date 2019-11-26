@@ -7,7 +7,7 @@ Submit-block ::= {
         initials "S.D.",
       },
       affil std {
-        affil "BC Cancer Agency Genome Sciences Centre",
+        affil "BC Cancer Genome Sciences Centre",
         div "Bioinformatics",
         city "Vancouver",
         sub "BC",
@@ -133,7 +133,7 @@ Submit-block ::= {
         }
       },
       affil std {
-        affil "BC Cancer Agency Genome Sciences Centre",
+        affil "BC Cancer Genome Sciences Centre",
         div "Bioinformatics",
         city "Vancouver",
         sub "BC",
@@ -262,7 +262,7 @@ Seqdesc ::= pub {
           }
         },
         affil std {
-          affil "BC Cancer Agency Genome Sciences Centre",
+          affil "BC Cancer Genome Sciences Centre",
           div "Bioinformatics",
           city "Vancouver",
           sub "BC",
